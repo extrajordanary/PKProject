@@ -65,21 +65,35 @@
                             </collectionView>
                             <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="da5-SJ-rr9">
                                 <rect key="frame" x="0.0" y="556" width="600" height="44"/>
+                                <color key="backgroundColor" red="0.083179518090000001" green="0.61142557959999999" blue="0.84152088989999996" alpha="1" colorSpace="calibratedRGB"/>
                                 <items>
                                     <barButtonItem width="5" style="plain" systemItem="fixedSpace" id="B1P-3V-pNx"/>
-                                    <barButtonItem title="All" id="mXm-iY-wA7"/>
+                                    <barButtonItem title="All" id="mXm-iY-wA7">
+                                        <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                    </barButtonItem>
                                     <barButtonItem style="plain" systemItem="flexibleSpace" id="wQD-bL-E9D"/>
-                                    <barButtonItem title="New" id="oSE-cG-9J9"/>
+                                    <barButtonItem title="New" id="oSE-cG-9J9">
+                                        <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                    </barButtonItem>
                                     <barButtonItem style="plain" systemItem="flexibleSpace" id="hzm-o4-Joi"/>
-                                    <barButtonItem title="ToDo" id="qye-pH-hJI"/>
+                                    <barButtonItem title="ToDo" id="qye-pH-hJI">
+                                        <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                    </barButtonItem>
                                     <barButtonItem style="plain" systemItem="flexibleSpace" id="24W-SQ-I13"/>
-                                    <barButtonItem title="Done" id="ehS-lZ-SWm"/>
+                                    <barButtonItem title="Done" id="ehS-lZ-SWm">
+                                        <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                    </barButtonItem>
                                     <barButtonItem style="plain" systemItem="flexibleSpace" id="PVt-2T-IIg"/>
-                                    <barButtonItem title="Fave" id="gPn-BK-Xbq"/>
+                                    <barButtonItem title="Fave" id="gPn-BK-Xbq">
+                                        <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                    </barButtonItem>
                                     <barButtonItem style="plain" systemItem="flexibleSpace" id="xeF-MT-X1x"/>
-                                    <barButtonItem systemItem="add" id="sB0-3r-HAo"/>
+                                    <barButtonItem systemItem="add" id="sB0-3r-HAo">
+                                        <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                    </barButtonItem>
                                     <barButtonItem width="5" style="plain" systemItem="fixedSpace" id="y5L-YY-1Hq"/>
                                 </items>
+                                <color key="barTintColor" red="0.083179518090000001" green="0.61142557959999999" blue="0.84152088989999996" alpha="1" colorSpace="calibratedRGB"/>
                             </toolbar>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -103,6 +117,9 @@
                             </mask>
                         </variation>
                     </view>
+                    <connections>
+                        <outlet property="mainMap" destination="eVJ-2k-ZOB" id="P5Q-59-z8Z"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="RhI-xC-4p8" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
