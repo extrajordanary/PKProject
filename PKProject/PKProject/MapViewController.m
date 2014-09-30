@@ -20,6 +20,8 @@
 
 @implementation MapViewController
 
+#pragma mark - View
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
@@ -27,6 +29,7 @@
     [self startStandardUpdates];
     
     self.mainMap.showsUserLocation = YES;
+    self.mainMap.showsPointsOfInterest = NO;
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -57,6 +60,7 @@
     [self.locationManager requestAlwaysAuthorization];
     
     [self.locationManager startUpdatingLocation];
+    [self.locationManager startUpdatingHeading];
     
     return YES;
 }

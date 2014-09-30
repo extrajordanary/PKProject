@@ -95,17 +95,27 @@
                                 </items>
                                 <color key="barTintColor" red="0.083179518090000001" green="0.61142557959999999" blue="0.84152088989999996" alpha="1" colorSpace="calibratedRGB"/>
                             </toolbar>
+                            <view alpha="0.80000000000000004" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="37e-li-9oJ">
+                                <rect key="frame" x="-4" y="0.0" width="608" height="20"/>
+                                <color key="backgroundColor" red="0.083179518090000001" green="0.61142557959999999" blue="0.84152088989999996" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="20" id="Qsc-rE-ZwD"/>
+                                </constraints>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
+                            <constraint firstItem="eVJ-2k-ZOB" firstAttribute="top" secondItem="37e-li-9oJ" secondAttribute="bottom" constant="-20" id="4fH-5Q-wzu"/>
+                            <constraint firstItem="37e-li-9oJ" firstAttribute="top" secondItem="iQc-0O-ViA" secondAttribute="topMargin" id="6Vm-5g-9Od"/>
                             <constraint firstAttribute="trailingMargin" secondItem="eVJ-2k-ZOB" secondAttribute="trailing" constant="-20" id="71G-hD-lWh"/>
-                            <constraint firstItem="eVJ-2k-ZOB" firstAttribute="top" secondItem="Rpg-4N-JGk" secondAttribute="bottom" constant="-20" id="AiQ-tL-kGz"/>
                             <constraint firstItem="eVJ-2k-ZOB" firstAttribute="leading" secondItem="iQc-0O-ViA" secondAttribute="leadingMargin" constant="-20" id="EEL-jF-E1r"/>
                             <constraint firstItem="Z82-Z6-PAr" firstAttribute="top" secondItem="da5-SJ-rr9" secondAttribute="bottom" id="NdU-fU-vzr"/>
                             <constraint firstItem="da5-SJ-rr9" firstAttribute="top" secondItem="Y2f-Cd-NF3" secondAttribute="bottom" id="Nzi-UM-5K0"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="37e-li-9oJ" secondAttribute="trailing" constant="-20" id="PW7-Wr-Q6T"/>
                             <constraint firstAttribute="trailingMargin" secondItem="Y2f-Cd-NF3" secondAttribute="trailing" constant="-20" id="SFv-D6-z2a"/>
                             <constraint firstItem="da5-SJ-rr9" firstAttribute="top" secondItem="Y2f-Cd-NF3" secondAttribute="bottom" id="bbp-ay-XsF"/>
                             <constraint firstAttribute="trailingMargin" secondItem="da5-SJ-rr9" secondAttribute="trailing" constant="-20" id="dnH-Ld-GMG"/>
+                            <constraint firstItem="37e-li-9oJ" firstAttribute="leading" secondItem="iQc-0O-ViA" secondAttribute="leadingMargin" constant="-20" id="eU3-lS-zjh"/>
                             <constraint firstItem="Y2f-Cd-NF3" firstAttribute="leading" secondItem="iQc-0O-ViA" secondAttribute="leadingMargin" constant="-20" id="nGX-Yl-cbL"/>
                             <constraint firstItem="da5-SJ-rr9" firstAttribute="leading" secondItem="iQc-0O-ViA" secondAttribute="leadingMargin" constant="-20" id="o6Q-SX-6gr"/>
                             <constraint firstItem="Z82-Z6-PAr" firstAttribute="top" secondItem="Y2f-Cd-NF3" secondAttribute="bottom" id="u2Q-zg-ojZ"/>
@@ -123,7 +133,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="RhI-xC-4p8" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="114" y="429"/>
+            <point key="canvasLocation" x="114" y="436"/>
         </scene>
     </scenes>
 </document>
