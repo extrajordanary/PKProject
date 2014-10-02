@@ -5,7 +5,7 @@
         <attribute name="image" optional="YES" attributeType="Binary" syncable="YES"/>
         <attribute name="latitude" optional="YES" attributeType="Double" defaultValueString="0.0" syncable="YES"/>
         <attribute name="longitude" optional="YES" attributeType="Double" defaultValueString="0.0" syncable="YES"/>
-        <relationship name="createdByUser" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="User" inverseName="userPhoto" inverseEntity="User" syncable="YES"/>
+        <relationship name="photoByUser" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="User" inverseName="userCreatedPhoto" inverseEntity="User" syncable="YES"/>
         <relationship name="photoSpot" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Spot" inverseName="spotPhoto" inverseEntity="Spot" syncable="YES"/>
     </entity>
     <entity name="Spot" representedClassName="Spot" syncable="YES">
@@ -13,7 +13,7 @@
         <attribute name="latitude" optional="YES" attributeType="Double" defaultValueString="0.0" syncable="YES"/>
         <attribute name="longitude" optional="YES" attributeType="Double" defaultValueString="0.0" syncable="YES"/>
         <attribute name="numberOfFavorites" optional="YES" attributeType="Integer 64" minValueString="0" defaultValueString="0" syncable="YES"/>
-        <relationship name="createdByUser" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="User" syncable="YES"/>
+        <relationship name="spotByUser" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="User" inverseName="userCreatedSpot" inverseEntity="User" syncable="YES"/>
         <relationship name="spotPhoto" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Photo" inverseName="photoSpot" inverseEntity="Photo" syncable="YES"/>
     </entity>
     <entity name="User" representedClassName="User" syncable="YES">
@@ -24,12 +24,13 @@
         <attribute name="nameLast" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="nameUser" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="photo" optional="YES" attributeType="Binary" syncable="YES"/>
-        <relationship name="userPhoto" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Photo" inverseName="createdByUser" inverseEntity="Photo" syncable="YES"/>
+        <relationship name="userCreatedPhoto" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Photo" inverseName="photoByUser" inverseEntity="Photo" syncable="YES"/>
+        <relationship name="userCreatedSpot" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Spot" inverseName="spotByUser" inverseEntity="Spot" syncable="YES"/>
         <relationship name="userSpot" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Spot" syncable="YES"/>
     </entity>
     <elements>
         <element name="Photo" positionX="-902" positionY="288" width="128" height="133"/>
         <element name="Spot" positionX="-1080" positionY="-9" width="128" height="133"/>
-        <element name="User" positionX="-801" positionY="0" width="128" height="178"/>
+        <element name="User" positionX="-801" positionY="0" width="128" height="193"/>
     </elements>
 </model>
