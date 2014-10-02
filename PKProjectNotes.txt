@@ -1,0 +1,1 @@
+MONGOHQ_URL: mongodb://heroku:KuH371EeJU64VIwZ6ztw45kUNquLcDfod9aKcbpxIy5S9kSfnqL8cOFZU78OENRaWcRE7y_QW4VDudJ2TjmJPQ@linus.mongohq.com:10079/app30263650
