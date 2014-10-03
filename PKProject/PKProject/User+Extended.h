@@ -1,5 +1,5 @@
 //
-//  User+AdditionalMethods.h
+//  User+Extended.h
 //  PKProject
 //
 //  Created by Jordan on 10/3/14.
@@ -8,6 +8,8 @@
 
 #import "User.h"
 
-@interface User (AdditionalMethods)
+@interface User (Extended)
+
+-(NSString *)lastNameFirstNameString;
 
 @end

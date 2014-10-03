@@ -7,6 +7,9 @@
 //
 
 #import "MapViewController.h"
+#import "User+Extended.h"
+
+static NSString* const kBaseURL = @"http://travalt.herokuapp.com/collections/test/";
 
 @interface MapViewController ()
 
@@ -18,7 +21,10 @@
 #define METERS_PER_MILE 1609.344
 #define DEFAULT_ZOOM_MILES .5
 
-@implementation MapViewController
+@implementation MapViewController {
+    NSString *myUserId;
+    NSArray *myUserInfo;
+}
 
 #pragma mark - View
 
@@ -35,6 +41,7 @@
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
 
+    [self getAndDisplayUserName];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -89,6 +96,31 @@
 //        }
 }
 
+#pragma mark - Testing Database Interaction
+- (void)getAndDisplayUserName {
+    // find out my username from the server and display it on screen
+    myUserId = @"542efcec4a1cef02006d1021"; //hard coded to Professor X
+
+    NSURL* url = [NSURL URLWithString:[kBaseURL stringByAppendingPathComponent:myUserId]];
+    NSMutableURLRequest* request = [NSMutableURLRequest requestWithURL:url];
+    
+    request.HTTPMethod = @"GET";
+    [request addValue:@"application/json" forHTTPHeaderField:@"Accept"];
+    
+    NSURLSessionConfiguration* config = [NSURLSessionConfiguration defaultSessionConfiguration];
+    NSURLSession* session = [NSURLSession sessionWithConfiguration:config];
+    
+    NSURLSessionDataTask* dataTask = [session dataTaskWithRequest:request
+                                                completionHandler:^(NSData *data, NSURLResponse *response, NSError *error) {
+                                                    if (error == nil) {
+                                                        NSArray* responseArray = [NSJSONSerialization JSONObjectWithData:data options:0 error:NULL];
+                                                        myUserInfo = responseArray;
+                                                    }
+                                                }];
+    
+    [dataTask resume];
+
+}
 /*
 #pragma mark - Navigation
 
