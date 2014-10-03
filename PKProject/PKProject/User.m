@@ -2,11 +2,12 @@
 //  User.m
 //  PKProject
 //
-//  Created by Jordan on 10/1/14.
+//  Created by Jordan on 10/3/14.
 //  Copyright (c) 2014 Byjor. All rights reserved.
 //
 
 #import "User.h"
+#import "Photo.h"
 #import "Spot.h"
 
 
@@ -19,7 +20,9 @@
 @dynamic nameLast;
 @dynamic nameUser;
 @dynamic photo;
-@dynamic userPhoto;
+@dynamic createdOnDate;
+@dynamic userCreatedPhoto;
 @dynamic userSpot;
+@dynamic userCreatedSpot;
 
 @end

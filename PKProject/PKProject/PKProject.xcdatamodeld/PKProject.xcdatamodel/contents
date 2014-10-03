@@ -19,6 +19,7 @@
     <entity name="User" representedClassName="User" syncable="YES">
         <attribute name="city" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="country" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="createdOnDate" optional="YES" attributeType="Date" syncable="YES"/>
         <attribute name="email" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="nameFirst" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="nameLast" optional="YES" attributeType="String" syncable="YES"/>
@@ -29,8 +30,8 @@
         <relationship name="userSpot" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Spot" syncable="YES"/>
     </entity>
     <elements>
-        <element name="Photo" positionX="-902" positionY="288" width="128" height="133"/>
-        <element name="Spot" positionX="-1080" positionY="-9" width="128" height="133"/>
-        <element name="User" positionX="-801" positionY="0" width="128" height="193"/>
+        <element name="Photo" positionX="-963" positionY="-25" width="128" height="133"/>
+        <element name="Spot" positionX="-1136" positionY="47" width="128" height="133"/>
+        <element name="User" positionX="-801" positionY="0" width="128" height="208"/>
     </elements>
 </model>

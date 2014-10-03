@@ -1,0 +1,49 @@
+Sample Data:
+
+{
+  _id: ObjectId("542efcd64a1cef02006d1020"),
+  email: "peter@yahoo.com",
+  name: "Peter Panda"
+}
+
+{ 
+	city: ‘Snohomish’
+	country: ‘USA’
+	email: ‘mike4life@aol.com’
+	nameFirst: ‘Mikey’
+	nameLast: ‘Mike’
+	nameUser: ‘mikesquared’
+	photo: ‘’
+	createdOnDate: ‘’
+	userCreatedPhoto: ‘’
+	userSpot: ‘’
+	userCreatedSpot: ‘’
+}
+
+{ 
+	city: ‘San Francisco’
+	country: ‘USA’
+	email: ‘bikeordie@gmail.com’
+	nameFirst: ‘Sandra’
+	nameLast: ‘Sanderson’
+	nameUser: ‘sandysk’
+	photo: ‘’
+	createdOnDate: ‘’
+	userCreatedPhoto: ‘’
+	userSpot: ‘’
+	userCreatedSpot: ‘’
+}
+
+{ 
+	city: ‘Snohomish’
+	country: ‘USA’
+	email: ‘mike4life@aol.com’
+	nameFirst: ‘Mikey’
+	nameLast: ‘Mike’
+	nameUser: ‘mikesquared’
+	photo: ‘’
+	createdOnDate: ‘’
+	userCreatedPhoto: ‘’
+	userSpot: ‘’
+	userCreatedSpot: ‘’
+}
