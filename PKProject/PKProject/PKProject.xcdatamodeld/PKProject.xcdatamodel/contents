@@ -20,18 +20,19 @@
         <attribute name="city" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="country" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="createdOnDate" optional="YES" attributeType="Date" syncable="YES"/>
+        <attribute name="databaseId" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="email" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="nameFirst" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="nameLast" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="nameUser" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="photo" optional="YES" attributeType="Binary" syncable="YES"/>
         <relationship name="userCreatedPhoto" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Photo" inverseName="photoByUser" inverseEntity="Photo" syncable="YES"/>
-        <relationship name="userCreatedSpot" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Spot" inverseName="spotByUser" inverseEntity="Spot" syncable="YES"/>
+        <relationship name="userCreatedSpot" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Spot" inverseName="spotByUser" inverseEntity="Spot" syncable="YES"/>
         <relationship name="userSpot" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Spot" syncable="YES"/>
     </entity>
     <elements>
         <element name="Photo" positionX="-963" positionY="-25" width="128" height="133"/>
         <element name="Spot" positionX="-1136" positionY="47" width="128" height="133"/>
-        <element name="User" positionX="-801" positionY="0" width="128" height="208"/>
+        <element name="User" positionX="-801" positionY="0" width="128" height="223"/>
     </elements>
 </model>

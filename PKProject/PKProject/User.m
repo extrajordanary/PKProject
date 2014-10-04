@@ -21,6 +21,7 @@
 @dynamic nameUser;
 @dynamic photo;
 @dynamic createdOnDate;
+@dynamic databaseId;
 @dynamic userCreatedPhoto;
 @dynamic userSpot;
 @dynamic userCreatedSpot;

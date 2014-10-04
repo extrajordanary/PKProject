@@ -7,6 +7,8 @@
 //
 
 #import "MapViewController.h"
+#import "AppDelegate.h"
+#import "DatabaseHandler.h"
 #import "User+Extended.h"
 
 static NSString* const kBaseURL = @"http://travalt.herokuapp.com/collections/test/";
@@ -15,6 +17,7 @@ static NSString* const kBaseURL = @"http://travalt.herokuapp.com/collections/tes
 
 @property (strong, nonatomic) IBOutlet MKMapView *mainMap;
 @property (strong, nonatomic) CLLocationManager *locationManager;
+@property (strong, nonatomic) User *myUser;
 
 @end
 
@@ -22,8 +25,11 @@ static NSString* const kBaseURL = @"http://travalt.herokuapp.com/collections/tes
 #define DEFAULT_ZOOM_MILES .5
 
 @implementation MapViewController {
+    NSManagedObjectContext *theContext;
+
     NSString *myUserId;
-    NSArray *myUserInfo;
+    NSDictionary *myUserInfo;
+    DatabaseHandler *databaseHandler;
 }
 
 #pragma mark - View
@@ -31,6 +37,8 @@ static NSString* const kBaseURL = @"http://travalt.herokuapp.com/collections/tes
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+    theContext = ((AppDelegate *)[UIApplication sharedApplication].delegate).managedObjectContext;
+    databaseHandler = [DatabaseHandler sharedDatabaseHandler];
     
     [self startStandardUpdates];
     
@@ -41,7 +49,11 @@ static NSString* const kBaseURL = @"http://travalt.herokuapp.com/collections/tes
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
 
-    [self getAndDisplayUserName];
+//    [self getAndDisplayUserName];
+//    self.myUser = [[User alloc] init];
+    self.myUser = [NSEntityDescription insertNewObjectForEntityForName:@"User" inManagedObjectContext:theContext];
+    [self.myUser setValue:@"542efcec4a1cef02006d1021" forKey:@"databaseId"];
+    [databaseHandler updateUserFromDatabase:self.myUser];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -113,8 +125,8 @@ static NSString* const kBaseURL = @"http://travalt.herokuapp.com/collections/tes
     NSURLSessionDataTask* dataTask = [session dataTaskWithRequest:request
                                                 completionHandler:^(NSData *data, NSURLResponse *response, NSError *error) {
                                                     if (error == nil) {
-                                                        NSArray* responseArray = [NSJSONSerialization JSONObjectWithData:data options:0 error:NULL];
-                                                        myUserInfo = responseArray;
+                                                        NSDictionary* responseDictionary = [NSJSONSerialization JSONObjectWithData:data options:0 error:NULL];
+                                                        myUserInfo = responseDictionary;
                                                     }
                                                 }];
     

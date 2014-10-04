@@ -2,7 +2,7 @@
 //  Photo.h
 //  PKProject
 //
-//  Created by Jordan on 10/1/14.
+//  Created by Jordan on 10/3/14.
 //  Copyright (c) 2014 Byjor. All rights reserved.
 //
 
@@ -18,6 +18,6 @@
 @property (nonatomic, retain) NSNumber * longitude;
 @property (nonatomic, retain) NSData * image;
 @property (nonatomic, retain) Spot *photoSpot;
-@property (nonatomic, retain) User *createdByUser;
+@property (nonatomic, retain) User *photoByUser;
 
 @end

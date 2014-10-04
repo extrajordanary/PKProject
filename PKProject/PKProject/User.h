@@ -21,9 +21,10 @@
 @property (nonatomic, retain) NSString * nameUser;
 @property (nonatomic, retain) NSData * photo;
 @property (nonatomic, retain) NSDate * createdOnDate;
+@property (nonatomic, retain) NSString * databaseId;
 @property (nonatomic, retain) NSSet *userCreatedPhoto;
 @property (nonatomic, retain) NSSet *userSpot;
-@property (nonatomic, retain) Spot *userCreatedSpot;
+@property (nonatomic, retain) NSSet *userCreatedSpot;
 @end
 
 @interface User (CoreDataGeneratedAccessors)
@@ -37,5 +38,10 @@
 - (void)removeUserSpotObject:(Spot *)value;
 - (void)addUserSpot:(NSSet *)values;
 - (void)removeUserSpot:(NSSet *)values;
+
+- (void)addUserCreatedSpotObject:(Spot *)value;
+- (void)removeUserCreatedSpotObject:(Spot *)value;
+- (void)addUserCreatedSpot:(NSSet *)values;
+- (void)removeUserCreatedSpot:(NSSet *)values;
 
 @end

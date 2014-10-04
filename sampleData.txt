@@ -47,3 +47,23 @@ Sample Data:
 	userSpot: ‘’
 	userCreatedSpot: ‘’
 }
+
+{
+  city: "New York",
+  country: "USA",
+  email: "px@xmen.org",
+  nameFirst: "Professor X",
+  nameLast: "Awesome",
+  nameUser: "xmenleader",
+  _id: ObjectId("542efcec4a1cef02006d1021")
+}
+
+{
+  city: "NYNY",
+  country: "belegh",
+  email: "pfdsgbjkgx@xmen.org",
+  nameFirst: "Professor Xfasdfa",
+  nameLast: "Awefdasa",
+  nameUser: "fasgadfleader",
+  _id: ObjectId("542efcec4a1cef02006d1021")
+}
