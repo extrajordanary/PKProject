@@ -17,6 +17,20 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     // Override point for customization after application launch.
+    
+    // check if user has stored user _id, if not, create new user on server and save the _id
+    if (![[NSUserDefaults standardUserDefaults] objectForKey:@"thisUserId"]) {
+        // provide option to login with exisiting account
+        
+        // else create new user and save to server
+        
+        // save the returned objectID for thisUserId
+        
+        // cheating and hardcoding for now
+        [[NSUserDefaults standardUserDefaults] setObject:@"542efcec4a1cef02006d1021" forKey:@"thisUserId"];
+        [[NSUserDefaults standardUserDefaults] synchronize];
+    }
+    
     return YES;
 }
 

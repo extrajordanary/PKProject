@@ -50,7 +50,9 @@
 
     // create a sample user to test pulling info from the server
     self.myUser = [NSEntityDescription insertNewObjectForEntityForName:@"User" inManagedObjectContext:theContext];
-    [self.myUser setValue:@"542efcec4a1cef02006d1021" forKey:@"databaseId"];
+
+    NSString *userId = [[NSUserDefaults standardUserDefaults] valueForKey:@"thisUserId"];
+    [self.myUser setValue:userId forKey:@"databaseId"];
     [databaseHandler updateUserFromDatabase:self.myUser];
 }
 
@@ -104,6 +106,17 @@
           location.coordinate.latitude,
           location.coordinate.longitude);
 //        }
+}
+
+# pragma mark - Sample Data
+- (void)createSampleData {
+    // create sample users
+    
+    // create sample spots
+    
+    // create sample photos
+    
+    // assign connections between them
 }
 
 
