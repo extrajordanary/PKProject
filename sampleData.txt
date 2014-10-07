@@ -1,53 +1,6 @@
 Sample Data:
 
-{
-  _id: ObjectId("542efcd64a1cef02006d1020"),
-  email: "peter@yahoo.com",
-  name: "Peter Panda"
-}
-
-{ 
-	city: ‘Snohomish’
-	country: ‘USA’
-	email: ‘mike4life@aol.com’
-	nameFirst: ‘Mikey’
-	nameLast: ‘Mike’
-	nameUser: ‘mikesquared’
-	photo: ‘’
-	createdOnDate: ‘’
-	userCreatedPhoto: ‘’
-	userSpot: ‘’
-	userCreatedSpot: ‘’
-}
-
-{ 
-	city: ‘San Francisco’
-	country: ‘USA’
-	email: ‘bikeordie@gmail.com’
-	nameFirst: ‘Sandra’
-	nameLast: ‘Sanderson’
-	nameUser: ‘sandysk’
-	photo: ‘’
-	createdOnDate: ‘’
-	userCreatedPhoto: ‘’
-	userSpot: ‘’
-	userCreatedSpot: ‘’
-}
-
-{ 
-	city: ‘Snohomish’
-	country: ‘USA’
-	email: ‘mike4life@aol.com’
-	nameFirst: ‘Mikey’
-	nameLast: ‘Mike’
-	nameUser: ‘mikesquared’
-	photo: ‘’
-	createdOnDate: ‘’
-	userCreatedPhoto: ‘’
-	userSpot: ‘’
-	userCreatedSpot: ‘’
-}
-
+// USERS
 {
   city: "New York",
   country: "USA",
@@ -65,5 +18,28 @@ Sample Data:
   nameFirst: "Professor Xfasdfa",
   nameLast: "Awefdasa",
   nameUser: "fasgadfleader",
-  _id: ObjectId("542efcec4a1cef02006d1021")
+  _id: ObjectId("542f3f49d973a6ab0e000390")
+}
+
+// SPOTS
+{
+  latitude: 37.77796345,
+  longitude: -122.39864811,
+  numberOfFavorites: 21,
+  spotByUser: "542efcec4a1cef02006d1021",
+  _id: ObjectId("542f3fd0d973a631600003cf")
+}
+{
+  latitude: 37.77796445,
+  longitude: -122.39867811,
+  numberOfFavorites: 1,
+  spotByUser: "542efcec4a1cef02006d1021",
+  _id: ObjectId("542f4161d973a631600003da")
+}
+{
+  latitude: 37.77696345,
+  longitude: -122.39804811,
+  numberOfFavorites: 5,
+  spotByUser: "542f3f49d973a6ab0e000390",
+  _id: ObjectId("542f419ed973a631600003e5")
 }
