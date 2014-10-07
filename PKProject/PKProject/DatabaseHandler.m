@@ -33,7 +33,6 @@ static NSString* const kPhotos = @"/collections/photos";
 - (id)init {
     if (self = [super init]) {
         // some set up
-//        self.myUserId = @"542efcec4a1cef02006d1021"; //hard coded to Professor X
     }
     return self;
 }
@@ -42,7 +41,6 @@ static NSString* const kPhotos = @"/collections/photos";
 - (void)updateUserFromDatabase:(User*)user {
     NSString* userId = user.databaseId;
     NSString* requestURL = [NSString stringWithFormat:@"%@%@/%@",kBaseURL,kUsers,userId];
-//    NSURL* url = [NSURL URLWithString:[[kBaseURL stringByAppendingPathComponent:kUsers] stringByAppendingPathComponent:userId]];
     NSURL* url = [NSURL URLWithString:requestURL];
     NSMutableURLRequest* request = [NSMutableURLRequest requestWithURL:url];
     

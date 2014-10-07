@@ -11,8 +11,6 @@
 #import "DatabaseHandler.h"
 #import "User+Extended.h"
 
-static NSString* const kBaseURL = @"http://travalt.herokuapp.com/collections/test/";
-
 @interface MapViewController ()
 
 @property (strong, nonatomic) IBOutlet MKMapView *mainMap;
@@ -22,7 +20,7 @@ static NSString* const kBaseURL = @"http://travalt.herokuapp.com/collections/tes
 @end
 
 #define METERS_PER_MILE 1609.344
-#define DEFAULT_ZOOM_MILES .5
+#define DEFAULT_ZOOM_MILES .2
 
 @implementation MapViewController {
     NSManagedObjectContext *theContext;
@@ -36,11 +34,12 @@ static NSString* const kBaseURL = @"http://travalt.herokuapp.com/collections/tes
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
     // Do any additional setup after loading the view.
     theContext = ((AppDelegate *)[UIApplication sharedApplication].delegate).managedObjectContext;
     databaseHandler = [DatabaseHandler sharedDatabaseHandler];
     
-    [self startStandardUpdates];
+    [self startStandardMapUpdates];
     
     self.mainMap.showsUserLocation = YES;
     self.mainMap.showsPointsOfInterest = NO;
@@ -49,8 +48,7 @@ static NSString* const kBaseURL = @"http://travalt.herokuapp.com/collections/tes
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
 
-//    [self getAndDisplayUserName];
-//    self.myUser = [[User alloc] init];
+    // create a sample user to test pulling info from the server
     self.myUser = [NSEntityDescription insertNewObjectForEntityForName:@"User" inManagedObjectContext:theContext];
     [self.myUser setValue:@"542efcec4a1cef02006d1021" forKey:@"databaseId"];
     [databaseHandler updateUserFromDatabase:self.myUser];
@@ -63,7 +61,7 @@ static NSString* const kBaseURL = @"http://travalt.herokuapp.com/collections/tes
 
 #pragma mark - Location Manager
 
-- (BOOL)startStandardUpdates
+- (BOOL)startStandardMapUpdates
 {
     // Create the location manager if this object does not already have one.
     if (nil == self.locationManager) {
@@ -108,31 +106,7 @@ static NSString* const kBaseURL = @"http://travalt.herokuapp.com/collections/tes
 //        }
 }
 
-#pragma mark - Testing Database Interaction
-- (void)getAndDisplayUserName {
-    // find out my username from the server and display it on screen
-    myUserId = @"542efcec4a1cef02006d1021"; //hard coded to Professor X
 
-    NSURL* url = [NSURL URLWithString:[kBaseURL stringByAppendingPathComponent:myUserId]];
-    NSMutableURLRequest* request = [NSMutableURLRequest requestWithURL:url];
-    
-    request.HTTPMethod = @"GET";
-    [request addValue:@"application/json" forHTTPHeaderField:@"Accept"];
-    
-    NSURLSessionConfiguration* config = [NSURLSessionConfiguration defaultSessionConfiguration];
-    NSURLSession* session = [NSURLSession sessionWithConfiguration:config];
-    
-    NSURLSessionDataTask* dataTask = [session dataTaskWithRequest:request
-                                                completionHandler:^(NSData *data, NSURLResponse *response, NSError *error) {
-                                                    if (error == nil) {
-                                                        NSDictionary* responseDictionary = [NSJSONSerialization JSONObjectWithData:data options:0 error:NULL];
-                                                        myUserInfo = responseDictionary;
-                                                    }
-                                                }];
-    
-    [dataTask resume];
-
-}
 /*
 #pragma mark - Navigation
 
