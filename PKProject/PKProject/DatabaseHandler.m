@@ -13,7 +13,7 @@
 // and converting the results into a JSON object to pass to the other classes
 
 static NSString* const kBaseURL = @"http://travalt.herokuapp.com";
-static NSString* const kUsers = @"/collections/test"; // temp
+static NSString* const kUsers = @"/collections/users"; 
 static NSString* const kSpots = @"/collections/spots";
 static NSString* const kPhotos = @"/collections/photos";
 

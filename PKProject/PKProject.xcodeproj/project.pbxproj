@@ -12,6 +12,7 @@
 		171BA9FC19DF622E00C66676 /* Photo.m in Sources */ = {isa = PBXBuildFile; fileRef = 171BA9FB19DF622E00C66676 /* Photo.m */; };
 		171BA9FF19DF622F00C66676 /* Spot.m in Sources */ = {isa = PBXBuildFile; fileRef = 171BA9FE19DF622F00C66676 /* Spot.m */; };
 		171BAA0519DF656000C66676 /* User.m in Sources */ = {isa = PBXBuildFile; fileRef = 171BAA0419DF656000C66676 /* User.m */; };
+		171BAA0819DF79EA00C66676 /* Spot+Extended.m in Sources */ = {isa = PBXBuildFile; fileRef = 171BAA0719DF79EA00C66676 /* Spot+Extended.m */; };
 		175DA60419DA1D2800897710 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 175DA60319DA1D2800897710 /* main.m */; };
 		175DA60719DA1D2800897710 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 175DA60619DA1D2800897710 /* AppDelegate.m */; };
 		175DA60A19DA1D2800897710 /* PKProject.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 175DA60819DA1D2800897710 /* PKProject.xcdatamodeld */; };
@@ -45,6 +46,8 @@
 		171BA9FE19DF622F00C66676 /* Spot.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Spot.m; sourceTree = "<group>"; };
 		171BAA0319DF656000C66676 /* User.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = User.h; sourceTree = "<group>"; };
 		171BAA0419DF656000C66676 /* User.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = User.m; sourceTree = "<group>"; };
+		171BAA0619DF79EA00C66676 /* Spot+Extended.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Spot+Extended.h"; sourceTree = "<group>"; };
+		171BAA0719DF79EA00C66676 /* Spot+Extended.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "Spot+Extended.m"; sourceTree = "<group>"; };
 		175DA5FE19DA1D2800897710 /* PKProject.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PKProject.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		175DA60219DA1D2800897710 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		175DA60319DA1D2800897710 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -127,6 +130,8 @@
 				171BA9F519DF545C00C66676 /* DatabaseHandler.m */,
 				171BA9F119DF4AD000C66676 /* User+Extended.h */,
 				171BA9F219DF4AD000C66676 /* User+Extended.m */,
+				171BAA0619DF79EA00C66676 /* Spot+Extended.h */,
+				171BAA0719DF79EA00C66676 /* Spot+Extended.m */,
 				171BA9ED19DC7F5800C66676 /* Core Data Classes */,
 				175DA62D19DB493200897710 /* Structure */,
 				175DA60119DA1D2800897710 /* Supporting Files */,
@@ -271,6 +276,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				171BAA0819DF79EA00C66676 /* Spot+Extended.m in Sources */,
 				171BA9F319DF4AD000C66676 /* User+Extended.m in Sources */,
 				175DA60719DA1D2800897710 /* AppDelegate.m in Sources */,
 				171BAA0519DF656000C66676 /* User.m in Sources */,

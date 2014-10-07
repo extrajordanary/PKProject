@@ -14,4 +14,5 @@
 
 -(instancetype)initWithDictionary:(NSDictionary*)dictionary;
 -(void)updateFromDictionary:(NSDictionary*)dictionary;
+
 @end
