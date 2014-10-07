@@ -8,6 +8,6 @@
 
 #import "Spot+Extended.h"
 
-@implementation Spot_Extended
+@implementation Spot (Extended)
 
 @end

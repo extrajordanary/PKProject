@@ -6,8 +6,8 @@
 //  Copyright (c) 2014 Byjor. All rights reserved.
 //
 
-#import <Foundation/Foundation.h>
+#import "Spot.h"
 
-@interface Spot_Extended : NSObject
+@interface Spot (Extended)
 
 @end
