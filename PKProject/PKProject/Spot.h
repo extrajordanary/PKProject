@@ -2,7 +2,7 @@
 //  Spot.h
 //  PKProject
 //
-//  Created by Jordan on 10/3/14.
+//  Created by Jordan on 10/7/14.
 //  Copyright (c) 2014 Byjor. All rights reserved.
 //
 
@@ -13,12 +13,12 @@
 
 @interface Spot : NSManagedObject
 
-@property (nonatomic, retain) NSDate * createdOnDate;
+@property (nonatomic, retain) NSDate * creationTimestamp;
 @property (nonatomic, retain) NSNumber * latitude;
 @property (nonatomic, retain) NSNumber * longitude;
 @property (nonatomic, retain) NSNumber * numberOfFavorites;
-@property (nonatomic, retain) NSSet *spotPhoto;
 @property (nonatomic, retain) User *spotByUser;
+@property (nonatomic, retain) NSSet *spotPhoto;
 @end
 
 @interface Spot (CoreDataGeneratedAccessors)

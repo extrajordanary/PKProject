@@ -2,7 +2,7 @@
 //  Photo.h
 //  PKProject
 //
-//  Created by Jordan on 10/3/14.
+//  Created by Jordan on 10/7/14.
 //  Copyright (c) 2014 Byjor. All rights reserved.
 //
 
@@ -13,11 +13,11 @@
 
 @interface Photo : NSManagedObject
 
-@property (nonatomic, retain) NSDate * createdOnDate;
+@property (nonatomic, retain) NSDate * creationTimestamp;
+@property (nonatomic, retain) NSData * image;
 @property (nonatomic, retain) NSNumber * latitude;
 @property (nonatomic, retain) NSNumber * longitude;
-@property (nonatomic, retain) NSData * image;
-@property (nonatomic, retain) Spot *photoSpot;
 @property (nonatomic, retain) User *photoByUser;
+@property (nonatomic, retain) Spot *photoSpot;
 
 @end

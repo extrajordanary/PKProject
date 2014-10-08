@@ -2,7 +2,7 @@
 //  Photo.m
 //  PKProject
 //
-//  Created by Jordan on 10/3/14.
+//  Created by Jordan on 10/7/14.
 //  Copyright (c) 2014 Byjor. All rights reserved.
 //
 
@@ -13,11 +13,11 @@
 
 @implementation Photo
 
-@dynamic createdOnDate;
+@dynamic creationTimestamp;
+@dynamic image;
 @dynamic latitude;
 @dynamic longitude;
-@dynamic image;
-@dynamic photoSpot;
 @dynamic photoByUser;
+@dynamic photoSpot;
 
 @end

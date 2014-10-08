@@ -2,7 +2,7 @@
 //  Spot.m
 //  PKProject
 //
-//  Created by Jordan on 10/3/14.
+//  Created by Jordan on 10/7/14.
 //  Copyright (c) 2014 Byjor. All rights reserved.
 //
 
@@ -13,11 +13,11 @@
 
 @implementation Spot
 
-@dynamic createdOnDate;
+@dynamic creationTimestamp;
 @dynamic latitude;
 @dynamic longitude;
 @dynamic numberOfFavorites;
-@dynamic spotPhoto;
 @dynamic spotByUser;
+@dynamic spotPhoto;
 
 @end
