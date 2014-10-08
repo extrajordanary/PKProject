@@ -162,7 +162,7 @@
                                     <barButtonItem systemItem="cancel" id="GHI-hp-Hxp">
                                         <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <connections>
-                                            <segue destination="TcK-Hn-xC7" kind="show" id="ElS-Rz-Lye"/>
+                                            <segue destination="TcK-Hn-xC7" kind="show" identifier="Cancel" id="ElS-Rz-Lye"/>
                                         </connections>
                                     </barButtonItem>
                                     <barButtonItem style="plain" systemItem="flexibleSpace" id="d98-mb-2jD"/>
@@ -175,6 +175,9 @@
                                     <barButtonItem style="plain" systemItem="flexibleSpace" id="73h-MQ-LJu"/>
                                     <barButtonItem style="done" systemItem="save" id="Fgx-p7-qnd">
                                         <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        <connections>
+                                            <segue destination="TcK-Hn-xC7" kind="show" identifier="Save" id="3jh-wH-MsC"/>
+                                        </connections>
                                     </barButtonItem>
                                     <barButtonItem width="5" style="plain" systemItem="fixedSpace" id="QcJ-VL-X97"/>
                                 </items>
@@ -262,4 +265,7 @@
             <point key="canvasLocation" x="912" y="-370.5"/>
         </scene>
     </scenes>
+    <inferredMetricsTieBreakers>
+        <segue reference="3jh-wH-MsC"/>
+    </inferredMetricsTieBreakers>
 </document>
