@@ -92,7 +92,7 @@
                                     <barButtonItem systemItem="add" id="sB0-3r-HAo">
                                         <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <connections>
-                                            <segue destination="Vve-Eo-Ty2" kind="show" id="Hru-SO-2e2"/>
+                                            <segue destination="Vve-Eo-Ty2" kind="show" identifier="CreateSpot" id="Hru-SO-2e2"/>
                                         </connections>
                                     </barButtonItem>
                                     <barButtonItem width="5" style="plain" systemItem="fixedSpace" id="y5L-YY-1Hq"/>
@@ -139,10 +139,10 @@
             </objects>
             <point key="canvasLocation" x="114" y="436"/>
         </scene>
-        <!--Add Spot-->
+        <!--Create Spot-->
         <scene sceneID="xCq-ZK-cb0">
             <objects>
-                <viewController title="Add Spot" id="Vve-Eo-Ty2" sceneMemberID="viewController">
+                <viewController title="Create Spot" id="Vve-Eo-Ty2" customClass="CreateSpotViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="imT-Os-fpj"/>
                         <viewControllerLayoutGuide type="bottom" id="ZHe-Lh-fMe"/>
@@ -163,6 +163,13 @@
                                         <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <connections>
                                             <segue destination="TcK-Hn-xC7" kind="show" id="ElS-Rz-Lye"/>
+                                        </connections>
+                                    </barButtonItem>
+                                    <barButtonItem style="plain" systemItem="flexibleSpace" id="d98-mb-2jD"/>
+                                    <barButtonItem systemItem="camera" id="qdT-GD-av2">
+                                        <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        <connections>
+                                            <action selector="changePicture:" destination="Vve-Eo-Ty2" id="Fp8-Pf-46b"/>
                                         </connections>
                                     </barButtonItem>
                                     <barButtonItem style="plain" systemItem="flexibleSpace" id="73h-MQ-LJu"/>
@@ -245,6 +252,10 @@
                             </mask>
                         </variation>
                     </view>
+                    <connections>
+                        <outlet property="mapView" destination="5wd-pG-u3H" id="Rzk-v6-g0Z"/>
+                        <outlet property="spotImage" destination="3WT-Nh-yy9" id="9z6-x0-HfY"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Opf-bm-fU0" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
