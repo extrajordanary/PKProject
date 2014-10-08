@@ -25,8 +25,8 @@
 @implementation MapViewController {
     NSManagedObjectContext *theContext;
 
-    NSString *myUserId;
-    NSDictionary *myUserInfo;
+//    NSString *myUserId;
+//    NSDictionary *myUserInfo;
     DatabaseHandler *databaseHandler;
 }
 
@@ -48,12 +48,29 @@
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
 
-    // create a sample user to test pulling info from the server
-    self.myUser = [NSEntityDescription insertNewObjectForEntityForName:@"User" inManagedObjectContext:theContext];
+    // get list of Users in Core Data
+    NSArray *userList = [[NSArray alloc] init];
+    userList = [self getManagedObjects:@"User"];
+    
+    if ([userList count]<10) {
+        // create a sample user to test pulling info from the server
+        self.myUser = [NSEntityDescription insertNewObjectForEntityForName:@"User" inManagedObjectContext:theContext];
+        
+        NSString *userId = [[NSUserDefaults standardUserDefaults] valueForKey:@"thisUserId"];
+        [self.myUser setValue:userId forKey:@"databaseId"];
+        [databaseHandler updateUserFromDatabase:self.myUser];
+        
+        // create error to pass to the save method
+        NSError *error = nil;
+        
+        // attempt to save the context to persist changes
+        [theContext save:&error];
+        
+        if (error) {
+            // error handling
+        }
+    }
 
-    NSString *userId = [[NSUserDefaults standardUserDefaults] valueForKey:@"thisUserId"];
-    [self.myUser setValue:userId forKey:@"databaseId"];
-    [databaseHandler updateUserFromDatabase:self.myUser];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -108,7 +125,7 @@
 //        }
 }
 
-# pragma mark - Sample Data
+# pragma mark - Managed Objects
 - (void)createSampleData {
     // create sample users
     
@@ -117,6 +134,50 @@
     // create sample photos
     
     // assign connections between them
+}
+
+-(NSArray*)getManagedObjects:(NSString*)entityForName {
+    // get entity description for entity we are selecting
+    NSEntityDescription *entityDescription = [NSEntityDescription
+                                              entityForName:entityForName inManagedObjectContext:theContext];
+    // create a new fetch request
+    NSFetchRequest *request = [[NSFetchRequest alloc] init];
+    [request setEntity:entityDescription];
+
+    // create an error variable to pass to the execute method
+    NSError *error;
+    
+    // retrieve results
+    NSArray *array = [theContext executeFetchRequest:request error:&error];
+    if (array == nil) {
+        //error handling, e.g. display err
+    }
+    return array;
+}
+
+-(NSArray*)getManagedObjects:(NSString*)entityForName withPredicate:(NSPredicate*)predicate sortedBy:(NSSortDescriptor*)sortDescriptor{
+    // get entity description for entity we are selecting
+    NSEntityDescription *entityDescription = [NSEntityDescription
+                                              entityForName:entityForName inManagedObjectContext:theContext];
+    // create a new fetch request
+    NSFetchRequest *request = [[NSFetchRequest alloc] init];
+    [request setEntity:entityDescription];
+    
+     // apply a filter by creating a predicate and adding it to the request
+    [request setPredicate:predicate];
+    
+     // create a sort rule and add it to the request
+     [request setSortDescriptors:@[sortDescriptor]];
+
+    // create an error variable to pass to the execute method
+    NSError *error;
+    
+    // retrieve results
+    NSArray *array = [theContext executeFetchRequest:request error:&error];
+    if (array == nil) {
+        //error handling, e.g. display err
+    }
+    return array;
 }
 
 #pragma mark - Navigation
