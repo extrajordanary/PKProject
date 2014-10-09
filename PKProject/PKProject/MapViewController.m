@@ -8,6 +8,7 @@
 
 #import "MapViewController.h"
 #import "AppDelegate.h"
+#import "CreateSpotViewController.h"
 #import "DatabaseHandler.h"
 #import "User+Extended.h"
 
@@ -15,7 +16,7 @@
 
 @property (strong, nonatomic) IBOutlet MKMapView *mainMap;
 @property (strong, nonatomic) CLLocationManager *locationManager;
-@property (strong, nonatomic) User *myUser;
+@property (strong, nonatomic) User *thisUser;
 
 @end
 
@@ -24,10 +25,8 @@
 
 @implementation MapViewController {
     NSManagedObjectContext *theContext;
-
-//    NSString *myUserId;
-//    NSDictionary *myUserInfo;
     DatabaseHandler *databaseHandler;
+    NSString *thisUserId;
 }
 
 #pragma mark - View
@@ -38,6 +37,13 @@
     // Do any additional setup after loading the view.
     theContext = ((AppDelegate *)[UIApplication sharedApplication].delegate).managedObjectContext;
     databaseHandler = [DatabaseHandler sharedDatabaseHandler];
+    
+//    // get User object for this user
+//    // should always be one since appDelegate deals with case when none exists
+//    thisUserId = [[NSUserDefaults standardUserDefaults] valueForKey:@"thisUserId"];
+//    NSPredicate *thisUser = [NSPredicate predicateWithFormat:@"databaseId = %@",thisUserId];
+//    NSSortDescriptor *sortBy = [NSSortDescriptor sortDescriptorWithKey:@"databaseId" ascending:YES];
+//    self.thisUser = [self getManagedObjects:@"User" withPredicate:thisUser sortedBy:sortBy][0];
     
     [self startStandardMapUpdates];
     
@@ -52,13 +58,13 @@
     NSArray *userList = [[NSArray alloc] init];
     userList = [self getManagedObjects:@"User"];
     
-    if ([userList count]<10) {
+    if ([userList count]<1) {
         // create a sample user to test pulling info from the server
-        self.myUser = [NSEntityDescription insertNewObjectForEntityForName:@"User" inManagedObjectContext:theContext];
+        User *aUser = [NSEntityDescription insertNewObjectForEntityForName:@"User" inManagedObjectContext:theContext];
         
         NSString *userId = [[NSUserDefaults standardUserDefaults] valueForKey:@"thisUserId"];
-        [self.myUser setValue:userId forKey:@"databaseId"];
-        [databaseHandler updateUserFromDatabase:self.myUser];
+        [aUser setValue:userId forKey:@"databaseId"];
+        [databaseHandler updateUserFromDatabase:aUser];
         
         // create error to pass to the save method
         NSError *error = nil;
@@ -70,6 +76,14 @@
             // error handling
         }
     }
+    
+    // get User object for this user
+    // should always be one since appDelegate deals with case when none exists
+    // TODO: user isn't updated from server by the time this is called
+    thisUserId = [[NSUserDefaults standardUserDefaults] valueForKey:@"thisUserId"];
+    NSPredicate *thisUser = [NSPredicate predicateWithFormat:@"databaseId = %@",thisUserId];
+    NSSortDescriptor *sortBy = [NSSortDescriptor sortDescriptorWithKey:@"databaseId" ascending:YES];
+    self.thisUser = [self getManagedObjects:@"User" withPredicate:thisUser sortedBy:sortBy][0];
 
 }
 
@@ -165,7 +179,7 @@
     
      // apply a filter by creating a predicate and adding it to the request
     [request setPredicate:predicate];
-    
+
      // create a sort rule and add it to the request
      [request setSortDescriptors:@[sortDescriptor]];
 
@@ -188,6 +202,8 @@
     // Pass the selected object to the new view controller.
     if ([segue.identifier isEqualToString:@"CreateSpot"]) {
         // transition to edit spot view
+        CreateSpotViewController *createSpotViewController = [segue destinationViewController];
+        createSpotViewController.thisUser = self.thisUser;
     }
 }
 

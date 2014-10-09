@@ -10,9 +10,12 @@
 #import <MapKit/MapKit.h>
 #import <CoreLocation/CoreLocation.h>
 
+@class User;
+
 @interface CreateSpotViewController : UIViewController <UIImagePickerControllerDelegate,
                                                         UINavigationControllerDelegate,
                                                         MKMapViewDelegate,
                                                         CLLocationManagerDelegate>
+@property User *thisUser;
 
 @end

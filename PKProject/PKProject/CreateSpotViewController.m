@@ -11,6 +11,7 @@
 
 #import "DatabaseHandler.h"
 #import "Spot+Extended.h"
+#import "User+Extended.h"
 #import "Photo.h"
 
 @interface CreateSpotViewController ()
@@ -172,8 +173,8 @@
     newPhoto.latitude = [NSNumber numberWithDouble:spotMarker.coordinate.latitude];
     newPhoto.longitude = [NSNumber numberWithDouble:spotMarker.coordinate.longitude];
     
-//    [newSpot setSpotByUser:<#(User *)#>];
-//    [newPhoto setPhotoByUser:<#(User *)#>];
+    [newSpot setSpotByUser:self.thisUser];
+    [newPhoto setPhotoByUser:self.thisUser];
     [newSpot addSpotPhotoObject:newPhoto];
     
     // save Spot to server
