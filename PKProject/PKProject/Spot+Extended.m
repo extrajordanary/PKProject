@@ -23,8 +23,10 @@
         self.latitude = dictionary[@"latitude"];
         self.longitude = dictionary[@"longitude"];
         self.numberOfFavorites = dictionary[@"numberOfFavorites"];
+        // photos and users need to be connected by seeing if core data object with that id already exists
+        // if not pull and create it before setting up the connection
         // spot photos
-        self.spotByUser = dictionary[@"spotByUser"];
+//        self.spotByUser = dictionary[@"spotByUser"];
     }
 }
 
@@ -35,7 +37,7 @@
     jsonable[@"longitude"] = self.longitude;
     jsonable[@"numberOfFavorites"] = self.numberOfFavorites;
     // spot photos
-    jsonable[@"spotByUser"] = self.spotByUser;
+//    jsonable[@"spotByUser"] = self.spotByUser;
     
     return jsonable;
 }

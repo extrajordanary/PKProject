@@ -8,6 +8,7 @@
 
 #import "DatabaseHandler.h"
 #import "User+Extended.h"
+#import "Spot+Extended.h"
 
 // This class is responsible for handling calls to the database
 // and converting the results into a JSON object to pass to the other classes
@@ -62,6 +63,27 @@ static NSString* const kPhotos = @"/collections/photos";
 }
 
 #pragma mark - Spots
+-(void)getSpotsFromDatabase:(void (^)(NSDictionary*))spotHandlingBlock {
+    NSString* requestURL = [NSString stringWithFormat:@"%@%@",kBaseURL,kSpots];
+    NSURL* url = [NSURL URLWithString:requestURL];
+    NSMutableURLRequest* request = [NSMutableURLRequest requestWithURL:url];
+    
+    request.HTTPMethod = @"GET";
+    [request addValue:@"application/json" forHTTPHeaderField:@"Accept"];
+    
+    NSURLSessionConfiguration* config = [NSURLSessionConfiguration defaultSessionConfiguration];
+    NSURLSession* session = [NSURLSession sessionWithConfiguration:config];
+    
+    NSURLSessionDataTask* dataTask = [session dataTaskWithRequest:request
+                                                completionHandler:^(NSData *data, NSURLResponse *response, NSError *error) {
+                                                    if (error == nil) {
+                                                        NSDictionary* responseDictionary = [NSJSONSerialization JSONObjectWithData:data options:0 error:NULL];
+                                                        spotHandlingBlock(responseDictionary);
+                                                    }
+                                                }];
+    
+    [dataTask resume];
+}
 
 #pragma mark - Photos
 

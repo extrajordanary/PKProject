@@ -16,5 +16,6 @@
 
 + (id) sharedDatabaseHandler;
 - (void)updateUserFromDatabase:(User*)user;
+-(void)getSpotsFromDatabase:(void (^)(NSDictionary*))spotHandlingBlock;
 
 @end

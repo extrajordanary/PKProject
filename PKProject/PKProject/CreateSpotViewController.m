@@ -18,7 +18,7 @@
 
 @property (strong, nonatomic) IBOutlet MKMapView *mapView;
 @property (strong, nonatomic) IBOutlet UIImageView *spotImage;
-@property (strong, nonatomic) CLLocationManager *locationManager;
+//@property (strong, nonatomic) CLLocationManager *locationManager;
 
 @end
 
@@ -40,7 +40,10 @@
     theContext = ((AppDelegate *)[UIApplication sharedApplication].delegate).managedObjectContext;
     databaseHandler = [DatabaseHandler sharedDatabaseHandler];
     spotMarker = [[MKPointAnnotation alloc] init];
-    [self startStandardMapUpdates];
+//    [self startStandardMapUpdates];
+    
+    self.locationManager.delegate = self;
+    [self zoomToCurrentLocation];
     
     // create new Spot and Photo objects
     newSpot = [NSEntityDescription insertNewObjectForEntityForName:@"Spot" inManagedObjectContext:theContext];

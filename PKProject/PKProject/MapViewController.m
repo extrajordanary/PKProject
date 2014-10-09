@@ -11,12 +11,14 @@
 #import "CreateSpotViewController.h"
 #import "DatabaseHandler.h"
 #import "User+Extended.h"
+#import "Spot+Extended.h"
 
 @interface MapViewController ()
 
-@property (strong, nonatomic) IBOutlet MKMapView *mainMap;
+@property (strong, nonatomic) IBOutlet MKMapView *mapView;
 @property (strong, nonatomic) CLLocationManager *locationManager;
 @property (strong, nonatomic) User *thisUser;
+@property (strong, nonatomic) NSMutableArray *nearbySpots;
 
 @end
 
@@ -38,17 +40,10 @@
     theContext = ((AppDelegate *)[UIApplication sharedApplication].delegate).managedObjectContext;
     databaseHandler = [DatabaseHandler sharedDatabaseHandler];
     
-//    // get User object for this user
-//    // should always be one since appDelegate deals with case when none exists
-//    thisUserId = [[NSUserDefaults standardUserDefaults] valueForKey:@"thisUserId"];
-//    NSPredicate *thisUser = [NSPredicate predicateWithFormat:@"databaseId = %@",thisUserId];
-//    NSSortDescriptor *sortBy = [NSSortDescriptor sortDescriptorWithKey:@"databaseId" ascending:YES];
-//    self.thisUser = [self getManagedObjects:@"User" withPredicate:thisUser sortedBy:sortBy][0];
-    
     [self startStandardMapUpdates];
     
-    self.mainMap.showsUserLocation = YES;
-    self.mainMap.showsPointsOfInterest = NO;
+    self.mapView.showsUserLocation = YES;
+    self.mapView.showsPointsOfInterest = NO;
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -85,6 +80,15 @@
     NSSortDescriptor *sortBy = [NSSortDescriptor sortDescriptorWithKey:@"databaseId" ascending:YES];
     self.thisUser = [self getManagedObjects:@"User" withPredicate:thisUser sortedBy:sortBy][0];
 
+    // get nearby spots from database, create Spot objects, add to array
+    self.nearbySpots = [[NSMutableArray alloc] init];
+    [databaseHandler getSpotsFromDatabase:^void (NSDictionary *spots) {
+        for (NSDictionary *item in spots) {
+            Spot *newSpot = [NSEntityDescription insertNewObjectForEntityForName:@"Spot" inManagedObjectContext:theContext];
+            [newSpot updateFromDictionary:item];
+            [self.nearbySpots addObject:newSpot];
+        }
+    }];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -118,8 +122,7 @@
 // delegate method called when user changes authorization to allow location tracking
 - (void)locationManager:(CLLocationManager *)manager didChangeAuthorizationStatus:(CLAuthorizationStatus)status {
     if (status) {
-        MKCoordinateRegion viewRegion = MKCoordinateRegionMakeWithDistance(self.locationManager.location.coordinate, DEFAULT_ZOOM_MILES*METERS_PER_MILE, DEFAULT_ZOOM_MILES*METERS_PER_MILE);
-        [self.mainMap setRegion:viewRegion animated:YES];
+        [self zoomToCurrentLocation];
     }
 }
 
@@ -127,7 +130,7 @@
 - (void)locationManager:(CLLocationManager *)manager didUpdateLocations:(NSArray *)locations {
     // If it's a relatively recent event, turn off updates to save power.
     CLLocation* location = [locations lastObject];
-    
+    [self zoomToCurrentLocation];
     //    NSDate* eventDate = location.timestamp;
     //    NSTimeInterval howRecent = [eventDate timeIntervalSinceNow];
     
@@ -137,6 +140,11 @@
           location.coordinate.latitude,
           location.coordinate.longitude);
 //        }
+}
+
+-(void)zoomToCurrentLocation {
+    MKCoordinateRegion viewRegion = MKCoordinateRegionMakeWithDistance(self.locationManager.location.coordinate, DEFAULT_ZOOM_MILES*METERS_PER_MILE, DEFAULT_ZOOM_MILES*METERS_PER_MILE);
+    [self.mapView setRegion:viewRegion animated:YES];
 }
 
 # pragma mark - Managed Objects
@@ -204,6 +212,7 @@
         // transition to edit spot view
         CreateSpotViewController *createSpotViewController = [segue destinationViewController];
         createSpotViewController.thisUser = self.thisUser;
+        createSpotViewController.locationManager = self.locationManager;
     }
 }
 

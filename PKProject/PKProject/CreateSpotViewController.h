@@ -16,6 +16,7 @@
                                                         UINavigationControllerDelegate,
                                                         MKMapViewDelegate,
                                                         CLLocationManagerDelegate>
-@property User *thisUser;
+@property (strong, nonatomic) User *thisUser;
+@property (strong, nonatomic) CLLocationManager *locationManager;
 
 @end
