@@ -30,7 +30,7 @@
     Photo *newPhoto;
 //    UIImage *spotImage;
     NSManagedObjectContext *theContext;
-    ServerHandler *databaseHandler;
+    ServerHandler *serverHandler;
     MKPointAnnotation *spotMarker;
 }
 
@@ -38,7 +38,7 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     theContext = ((AppDelegate *)[UIApplication sharedApplication].delegate).managedObjectContext;
-    databaseHandler = [ServerHandler sharedDatabaseHandler];
+    serverHandler = [ServerHandler sharedServerHandler];
     spotMarker = [[MKPointAnnotation alloc] init];
 //    [self startStandardMapUpdates];
     

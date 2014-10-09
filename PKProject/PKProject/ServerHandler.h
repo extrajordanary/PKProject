@@ -14,8 +14,8 @@
 
 @property (nonatomic, retain) NSString *myUserId;
 
-+ (id) sharedDatabaseHandler;
-- (void)updateUserFromDatabase:(User*)user;
--(void)getSpotsFromDatabase:(void (^)(NSDictionary*))spotHandlingBlock;
++ (id) sharedServerHandler;
+- (void)updateUserFromServer:(User*)user;
+-(void)getSpotsFromServer:(void (^)(NSDictionary*))spotHandlingBlock;
 
 @end

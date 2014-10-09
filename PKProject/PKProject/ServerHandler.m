@@ -1,5 +1,5 @@
 //
-//  DatabaseHandler.m
+//  ServerHandler.m
 //  PKProject
 //
 //  Created by Jordan on 10/3/14.
@@ -10,7 +10,7 @@
 #import "User+Extended.h"
 #import "Spot+Extended.h"
 
-// This class is responsible for handling calls to the database
+// This class is responsible for handling calls to the server
 // and converting the results into a JSON object to pass to the other classes
 
 static NSString* const kBaseURL = @"http://travalt.herokuapp.com";
@@ -22,13 +22,13 @@ static NSString* const kPhotos = @"/collections/photos";
 
 #pragma mark - Singleton Methods
 
-+ (id)sharedDatabaseHandler {
-    static ServerHandler *sharedDatabaseHandler = nil;
++ (id)sharedServerHandler {
+    static ServerHandler *sharedServerHandler = nil;
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
-        sharedDatabaseHandler = [[self alloc] init];
+        sharedServerHandler = [[self alloc] init];
     });
-    return sharedDatabaseHandler;
+    return sharedServerHandler;
 }
 
 - (id)init {
@@ -39,7 +39,7 @@ static NSString* const kPhotos = @"/collections/photos";
 }
 
 #pragma mark - Users
-- (void)updateUserFromDatabase:(User*)user {
+- (void)updateUserFromServer:(User*)user {
     NSString* userId = user.databaseId;
     NSString* requestURL = [NSString stringWithFormat:@"%@%@/%@",kBaseURL,kUsers,userId];
     NSURL* url = [NSURL URLWithString:requestURL];
@@ -63,7 +63,7 @@ static NSString* const kPhotos = @"/collections/photos";
 }
 
 #pragma mark - Spots
--(void)getSpotsFromDatabase:(void (^)(NSDictionary*))spotHandlingBlock {
+-(void)getSpotsFromServer:(void (^)(NSDictionary*))spotHandlingBlock {
     NSString* requestURL = [NSString stringWithFormat:@"%@%@",kBaseURL,kSpots];
     NSURL* url = [NSURL URLWithString:requestURL];
     NSMutableURLRequest* request = [NSMutableURLRequest requestWithURL:url];

@@ -27,7 +27,7 @@
 
 @implementation MapViewController {
     NSManagedObjectContext *theContext;
-    ServerHandler *databaseHandler;
+    ServerHandler *serverHandler;
     NSString *thisUserId;
 }
 
@@ -38,7 +38,7 @@
     
     // Do any additional setup after loading the view.
     theContext = ((AppDelegate *)[UIApplication sharedApplication].delegate).managedObjectContext;
-    databaseHandler = [ServerHandler sharedDatabaseHandler];
+    serverHandler = [ServerHandler sharedServerHandler];
     
     [self startStandardMapUpdates];
     
@@ -59,7 +59,7 @@
         
         NSString *userId = [[NSUserDefaults standardUserDefaults] valueForKey:@"thisUserId"];
         [aUser setValue:userId forKey:@"databaseId"];
-        [databaseHandler updateUserFromDatabase:aUser];
+        [serverHandler updateUserFromServer:aUser];
         
         // create error to pass to the save method
         NSError *error = nil;
@@ -82,7 +82,7 @@
 
     // get nearby spots from database, create Spot objects, add to array
     self.nearbySpots = [[NSMutableArray alloc] init];
-    [databaseHandler getSpotsFromDatabase:^void (NSDictionary *spots) {
+    [serverHandler getSpotsFromServer:^void (NSDictionary *spots) {
         for (NSDictionary *item in spots) {
             Spot *newSpot = [NSEntityDescription insertNewObjectForEntityForName:@"Spot" inManagedObjectContext:theContext];
             [newSpot updateFromDictionary:item];
