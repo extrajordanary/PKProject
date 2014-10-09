@@ -10,8 +10,7 @@
 #import "User+Extended.h"
 #import "Spot+Extended.h"
 
-// This class is responsible for handling calls to the server
-// and converting the results into a JSON object to pass to the other classes
+// This class is responsible for handling all calls to the server
 
 static NSString* const kBaseURL = @"http://travalt.herokuapp.com";
 static NSString* const kUsers = @"/collections/users"; 
@@ -21,7 +20,6 @@ static NSString* const kPhotos = @"/collections/photos";
 @implementation ServerHandler
 
 #pragma mark - Singleton Methods
-
 + (id)sharedServerHandler {
     static ServerHandler *sharedServerHandler = nil;
     static dispatch_once_t onceToken;

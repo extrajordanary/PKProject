@@ -10,9 +10,6 @@
 
 @interface User (Extended)
 
--(NSString *)lastNameFirstNameString;
-
--(instancetype)initWithDictionary:(NSDictionary*)dictionary;
 -(void)updateFromDictionary:(NSDictionary*)dictionary;
 
 @end

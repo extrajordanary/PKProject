@@ -32,7 +32,6 @@
 }
 
 #pragma mark - View
-
 - (void)viewDidLoad {
     [super viewDidLoad];
     
@@ -68,7 +67,7 @@
         [theContext save:&error];
         
         if (error) {
-            // error handling
+            // TODO: error handling
         }
     }
     
@@ -80,15 +79,7 @@
     NSSortDescriptor *sortBy = [NSSortDescriptor sortDescriptorWithKey:@"databaseId" ascending:YES];
     self.thisUser = [self getManagedObjects:@"User" withPredicate:thisUser sortedBy:sortBy][0];
 
-    // get nearby spots from database, create Spot objects, add to array
-    self.nearbySpots = [[NSMutableArray alloc] init];
-    [serverHandler getSpotsFromServer:^void (NSDictionary *spots) {
-        for (NSDictionary *item in spots) {
-            Spot *newSpot = [NSEntityDescription insertNewObjectForEntityForName:@"Spot" inManagedObjectContext:theContext];
-            [newSpot updateFromDictionary:item];
-            [self.nearbySpots addObject:newSpot];
-        }
-    }];
+    [self updateNearbySpots];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -97,7 +88,7 @@
 }
 
 #pragma mark - Location Manager
-
+// TODO: create location manager singleton
 - (BOOL)startStandardMapUpdates
 {
     // Create the location manager if this object does not already have one.
@@ -128,18 +119,11 @@
 
 // Delegate method from the CLLocationManagerDelegate protocol.
 - (void)locationManager:(CLLocationManager *)manager didUpdateLocations:(NSArray *)locations {
-    // If it's a relatively recent event, turn off updates to save power.
     CLLocation* location = [locations lastObject];
     [self zoomToCurrentLocation];
-    //    NSDate* eventDate = location.timestamp;
-    //    NSTimeInterval howRecent = [eventDate timeIntervalSinceNow];
-    
-//        if (abs(howRecent) < 15.0) {
-    // If the event is recent, do something with it.
     NSLog(@"latitude %+.6f, longitude %+.6f\n",
           location.coordinate.latitude,
           location.coordinate.longitude);
-//        }
 }
 
 -(void)zoomToCurrentLocation {
@@ -147,17 +131,20 @@
     [self.mapView setRegion:viewRegion animated:YES];
 }
 
-# pragma mark - Managed Objects
-- (void)createSampleData {
-    // create sample users
-    
-    // create sample spots
-    
-    // create sample photos
-    
-    // assign connections between them
+#pragma mark - Spots
+-(void)updateNearbySpots {
+    // get nearby spots from database, create Spot objects, add to array
+    self.nearbySpots = [[NSMutableArray alloc] init];
+    [serverHandler getSpotsFromServer:^void (NSDictionary *spots) {
+        for (NSDictionary *item in spots) {
+            Spot *newSpot = [NSEntityDescription insertNewObjectForEntityForName:@"Spot" inManagedObjectContext:theContext];
+            [newSpot updateFromDictionary:item];
+            [self.nearbySpots addObject:newSpot];
+        }
+    }];
 }
 
+#pragma mark - Core Data
 -(NSArray*)getManagedObjects:(NSString*)entityForName {
     // get entity description for entity we are selecting
     NSEntityDescription *entityDescription = [NSEntityDescription
@@ -203,13 +190,8 @@
 }
 
 #pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
     if ([segue.identifier isEqualToString:@"CreateSpot"]) {
-        // transition to edit spot view
         CreateSpotViewController *createSpotViewController = [segue destinationViewController];
         createSpotViewController.thisUser = self.thisUser;
         createSpotViewController.locationManager = self.locationManager;

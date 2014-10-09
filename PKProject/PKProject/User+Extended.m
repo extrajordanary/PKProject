@@ -10,17 +10,6 @@
 
 @implementation User (Extended)
 
--(NSString *)lastNameFirstNameString {
-    return [NSString stringWithFormat:@"%@, %@", self.nameLast, self.nameFirst];
-}
-
-// for initializing from database results
--(instancetype)initWithDictionary:(NSDictionary*)dictionary {
-    self = [super init];
-    [self updateFromDictionary:dictionary];
-    return self;
-}
-
 -(void)updateFromDictionary:(NSDictionary*)dictionary {
     if (self) {
         // single values

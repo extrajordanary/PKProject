@@ -10,13 +10,6 @@
 
 @implementation Spot (Extended)
 
-// for initializing from database results
--(instancetype)initWithDictionary:(NSDictionary*)dictionary {
-    self = [super init];
-    [self updateFromDictionary:dictionary];
-    return self;
-}
-
 -(void)updateFromDictionary:(NSDictionary*)dictionary{
     if (self) {
         self.creationTimestamp = dictionary[@"creationTimestamp"];

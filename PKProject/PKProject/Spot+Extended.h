@@ -10,10 +10,7 @@
 
 @interface Spot (Extended)
 
--(instancetype)initWithDictionary:(NSDictionary*)dictionary;
-
 -(void)updateFromDictionary:(NSDictionary*)dictionary;
-
 -(NSDictionary*)toDictionary;
 
 @end
