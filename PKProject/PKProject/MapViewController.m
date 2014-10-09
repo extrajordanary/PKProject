@@ -23,7 +23,7 @@
 @end
 
 #define METERS_PER_MILE 1609.344
-#define DEFAULT_ZOOM_MILES .2
+#define DEFAULT_ZOOM_MILES 2
 
 @implementation MapViewController {
     NSManagedObjectContext *theContext;
@@ -79,7 +79,10 @@
     NSSortDescriptor *sortBy = [NSSortDescriptor sortDescriptorWithKey:@"databaseId" ascending:YES];
     self.thisUser = [self getManagedObjects:@"User" withPredicate:thisUser sortedBy:sortBy][0];
 
+    // get spots from server
     [self updateNearbySpots];
+    // create marker on map for each spot
+//    [self placeSpotMarkers];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -141,7 +144,19 @@
             [newSpot updateFromDictionary:item];
             [self.nearbySpots addObject:newSpot];
         }
+        dispatch_async(dispatch_get_main_queue(), ^(void){
+            [self placeSpotMarkers];
+        });
     }];
+}
+
+-(void)placeSpotMarkers {
+    for (Spot *spot in self.nearbySpots) {
+        MKPointAnnotation *spotMarker = [[MKPointAnnotation alloc] init];
+        CLLocationCoordinate2D coord = CLLocationCoordinate2DMake([spot.latitude doubleValue], [spot.longitude doubleValue]);
+        spotMarker.coordinate = coord;
+        [self.mapView addAnnotation:spotMarker];
+    }
 }
 
 #pragma mark - Core Data
