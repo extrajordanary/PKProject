@@ -10,7 +10,7 @@
 
 @class User;
 
-@interface DatabaseHandler : NSObject
+@interface ServerHandler : NSObject
 
 @property (nonatomic, retain) NSString *myUserId;
 

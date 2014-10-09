@@ -9,7 +9,7 @@
 #import "MapViewController.h"
 #import "AppDelegate.h"
 #import "CreateSpotViewController.h"
-#import "DatabaseHandler.h"
+#import "ServerHandler.h"
 #import "User+Extended.h"
 #import "Spot+Extended.h"
 
@@ -27,7 +27,7 @@
 
 @implementation MapViewController {
     NSManagedObjectContext *theContext;
-    DatabaseHandler *databaseHandler;
+    ServerHandler *databaseHandler;
     NSString *thisUserId;
 }
 
@@ -38,7 +38,7 @@
     
     // Do any additional setup after loading the view.
     theContext = ((AppDelegate *)[UIApplication sharedApplication].delegate).managedObjectContext;
-    databaseHandler = [DatabaseHandler sharedDatabaseHandler];
+    databaseHandler = [ServerHandler sharedDatabaseHandler];
     
     [self startStandardMapUpdates];
     

@@ -8,7 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		171BA9F319DF4AD000C66676 /* User+Extended.m in Sources */ = {isa = PBXBuildFile; fileRef = 171BA9F219DF4AD000C66676 /* User+Extended.m */; };
-		171BA9F619DF545C00C66676 /* DatabaseHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 171BA9F519DF545C00C66676 /* DatabaseHandler.m */; };
+		171BA9F619DF545C00C66676 /* ServerHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 171BA9F519DF545C00C66676 /* ServerHandler.m */; };
 		171BAA0819DF79EA00C66676 /* Spot+Extended.m in Sources */ = {isa = PBXBuildFile; fileRef = 171BAA0719DF79EA00C66676 /* Spot+Extended.m */; };
 		1734B79019E469A1009B228A /* sampleSpotPic03.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 1734B77C19E469A1009B228A /* sampleSpotPic03.jpg */; };
 		1734B79119E469A1009B228A /* sampleSpotPic04.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 1734B77D19E469A1009B228A /* sampleSpotPic04.jpg */; };
@@ -56,8 +56,8 @@
 /* Begin PBXFileReference section */
 		171BA9F119DF4AD000C66676 /* User+Extended.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "User+Extended.h"; sourceTree = "<group>"; };
 		171BA9F219DF4AD000C66676 /* User+Extended.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "User+Extended.m"; sourceTree = "<group>"; };
-		171BA9F419DF545C00C66676 /* DatabaseHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DatabaseHandler.h; sourceTree = "<group>"; };
-		171BA9F519DF545C00C66676 /* DatabaseHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DatabaseHandler.m; sourceTree = "<group>"; };
+		171BA9F419DF545C00C66676 /* ServerHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ServerHandler.h; sourceTree = "<group>"; };
+		171BA9F519DF545C00C66676 /* ServerHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ServerHandler.m; sourceTree = "<group>"; };
 		171BAA0619DF79EA00C66676 /* Spot+Extended.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Spot+Extended.h"; sourceTree = "<group>"; };
 		171BAA0719DF79EA00C66676 /* Spot+Extended.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "Spot+Extended.m"; sourceTree = "<group>"; };
 		1734B77C19E469A1009B228A /* sampleSpotPic03.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = sampleSpotPic03.jpg; sourceTree = "<group>"; };
@@ -189,8 +189,8 @@
 				175DA62B19DB491700897710 /* MapViewController.m */,
 				1734B7A419E4954A009B228A /* CreateSpotViewController.h */,
 				1734B7A519E4954A009B228A /* CreateSpotViewController.m */,
-				171BA9F419DF545C00C66676 /* DatabaseHandler.h */,
-				171BA9F519DF545C00C66676 /* DatabaseHandler.m */,
+				171BA9F419DF545C00C66676 /* ServerHandler.h */,
+				171BA9F519DF545C00C66676 /* ServerHandler.m */,
 				171BA9F119DF4AD000C66676 /* User+Extended.h */,
 				171BA9F219DF4AD000C66676 /* User+Extended.m */,
 				171BAA0619DF79EA00C66676 /* Spot+Extended.h */,
@@ -361,7 +361,7 @@
 				171BA9F319DF4AD000C66676 /* User+Extended.m in Sources */,
 				175DA60719DA1D2800897710 /* AppDelegate.m in Sources */,
 				1734B7A919E49DB2009B228A /* Photo.m in Sources */,
-				171BA9F619DF545C00C66676 /* DatabaseHandler.m in Sources */,
+				171BA9F619DF545C00C66676 /* ServerHandler.m in Sources */,
 				1734B7AC19E49DB2009B228A /* Spot.m in Sources */,
 				1734B7AF19E49DB3009B228A /* User.m in Sources */,
 				175DA60A19DA1D2800897710 /* PKProject.xcdatamodeld in Sources */,

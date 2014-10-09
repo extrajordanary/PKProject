@@ -9,7 +9,7 @@
 #import "CreateSpotViewController.h"
 #import "AppDelegate.h"
 
-#import "DatabaseHandler.h"
+#import "ServerHandler.h"
 #import "Spot+Extended.h"
 #import "User+Extended.h"
 #import "Photo.h"
@@ -30,7 +30,7 @@
     Photo *newPhoto;
 //    UIImage *spotImage;
     NSManagedObjectContext *theContext;
-    DatabaseHandler *databaseHandler;
+    ServerHandler *databaseHandler;
     MKPointAnnotation *spotMarker;
 }
 
@@ -38,7 +38,7 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     theContext = ((AppDelegate *)[UIApplication sharedApplication].delegate).managedObjectContext;
-    databaseHandler = [DatabaseHandler sharedDatabaseHandler];
+    databaseHandler = [ServerHandler sharedDatabaseHandler];
     spotMarker = [[MKPointAnnotation alloc] init];
 //    [self startStandardMapUpdates];
     

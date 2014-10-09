@@ -6,7 +6,7 @@
 //  Copyright (c) 2014 Byjor. All rights reserved.
 //
 
-#import "DatabaseHandler.h"
+#import "ServerHandler.h"
 #import "User+Extended.h"
 #import "Spot+Extended.h"
 
@@ -18,12 +18,12 @@ static NSString* const kUsers = @"/collections/users";
 static NSString* const kSpots = @"/collections/spots";
 static NSString* const kPhotos = @"/collections/photos";
 
-@implementation DatabaseHandler
+@implementation ServerHandler
 
 #pragma mark - Singleton Methods
 
 + (id)sharedDatabaseHandler {
-    static DatabaseHandler *sharedDatabaseHandler = nil;
+    static ServerHandler *sharedDatabaseHandler = nil;
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
         sharedDatabaseHandler = [[self alloc] init];
