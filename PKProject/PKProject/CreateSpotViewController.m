@@ -158,8 +158,13 @@
 #pragma mark - Data
 -(void)saveNewSpot {
     // assign final values to both spot and photo
-    newSpot.creationTimestamp = [NSDate date];
-    newPhoto.creationTimestamp = [NSDate date];
+    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+    [dateFormatter setTimeZone:[NSTimeZone timeZoneWithAbbreviation:@"GMT"]];
+    [dateFormatter setDateStyle:NSDateFormatterLongStyle];
+    [dateFormatter setTimeStyle:NSDateFormatterLongStyle];
+    NSDate *date = [NSDate date];
+    newSpot.creationTimestamp = [dateFormatter stringFromDate:date];
+    newPhoto.creationTimestamp = [dateFormatter stringFromDate:date];
     
     newSpot.latitude = [NSNumber numberWithDouble:spotMarker.coordinate.latitude];
     newSpot.longitude = [NSNumber numberWithDouble:spotMarker.coordinate.longitude];
@@ -171,6 +176,8 @@
     [newSpot addSpotPhotoObject:newPhoto];
     
     // save Spot to server
+    [serverHandler pushSpotToServer:newSpot];
+    
     // save Photo to server
     // update User info on server
 }

@@ -11,5 +11,6 @@
 @interface User (Extended)
 
 -(void)updateFromDictionary:(NSDictionary*)dictionary;
+-(NSDictionary*)toDictionary;
 
 @end

@@ -9,6 +9,7 @@
 #import <Foundation/Foundation.h>
 
 @class User;
+@class Spot;
 
 @interface ServerHandler : NSObject
 
@@ -17,5 +18,6 @@
 + (id) sharedServerHandler;
 - (void)updateUserFromServer:(User*)user;
 -(void)getSpotsFromServer:(void (^)(NSDictionary*))spotHandlingBlock;
+-(void)pushSpotToServer:(Spot*)spot;
 
 @end

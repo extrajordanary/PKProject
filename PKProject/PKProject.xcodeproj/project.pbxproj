@@ -28,9 +28,6 @@
 		1734B7A219E469A1009B228A /* sampleSpotPic21.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 1734B78E19E469A1009B228A /* sampleSpotPic21.jpg */; };
 		1734B7A319E469A1009B228A /* sampleSpotPic22.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 1734B78F19E469A1009B228A /* sampleSpotPic22.jpg */; };
 		1734B7A619E4954A009B228A /* CreateSpotViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1734B7A519E4954A009B228A /* CreateSpotViewController.m */; };
-		1734B7A919E49DB2009B228A /* Photo.m in Sources */ = {isa = PBXBuildFile; fileRef = 1734B7A819E49DB2009B228A /* Photo.m */; };
-		1734B7AC19E49DB2009B228A /* Spot.m in Sources */ = {isa = PBXBuildFile; fileRef = 1734B7AB19E49DB2009B228A /* Spot.m */; };
-		1734B7AF19E49DB3009B228A /* User.m in Sources */ = {isa = PBXBuildFile; fileRef = 1734B7AE19E49DB3009B228A /* User.m */; };
 		175DA60419DA1D2800897710 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 175DA60319DA1D2800897710 /* main.m */; };
 		175DA60719DA1D2800897710 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 175DA60619DA1D2800897710 /* AppDelegate.m */; };
 		175DA60A19DA1D2800897710 /* PKProject.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 175DA60819DA1D2800897710 /* PKProject.xcdatamodeld */; };
@@ -41,6 +38,10 @@
 		175DA62C19DB491700897710 /* MapViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 175DA62B19DB491700897710 /* MapViewController.m */; };
 		175DA62F19DB499300897710 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 175DA62E19DB499300897710 /* MapKit.framework */; };
 		175DA63119DB499A00897710 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 175DA63019DB499A00897710 /* CoreLocation.framework */; };
+		17C7BF9619E7535900BD019A /* Photo.m in Sources */ = {isa = PBXBuildFile; fileRef = 17C7BF9519E7535900BD019A /* Photo.m */; };
+		17C7BF9919E7535A00BD019A /* Spot.m in Sources */ = {isa = PBXBuildFile; fileRef = 17C7BF9819E7535A00BD019A /* Spot.m */; };
+		17C7BF9C19E7535A00BD019A /* User.m in Sources */ = {isa = PBXBuildFile; fileRef = 17C7BF9B19E7535A00BD019A /* User.m */; };
+		17C7BF9F19E85A3900BD019A /* ServerObjects.m in Sources */ = {isa = PBXBuildFile; fileRef = 17C7BF9E19E85A3900BD019A /* ServerObjects.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -79,12 +80,6 @@
 		1734B78F19E469A1009B228A /* sampleSpotPic22.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = sampleSpotPic22.jpg; sourceTree = "<group>"; };
 		1734B7A419E4954A009B228A /* CreateSpotViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CreateSpotViewController.h; sourceTree = "<group>"; };
 		1734B7A519E4954A009B228A /* CreateSpotViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CreateSpotViewController.m; sourceTree = "<group>"; };
-		1734B7A719E49DB2009B228A /* Photo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Photo.h; sourceTree = "<group>"; };
-		1734B7A819E49DB2009B228A /* Photo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Photo.m; sourceTree = "<group>"; };
-		1734B7AA19E49DB2009B228A /* Spot.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Spot.h; sourceTree = "<group>"; };
-		1734B7AB19E49DB2009B228A /* Spot.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Spot.m; sourceTree = "<group>"; };
-		1734B7AD19E49DB3009B228A /* User.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = User.h; sourceTree = "<group>"; };
-		1734B7AE19E49DB3009B228A /* User.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = User.m; sourceTree = "<group>"; };
 		175DA5FE19DA1D2800897710 /* PKProject.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PKProject.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		175DA60219DA1D2800897710 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		175DA60319DA1D2800897710 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -101,6 +96,14 @@
 		175DA62B19DB491700897710 /* MapViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MapViewController.m; sourceTree = "<group>"; };
 		175DA62E19DB499300897710 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 		175DA63019DB499A00897710 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
+		17C7BF9419E7535900BD019A /* Photo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Photo.h; sourceTree = "<group>"; };
+		17C7BF9519E7535900BD019A /* Photo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Photo.m; sourceTree = "<group>"; };
+		17C7BF9719E7535A00BD019A /* Spot.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Spot.h; sourceTree = "<group>"; };
+		17C7BF9819E7535A00BD019A /* Spot.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Spot.m; sourceTree = "<group>"; };
+		17C7BF9A19E7535A00BD019A /* User.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = User.h; sourceTree = "<group>"; };
+		17C7BF9B19E7535A00BD019A /* User.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = User.m; sourceTree = "<group>"; };
+		17C7BF9D19E85A3900BD019A /* ServerObjects.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ServerObjects.h; sourceTree = "<group>"; };
+		17C7BF9E19E85A3900BD019A /* ServerObjects.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ServerObjects.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -126,12 +129,12 @@
 		171BA9ED19DC7F5800C66676 /* Core Data Classes */ = {
 			isa = PBXGroup;
 			children = (
-				1734B7AD19E49DB3009B228A /* User.h */,
-				1734B7AE19E49DB3009B228A /* User.m */,
-				1734B7AA19E49DB2009B228A /* Spot.h */,
-				1734B7AB19E49DB2009B228A /* Spot.m */,
-				1734B7A719E49DB2009B228A /* Photo.h */,
-				1734B7A819E49DB2009B228A /* Photo.m */,
+				17C7BF9A19E7535A00BD019A /* User.h */,
+				17C7BF9B19E7535A00BD019A /* User.m */,
+				17C7BF9719E7535A00BD019A /* Spot.h */,
+				17C7BF9819E7535A00BD019A /* Spot.m */,
+				17C7BF9419E7535900BD019A /* Photo.h */,
+				17C7BF9519E7535900BD019A /* Photo.m */,
 			);
 			name = "Core Data Classes";
 			sourceTree = "<group>";
@@ -195,6 +198,8 @@
 				171BA9F219DF4AD000C66676 /* User+Extended.m */,
 				171BAA0619DF79EA00C66676 /* Spot+Extended.h */,
 				171BAA0719DF79EA00C66676 /* Spot+Extended.m */,
+				17C7BF9D19E85A3900BD019A /* ServerObjects.h */,
+				17C7BF9E19E85A3900BD019A /* ServerObjects.m */,
 				171BA9ED19DC7F5800C66676 /* Core Data Classes */,
 				175DA62D19DB493200897710 /* Structure */,
 				175DA60119DA1D2800897710 /* Supporting Files */,
@@ -360,10 +365,11 @@
 				171BAA0819DF79EA00C66676 /* Spot+Extended.m in Sources */,
 				171BA9F319DF4AD000C66676 /* User+Extended.m in Sources */,
 				175DA60719DA1D2800897710 /* AppDelegate.m in Sources */,
-				1734B7A919E49DB2009B228A /* Photo.m in Sources */,
+				17C7BF9F19E85A3900BD019A /* ServerObjects.m in Sources */,
+				17C7BF9619E7535900BD019A /* Photo.m in Sources */,
 				171BA9F619DF545C00C66676 /* ServerHandler.m in Sources */,
-				1734B7AC19E49DB2009B228A /* Spot.m in Sources */,
-				1734B7AF19E49DB3009B228A /* User.m in Sources */,
+				17C7BF9919E7535A00BD019A /* Spot.m in Sources */,
+				17C7BF9C19E7535A00BD019A /* User.m in Sources */,
 				175DA60A19DA1D2800897710 /* PKProject.xcdatamodeld in Sources */,
 				1734B7A619E4954A009B228A /* CreateSpotViewController.m in Sources */,
 				175DA60419DA1D2800897710 /* main.m in Sources */,

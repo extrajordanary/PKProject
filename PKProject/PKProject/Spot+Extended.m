@@ -7,11 +7,13 @@
 //
 
 #import "Spot+Extended.h"
+#import "User+Extended.h"
 
 @implementation Spot (Extended)
 
 -(void)updateFromDictionary:(NSDictionary*)dictionary{
     if (self) {
+        self.databaseId = dictionary[@"_id"];
         self.creationTimestamp = dictionary[@"creationTimestamp"];
         self.latitude = dictionary[@"latitude"];
         self.longitude = dictionary[@"longitude"];
@@ -30,7 +32,7 @@
     jsonable[@"longitude"] = self.longitude;
     jsonable[@"numberOfFavorites"] = self.numberOfFavorites;
     // spot photos
-//    jsonable[@"spotByUser"] = self.spotByUser;
+    jsonable[@"spotByUser"] = self.spotByUser.databaseId;
     
     return jsonable;
 }
