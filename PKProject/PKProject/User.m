@@ -2,7 +2,7 @@
 //  User.m
 //  PKProject
 //
-//  Created by Jordan on 10/9/14.
+//  Created by Jordan on 10/10/14.
 //  Copyright (c) 2014 Byjor. All rights reserved.
 //
 
@@ -16,7 +16,6 @@
 @dynamic city;
 @dynamic country;
 @dynamic creationTimestamp;
-@dynamic databaseId;
 @dynamic email;
 @dynamic nameFirst;
 @dynamic nameLast;
