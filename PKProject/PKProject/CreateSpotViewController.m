@@ -176,9 +176,20 @@
     [newSpot addSpotPhotoObject:newPhoto];
     
     // save Spot to server
+    // get Spot's new ObjectId
+    // add Spot OID to Photo
+    // save photo
+    // get photo OID
+    // update Spot with Photo OID
+    
+    // TODO: hotfix to text photo OID
+    newPhoto.databaseId = @"54384a22d973a634c2001cce";
+    
     [serverHandler pushSpotToServer:newSpot];
     
-    // save Photo to server
+    
+    // save Photo to server - should be done
+    
     // update User info on server
 }
 

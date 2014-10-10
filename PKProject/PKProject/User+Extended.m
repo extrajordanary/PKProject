@@ -7,6 +7,7 @@
 //
 
 #import "User+Extended.h"
+#import "ServerObject+Extended.h"
 #import "Photo.h"
 
 @implementation User (Extended)

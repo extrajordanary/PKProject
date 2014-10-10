@@ -8,6 +8,7 @@
 
 #import "Spot+Extended.h"
 #import "User+Extended.h"
+#import "ServerObject+Extended.h"
 
 @implementation Spot (Extended)
 
@@ -31,8 +32,10 @@
     jsonable[@"latitude"] = self.latitude;
     jsonable[@"longitude"] = self.longitude;
     jsonable[@"numberOfFavorites"] = self.numberOfFavorites;
-    // spot photos
     jsonable[@"spotByUser"] = self.spotByUser.databaseId;
+    
+    // photo ids
+    jsonable[@"userCreatedPhoto"] = [self arrayOfObjectIds:self.spotPhoto.allObjects];
     
     return jsonable;
 }

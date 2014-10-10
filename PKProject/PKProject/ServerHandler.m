@@ -108,7 +108,7 @@ static NSString* const kPhotos = @"/collections/photos";
         if (!error) {
             NSArray* responseArray = @[[NSJSONSerialization JSONObjectWithData:data options:0 error:NULL]];
             // get _id from returned data and save it to the Spot databaseId property
-            
+            spot.databaseId = responseArray[0][0][@"_id"];
         }
     }];
     [dataTask resume];
