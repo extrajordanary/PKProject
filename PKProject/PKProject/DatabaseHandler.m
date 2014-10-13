@@ -38,6 +38,9 @@ static NSString* const kPhotos = @"/collections/photos";
 }
 
 #pragma mark - Users
+
+#pragma message "This fetches the information about a user from the server and updates the local information, correct? Maybe the method should be renamed (mentioning 'server' instead of 'database') and you could add one or two comments to make this more obvious"
+
 - (void)updateUserFromDatabase:(User*)user {
     NSString* userId = user.databaseId;
     NSString* requestURL = [NSString stringWithFormat:@"%@%@/%@",kBaseURL,kUsers,userId];

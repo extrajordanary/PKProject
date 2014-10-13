@@ -19,6 +19,10 @@
 
 @end
 
+#pragma message "You should prefer using constants over DEFINE statements. Using constants gives the compiler type information"
+//e.g. :
+//static const CGFloat kMeterPerMile = 1609.344;
+
 #define METERS_PER_MILE 1609.344
 #define DEFAULT_ZOOM_MILES .2
 
@@ -53,6 +57,8 @@
     [self.myUser setValue:@"542efcec4a1cef02006d1021" forKey:@"databaseId"];
     [databaseHandler updateUserFromDatabase:self.myUser];
 }
+
+#pragma message "I prefer removing empty method stubs, but I'll leave this up to you ;)"
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
