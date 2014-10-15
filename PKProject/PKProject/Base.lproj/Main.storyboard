@@ -4,7 +4,6 @@
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6238"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
-        <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
     </dependencies>
     <scenes>
         <!--Map-->
@@ -151,12 +150,14 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" ambiguous="YES" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="5wd-pG-u3H"/>
+                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleAspectFill" ambiguous="YES" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="5wd-pG-u3H"/>
                             <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="EvC-GJ-XeZ">
-                                <rect key="frame" x="0.0" y="564" width="600" height="36"/>
+                                <rect key="frame" x="0.0" y="556" width="600" height="44"/>
                                 <color key="backgroundColor" red="0.083179518090000001" green="0.61142557959999999" blue="0.84152088989999996" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="36" id="axm-xQ-NgD"/>
+                                    <constraint firstAttribute="height" constant="44" id="axm-xQ-NgD">
+                                        <variation key="heightClass=compact" constant="44"/>
+                                    </constraint>
                                 </constraints>
                                 <items>
                                     <barButtonItem width="5" style="plain" systemItem="fixedSpace" id="N2e-l9-0l5"/>
@@ -184,7 +185,8 @@
                                 </items>
                                 <color key="barTintColor" red="0.083179518090000001" green="0.61142557959999999" blue="0.84152088989999996" alpha="1" colorSpace="calibratedRGB"/>
                             </toolbar>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="3WT-Nh-yy9">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="3WT-Nh-yy9">
+                                <rect key="frame" x="0.0" y="0.0" width="556" height="556"/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="3WT-Nh-yy9" secondAttribute="height" multiplier="1:1" id="Oey-Nw-MMH"/>
                                 </constraints>
@@ -197,11 +199,9 @@
                             <constraint firstItem="ZHe-Lh-fMe" firstAttribute="top" secondItem="3WT-Nh-yy9" secondAttribute="bottom" constant="-16" id="4xy-0V-aGh"/>
                             <constraint firstItem="3WT-Nh-yy9" firstAttribute="leading" secondItem="5wd-pG-u3H" secondAttribute="trailing" id="6Fs-j9-uwQ"/>
                             <constraint firstItem="EvC-GJ-XeZ" firstAttribute="top" secondItem="3WT-Nh-yy9" secondAttribute="bottom" id="96A-V9-76n"/>
-                            <constraint firstItem="3WT-Nh-yy9" firstAttribute="height" secondItem="5wd-pG-u3H" secondAttribute="height" multiplier="16:9" id="Dqr-NX-7fm"/>
                             <constraint firstAttribute="trailingMargin" secondItem="3WT-Nh-yy9" secondAttribute="trailing" constant="-16" id="EWa-qP-xDy"/>
                             <constraint firstItem="EvC-GJ-XeZ" firstAttribute="leading" secondItem="ZF6-Nd-ulq" secondAttribute="leadingMargin" constant="-16" id="IYH-ut-XvT"/>
                             <constraint firstItem="5wd-pG-u3H" firstAttribute="leading" secondItem="ZF6-Nd-ulq" secondAttribute="leadingMargin" constant="-16" id="LEQ-RQ-Tdc"/>
-                            <constraint firstItem="3WT-Nh-yy9" firstAttribute="top" secondItem="5wd-pG-u3H" secondAttribute="bottom" id="Lk1-eG-170"/>
                             <constraint firstItem="5wd-pG-u3H" firstAttribute="top" secondItem="ZF6-Nd-ulq" secondAttribute="topMargin" id="Ntz-bK-P3s">
                                 <variation key="heightClass=compact" constant="0.0"/>
                             </constraint>
@@ -212,12 +212,11 @@
                             <constraint firstItem="EvC-GJ-XeZ" firstAttribute="top" secondItem="5wd-pG-u3H" secondAttribute="bottom" id="RBV-92-zET"/>
                             <constraint firstItem="EvC-GJ-XeZ" firstAttribute="top" secondItem="5wd-pG-u3H" secondAttribute="bottom" id="UBr-1t-gz8"/>
                             <constraint firstItem="3WT-Nh-yy9" firstAttribute="top" secondItem="imT-Os-fpj" secondAttribute="bottom" constant="-16" id="Zn7-fp-SdB">
-                                <variation key="heightClass=compact" constant="-20"/>
+                                <variation key="heightClass=compact" constant="0.0"/>
                             </constraint>
                             <constraint firstItem="ZHe-Lh-fMe" firstAttribute="top" secondItem="EvC-GJ-XeZ" secondAttribute="bottom" id="co2-sI-lCp"/>
                             <constraint firstItem="ZHe-Lh-fMe" firstAttribute="top" secondItem="5wd-pG-u3H" secondAttribute="bottom" constant="-16" id="ek0-xj-mI6"/>
                             <constraint firstItem="5wd-pG-u3H" firstAttribute="top" secondItem="imT-Os-fpj" secondAttribute="bottom" id="gol-GR-e4n"/>
-                            <constraint firstItem="3WT-Nh-yy9" firstAttribute="width" secondItem="5wd-pG-u3H" secondAttribute="width" multiplier="16:9" priority="250" id="h3d-Uw-edX"/>
                             <constraint firstItem="3WT-Nh-yy9" firstAttribute="leading" secondItem="ZF6-Nd-ulq" secondAttribute="leadingMargin" constant="-16" id="i4E-PF-anD"/>
                             <constraint firstItem="ZHe-Lh-fMe" firstAttribute="top" secondItem="EvC-GJ-XeZ" secondAttribute="bottom" id="jt0-UJ-kzV"/>
                             <constraint firstItem="EvC-GJ-XeZ" firstAttribute="top" secondItem="3WT-Nh-yy9" secondAttribute="bottom" id="q4T-1b-MIS"/>
@@ -229,16 +228,13 @@
                         </constraints>
                         <variation key="default">
                             <mask key="constraints">
+                                <exclude reference="6Fs-j9-uwQ"/>
+                                <exclude reference="OYd-7a-MZI"/>
+                                <exclude reference="Zn7-fp-SdB"/>
+                                <exclude reference="zek-Rh-yqm"/>
                                 <exclude reference="LEQ-RQ-Tdc"/>
                                 <exclude reference="gol-GR-e4n"/>
                                 <exclude reference="uAD-tW-fUX"/>
-                                <exclude reference="6Fs-j9-uwQ"/>
-                                <exclude reference="Dqr-NX-7fm"/>
-                                <exclude reference="Lk1-eG-170"/>
-                                <exclude reference="OYd-7a-MZI"/>
-                                <exclude reference="Zn7-fp-SdB"/>
-                                <exclude reference="h3d-Uw-edX"/>
-                                <exclude reference="zek-Rh-yqm"/>
                                 <exclude reference="96A-V9-76n"/>
                                 <exclude reference="NzA-pq-LwO"/>
                                 <exclude reference="QcR-5X-ZHA"/>
@@ -251,18 +247,16 @@
                         </variation>
                         <variation key="heightClass=compact">
                             <mask key="constraints">
+                                <exclude reference="09G-OY-b9m"/>
+                                <include reference="6Fs-j9-uwQ"/>
+                                <exclude reference="EWa-qP-xDy"/>
+                                <include reference="OYd-7a-MZI"/>
+                                <include reference="Zn7-fp-SdB"/>
+                                <exclude reference="i4E-PF-anD"/>
                                 <exclude reference="2ow-rW-XMR"/>
                                 <exclude reference="LEQ-RQ-Tdc"/>
                                 <exclude reference="gol-GR-e4n"/>
                                 <exclude reference="uAD-tW-fUX"/>
-                                <exclude reference="09G-OY-b9m"/>
-                                <include reference="6Fs-j9-uwQ"/>
-                                <exclude reference="Dqr-NX-7fm"/>
-                                <exclude reference="EWa-qP-xDy"/>
-                                <include reference="OYd-7a-MZI"/>
-                                <include reference="Zn7-fp-SdB"/>
-                                <include reference="h3d-Uw-edX"/>
-                                <exclude reference="i4E-PF-anD"/>
                                 <include reference="96A-V9-76n"/>
                                 <exclude reference="IYH-ut-XvT"/>
                                 <include reference="NzA-pq-LwO"/>
