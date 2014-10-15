@@ -38,11 +38,12 @@
 		175DA62C19DB491700897710 /* MapViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 175DA62B19DB491700897710 /* MapViewController.m */; };
 		175DA62F19DB499300897710 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 175DA62E19DB499300897710 /* MapKit.framework */; };
 		175DA63119DB499A00897710 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 175DA63019DB499A00897710 /* CoreLocation.framework */; };
+		1762F6E019EEEB0C00EE71C2 /* Spot.m in Sources */ = {isa = PBXBuildFile; fileRef = 1762F6DF19EEEB0C00EE71C2 /* Spot.m */; };
+		1762F6E319EEEB0C00EE71C2 /* ServerObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 1762F6E219EEEB0C00EE71C2 /* ServerObject.m */; };
+		1762F6E619EEEB0C00EE71C2 /* Photo.m in Sources */ = {isa = PBXBuildFile; fileRef = 1762F6E519EEEB0C00EE71C2 /* Photo.m */; };
+		1762F6E919EEEB0D00EE71C2 /* User.m in Sources */ = {isa = PBXBuildFile; fileRef = 1762F6E819EEEB0D00EE71C2 /* User.m */; };
+		1762F6EB19EEF02600EE71C2 /* defaultSpotPhoto.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 1762F6EA19EEF02600EE71C2 /* defaultSpotPhoto.jpg */; };
 		17C7BF9F19E85A3900BD019A /* ServerObjects+Extended.m in Sources */ = {isa = PBXBuildFile; fileRef = 17C7BF9E19E85A3900BD019A /* ServerObjects+Extended.m */; };
-		17C7BFA819E8638100BD019A /* ServerObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 17C7BFA719E8638100BD019A /* ServerObject.m */; };
-		17C7BFAE19E8659B00BD019A /* Photo.m in Sources */ = {isa = PBXBuildFile; fileRef = 17C7BFAD19E8659B00BD019A /* Photo.m */; };
-		17C7BFB119E8659B00BD019A /* User.m in Sources */ = {isa = PBXBuildFile; fileRef = 17C7BFB019E8659B00BD019A /* User.m */; };
-		17C7BFB419E8659B00BD019A /* Spot.m in Sources */ = {isa = PBXBuildFile; fileRef = 17C7BFB319E8659B00BD019A /* Spot.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -97,16 +98,17 @@
 		175DA62B19DB491700897710 /* MapViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MapViewController.m; sourceTree = "<group>"; };
 		175DA62E19DB499300897710 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 		175DA63019DB499A00897710 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
+		1762F6DE19EEEB0C00EE71C2 /* Spot.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Spot.h; sourceTree = "<group>"; };
+		1762F6DF19EEEB0C00EE71C2 /* Spot.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Spot.m; sourceTree = "<group>"; };
+		1762F6E119EEEB0C00EE71C2 /* ServerObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ServerObject.h; sourceTree = "<group>"; };
+		1762F6E219EEEB0C00EE71C2 /* ServerObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ServerObject.m; sourceTree = "<group>"; };
+		1762F6E419EEEB0C00EE71C2 /* Photo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Photo.h; sourceTree = "<group>"; };
+		1762F6E519EEEB0C00EE71C2 /* Photo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Photo.m; sourceTree = "<group>"; };
+		1762F6E719EEEB0D00EE71C2 /* User.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = User.h; sourceTree = "<group>"; };
+		1762F6E819EEEB0D00EE71C2 /* User.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = User.m; sourceTree = "<group>"; };
+		1762F6EA19EEF02600EE71C2 /* defaultSpotPhoto.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = defaultSpotPhoto.jpg; sourceTree = "<group>"; };
 		17C7BF9D19E85A3900BD019A /* ServerObject+Extended.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "ServerObject+Extended.h"; sourceTree = "<group>"; };
 		17C7BF9E19E85A3900BD019A /* ServerObjects+Extended.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "ServerObjects+Extended.m"; sourceTree = "<group>"; };
-		17C7BFA619E8638100BD019A /* ServerObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ServerObject.h; sourceTree = "<group>"; };
-		17C7BFA719E8638100BD019A /* ServerObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ServerObject.m; sourceTree = "<group>"; };
-		17C7BFAC19E8659B00BD019A /* Photo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Photo.h; sourceTree = "<group>"; };
-		17C7BFAD19E8659B00BD019A /* Photo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Photo.m; sourceTree = "<group>"; };
-		17C7BFAF19E8659B00BD019A /* User.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = User.h; sourceTree = "<group>"; };
-		17C7BFB019E8659B00BD019A /* User.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = User.m; sourceTree = "<group>"; };
-		17C7BFB219E8659B00BD019A /* Spot.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Spot.h; sourceTree = "<group>"; };
-		17C7BFB319E8659B00BD019A /* Spot.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Spot.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -132,14 +134,14 @@
 		171BA9ED19DC7F5800C66676 /* Core Data Classes */ = {
 			isa = PBXGroup;
 			children = (
-				17C7BFB219E8659B00BD019A /* Spot.h */,
-				17C7BFB319E8659B00BD019A /* Spot.m */,
-				17C7BFAF19E8659B00BD019A /* User.h */,
-				17C7BFB019E8659B00BD019A /* User.m */,
-				17C7BFAC19E8659B00BD019A /* Photo.h */,
-				17C7BFAD19E8659B00BD019A /* Photo.m */,
-				17C7BFA619E8638100BD019A /* ServerObject.h */,
-				17C7BFA719E8638100BD019A /* ServerObject.m */,
+				1762F6E719EEEB0D00EE71C2 /* User.h */,
+				1762F6E819EEEB0D00EE71C2 /* User.m */,
+				1762F6E419EEEB0C00EE71C2 /* Photo.h */,
+				1762F6E519EEEB0C00EE71C2 /* Photo.m */,
+				1762F6E119EEEB0C00EE71C2 /* ServerObject.h */,
+				1762F6E219EEEB0C00EE71C2 /* ServerObject.m */,
+				1762F6DE19EEEB0C00EE71C2 /* Spot.h */,
+				1762F6DF19EEEB0C00EE71C2 /* Spot.m */,
 			);
 			name = "Core Data Classes";
 			sourceTree = "<group>";
@@ -147,6 +149,7 @@
 		1734B77B19E469A1009B228A /* SampleSpots */ = {
 			isa = PBXGroup;
 			children = (
+				1762F6EA19EEF02600EE71C2 /* defaultSpotPhoto.jpg */,
 				1734B77C19E469A1009B228A /* sampleSpotPic03.jpg */,
 				1734B77D19E469A1009B228A /* sampleSpotPic04.jpg */,
 				1734B77E19E469A1009B228A /* sampleSpotPic05.jpg */,
@@ -340,6 +343,7 @@
 				1734B79D19E469A1009B228A /* sampleSpotPic16.jpg in Resources */,
 				1734B79319E469A1009B228A /* sampleSpotPic06.jpg in Resources */,
 				1734B79A19E469A1009B228A /* sampleSpotPic13.jpg in Resources */,
+				1762F6EB19EEF02600EE71C2 /* defaultSpotPhoto.jpg in Resources */,
 				1734B79619E469A1009B228A /* sampleSpotPic09.jpg in Resources */,
 				1734B7A119E469A1009B228A /* sampleSpotPic20.jpg in Resources */,
 				1734B79019E469A1009B228A /* sampleSpotPic03.jpg in Resources */,
@@ -367,19 +371,19 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				17C7BFB419E8659B00BD019A /* Spot.m in Sources */,
+				1762F6E919EEEB0D00EE71C2 /* User.m in Sources */,
+				1762F6E619EEEB0C00EE71C2 /* Photo.m in Sources */,
 				171BAA0819DF79EA00C66676 /* Spot+Extended.m in Sources */,
 				171BA9F319DF4AD000C66676 /* User+Extended.m in Sources */,
 				175DA60719DA1D2800897710 /* AppDelegate.m in Sources */,
 				17C7BF9F19E85A3900BD019A /* ServerObjects+Extended.m in Sources */,
 				171BA9F619DF545C00C66676 /* ServerHandler.m in Sources */,
-				17C7BFA819E8638100BD019A /* ServerObject.m in Sources */,
+				1762F6E019EEEB0C00EE71C2 /* Spot.m in Sources */,
 				175DA60A19DA1D2800897710 /* PKProject.xcdatamodeld in Sources */,
 				1734B7A619E4954A009B228A /* CreateSpotViewController.m in Sources */,
-				17C7BFB119E8659B00BD019A /* User.m in Sources */,
-				17C7BFAE19E8659B00BD019A /* Photo.m in Sources */,
 				175DA60419DA1D2800897710 /* main.m in Sources */,
 				175DA62C19DB491700897710 /* MapViewController.m in Sources */,
+				1762F6E319EEEB0C00EE71C2 /* ServerObject.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -37,6 +37,7 @@ static NSString* const kPhotos = @"/collections/photos";
 }
 
 #pragma mark - Users
+// given a User object, method pulls updated User info from server and updates object properties
 - (void)updateUserFromServer:(User*)user {
     NSString* userId = user.databaseId;
     NSString* requestURL = [NSString stringWithFormat:@"%@%@/%@",kBaseURL,kUsers,userId];
@@ -61,6 +62,7 @@ static NSString* const kPhotos = @"/collections/photos";
 }
 
 #pragma mark - Spots
+// returns all Spots from server and passes them to a block which will parse the info in the desired fashion
 -(void)getSpotsFromServer:(void (^)(NSDictionary*))spotHandlingBlock {
     NSString* requestURL = [NSString stringWithFormat:@"%@%@",kBaseURL,kSpots];
     NSURL* url = [NSURL URLWithString:requestURL];
@@ -83,8 +85,10 @@ static NSString* const kPhotos = @"/collections/photos";
     [dataTask resume];
 }
 
+// given a Spot object, method checks if the Spot already exists on the server
+// then it either creates a new entry in the server or updates the existing entry
 -(void)pushSpotToServer:(Spot*)spot {
-    if (!spot || spot.latitude == nil || spot.longitude == nil || spot.spotPhoto == nil) {
+    if (!spot || spot.latitude == nil || spot.longitude == nil || spot.spotPhotos == nil) {
         return; //input safety check
     }
     NSString* spots = [kBaseURL stringByAppendingPathComponent:kSpots];

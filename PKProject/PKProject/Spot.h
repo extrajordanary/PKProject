@@ -2,7 +2,7 @@
 //  Spot.h
 //  PKProject
 //
-//  Created by Jordan on 10/10/14.
+//  Created by Jordan on 10/15/14.
 //  Copyright (c) 2014 Byjor. All rights reserved.
 //
 
@@ -19,14 +19,20 @@
 @property (nonatomic, retain) NSNumber * longitude;
 @property (nonatomic, retain) NSNumber * numberOfFavorites;
 @property (nonatomic, retain) User *spotByUser;
-@property (nonatomic, retain) NSSet *spotPhoto;
+@property (nonatomic, retain) NSSet *spotPhotos;
+@property (nonatomic, retain) NSSet *spotUsers;
 @end
 
 @interface Spot (CoreDataGeneratedAccessors)
 
-- (void)addSpotPhotoObject:(Photo *)value;
-- (void)removeSpotPhotoObject:(Photo *)value;
-- (void)addSpotPhoto:(NSSet *)values;
-- (void)removeSpotPhoto:(NSSet *)values;
+- (void)addSpotPhotosObject:(Photo *)value;
+- (void)removeSpotPhotosObject:(Photo *)value;
+- (void)addSpotPhotos:(NSSet *)values;
+- (void)removeSpotPhotos:(NSSet *)values;
+
+- (void)addSpotUsersObject:(User *)value;
+- (void)removeSpotUsersObject:(User *)value;
+- (void)addSpotUsers:(NSSet *)values;
+- (void)removeSpotUsers:(NSSet *)values;
 
 @end

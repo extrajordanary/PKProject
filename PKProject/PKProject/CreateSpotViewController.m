@@ -22,9 +22,6 @@
 
 @end
 
-#define METERS_PER_MILE 1609.344
-#define DEFAULT_ZOOM_MILES .2
-
 @implementation CreateSpotViewController {
     Spot *newSpot;
     Photo *newPhoto;
@@ -32,6 +29,9 @@
     ServerHandler *serverHandler;
     MKPointAnnotation *spotMarker;
 }
+
+static const CGFloat kMetersPerMile = 1609.344;
+static const CGFloat kDefaultZoomMiles = 0.2;
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -47,6 +47,9 @@
     // create new Spot and Photo objects
     newSpot = [NSEntityDescription insertNewObjectForEntityForName:@"Spot" inManagedObjectContext:theContext];
     newPhoto = [NSEntityDescription insertNewObjectForEntityForName:@"Photo" inManagedObjectContext:theContext];
+
+    self.spotImage.image = [UIImage imageNamed:@"defaultSpotPhoto.jpg"];
+    [self.spotImage setClipsToBounds:YES];
 
 }
 
@@ -99,7 +102,7 @@
 }
 
 -(void)zoomToCurrentLocation {
-    MKCoordinateRegion viewRegion = MKCoordinateRegionMakeWithDistance(self.locationManager.location.coordinate, DEFAULT_ZOOM_MILES*METERS_PER_MILE, DEFAULT_ZOOM_MILES*METERS_PER_MILE);
+    MKCoordinateRegion viewRegion = MKCoordinateRegionMakeWithDistance(self.locationManager.location.coordinate, kDefaultZoomMiles*kMetersPerMile, kDefaultZoomMiles*kMetersPerMile);
     [self.mapView setRegion:viewRegion animated:YES];
 }
 
@@ -173,7 +176,7 @@
     
     [newSpot setSpotByUser:self.thisUser];
     [newPhoto setPhotoByUser:self.thisUser];
-    [newSpot addSpotPhotoObject:newPhoto];
+    [newSpot addSpotPhotosObject:newPhoto];
     
     // save Spot to server
     // get Spot's new ObjectId
@@ -182,7 +185,7 @@
     // get photo OID
     // update Spot with Photo OID
     
-    // TODO: hotfix to text photo OID
+    // TODO: hotfix to test photo OID
     newPhoto.databaseId = @"54384a22d973a634c2001cce";
     
     [serverHandler pushSpotToServer:newSpot];

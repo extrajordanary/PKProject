@@ -20,16 +20,21 @@
 @property (strong, nonatomic) User *thisUser;
 @property (strong, nonatomic) NSMutableArray *nearbySpots;
 
+
+
 @end
 
-#define METERS_PER_MILE 1609.344
-#define DEFAULT_ZOOM_MILES 2
+//#define METERS_PER_MILE 1609.344
+//#define DEFAULT_ZOOM_MILES 2
 
 @implementation MapViewController {
     NSManagedObjectContext *theContext;
     ServerHandler *serverHandler;
     NSString *thisUserId;
 }
+
+static const CGFloat kMetersPerMile = 1609.344;
+static const CGFloat kDefaultZoomMiles = 0.5;
 
 #pragma mark - View
 - (void)viewDidLoad {
@@ -130,7 +135,7 @@
 }
 
 -(void)zoomToCurrentLocation {
-    MKCoordinateRegion viewRegion = MKCoordinateRegionMakeWithDistance(self.locationManager.location.coordinate, DEFAULT_ZOOM_MILES*METERS_PER_MILE, DEFAULT_ZOOM_MILES*METERS_PER_MILE);
+    MKCoordinateRegion viewRegion = MKCoordinateRegionMakeWithDistance(self.locationManager.location.coordinate, kDefaultZoomMiles*kMetersPerMile, kDefaultZoomMiles*kMetersPerMile);
     [self.mapView setRegion:viewRegion animated:YES];
 }
 

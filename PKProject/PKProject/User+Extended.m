@@ -45,10 +45,10 @@
     jsonable[@"_id"] = self.databaseId;
     
     // photo ids
-    jsonable[@"userCreatedPhoto"] = [self arrayOfObjectIds:self.userCreatedPhoto];
+    jsonable[@"userCreatedPhoto"] = [self arrayOfObjectIds:[self.userCreatedPhoto allObjects]];
     
     // spot ids
-    jsonable[@"userCreatedSpot"] = [self arrayOfObjectIds:self.userCreatedSpot];
+    jsonable[@"userCreatedSpot"] = [self arrayOfObjectIds:[self.userCreatedSpot allObjects]];
 
     return jsonable;
 }

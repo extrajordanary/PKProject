@@ -2,7 +2,7 @@
 //  User.h
 //  PKProject
 //
-//  Created by Jordan on 10/10/14.
+//  Created by Jordan on 10/15/14.
 //  Copyright (c) 2014 Byjor. All rights reserved.
 //
 
@@ -24,7 +24,7 @@
 @property (nonatomic, retain) NSData * photo;
 @property (nonatomic, retain) NSSet *userCreatedPhoto;
 @property (nonatomic, retain) NSSet *userCreatedSpot;
-@property (nonatomic, retain) NSSet *userSpot;
+@property (nonatomic, retain) NSSet *userSpots;
 @end
 
 @interface User (CoreDataGeneratedAccessors)
@@ -39,9 +39,9 @@
 - (void)addUserCreatedSpot:(NSSet *)values;
 - (void)removeUserCreatedSpot:(NSSet *)values;
 
-- (void)addUserSpotObject:(Spot *)value;
-- (void)removeUserSpotObject:(Spot *)value;
-- (void)addUserSpot:(NSSet *)values;
-- (void)removeUserSpot:(NSSet *)values;
+- (void)addUserSpotsObject:(Spot *)value;
+- (void)removeUserSpotsObject:(Spot *)value;
+- (void)addUserSpots:(NSSet *)values;
+- (void)removeUserSpots:(NSSet *)values;
 
 @end
