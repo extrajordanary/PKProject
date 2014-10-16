@@ -165,6 +165,7 @@ static const CGFloat kDefaultZoomMiles = 0.5;
     PhotoCollectionViewCell *cell = [cv dequeueReusableCellWithReuseIdentifier:@"Photo" forIndexPath:indexPath];
     cell.backgroundColor = [UIColor whiteColor];
     // other setup?
+//    NSLog(@"Cell made");
     return cell;
 }
 // 4
@@ -185,18 +186,14 @@ static const CGFloat kDefaultZoomMiles = 0.5;
 
 #pragma mark – UICollectionViewDelegateFlowLayout
 - (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath {
-//    NSString *searchTerm = self.searches[indexPath.section]; FlickrPhoto *photo =
-//    self.searchResults[searchTerm][indexPath.row];
-//    
-//    CGSize retval = photo.thumbnail.size.width > 0 ? photo.thumbnail.size : CGSizeMake(100, 100);
-//    retval.height += 35; retval.width += 35;
-//    return retval;
-    return CGSizeMake(100, 100);
+    int height = collectionView.frame.size.height;
+
+    return CGSizeMake(height-10, height-10); // minus twice the size of insets
 }
 
 - (UIEdgeInsets)collectionView:
 (UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout insetForSectionAtIndex:(NSInteger)section {
-    return UIEdgeInsetsMake(50, 20, 50, 20);
+    return UIEdgeInsetsMake(5, 5, 5, 5);
 }
 
 #pragma mark - Spots
@@ -211,7 +208,7 @@ static const CGFloat kDefaultZoomMiles = 0.5;
         }
         dispatch_async(dispatch_get_main_queue(), ^(void){
             [self placeSpotMarkers];
-            [self fetchAndLoadPhotos];
+//            [self fetchAndLoadPhotos];
             [self.collectionView reloadData];
         });
     }];
