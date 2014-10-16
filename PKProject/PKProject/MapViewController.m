@@ -54,7 +54,8 @@ static const CGFloat kDefaultZoomMiles = 0.5;
     
     // setup CollectionView
     self.collectionView.delegate = self;
-    [self.collectionView registerClass:[PhotoCollectionViewCell class] forCellWithReuseIdentifier:@"Photo"];
+//    [self.collectionView registerNib:<#(UINib *)#> forCellWithReuseIdentifier:@"Photo"];
+//    [self.collectionView registerClass:[PhotoCollectionViewCell class] forCellWithReuseIdentifier:@"Photo"];
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -163,10 +164,13 @@ static const CGFloat kDefaultZoomMiles = 0.5;
 
 - (UICollectionViewCell *)collectionView:(UICollectionView *)cv cellForItemAtIndexPath:(NSIndexPath *)indexPath {
     PhotoCollectionViewCell *cell = (PhotoCollectionViewCell*)[cv dequeueReusableCellWithReuseIdentifier:@"Photo" forIndexPath:indexPath];
-    cell.backgroundColor = [UIColor colorWithRed:0.548 green:1.000 blue:0.764 alpha:1.000];
+    if (!cell) {
+        
+    }
+//    cell.backgroundColor = [UIColor colorWithRed:1.000 green:0.563 blue:0.315 alpha:1.000];
     cell.spot = self.nearbySpots[indexPath.row];
-//    cell.imageView.image = [cell.spot getThumbnail];
-    UIImage *image =[UIImage imageNamed:@"noSpotPhoto.jpg"];
+    UIImage *image = [cell.spot getThumbnail];
+//    UIImage *image =[UIImage imageNamed:@"noSpotPhoto.jpg"];
     [cell.imageView setImage:image];
     // other setup?
     return cell;
