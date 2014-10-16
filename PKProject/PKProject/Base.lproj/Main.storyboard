@@ -32,13 +32,15 @@
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" alwaysBounceHorizontal="YES" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="Y2f-Cd-NF3">
                                 <rect key="frame" x="-4" y="356" width="608" height="200"/>
                                 <constraints>
+                                    <constraint firstAttribute="width" constant="300" id="89T-Gc-4T0"/>
+                                    <constraint firstAttribute="width" secondItem="Y2f-Cd-NF3" secondAttribute="height" multiplier="1:1" id="SGp-dM-4wn"/>
                                     <constraint firstAttribute="height" constant="200" id="dol-5B-cf3"/>
                                 </constraints>
-                                <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" minimumLineSpacing="2" minimumInteritemSpacing="2" id="JcO-ze-N8H">
+                                <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" minimumLineSpacing="2" minimumInteritemSpacing="0.0" id="JcO-ze-N8H">
                                     <size key="itemSize" width="175" height="196"/>
                                     <size key="headerReferenceSize" width="0.0" height="0.0"/>
                                     <size key="footerReferenceSize" width="0.0" height="0.0"/>
-                                    <inset key="sectionInset" minX="0.0" minY="2" maxX="0.0" maxY="2"/>
+                                    <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                                 </collectionViewFlowLayout>
                                 <cells>
                                     <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" reuseIdentifier="Photo" id="zSm-AJ-sr2" customClass="PhotoCollectionViewCell">
@@ -78,6 +80,12 @@
                                         <color key="backgroundColor" red="1" green="0.8436739473" blue="0.77091353510000005" alpha="1" colorSpace="calibratedRGB"/>
                                     </collectionViewCell>
                                 </cells>
+                                <variation key="default">
+                                    <mask key="constraints">
+                                        <exclude reference="89T-Gc-4T0"/>
+                                        <exclude reference="SGp-dM-4wn"/>
+                                    </mask>
+                                </variation>
                                 <connections>
                                     <outlet property="dataSource" destination="TcK-Hn-xC7" id="vZL-tG-f5l"/>
                                     <outlet property="delegate" destination="TcK-Hn-xC7" id="M8L-gs-BOG"/>
@@ -135,6 +143,7 @@
                             <constraint firstItem="Z82-Z6-PAr" firstAttribute="top" secondItem="da5-SJ-rr9" secondAttribute="bottom" id="NdU-fU-vzr"/>
                             <constraint firstItem="da5-SJ-rr9" firstAttribute="top" secondItem="Y2f-Cd-NF3" secondAttribute="bottom" id="Nzi-UM-5K0"/>
                             <constraint firstAttribute="trailingMargin" secondItem="37e-li-9oJ" secondAttribute="trailing" constant="-20" id="PW7-Wr-Q6T"/>
+                            <constraint firstAttribute="centerX" secondItem="Y2f-Cd-NF3" secondAttribute="centerX" id="RI0-73-v8E"/>
                             <constraint firstAttribute="trailingMargin" secondItem="Y2f-Cd-NF3" secondAttribute="trailing" constant="-20" id="SFv-D6-z2a"/>
                             <constraint firstItem="da5-SJ-rr9" firstAttribute="top" secondItem="Y2f-Cd-NF3" secondAttribute="bottom" id="bbp-ay-XsF"/>
                             <constraint firstAttribute="trailingMargin" secondItem="da5-SJ-rr9" secondAttribute="trailing" constant="-20" id="dnH-Ld-GMG"/>
@@ -146,6 +155,7 @@
                         </constraints>
                         <variation key="default">
                             <mask key="constraints">
+                                <exclude reference="Nzi-UM-5K0"/>
                                 <exclude reference="u2Q-zg-ojZ"/>
                             </mask>
                         </variation>
