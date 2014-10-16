@@ -15,7 +15,7 @@
 @interface Photo : ServerObject
 
 @property (nonatomic, retain) NSString * creationTimestamp;
-@property (nonatomic, retain) NSData * image;
+@property (nonatomic, retain) NSData * imageBinary;
 @property (nonatomic, retain) NSNumber * latitude;
 @property (nonatomic, retain) NSNumber * longitude;
 @property (nonatomic, retain) User *photoByUser;

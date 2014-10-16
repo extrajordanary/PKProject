@@ -16,6 +16,7 @@
 @interface MapViewController ()
 
 @property (strong, nonatomic) IBOutlet MKMapView *mapView;
+@property (strong, nonatomic) IBOutlet UICollectionView *collectionView;
 @property (strong, nonatomic) CLLocationManager *locationManager;
 @property (strong, nonatomic) User *thisUser;
 @property (strong, nonatomic) NSMutableArray *nearbySpots;
@@ -86,8 +87,7 @@ static const CGFloat kDefaultZoomMiles = 0.5;
 
     // get spots from server
     [self updateNearbySpots];
-    // create marker on map for each spot
-//    [self placeSpotMarkers];
+
 }
 
 - (void)didReceiveMemoryWarning {
@@ -151,16 +151,28 @@ static const CGFloat kDefaultZoomMiles = 0.5;
         }
         dispatch_async(dispatch_get_main_queue(), ^(void){
             [self placeSpotMarkers];
+            [self fetchAndLoadPhotos];
         });
     }];
 }
 
+// populates the map with pins at each Spot location
 -(void)placeSpotMarkers {
     for (Spot *spot in self.nearbySpots) {
         MKPointAnnotation *spotMarker = [[MKPointAnnotation alloc] init];
         CLLocationCoordinate2D coord = CLLocationCoordinate2DMake([spot.latitude doubleValue], [spot.longitude doubleValue]);
         spotMarker.coordinate = coord;
         [self.mapView addAnnotation:spotMarker];
+    }
+}
+
+#pragma mark - Photos
+// For each spot, get image from first spotPhoto
+-(void)fetchAndLoadPhotos {
+    for (Spot *spot in self.nearbySpots) {
+        // create a UICollectionViewCell
+        
+        // set the cells UIImageView to be first spot photo
     }
 }
 

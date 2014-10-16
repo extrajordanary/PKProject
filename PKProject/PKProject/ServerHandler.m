@@ -89,6 +89,7 @@ static NSString* const kPhotos = @"/collections/photos";
 // then it either creates a new entry in the server or updates the existing entry
 -(void)pushSpotToServer:(Spot*)spot {
     if (!spot || spot.latitude == nil || spot.longitude == nil || spot.spotPhotos == nil) {
+//        error message?
         return; //input safety check
     }
     NSString* spots = [kBaseURL stringByAppendingPathComponent:kSpots];
@@ -100,6 +101,7 @@ static NSString* const kPhotos = @"/collections/photos";
     NSMutableURLRequest* request = [NSMutableURLRequest requestWithURL:url];
     request.HTTPMethod = isExistingSpot ? @"PUT" : @"POST";
     
+    // get converted Spot for uploading to server
     NSData* data = [NSJSONSerialization dataWithJSONObject:[spot toDictionary] options:0 error:NULL];
     request.HTTPBody = data;
     

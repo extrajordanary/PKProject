@@ -14,7 +14,7 @@
 @implementation Photo
 
 @dynamic creationTimestamp;
-@dynamic image;
+@dynamic imageBinary;
 @dynamic latitude;
 @dynamic longitude;
 @dynamic photoByUser;

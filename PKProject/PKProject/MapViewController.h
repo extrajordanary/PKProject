@@ -10,6 +10,6 @@
 #import <MapKit/MapKit.h>
 #import <CoreLocation/CoreLocation.h>
 
-@interface MapViewController : UIViewController  <MKMapViewDelegate, CLLocationManagerDelegate>
+@interface MapViewController : UIViewController  <MKMapViewDelegate, CLLocationManagerDelegate, UITextFieldDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout>
 
 @end

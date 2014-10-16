@@ -50,7 +50,6 @@ static const CGFloat kDefaultZoomMiles = 0.2;
 
     self.spotImage.image = [UIImage imageNamed:@"defaultSpotPhoto.jpg"];
     [self.spotImage setClipsToBounds:YES];
-
 }
 
 -(void)viewWillAppear:(BOOL)animated {
@@ -148,7 +147,7 @@ static const CGFloat kDefaultZoomMiles = 0.2;
     
     // assign photo to Photo and add timestamp
     NSData *imageData = UIImagePNGRepresentation(image);
-    newPhoto.image = imageData;
+    newPhoto.imageBinary = imageData;
     
     NSManagedObjectContext *context = theContext;
     NSError *error = nil;
