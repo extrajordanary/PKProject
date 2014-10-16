@@ -12,6 +12,7 @@
 #import "ServerHandler.h"
 #import "User+Extended.h"
 #import "Spot+Extended.h"
+#import "PhotoCollectionViewCell.h"
 
 @interface MapViewController ()
 
@@ -32,6 +33,7 @@
     NSManagedObjectContext *theContext;
     ServerHandler *serverHandler;
     NSString *thisUserId;
+//    UICollectionViewFlowLayout *flowLayout;
 }
 
 static const CGFloat kMetersPerMile = 1609.344;
@@ -49,6 +51,10 @@ static const CGFloat kDefaultZoomMiles = 0.5;
     
     self.mapView.showsUserLocation = YES;
     self.mapView.showsPointsOfInterest = NO;
+    
+    // setup CollectionView
+    self.collectionView.delegate = self;
+    [self.collectionView registerClass:[PhotoCollectionViewCell class] forCellWithReuseIdentifier:@"Photo"];
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -139,6 +145,60 @@ static const CGFloat kDefaultZoomMiles = 0.5;
     [self.mapView setRegion:viewRegion animated:YES];
 }
 
+#pragma mark - UICollectionView
+// Will use this when user touches marker on map
+//- (void)scrollToItemAtIndexPath:(NSIndexPath *)indexPath atScrollPosition:(UICollectionViewScrollPosition)scrollPosition animated:(BOOL)animated;
+
+
+
+#pragma mark - UICollectionView Datasource
+
+- (NSInteger)collectionView:(UICollectionView *)view numberOfItemsInSection:(NSInteger)section {
+    return [self.nearbySpots count];
+}
+
+//- (NSInteger)numberOfSectionsInCollectionView: (UICollectionView *)collectionView {
+//    return 1;
+//}
+
+- (UICollectionViewCell *)collectionView:(UICollectionView *)cv cellForItemAtIndexPath:(NSIndexPath *)indexPath {
+    PhotoCollectionViewCell *cell = [cv dequeueReusableCellWithReuseIdentifier:@"Photo" forIndexPath:indexPath];
+    cell.backgroundColor = [UIColor whiteColor];
+    // other setup?
+    return cell;
+}
+// 4
+/*- (UICollectionReusableView *)collectionView:
+ (UICollectionView *)collectionView viewForSupplementaryElementOfKind:(NSString *)kind atIndexPath:(NSIndexPath *)indexPath
+ {
+ return [[UICollectionReusableView alloc] init];
+ }*/
+
+#pragma mark - UICollectionViewDelegate
+- (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
+{
+    // TODO: Select Item
+}
+- (void)collectionView:(UICollectionView *)collectionView didDeselectItemAtIndexPath:(NSIndexPath *)indexPath {
+    // TODO: Deselect item
+}
+
+#pragma mark – UICollectionViewDelegateFlowLayout
+- (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath {
+//    NSString *searchTerm = self.searches[indexPath.section]; FlickrPhoto *photo =
+//    self.searchResults[searchTerm][indexPath.row];
+//    
+//    CGSize retval = photo.thumbnail.size.width > 0 ? photo.thumbnail.size : CGSizeMake(100, 100);
+//    retval.height += 35; retval.width += 35;
+//    return retval;
+    return CGSizeMake(100, 100);
+}
+
+- (UIEdgeInsets)collectionView:
+(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout insetForSectionAtIndex:(NSInteger)section {
+    return UIEdgeInsetsMake(50, 20, 50, 20);
+}
+
 #pragma mark - Spots
 -(void)updateNearbySpots {
     // get nearby spots from database, create Spot objects, add to array
@@ -152,6 +212,7 @@ static const CGFloat kDefaultZoomMiles = 0.5;
         dispatch_async(dispatch_get_main_queue(), ^(void){
             [self placeSpotMarkers];
             [self fetchAndLoadPhotos];
+            [self.collectionView reloadData];
         });
     }];
 }
