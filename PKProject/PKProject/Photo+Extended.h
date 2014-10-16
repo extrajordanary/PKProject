@@ -15,5 +15,6 @@
 
 -(void)updateFromDictionary:(NSDictionary*)dictionary;
 -(NSDictionary*)toDictionary;
+-(UIImage*)getImage;
 
 @end

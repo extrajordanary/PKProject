@@ -162,10 +162,13 @@ static const CGFloat kDefaultZoomMiles = 0.5;
 //}
 
 - (UICollectionViewCell *)collectionView:(UICollectionView *)cv cellForItemAtIndexPath:(NSIndexPath *)indexPath {
-    PhotoCollectionViewCell *cell = [cv dequeueReusableCellWithReuseIdentifier:@"Photo" forIndexPath:indexPath];
-    cell.backgroundColor = [UIColor whiteColor];
+    PhotoCollectionViewCell *cell = (PhotoCollectionViewCell*)[cv dequeueReusableCellWithReuseIdentifier:@"Photo" forIndexPath:indexPath];
+    cell.backgroundColor = [UIColor colorWithRed:0.548 green:1.000 blue:0.764 alpha:1.000];
+    cell.spot = self.nearbySpots[indexPath.row];
+//    cell.imageView.image = [cell.spot getThumbnail];
+    UIImage *image =[UIImage imageNamed:@"noSpotPhoto.jpg"];
+    [cell.imageView setImage:image];
     // other setup?
-//    NSLog(@"Cell made");
     return cell;
 }
 // 4
@@ -188,12 +191,12 @@ static const CGFloat kDefaultZoomMiles = 0.5;
 - (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath {
     int height = collectionView.frame.size.height;
 
-    return CGSizeMake(height-10, height-10); // minus twice the size of insets
+    return CGSizeMake(height, height);
 }
 
 - (UIEdgeInsets)collectionView:
 (UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout insetForSectionAtIndex:(NSInteger)section {
-    return UIEdgeInsetsMake(5, 5, 5, 5);
+    return UIEdgeInsetsMake(0, 0, 0, 0);
 }
 
 #pragma mark - Spots

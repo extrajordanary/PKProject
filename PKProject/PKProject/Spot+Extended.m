@@ -8,6 +8,7 @@
 
 #import "Spot+Extended.h"
 #import "User+Extended.h"
+#import "Photo+Extended.h"
 #import "ServerObject+Extended.h"
 
 @implementation Spot (Extended)
@@ -38,6 +39,19 @@
     jsonable[@"spotPhotos"] = [self arrayOfObjectIds:self.spotPhotos.allObjects];
     
     return jsonable;
+}
+
+-(UIImage*)getThumbnail {
+    UIImage *image;
+    if (self.spotPhotos.allObjects.count > 0) {
+        Photo *firstPhoto = self.spotPhotos.allObjects[0];
+        image = [firstPhoto getImage];
+        NSLog(@"photo");
+    } else {
+        image = [UIImage imageNamed:@"noSpotPhoto.jpg"];
+        NSLog(@"no photo");
+    }
+    return image;
 }
 
 @end

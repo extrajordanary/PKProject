@@ -7,10 +7,12 @@
 //
 
 #import "Spot.h"
+#import <UIKit/UIKit.h>
 
 @interface Spot (Extended)
 
 -(void)updateFromDictionary:(NSDictionary*)dictionary;
 -(NSDictionary*)toDictionary;
+-(UIImage*)getThumbnail;
 
 @end

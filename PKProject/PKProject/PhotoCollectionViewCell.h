@@ -8,8 +8,11 @@
 
 #import <UIKit/UIKit.h>
 
+@class Spot;
+
 @interface PhotoCollectionViewCell : UICollectionViewCell
 
 @property (strong, nonatomic) IBOutlet UIImageView *imageView;
+@property (weak, nonatomic) Spot *spot;
 
 @end
