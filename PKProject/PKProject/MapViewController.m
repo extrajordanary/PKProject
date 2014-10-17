@@ -22,22 +22,16 @@
 @property (strong, nonatomic) User *thisUser;
 @property (strong, nonatomic) NSMutableArray *nearbySpots;
 
-
-
 @end
-
-//#define METERS_PER_MILE 1609.344
-//#define DEFAULT_ZOOM_MILES 2
 
 @implementation MapViewController {
     NSManagedObjectContext *theContext;
     ServerHandler *serverHandler;
     NSString *thisUserId;
-//    UICollectionViewFlowLayout *flowLayout;
 }
 
 static const CGFloat kMetersPerMile = 1609.344;
-static const CGFloat kDefaultZoomMiles = 0.5;
+static const CGFloat kDefaultZoomMiles = 0.5; // TODO : make dynamic/adjustable?
 
 #pragma mark - View
 - (void)viewDidLoad {
@@ -51,51 +45,13 @@ static const CGFloat kDefaultZoomMiles = 0.5;
     
     self.mapView.showsUserLocation = YES;
     self.mapView.showsPointsOfInterest = NO;
-
 }
 
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
 
-    // get list of Users in Core Data
-    NSArray *userList = [[NSArray alloc] init];
-    userList = [self getManagedObjects:@"User"];
-    
-    if ([userList count]<1) {
-        // create a sample user to test pulling info from the server
-        User *aUser = [NSEntityDescription insertNewObjectForEntityForName:@"User" inManagedObjectContext:theContext];
-        
-        NSString *userId = [[NSUserDefaults standardUserDefaults] valueForKey:@"thisUserId"];
-        [aUser setValue:userId forKey:@"databaseId"];
-        [serverHandler updateUserFromServer:aUser];
-        
-        // create error to pass to the save method
-        NSError *error = nil;
-        
-        // attempt to save the context to persist changes
-        [theContext save:&error];
-        
-        if (error) {
-            // TODO: error handling
-        }
-    }
-    
-    // get User object for this user
-    // should always be one since appDelegate deals with case when none exists
-    // TODO: user isn't updated from server by the time this is called
-    thisUserId = [[NSUserDefaults standardUserDefaults] valueForKey:@"thisUserId"];
-    NSPredicate *thisUser = [NSPredicate predicateWithFormat:@"databaseId = %@",thisUserId];
-    NSSortDescriptor *sortBy = [NSSortDescriptor sortDescriptorWithKey:@"databaseId" ascending:YES];
-    self.thisUser = [self getManagedObjects:@"User" withPredicate:thisUser sortedBy:sortBy][0];
-
-    // get spots from server
+    [self getThisUser];
     [self updateNearbySpots];
-
-}
-
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
 }
 
 #pragma mark - Location Manager
@@ -146,29 +102,21 @@ static const CGFloat kDefaultZoomMiles = 0.5;
 // Will use this when user touches marker on map
 //- (void)scrollToItemAtIndexPath:(NSIndexPath *)indexPath atScrollPosition:(UICollectionViewScrollPosition)scrollPosition animated:(BOOL)animated;
 
-
-
 #pragma mark - UICollectionView Datasource
 
 - (NSInteger)collectionView:(UICollectionView *)view numberOfItemsInSection:(NSInteger)section {
     return [self.nearbySpots count];
 }
 
-//- (NSInteger)numberOfSectionsInCollectionView: (UICollectionView *)collectionView {
-//    return 1;
-//}
-
 - (UICollectionViewCell *)collectionView:(UICollectionView *)cv cellForItemAtIndexPath:(NSIndexPath *)indexPath {
     PhotoCollectionViewCell *cell = (PhotoCollectionViewCell*)[cv dequeueReusableCellWithReuseIdentifier:@"Photo" forIndexPath:indexPath];
     if (!cell) {
         
     }
-//    cell.backgroundColor = [UIColor colorWithRed:1.000 green:0.563 blue:0.315 alpha:1.000];
     cell.spot = self.nearbySpots[indexPath.row];
-    UIImage *image = [cell.spot getThumbnail];
-//    UIImage *image =[UIImage imageNamed:@"noSpotPhoto.jpg"];
+    UIImage *image = [cell.spot getThumbnail]; // returns image for first Photo object
     [cell.imageView setImage:image];
-    // other setup?
+
     return cell;
 }
 // 4
@@ -191,7 +139,7 @@ static const CGFloat kDefaultZoomMiles = 0.5;
 - (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath {
     int height = collectionView.frame.size.height;
 
-    return CGSizeMake(height, height);
+    return CGSizeMake(height, height); // create square cells at maximum height of CollectionView
 }
 
 - (UIEdgeInsets)collectionView:
@@ -201,7 +149,9 @@ static const CGFloat kDefaultZoomMiles = 0.5;
 
 #pragma mark - Spots
 -(void)updateNearbySpots {
-    // get nearby spots from database, create Spot objects, add to array
+    // TODO: get only nearby spots based on coords, vs. all spots like now
+    
+    // get nearby spots from database, create Spot objects, populate map
     self.nearbySpots = [[NSMutableArray alloc] init];
     [serverHandler getSpotsFromServer:^void (NSDictionary *spots) {
         for (NSDictionary *item in spots) {
@@ -211,8 +161,7 @@ static const CGFloat kDefaultZoomMiles = 0.5;
         }
         dispatch_async(dispatch_get_main_queue(), ^(void){
             [self placeSpotMarkers];
-//            [self fetchAndLoadPhotos];
-            [self.collectionView reloadData];
+            [self.collectionView reloadData]; // populates scrollable photo previews
         });
     }];
 }
@@ -220,24 +169,54 @@ static const CGFloat kDefaultZoomMiles = 0.5;
 // populates the map with pins at each Spot location
 -(void)placeSpotMarkers {
     for (Spot *spot in self.nearbySpots) {
+        // TODO: create custom MKPointAnnotation class for custom marker visuals
         MKPointAnnotation *spotMarker = [[MKPointAnnotation alloc] init];
-        CLLocationCoordinate2D coord = CLLocationCoordinate2DMake([spot.latitude doubleValue], [spot.longitude doubleValue]);
-        spotMarker.coordinate = coord;
+        spotMarker.coordinate = [spot getCoordinate];
         [self.mapView addAnnotation:spotMarker];
     }
 }
 
 #pragma mark - Photos
-// For each spot, get image from first spotPhoto
--(void)fetchAndLoadPhotos {
-    for (Spot *spot in self.nearbySpots) {
-        // create a UICollectionViewCell
+
+#pragma mark - Users
+-(void)getThisUser {
+    thisUserId = [[NSUserDefaults standardUserDefaults] valueForKey:@"thisUserId"];
+
+// check if user has stored user _id, if not, create new user on server and save the _id
+    if (!thisUserId) {
+        // provide option to login with exisiting account
         
-        // set the cells UIImageView to be first spot photo
+        // else create new user and save to server
+        
+        // save the returned objectID for thisUserId
+        
+        // cheating and hardcoding for now
+        [[NSUserDefaults standardUserDefaults] setObject:@"542efcec4a1cef02006d1021" forKey:@"thisUserId"];
+        [[NSUserDefaults standardUserDefaults] synchronize];
+    }
+
+    // see if User object already exists in Core Data
+    NSPredicate *thisUser = [NSPredicate predicateWithFormat:@"databaseId = %@",thisUserId];
+    NSSortDescriptor *sortBy = [NSSortDescriptor sortDescriptorWithKey:@"databaseId" ascending:YES];
+    NSArray *searchResults = [self getManagedObjects:@"User" withPredicate:thisUser sortedBy:sortBy];
+    if (searchResults.count > 0) {
+        self.thisUser = [self getManagedObjects:@"User" withPredicate:thisUser sortedBy:sortBy][0];
+    }
+    
+    if (!self.thisUser) {
+        // if User object doesn't already exist in Core Data, create it and update from server
+        User *newUser = [NSEntityDescription insertNewObjectForEntityForName:@"User" inManagedObjectContext:theContext];
+        
+        NSString *userId = [[NSUserDefaults standardUserDefaults] valueForKey:@"thisUserId"];
+        [newUser setValue:userId forKey:@"databaseId"];
+        [serverHandler updateUserFromServer:newUser];
+
+        self.thisUser = newUser;
     }
 }
 
 #pragma mark - Core Data
+// TODO: may need to upgrade to a Core Data handling singleton
 -(NSArray*)getManagedObjects:(NSString*)entityForName {
     // get entity description for entity we are selecting
     NSEntityDescription *entityDescription = [NSEntityDescription
@@ -290,6 +269,5 @@ static const CGFloat kDefaultZoomMiles = 0.5;
         createSpotViewController.locationManager = self.locationManager;
     }
 }
-
 
 @end

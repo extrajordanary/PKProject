@@ -7,6 +7,7 @@
 //
 
 #import "ServerObject+Extended.h"
+#import "AppDelegate.h"
 
 @implementation ServerObject (Extended)
 
@@ -22,6 +23,18 @@
         }
     }
     return array;
+}
+
+-(void)updateCoreData {
+    // create error to pass to the save method
+    NSError *error = nil;
+    
+    // save the context to persist changes
+    [((AppDelegate *)[UIApplication sharedApplication].delegate).managedObjectContext save:&error];
+    
+    if (error) {
+        // TODO: error handling
+    }
 }
 
 @end

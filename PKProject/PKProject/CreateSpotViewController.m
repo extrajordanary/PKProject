@@ -18,7 +18,6 @@
 
 @property (strong, nonatomic) IBOutlet MKMapView *mapView;
 @property (strong, nonatomic) IBOutlet UIImageView *spotImage;
-//@property (strong, nonatomic) CLLocationManager *locationManager;
 
 @end
 
@@ -39,7 +38,6 @@ static const CGFloat kDefaultZoomMiles = 0.2;
     theContext = ((AppDelegate *)[UIApplication sharedApplication].delegate).managedObjectContext;
     serverHandler = [ServerHandler sharedServerHandler];
     spotMarker = [[MKPointAnnotation alloc] init];
-//    [self startStandardMapUpdates];
     
     self.locationManager.delegate = self;
     [self zoomToCurrentLocation];
@@ -59,19 +57,8 @@ static const CGFloat kDefaultZoomMiles = 0.2;
     [self.mapView addAnnotation:spotMarker];
 }
 
-/*
--(void)viewWillDisappear:(BOOL)animated {
-    [super viewWillDisappear:animated];
-    
-}
-
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
-}
-*/
-
 #pragma mark - Location Manager
+// ??? - is this even being used?
 - (BOOL)startStandardMapUpdates
 {
     // Create the location manager if this object does not already have one.
@@ -93,6 +80,7 @@ static const CGFloat kDefaultZoomMiles = 0.2;
     return YES;
 }
 
+// ??? - is this even being used?
 // delegate method called when user changes authorization to allow location tracking
 - (void)locationManager:(CLLocationManager *)manager didChangeAuthorizationStatus:(CLAuthorizationStatus)status {
     if (status) {
@@ -105,6 +93,7 @@ static const CGFloat kDefaultZoomMiles = 0.2;
     [self.mapView setRegion:viewRegion animated:YES];
 }
 
+// ??? - is this even being used?
 // Delegate method from the CLLocationManagerDelegate protocol.
 - (void)locationManager:(CLLocationManager *)manager didUpdateLocations:(NSArray *)locations {
     CLLocation* location = [locations lastObject];
@@ -145,9 +134,8 @@ static const CGFloat kDefaultZoomMiles = 0.2;
     // set current view controller image
     self.spotImage.image = image;
     
-    // assign photo to Photo and add timestamp
-    NSData *imageData = UIImagePNGRepresentation(image);
-    newPhoto.imageBinary = imageData;
+    // assign photo to Photo
+    // TODO: save the image locally and online and update properties
     
     NSManagedObjectContext *context = theContext;
     NSError *error = nil;
@@ -160,6 +148,7 @@ static const CGFloat kDefaultZoomMiles = 0.2;
 #pragma mark - Data
 -(void)saveNewSpot {
     // assign final values to both spot and photo
+    // TODO: move dateFormatter into a getTimestamp method in ServerObject class
     NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
     [dateFormatter setTimeZone:[NSTimeZone timeZoneWithAbbreviation:@"GMT"]];
     [dateFormatter setDateStyle:NSDateFormatterLongStyle];
@@ -176,23 +165,10 @@ static const CGFloat kDefaultZoomMiles = 0.2;
     [newSpot setSpotByUser:self.thisUser];
     [newPhoto setPhotoByUser:self.thisUser];
     [newSpot addSpotPhotosObject:newPhoto];
-    
-    // save Spot to server
-    // get Spot's new ObjectId
-    // add Spot OID to Photo
-    // save photo
-    // get photo OID
-    // update Spot with Photo OID
-    
-    // TODO: hotfix to test photo OID
-//    newPhoto.databaseId = @"54384a22d973a634c2001cce";
-    
+
+    // completion block then saves the photo to the server, then updates spot and user again
+    // TODO: should serverHandler have a special createNewSpot:(Spot*)spot withPhoto:(Photo*)photo method?
     [serverHandler pushSpotToServer:newSpot];
-//    [serverHandler pushPhotoToServer:newPhoto];
-    
-    // save Photo to server - should be done
-    
-    // update User info on server
 }
 
 #pragma mark - Navigation

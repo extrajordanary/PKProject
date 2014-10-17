@@ -8,11 +8,13 @@
 
 #import "Spot.h"
 #import <UIKit/UIKit.h>
+#import <CoreLocation/CoreLocation.h>
 
 @interface Spot (Extended)
 
 -(void)updateFromDictionary:(NSDictionary*)dictionary;
 -(NSDictionary*)toDictionary;
 -(UIImage*)getThumbnail;
+-(CLLocationCoordinate2D)getCoordinate;
 
 @end

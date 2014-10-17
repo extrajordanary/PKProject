@@ -2,7 +2,7 @@
 //  Photo.h
 //  PKProject
 //
-//  Created by Jordan on 10/15/14.
+//  Created by Jordan on 10/17/14.
 //  Copyright (c) 2014 Byjor. All rights reserved.
 //
 
@@ -15,9 +15,10 @@
 @interface Photo : ServerObject
 
 @property (nonatomic, retain) NSString * creationTimestamp;
-@property (nonatomic, retain) NSData * imageBinary;
 @property (nonatomic, retain) NSNumber * latitude;
 @property (nonatomic, retain) NSNumber * longitude;
+@property (nonatomic, retain) NSString * localPath;
+@property (nonatomic, retain) NSString * onlinePath;
 @property (nonatomic, retain) User *photoByUser;
 @property (nonatomic, retain) Spot *photoSpot;
 

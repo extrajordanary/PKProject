@@ -11,5 +11,6 @@
 @interface ServerObject (Extended)
 
 -(NSMutableArray*)arrayOfObjectIds:(NSArray*)objects;
+-(void)updateCoreData;
 
 @end

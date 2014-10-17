@@ -22,8 +22,8 @@
         self.numberOfFavorites = dictionary[@"numberOfFavorites"];
         // photos and users need to be connected by seeing if core data object with that id already exists
         // if not pull and create it before setting up the connection
-        // spot photos
-//        self.spotByUser = dictionary[@"spotByUser"];
+        // TODO: create User object
+        // TODO: create Photo objects
     }
 }
 
@@ -35,10 +35,9 @@
     jsonable[@"numberOfFavorites"] = self.numberOfFavorites;
     jsonable[@"spotByUser"] = self.spotByUser.databaseId;
     
-    // photo ids
+    // create and save array of photo databaseIds
     if (self.spotPhotos) {
         jsonable[@"spotPhotos"] = [self arrayOfObjectIds:self.spotPhotos.allObjects];
-
     }
     
     return jsonable;
@@ -47,14 +46,20 @@
 -(UIImage*)getThumbnail {
     UIImage *image;
     if (self.spotPhotos.allObjects.count > 0) {
-        Photo *firstPhoto = self.spotPhotos.allObjects[0];
-        image = [firstPhoto getImage];
+//        Photo *firstPhoto = self.spotPhotos.allObjects[0];
+//        image = [firstPhoto getImage];
+        image = [UIImage imageNamed:@"defaultSpotPhoto.jpg"]; // !!! - hotfix
         NSLog(@"photo");
     } else {
         image = [UIImage imageNamed:@"noSpotPhoto.jpg"];
         NSLog(@"no photo");
     }
     return image;
+}
+
+-(CLLocationCoordinate2D)getCoordinate {
+    CLLocationCoordinate2D coord = CLLocationCoordinate2DMake([self.latitude doubleValue], [self.longitude doubleValue]);
+    return coord;
 }
 
 @end

@@ -2,7 +2,7 @@
 //  User.h
 //  PKProject
 //
-//  Created by Jordan on 10/15/14.
+//  Created by Jordan on 10/17/14.
 //  Copyright (c) 2014 Byjor. All rights reserved.
 //
 
@@ -21,7 +21,8 @@
 @property (nonatomic, retain) NSString * nameFirst;
 @property (nonatomic, retain) NSString * nameLast;
 @property (nonatomic, retain) NSString * nameUser;
-@property (nonatomic, retain) NSData * photo;
+@property (nonatomic, retain) NSString * photoLocalPath;
+@property (nonatomic, retain) NSString * photoOnlinePath;
 @property (nonatomic, retain) NSSet *userCreatedPhoto;
 @property (nonatomic, retain) NSSet *userCreatedSpot;
 @property (nonatomic, retain) NSSet *userSpots;

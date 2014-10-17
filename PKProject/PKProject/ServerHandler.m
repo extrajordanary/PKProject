@@ -32,7 +32,7 @@ static NSString* const kPhotos = @"/collections/photos";
 
 - (id)init {
     if (self = [super init]) {
-        // some set up
+        // ??? - Anything to include here?
     }
     return self;
 }
@@ -64,6 +64,7 @@ static NSString* const kPhotos = @"/collections/photos";
 
 #pragma mark - Spots
 // returns all Spots from server and passes them to a block which will parse the info in the desired fashion
+// TODO: update method to take query parameters
 -(void)getSpotsFromServer:(void (^)(NSDictionary*))spotHandlingBlock {
     NSString* requestURL = [NSString stringWithFormat:@"%@%@",kBaseURL,kSpots];
     NSURL* url = [NSURL URLWithString:requestURL];
@@ -90,7 +91,7 @@ static NSString* const kPhotos = @"/collections/photos";
 // then it either creates a new entry in the server or updates the existing entry
 -(void)pushSpotToServer:(Spot*)spot {
     if (!spot || spot.latitude == nil || spot.longitude == nil || spot.spotPhotos == nil) {
-//        error message?
+        // TODO: error?
         return; //input safety check
     }
     NSString* spots = [kBaseURL stringByAppendingPathComponent:kSpots];
@@ -102,7 +103,7 @@ static NSString* const kPhotos = @"/collections/photos";
     NSMutableURLRequest* request = [NSMutableURLRequest requestWithURL:url];
     request.HTTPMethod = isExistingSpot ? @"PUT" : @"POST";
     
-    // get converted Spot for uploading to server
+    // get JSON converted Spot for uploading to server
     NSData* data = [NSJSONSerialization dataWithJSONObject:[spot toDictionary] options:0 error:NULL];
     request.HTTPBody = data;
     
@@ -119,7 +120,7 @@ static NSString* const kPhotos = @"/collections/photos";
             } else {
                 // get _id from returned data and save it to the Spot databaseId property
                 spot.databaseId = responseArray[0][0][@"_id"];
-                [self pushPhotoToServer:spot.spotPhotos.allObjects[0]];
+                [self pushPhotoToServer:spot.spotPhotos.allObjects[0]]; // !!! - only safe for NEW spots with no other photos
             }
         }
     }];
@@ -130,8 +131,8 @@ static NSString* const kPhotos = @"/collections/photos";
 // given a Photo object, method checks if the Photo already exists on the server
 // then it either creates a new entry in the server or updates the existing entry
 -(void)pushPhotoToServer:(Photo*)photo {
-    if (!photo || photo.latitude == nil || photo.longitude == nil || photo.imageBinary == nil) {
-        //        error message?
+    if (!photo || photo.latitude == nil || photo.longitude == nil) { // || photo.imageBinary == nil) {
+        // TODO: error?
         return; //input safety check
     }
     NSString* photos = [kBaseURL stringByAppendingPathComponent:kPhotos];
@@ -160,8 +161,9 @@ static NSString* const kPhotos = @"/collections/photos";
             } else {
                 // get _id from returned data and save it to the Photo databaseId property
                 photo.databaseId = responseArray[0][0][@"_id"];
-                // TODO - take new ID and update connected Spot and User entries
+                // update Spot on server now that it can add the photo databaseId
                 [self pushSpotToServer:photo.photoSpot];
+                // TODO: update User to include new photo databaseId
             }
         }
     }];

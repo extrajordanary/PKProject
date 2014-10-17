@@ -11,10 +11,8 @@
 
 @interface Photo (Extended)
 
-//@property (nonatomic, retain) UIImage *image;
-
 -(void)updateFromDictionary:(NSDictionary*)dictionary;
 -(NSDictionary*)toDictionary;
--(UIImage*)getImage;
+//-(UIImage*)getImage;
 
 @end

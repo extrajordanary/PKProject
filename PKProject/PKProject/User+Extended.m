@@ -8,7 +8,7 @@
 
 #import "User+Extended.h"
 #import "ServerObject+Extended.h"
-#import "Photo.h"
+#import "Photo+Extended.h"
 
 @implementation User (Extended)
 
@@ -23,13 +23,11 @@
         self.nameLast = dictionary[@"nameLast"];
         self.nameUser = dictionary[@"nameUser"];
         self.databaseId = dictionary[@"_id"];
-//        self.photo = dictionary[@"photo"];
-//        self.createdOnDate = dictionary[@"createdOnDate"];
         
-        // arrays of objects
-//        self.userCreatedPhoto = dictionary[@"userCreatedPhoto"];
-//        self.userSpot = dictionary[@"userSpot"];
-//        self.userCreatedSpot = dictionary[@"userCreatedSpot"];
+        // TODO: create Photo objects
+        // TODO: create Spot objects
+
+        [self updateCoreData];
     }
 }
 
@@ -42,7 +40,6 @@
     jsonable[@"nameFirst"] = self.nameFirst;
     jsonable[@"nameLast"] = self.nameLast;
     jsonable[@"nameUser"] = self.nameUser;
-    jsonable[@"_id"] = self.databaseId;
     
     // photo ids
     jsonable[@"userCreatedPhoto"] = [self arrayOfObjectIds:[self.userCreatedPhoto allObjects]];
@@ -52,13 +49,5 @@
 
     return jsonable;
 }
-
-//-(NSMutableArray*)arrayOfObjectIds:(NSSet*)objects {
-//    NSMutableArray *array = [[NSMutableArray alloc] init];
-//    for (ServerObjects *item in objects) {
-//        [array addObject:item.databaseId];
-//    }
-//    return array;
-//}
 
 @end
