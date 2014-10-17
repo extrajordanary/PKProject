@@ -51,11 +51,7 @@ static const CGFloat kDefaultZoomMiles = 0.5;
     
     self.mapView.showsUserLocation = YES;
     self.mapView.showsPointsOfInterest = NO;
-    
-    // setup CollectionView
-    self.collectionView.delegate = self;
-//    [self.collectionView registerNib:<#(UINib *)#> forCellWithReuseIdentifier:@"Photo"];
-//    [self.collectionView registerClass:[PhotoCollectionViewCell class] forCellWithReuseIdentifier:@"Photo"];
+
 }
 
 - (void)viewWillAppear:(BOOL)animated {

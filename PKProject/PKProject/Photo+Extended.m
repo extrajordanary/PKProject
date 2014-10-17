@@ -20,7 +20,7 @@
         self.creationTimestamp = dictionary[@"creationTimestamp"];
         self.latitude = dictionary[@"latitude"];
         self.longitude = dictionary[@"longitude"];
-        self.imageBinary = dictionary[@"imageBinary"];
+//        self.imageBinary = dictionary[@"imageBinary"];
         
         // photoByUser - but I don't need to create these objects every time...
         // photoSpot
@@ -29,14 +29,21 @@
 
 -(NSDictionary*)toDictionary {
     NSMutableDictionary* jsonable = [NSMutableDictionary dictionary];
-    jsonable[@"_id"] = self.databaseId;
+    // do I ever need to include _id in this?
+//    if (self.databaseId) {
+//        jsonable[@"_id"] = self.databaseId;
+//    }
     jsonable[@"creationTimestamp"] = self.creationTimestamp;
     jsonable[@"latitude"] = self.latitude;
     jsonable[@"longitude"] = self.longitude;
-    jsonable[@"imageBinary"] = self.imageBinary;
+//    jsonable[@"imageBinary"] = self.imageBinary;
 
     jsonable[@"photoByUser"] = self.photoByUser.databaseId; // only one
-    jsonable[@"photoSpot"] = self.photoSpot.databaseId; // only one
+    
+    if (self.photoSpot.databaseId) {
+        // in case the photo gets saved to the server before the spot does
+        jsonable[@"photoSpot"] = self.photoSpot.databaseId; // only one
+    }
     
     return jsonable;
 }

@@ -185,10 +185,10 @@ static const CGFloat kDefaultZoomMiles = 0.2;
     // update Spot with Photo OID
     
     // TODO: hotfix to test photo OID
-    newPhoto.databaseId = @"54384a22d973a634c2001cce";
+//    newPhoto.databaseId = @"54384a22d973a634c2001cce";
     
     [serverHandler pushSpotToServer:newSpot];
-    
+//    [serverHandler pushPhotoToServer:newPhoto];
     
     // save Photo to server - should be done
     

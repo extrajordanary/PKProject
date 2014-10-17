@@ -36,7 +36,10 @@
     jsonable[@"spotByUser"] = self.spotByUser.databaseId;
     
     // photo ids
-    jsonable[@"spotPhotos"] = [self arrayOfObjectIds:self.spotPhotos.allObjects];
+    if (self.spotPhotos) {
+        jsonable[@"spotPhotos"] = [self arrayOfObjectIds:self.spotPhotos.allObjects];
+
+    }
     
     return jsonable;
 }

@@ -14,7 +14,11 @@
     NSMutableArray *array = [[NSMutableArray alloc] init];
     if (objects.count > 0) {
         for (ServerObject *item in objects) {
-            [array addObject:item.databaseId];
+            if (item.databaseId) {
+                [array addObject:item.databaseId];
+            } else {
+                [array addObject:@"0"];
+            }
         }
     }
     return array;

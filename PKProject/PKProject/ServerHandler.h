@@ -10,6 +10,7 @@
 
 @class User;
 @class Spot;
+@class Photo;
 
 @interface ServerHandler : NSObject
 
@@ -19,5 +20,6 @@
 - (void)updateUserFromServer:(User*)user;
 -(void)getSpotsFromServer:(void (^)(NSDictionary*))spotHandlingBlock;
 -(void)pushSpotToServer:(Spot*)spot;
+-(void)pushPhotoToServer:(Photo*)photo;
 
 @end

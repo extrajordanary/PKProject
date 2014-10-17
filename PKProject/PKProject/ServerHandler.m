@@ -9,6 +9,7 @@
 #import "ServerHandler.h"
 #import "User+Extended.h"
 #import "Spot+Extended.h"
+#import "Photo+Extended.h"
 
 // This class is responsible for handling all calls to the server
 
@@ -113,13 +114,58 @@ static NSString* const kPhotos = @"/collections/photos";
     NSURLSessionDataTask* dataTask = [session dataTaskWithRequest:request completionHandler:^(NSData *data, NSURLResponse *response, NSError *error) {
         if (!error) {
             NSArray* responseArray = @[[NSJSONSerialization JSONObjectWithData:data options:0 error:NULL]];
-            // get _id from returned data and save it to the Spot databaseId property
-            spot.databaseId = responseArray[0][0][@"_id"];
+            if (isExistingSpot) {
+                // do nothing bc response array just has success msg
+            } else {
+                // get _id from returned data and save it to the Spot databaseId property
+                spot.databaseId = responseArray[0][0][@"_id"];
+                [self pushPhotoToServer:spot.spotPhotos.allObjects[0]];
+            }
         }
     }];
     [dataTask resume];
 }
 
 #pragma mark - Photos
+// given a Photo object, method checks if the Photo already exists on the server
+// then it either creates a new entry in the server or updates the existing entry
+-(void)pushPhotoToServer:(Photo*)photo {
+    if (!photo || photo.latitude == nil || photo.longitude == nil || photo.imageBinary == nil) {
+        //        error message?
+        return; //input safety check
+    }
+    NSString* photos = [kBaseURL stringByAppendingPathComponent:kPhotos];
+    
+    BOOL isExistingPhoto = photo.databaseId != nil;
+    NSURL* url = isExistingPhoto ? [NSURL URLWithString:[photos stringByAppendingPathComponent:photo.databaseId]] :
+    [NSURL URLWithString:photos];
+    
+    NSMutableURLRequest* request = [NSMutableURLRequest requestWithURL:url];
+    request.HTTPMethod = isExistingPhoto ? @"PUT" : @"POST";
+    
+    // get converted Spot for uploading to server
+    NSData* data = [NSJSONSerialization dataWithJSONObject:[photo toDictionary] options:0 error:NULL];
+    request.HTTPBody = data;
+    
+    [request addValue:@"application/json" forHTTPHeaderField:@"Content-Type"];
+    
+    NSURLSessionConfiguration* config = [NSURLSessionConfiguration defaultSessionConfiguration];
+    NSURLSession* session = [NSURLSession sessionWithConfiguration:config];
+    
+    NSURLSessionDataTask* dataTask = [session dataTaskWithRequest:request completionHandler:^(NSData *data, NSURLResponse *response, NSError *error) {
+        if (!error) {
+            NSArray* responseArray = @[[NSJSONSerialization JSONObjectWithData:data options:0 error:NULL]];
+            if (isExistingPhoto) {
+                // do nothing bc response array just has success msg
+            } else {
+                // get _id from returned data and save it to the Photo databaseId property
+                photo.databaseId = responseArray[0][0][@"_id"];
+                // TODO - take new ID and update connected Spot and User entries
+                [self pushSpotToServer:photo.photoSpot];
+            }
+        }
+    }];
+    [dataTask resume];
+}
 
 @end
