@@ -56,6 +56,8 @@ static const CGFloat kDefaultZoomMiles = 0.5; // TODO : make dynamic/adjustable?
 
 #pragma mark - Location Manager
 // TODO: create location manager singleton
+// TODO: only zoom to location the first time
+// TODO: search bar
 - (BOOL)startStandardMapUpdates
 {
     // Create the location manager if this object does not already have one.
