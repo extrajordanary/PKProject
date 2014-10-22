@@ -47,6 +47,31 @@
 		1762F70119F1BC4400EE71C2 /* Spot.m in Sources */ = {isa = PBXBuildFile; fileRef = 1762F70019F1BC4400EE71C2 /* Spot.m */; };
 		1762F70419F1BC4400EE71C2 /* User.m in Sources */ = {isa = PBXBuildFile; fileRef = 1762F70319F1BC4400EE71C2 /* User.m */; };
 		17C7BF9F19E85A3900BD019A /* ServerObjects+Extended.m in Sources */ = {isa = PBXBuildFile; fileRef = 17C7BF9E19E85A3900BD019A /* ServerObjects+Extended.m */; };
+		17F2C5E119F83C21008C86AE /* AWSiOSSDKv2.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 17F2C5E019F83C21008C86AE /* AWSiOSSDKv2.framework */; };
+		17F2C5E319F83C4B008C86AE /* libsqlite3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 17F2C5E219F83C4B008C86AE /* libsqlite3.dylib */; };
+		17F2C5E519F83C56008C86AE /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 17F2C5E419F83C56008C86AE /* libz.dylib */; };
+		17F2C5ED19F83CD4008C86AE /* Bolts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 17F2C5E619F83CD4008C86AE /* Bolts.framework */; };
+		17F2C5EE19F83CD4008C86AE /* GZIP.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 17F2C5E719F83CD4008C86AE /* GZIP.framework */; };
+		17F2C5EF19F83CD4008C86AE /* Mantle.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 17F2C5E819F83CD4008C86AE /* Mantle.framework */; };
+		17F2C5F019F83CD4008C86AE /* Reachability.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 17F2C5E919F83CD4008C86AE /* Reachability.framework */; };
+		17F2C5F119F83CD4008C86AE /* TMCache.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 17F2C5EA19F83CD4008C86AE /* TMCache.framework */; };
+		17F2C5F219F83CD4008C86AE /* UICKeyChainStore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 17F2C5EB19F83CD4008C86AE /* UICKeyChainStore.framework */; };
+		17F2C5F319F83CD4008C86AE /* XMLDictionary.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 17F2C5EC19F83CD4008C86AE /* XMLDictionary.framework */; };
+		17F2C60519F83D6E008C86AE /* autoscaling-2011-01-01.json in Resources */ = {isa = PBXBuildFile; fileRef = 17F2C5F619F83D6E008C86AE /* autoscaling-2011-01-01.json */; };
+		17F2C60619F83D6E008C86AE /* cib-2014-06-30.json in Resources */ = {isa = PBXBuildFile; fileRef = 17F2C5F719F83D6E008C86AE /* cib-2014-06-30.json */; };
+		17F2C60719F83D6E008C86AE /* css-2014-06-30.json in Resources */ = {isa = PBXBuildFile; fileRef = 17F2C5F819F83D6E008C86AE /* css-2014-06-30.json */; };
+		17F2C60819F83D6E008C86AE /* dynamodb-2012-08-10.json in Resources */ = {isa = PBXBuildFile; fileRef = 17F2C5F919F83D6E008C86AE /* dynamodb-2012-08-10.json */; };
+		17F2C60919F83D6E008C86AE /* ec2-2014-06-15.json in Resources */ = {isa = PBXBuildFile; fileRef = 17F2C5FA19F83D6E008C86AE /* ec2-2014-06-15.json */; };
+		17F2C60A19F83D6E008C86AE /* elasticloadbalancing-2012-06-01.json in Resources */ = {isa = PBXBuildFile; fileRef = 17F2C5FB19F83D6E008C86AE /* elasticloadbalancing-2012-06-01.json */; };
+		17F2C60B19F83D6E008C86AE /* email-2010-12-01.json in Resources */ = {isa = PBXBuildFile; fileRef = 17F2C5FC19F83D6E008C86AE /* email-2010-12-01.json */; };
+		17F2C60C19F83D6E008C86AE /* kinesis-2013-12-02.json in Resources */ = {isa = PBXBuildFile; fileRef = 17F2C5FD19F83D6E008C86AE /* kinesis-2013-12-02.json */; };
+		17F2C60D19F83D6E008C86AE /* mobileanalytics-2014-06-30.json in Resources */ = {isa = PBXBuildFile; fileRef = 17F2C5FE19F83D6E008C86AE /* mobileanalytics-2014-06-30.json */; };
+		17F2C60E19F83D6E008C86AE /* monitoring-2010-08-01.json in Resources */ = {isa = PBXBuildFile; fileRef = 17F2C5FF19F83D6E008C86AE /* monitoring-2010-08-01.json */; };
+		17F2C60F19F83D6E008C86AE /* s3-2006-03-01.json in Resources */ = {isa = PBXBuildFile; fileRef = 17F2C60019F83D6E008C86AE /* s3-2006-03-01.json */; };
+		17F2C61019F83D6E008C86AE /* sdb-2009-04-15.json in Resources */ = {isa = PBXBuildFile; fileRef = 17F2C60119F83D6E008C86AE /* sdb-2009-04-15.json */; };
+		17F2C61119F83D6E008C86AE /* sns-2010-03-31.json in Resources */ = {isa = PBXBuildFile; fileRef = 17F2C60219F83D6E008C86AE /* sns-2010-03-31.json */; };
+		17F2C61219F83D6E008C86AE /* sqs-2012-11-05.json in Resources */ = {isa = PBXBuildFile; fileRef = 17F2C60319F83D6E008C86AE /* sqs-2012-11-05.json */; };
+		17F2C61319F83D6E008C86AE /* sts-2011-06-15.json in Resources */ = {isa = PBXBuildFile; fileRef = 17F2C60419F83D6E008C86AE /* sts-2011-06-15.json */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -117,6 +142,31 @@
 		1762F70319F1BC4400EE71C2 /* User.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = User.m; sourceTree = "<group>"; };
 		17C7BF9D19E85A3900BD019A /* ServerObject+Extended.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "ServerObject+Extended.h"; sourceTree = "<group>"; };
 		17C7BF9E19E85A3900BD019A /* ServerObjects+Extended.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "ServerObjects+Extended.m"; sourceTree = "<group>"; };
+		17F2C5E019F83C21008C86AE /* AWSiOSSDKv2.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AWSiOSSDKv2.framework; path = "../../../../../Desktop/aws-ios-sdk-2.0.8/frameworks/AWSiOSSDKv2.framework"; sourceTree = "<group>"; };
+		17F2C5E219F83C4B008C86AE /* libsqlite3.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libsqlite3.dylib; path = usr/lib/libsqlite3.dylib; sourceTree = SDKROOT; };
+		17F2C5E419F83C56008C86AE /* libz.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.dylib; path = usr/lib/libz.dylib; sourceTree = SDKROOT; };
+		17F2C5E619F83CD4008C86AE /* Bolts.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Bolts.framework; path = "../../../../../Desktop/aws-ios-sdk-2.0.8/third-party/Bolts.framework"; sourceTree = "<group>"; };
+		17F2C5E719F83CD4008C86AE /* GZIP.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GZIP.framework; path = "../../../../../Desktop/aws-ios-sdk-2.0.8/third-party/GZIP.framework"; sourceTree = "<group>"; };
+		17F2C5E819F83CD4008C86AE /* Mantle.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Mantle.framework; path = "../../../../../Desktop/aws-ios-sdk-2.0.8/third-party/Mantle.framework"; sourceTree = "<group>"; };
+		17F2C5E919F83CD4008C86AE /* Reachability.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Reachability.framework; path = "../../../../../Desktop/aws-ios-sdk-2.0.8/third-party/Reachability.framework"; sourceTree = "<group>"; };
+		17F2C5EA19F83CD4008C86AE /* TMCache.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = TMCache.framework; path = "../../../../../Desktop/aws-ios-sdk-2.0.8/third-party/TMCache.framework"; sourceTree = "<group>"; };
+		17F2C5EB19F83CD4008C86AE /* UICKeyChainStore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UICKeyChainStore.framework; path = "../../../../../Desktop/aws-ios-sdk-2.0.8/third-party/UICKeyChainStore.framework"; sourceTree = "<group>"; };
+		17F2C5EC19F83CD4008C86AE /* XMLDictionary.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XMLDictionary.framework; path = "../../../../../Desktop/aws-ios-sdk-2.0.8/third-party/XMLDictionary.framework"; sourceTree = "<group>"; };
+		17F2C5F619F83D6E008C86AE /* autoscaling-2011-01-01.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "autoscaling-2011-01-01.json"; sourceTree = "<group>"; };
+		17F2C5F719F83D6E008C86AE /* cib-2014-06-30.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "cib-2014-06-30.json"; sourceTree = "<group>"; };
+		17F2C5F819F83D6E008C86AE /* css-2014-06-30.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "css-2014-06-30.json"; sourceTree = "<group>"; };
+		17F2C5F919F83D6E008C86AE /* dynamodb-2012-08-10.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "dynamodb-2012-08-10.json"; sourceTree = "<group>"; };
+		17F2C5FA19F83D6E008C86AE /* ec2-2014-06-15.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "ec2-2014-06-15.json"; sourceTree = "<group>"; };
+		17F2C5FB19F83D6E008C86AE /* elasticloadbalancing-2012-06-01.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "elasticloadbalancing-2012-06-01.json"; sourceTree = "<group>"; };
+		17F2C5FC19F83D6E008C86AE /* email-2010-12-01.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "email-2010-12-01.json"; sourceTree = "<group>"; };
+		17F2C5FD19F83D6E008C86AE /* kinesis-2013-12-02.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "kinesis-2013-12-02.json"; sourceTree = "<group>"; };
+		17F2C5FE19F83D6E008C86AE /* mobileanalytics-2014-06-30.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "mobileanalytics-2014-06-30.json"; sourceTree = "<group>"; };
+		17F2C5FF19F83D6E008C86AE /* monitoring-2010-08-01.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "monitoring-2010-08-01.json"; sourceTree = "<group>"; };
+		17F2C60019F83D6E008C86AE /* s3-2006-03-01.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "s3-2006-03-01.json"; sourceTree = "<group>"; };
+		17F2C60119F83D6E008C86AE /* sdb-2009-04-15.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "sdb-2009-04-15.json"; sourceTree = "<group>"; };
+		17F2C60219F83D6E008C86AE /* sns-2010-03-31.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "sns-2010-03-31.json"; sourceTree = "<group>"; };
+		17F2C60319F83D6E008C86AE /* sqs-2012-11-05.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "sqs-2012-11-05.json"; sourceTree = "<group>"; };
+		17F2C60419F83D6E008C86AE /* sts-2011-06-15.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "sts-2011-06-15.json"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -124,6 +174,16 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				17F2C5ED19F83CD4008C86AE /* Bolts.framework in Frameworks */,
+				17F2C5EE19F83CD4008C86AE /* GZIP.framework in Frameworks */,
+				17F2C5EF19F83CD4008C86AE /* Mantle.framework in Frameworks */,
+				17F2C5F019F83CD4008C86AE /* Reachability.framework in Frameworks */,
+				17F2C5F119F83CD4008C86AE /* TMCache.framework in Frameworks */,
+				17F2C5F219F83CD4008C86AE /* UICKeyChainStore.framework in Frameworks */,
+				17F2C5F319F83CD4008C86AE /* XMLDictionary.framework in Frameworks */,
+				17F2C5E519F83C56008C86AE /* libz.dylib in Frameworks */,
+				17F2C5E319F83C4B008C86AE /* libsqlite3.dylib in Frameworks */,
+				17F2C5E119F83C21008C86AE /* AWSiOSSDKv2.framework in Frameworks */,
 				175DA63119DB499A00897710 /* CoreLocation.framework in Frameworks */,
 				175DA62F19DB499300897710 /* MapKit.framework in Frameworks */,
 			);
@@ -183,8 +243,8 @@
 		175DA5F519DA1D2800897710 = {
 			isa = PBXGroup;
 			children = (
-				175DA63019DB499A00897710 /* CoreLocation.framework */,
-				175DA62E19DB499300897710 /* MapKit.framework */,
+				17F2C5F519F83D6E008C86AE /* service-definitions */,
+				17F2C5F419F83CE0008C86AE /* Frameworks */,
 				175DA60019DA1D2800897710 /* PKProject */,
 				175DA61D19DA1D2800897710 /* PKProjectTests */,
 				175DA5FF19DA1D2800897710 /* Products */,
@@ -274,6 +334,47 @@
 			name = "Core Data Extended";
 			sourceTree = "<group>";
 		};
+		17F2C5F419F83CE0008C86AE /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				17F2C5E619F83CD4008C86AE /* Bolts.framework */,
+				17F2C5E719F83CD4008C86AE /* GZIP.framework */,
+				17F2C5E819F83CD4008C86AE /* Mantle.framework */,
+				17F2C5E919F83CD4008C86AE /* Reachability.framework */,
+				17F2C5EA19F83CD4008C86AE /* TMCache.framework */,
+				17F2C5EB19F83CD4008C86AE /* UICKeyChainStore.framework */,
+				17F2C5EC19F83CD4008C86AE /* XMLDictionary.framework */,
+				17F2C5E419F83C56008C86AE /* libz.dylib */,
+				17F2C5E219F83C4B008C86AE /* libsqlite3.dylib */,
+				17F2C5E019F83C21008C86AE /* AWSiOSSDKv2.framework */,
+				175DA63019DB499A00897710 /* CoreLocation.framework */,
+				175DA62E19DB499300897710 /* MapKit.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		17F2C5F519F83D6E008C86AE /* service-definitions */ = {
+			isa = PBXGroup;
+			children = (
+				17F2C5F619F83D6E008C86AE /* autoscaling-2011-01-01.json */,
+				17F2C5F719F83D6E008C86AE /* cib-2014-06-30.json */,
+				17F2C5F819F83D6E008C86AE /* css-2014-06-30.json */,
+				17F2C5F919F83D6E008C86AE /* dynamodb-2012-08-10.json */,
+				17F2C5FA19F83D6E008C86AE /* ec2-2014-06-15.json */,
+				17F2C5FB19F83D6E008C86AE /* elasticloadbalancing-2012-06-01.json */,
+				17F2C5FC19F83D6E008C86AE /* email-2010-12-01.json */,
+				17F2C5FD19F83D6E008C86AE /* kinesis-2013-12-02.json */,
+				17F2C5FE19F83D6E008C86AE /* mobileanalytics-2014-06-30.json */,
+				17F2C5FF19F83D6E008C86AE /* monitoring-2010-08-01.json */,
+				17F2C60019F83D6E008C86AE /* s3-2006-03-01.json */,
+				17F2C60119F83D6E008C86AE /* sdb-2009-04-15.json */,
+				17F2C60219F83D6E008C86AE /* sns-2010-03-31.json */,
+				17F2C60319F83D6E008C86AE /* sqs-2012-11-05.json */,
+				17F2C60419F83D6E008C86AE /* sts-2011-06-15.json */,
+			);
+			path = "service-definitions";
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -355,25 +456,40 @@
 			buildActionMask = 2147483647;
 			files = (
 				1734B79119E469A1009B228A /* sampleSpotPic04.jpg in Resources */,
+				17F2C60919F83D6E008C86AE /* ec2-2014-06-15.json in Resources */,
 				1734B79519E469A1009B228A /* sampleSpotPic08.jpg in Resources */,
 				1734B79919E469A1009B228A /* sampleSpotPic12.jpg in Resources */,
 				1734B79E19E469A1009B228A /* sampleSpotPic17.jpg in Resources */,
 				1734B79219E469A1009B228A /* sampleSpotPic05.jpg in Resources */,
+				17F2C61319F83D6E008C86AE /* sts-2011-06-15.json in Resources */,
 				1734B79819E469A1009B228A /* sampleSpotPic11.jpg in Resources */,
 				175DA61019DA1D2800897710 /* Main.storyboard in Resources */,
 				1734B79D19E469A1009B228A /* sampleSpotPic16.jpg in Resources */,
 				1734B79319E469A1009B228A /* sampleSpotPic06.jpg in Resources */,
+				17F2C61119F83D6E008C86AE /* sns-2010-03-31.json in Resources */,
 				1734B79A19E469A1009B228A /* sampleSpotPic13.jpg in Resources */,
 				1762F6ED19EF192700EE71C2 /* defaultSpotPhoto.jpg in Resources */,
+				17F2C60519F83D6E008C86AE /* autoscaling-2011-01-01.json in Resources */,
+				17F2C60719F83D6E008C86AE /* css-2014-06-30.json in Resources */,
 				1734B79619E469A1009B228A /* sampleSpotPic09.jpg in Resources */,
+				17F2C60D19F83D6E008C86AE /* mobileanalytics-2014-06-30.json in Resources */,
+				17F2C61019F83D6E008C86AE /* sdb-2009-04-15.json in Resources */,
 				1734B7A119E469A1009B228A /* sampleSpotPic20.jpg in Resources */,
 				1734B79019E469A1009B228A /* sampleSpotPic03.jpg in Resources */,
+				17F2C60C19F83D6E008C86AE /* kinesis-2013-12-02.json in Resources */,
 				1734B79419E469A1009B228A /* sampleSpotPic07.jpg in Resources */,
+				17F2C60819F83D6E008C86AE /* dynamodb-2012-08-10.json in Resources */,
+				17F2C60F19F83D6E008C86AE /* s3-2006-03-01.json in Resources */,
+				17F2C60A19F83D6E008C86AE /* elasticloadbalancing-2012-06-01.json in Resources */,
+				17F2C60619F83D6E008C86AE /* cib-2014-06-30.json in Resources */,
+				17F2C60B19F83D6E008C86AE /* email-2010-12-01.json in Resources */,
 				1734B7A319E469A1009B228A /* sampleSpotPic22.jpg in Resources */,
 				1734B79C19E469A1009B228A /* sampleSpotPic15.jpg in Resources */,
 				1762F6F819F0674000EE71C2 /* noSpotPhoto.jpg in Resources */,
+				17F2C60E19F83D6E008C86AE /* monitoring-2010-08-01.json in Resources */,
 				175DA61519DA1D2800897710 /* LaunchScreen.xib in Resources */,
 				1734B7A219E469A1009B228A /* sampleSpotPic21.jpg in Resources */,
+				17F2C61219F83D6E008C86AE /* sqs-2012-11-05.json in Resources */,
 				1734B79B19E469A1009B228A /* sampleSpotPic14.jpg in Resources */,
 				175DA61219DA1D2800897710 /* Images.xcassets in Resources */,
 			);
@@ -529,8 +645,14 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"/Users/Jordan/Desktop/aws-ios-sdk-2.0.8/frameworks",
+					"/Users/Jordan/Desktop/aws-ios-sdk-2.0.8/third-party",
+				);
 				INFOPLIST_FILE = PKProject/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Debug;
@@ -539,8 +661,14 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"/Users/Jordan/Desktop/aws-ios-sdk-2.0.8/frameworks",
+					"/Users/Jordan/Desktop/aws-ios-sdk-2.0.8/third-party",
+				);
 				INFOPLIST_FILE = PKProject/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Release;
