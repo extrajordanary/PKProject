@@ -118,6 +118,8 @@ static const CGFloat kDefaultZoomMiles = 0.5; // TODO : make dynamic/adjustable?
         
     }
     cell.spot = self.nearbySpots[indexPath.row];
+    
+    // TODO: create method for cell to load images asynchronously for when they'll be downloading from online
     UIImage *image = [cell.spot getThumbnail]; // returns image for first Photo object
     [cell.imageView setImage:image];
 

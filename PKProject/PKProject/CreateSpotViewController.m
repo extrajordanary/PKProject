@@ -10,6 +10,7 @@
 #import "AppDelegate.h"
 
 #import "ServerHandler.h"
+#import "CoreDataHandler.h"
 #import "Spot+Extended.h"
 #import "User+Extended.h"
 #import "Photo.h"
@@ -24,8 +25,8 @@
 @implementation CreateSpotViewController {
     Spot *newSpot;
     Photo *newPhoto;
-    NSManagedObjectContext *theContext;
     ServerHandler *serverHandler;
+    CoreDataHandler *coreDataHandler;
     MKPointAnnotation *spotMarker;
 }
 
@@ -35,16 +36,16 @@ static const CGFloat kDefaultZoomMiles = 0.2;
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-    theContext = ((AppDelegate *)[UIApplication sharedApplication].delegate).managedObjectContext;
     serverHandler = [ServerHandler sharedServerHandler];
+    coreDataHandler = [CoreDataHandler sharedCoreDataHandler];
     spotMarker = [[MKPointAnnotation alloc] init];
     
     self.locationManager.delegate = self;
     [self zoomToCurrentLocation];
     
     // create new Spot and Photo objects
-    newSpot = [NSEntityDescription insertNewObjectForEntityForName:@"Spot" inManagedObjectContext:theContext];
-    newPhoto = [NSEntityDescription insertNewObjectForEntityForName:@"Photo" inManagedObjectContext:theContext];
+    newSpot = [coreDataHandler newSpot];
+    newPhoto = [coreDataHandler newPhoto];
 
     self.spotImage.image = [UIImage imageNamed:@"defaultSpotPhoto.jpg"];
     [self.spotImage setClipsToBounds:YES];
@@ -136,13 +137,8 @@ static const CGFloat kDefaultZoomMiles = 0.2;
     
     // assign photo to Photo
     // TODO: save the image locally and online and update properties
-    
-    NSManagedObjectContext *context = theContext;
-    NSError *error = nil;
-    [context save:&error];
-    if (error) {
-        // TODO: error handling
-    }
+
+    [coreDataHandler updateCoreData];
 }
 
 #pragma mark - Data
@@ -167,7 +163,7 @@ static const CGFloat kDefaultZoomMiles = 0.2;
     [newSpot addSpotPhotosObject:newPhoto];
 
     // completion block then saves the photo to the server, then updates spot and user again
-    // TODO: should serverHandler have a special createNewSpot:(Spot*)spot withPhoto:(Photo*)photo method?
+    // TODO: should serverHandler have a special createNewSpot:(Spot*)spot withPhoto:(Photo*)photo method? Probably
     [serverHandler pushSpotToServer:newSpot];
 }
 

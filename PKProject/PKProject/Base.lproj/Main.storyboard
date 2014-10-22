@@ -50,7 +50,7 @@
                                             <rect key="frame" x="0.0" y="0.0" width="175" height="196"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="noSpotPhoto.jpg" translatesAutoresizingMaskIntoConstraints="NO" id="1Ze-Cx-e06">
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="loadingSpotPhoto.jpg" translatesAutoresizingMaskIntoConstraints="NO" id="1Ze-Cx-e06">
                                                     <rect key="frame" x="-2" y="-2" width="179" height="200"/>
                                                 </imageView>
                                             </subviews>
@@ -321,7 +321,7 @@
         </scene>
     </scenes>
     <resources>
-        <image name="noSpotPhoto.jpg" width="2448" height="2448"/>
+        <image name="loadingSpotPhoto.jpg" width="2448" height="2448"/>
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="3jh-wH-MsC"/>

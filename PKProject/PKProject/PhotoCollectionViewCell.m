@@ -10,6 +10,7 @@
 
 @implementation PhotoCollectionViewCell
 
+// ??? - below not even used
 -(id)initWithFrame:(CGRect)frame {
     self = [super initWithFrame:frame];
     if (self) {
@@ -17,6 +18,9 @@
         self.imageView = [[UIImageView alloc] initWithFrame:self.frame];
         [self.contentView addSubview:self.imageView];
         [self.imageView setClipsToBounds:YES];
+        
+        // TODO: put default loading image here?
+        self.imageView.image = [UIImage imageNamed:@"loadingSpotPhoto.jpg"];
     }
     return self;
 }

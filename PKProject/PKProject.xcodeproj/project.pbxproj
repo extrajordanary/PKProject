@@ -73,6 +73,7 @@
 		17F2C61219F83D6E008C86AE /* sqs-2012-11-05.json in Resources */ = {isa = PBXBuildFile; fileRef = 17F2C60319F83D6E008C86AE /* sqs-2012-11-05.json */; };
 		17F2C61319F83D6E008C86AE /* sts-2011-06-15.json in Resources */ = {isa = PBXBuildFile; fileRef = 17F2C60419F83D6E008C86AE /* sts-2011-06-15.json */; };
 		17F2C61619F8554E008C86AE /* CoreDataHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 17F2C61519F8554E008C86AE /* CoreDataHandler.m */; };
+		17F2C61819F867C4008C86AE /* loadingSpotPhoto.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 17F2C61719F867C4008C86AE /* loadingSpotPhoto.jpg */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -170,6 +171,7 @@
 		17F2C60419F83D6E008C86AE /* sts-2011-06-15.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "sts-2011-06-15.json"; sourceTree = "<group>"; };
 		17F2C61419F8554E008C86AE /* CoreDataHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CoreDataHandler.h; sourceTree = "<group>"; };
 		17F2C61519F8554E008C86AE /* CoreDataHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CoreDataHandler.m; sourceTree = "<group>"; };
+		17F2C61719F867C4008C86AE /* loadingSpotPhoto.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = loadingSpotPhoto.jpg; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -220,6 +222,7 @@
 		1734B77B19E469A1009B228A /* SampleSpots */ = {
 			isa = PBXGroup;
 			children = (
+				17F2C61719F867C4008C86AE /* loadingSpotPhoto.jpg */,
 				1762F6F719F0674000EE71C2 /* noSpotPhoto.jpg */,
 				1762F6EC19EF192700EE71C2 /* defaultSpotPhoto.jpg */,
 				1734B77C19E469A1009B228A /* sampleSpotPic03.jpg */,
@@ -467,6 +470,7 @@
 				1734B79E19E469A1009B228A /* sampleSpotPic17.jpg in Resources */,
 				1734B79219E469A1009B228A /* sampleSpotPic05.jpg in Resources */,
 				17F2C61319F83D6E008C86AE /* sts-2011-06-15.json in Resources */,
+				17F2C61819F867C4008C86AE /* loadingSpotPhoto.jpg in Resources */,
 				1734B79819E469A1009B228A /* sampleSpotPic11.jpg in Resources */,
 				175DA61019DA1D2800897710 /* Main.storyboard in Resources */,
 				1734B79D19E469A1009B228A /* sampleSpotPic16.jpg in Resources */,
