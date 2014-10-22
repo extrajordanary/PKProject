@@ -17,7 +17,7 @@
 @property (nonatomic, retain) NSString *myUserId;
 
 + (id) sharedServerHandler;
-- (void)updateUserFromServer:(User*)user;
+-(void)updateUserFromServer:(User*)user;
 -(void)getSpotsFromServer:(void (^)(NSDictionary*))spotHandlingBlock;
 -(void)pushSpotToServer:(Spot*)spot;
 -(void)pushPhotoToServer:(Photo*)photo;

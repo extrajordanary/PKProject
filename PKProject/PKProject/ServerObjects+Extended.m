@@ -8,9 +8,11 @@
 
 #import "ServerObject+Extended.h"
 #import "AppDelegate.h"
+#import "CoreDataHandler.h"
 
 @implementation ServerObject (Extended)
 
+// for getting an array of databaseIds to save on the server
 -(NSMutableArray*)arrayOfObjectIds:(NSArray*)objects {
     NSMutableArray *array = [[NSMutableArray alloc] init];
     if (objects.count > 0) {
@@ -26,15 +28,8 @@
 }
 
 -(void)updateCoreData {
-    // create error to pass to the save method
-    NSError *error = nil;
-    
-    // save the context to persist changes
-    [((AppDelegate *)[UIApplication sharedApplication].delegate).managedObjectContext save:&error];
-    
-    if (error) {
-        // TODO: error handling
-    }
+    CoreDataHandler *coreDataHandler = [CoreDataHandler sharedCoreDataHandler];
+    [coreDataHandler updateCoreData];
 }
 
 @end

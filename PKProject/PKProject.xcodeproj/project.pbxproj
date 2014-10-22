@@ -72,6 +72,7 @@
 		17F2C61119F83D6E008C86AE /* sns-2010-03-31.json in Resources */ = {isa = PBXBuildFile; fileRef = 17F2C60219F83D6E008C86AE /* sns-2010-03-31.json */; };
 		17F2C61219F83D6E008C86AE /* sqs-2012-11-05.json in Resources */ = {isa = PBXBuildFile; fileRef = 17F2C60319F83D6E008C86AE /* sqs-2012-11-05.json */; };
 		17F2C61319F83D6E008C86AE /* sts-2011-06-15.json in Resources */ = {isa = PBXBuildFile; fileRef = 17F2C60419F83D6E008C86AE /* sts-2011-06-15.json */; };
+		17F2C61619F8554E008C86AE /* CoreDataHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 17F2C61519F8554E008C86AE /* CoreDataHandler.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -167,6 +168,8 @@
 		17F2C60219F83D6E008C86AE /* sns-2010-03-31.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "sns-2010-03-31.json"; sourceTree = "<group>"; };
 		17F2C60319F83D6E008C86AE /* sqs-2012-11-05.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "sqs-2012-11-05.json"; sourceTree = "<group>"; };
 		17F2C60419F83D6E008C86AE /* sts-2011-06-15.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "sts-2011-06-15.json"; sourceTree = "<group>"; };
+		17F2C61419F8554E008C86AE /* CoreDataHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CoreDataHandler.h; sourceTree = "<group>"; };
+		17F2C61519F8554E008C86AE /* CoreDataHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CoreDataHandler.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -273,6 +276,8 @@
 				1734B7A519E4954A009B228A /* CreateSpotViewController.m */,
 				171BA9F419DF545C00C66676 /* ServerHandler.h */,
 				171BA9F519DF545C00C66676 /* ServerHandler.m */,
+				17F2C61419F8554E008C86AE /* CoreDataHandler.h */,
+				17F2C61519F8554E008C86AE /* CoreDataHandler.m */,
 				1762F70519F1BC5200EE71C2 /* Core Data Extended */,
 				171BA9ED19DC7F5800C66676 /* Core Data Classes */,
 				175DA62D19DB493200897710 /* Structure */,
@@ -522,6 +527,7 @@
 				1762F6FB19F1BC4300EE71C2 /* ServerObject.m in Sources */,
 				1734B7A619E4954A009B228A /* CreateSpotViewController.m in Sources */,
 				175DA60419DA1D2800897710 /* main.m in Sources */,
+				17F2C61619F8554E008C86AE /* CoreDataHandler.m in Sources */,
 				175DA62C19DB491700897710 /* MapViewController.m in Sources */,
 				1762F6F619EF40C500EE71C2 /* PhotoCollectionViewCell.m in Sources */,
 			);

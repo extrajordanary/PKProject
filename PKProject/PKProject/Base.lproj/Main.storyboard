@@ -161,6 +161,7 @@
                         </constraints>
                         <variation key="default">
                             <mask key="constraints">
+                                <exclude reference="RI0-73-v8E"/>
                                 <exclude reference="Nzi-UM-5K0"/>
                                 <exclude reference="u2Q-zg-ojZ"/>
                             </mask>

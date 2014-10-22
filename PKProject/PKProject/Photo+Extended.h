@@ -13,6 +13,6 @@
 
 -(void)updateFromDictionary:(NSDictionary*)dictionary;
 -(NSDictionary*)toDictionary;
-//-(UIImage*)getImage;
+-(UIImage*)getImage;
 
 @end

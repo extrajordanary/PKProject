@@ -10,8 +10,10 @@
 #import "AppDelegate.h"
 #import "CreateSpotViewController.h"
 #import "ServerHandler.h"
+#import "CoreDataHandler.h"
 #import "User+Extended.h"
 #import "Spot+Extended.h"
+#import "Photo+Extended.h"
 #import "PhotoCollectionViewCell.h"
 
 @interface MapViewController ()
@@ -25,8 +27,8 @@
 @end
 
 @implementation MapViewController {
-    NSManagedObjectContext *theContext;
     ServerHandler *serverHandler;
+    CoreDataHandler *coreDataHandler;
     NSString *thisUserId;
 }
 
@@ -38,8 +40,8 @@ static const CGFloat kDefaultZoomMiles = 0.5; // TODO : make dynamic/adjustable?
     [super viewDidLoad];
     
     // Do any additional setup after loading the view.
-    theContext = ((AppDelegate *)[UIApplication sharedApplication].delegate).managedObjectContext;
     serverHandler = [ServerHandler sharedServerHandler];
+    coreDataHandler = [CoreDataHandler sharedCoreDataHandler];
     
     [self startStandardMapUpdates];
     
@@ -157,7 +159,8 @@ static const CGFloat kDefaultZoomMiles = 0.5; // TODO : make dynamic/adjustable?
     self.nearbySpots = [[NSMutableArray alloc] init];
     [serverHandler getSpotsFromServer:^void (NSDictionary *spots) {
         for (NSDictionary *item in spots) {
-            Spot *newSpot = [NSEntityDescription insertNewObjectForEntityForName:@"Spot" inManagedObjectContext:theContext];
+            // TODO: use coreDataHandler
+            Spot *newSpot = [coreDataHandler newSpot];
             [newSpot updateFromDictionary:item];
             [self.nearbySpots addObject:newSpot];
         }
@@ -200,14 +203,14 @@ static const CGFloat kDefaultZoomMiles = 0.5; // TODO : make dynamic/adjustable?
     // see if User object already exists in Core Data
     NSPredicate *thisUser = [NSPredicate predicateWithFormat:@"databaseId = %@",thisUserId];
     NSSortDescriptor *sortBy = [NSSortDescriptor sortDescriptorWithKey:@"databaseId" ascending:YES];
-    NSArray *searchResults = [self getManagedObjects:@"User" withPredicate:thisUser sortedBy:sortBy];
+    NSArray *searchResults = [coreDataHandler getManagedObjects:@"User" withPredicate:thisUser sortedBy:sortBy];
     if (searchResults.count > 0) {
-        self.thisUser = [self getManagedObjects:@"User" withPredicate:thisUser sortedBy:sortBy][0];
+        self.thisUser = searchResults[0];
     }
     
     if (!self.thisUser) {
         // if User object doesn't already exist in Core Data, create it and update from server
-        User *newUser = [NSEntityDescription insertNewObjectForEntityForName:@"User" inManagedObjectContext:theContext];
+        User *newUser = [coreDataHandler newUser];
         
         NSString *userId = [[NSUserDefaults standardUserDefaults] valueForKey:@"thisUserId"];
         [newUser setValue:userId forKey:@"databaseId"];
@@ -215,52 +218,6 @@ static const CGFloat kDefaultZoomMiles = 0.5; // TODO : make dynamic/adjustable?
 
         self.thisUser = newUser;
     }
-}
-
-#pragma mark - Core Data
-// TODO: may need to upgrade to a Core Data handling singleton
--(NSArray*)getManagedObjects:(NSString*)entityForName {
-    // get entity description for entity we are selecting
-    NSEntityDescription *entityDescription = [NSEntityDescription
-                                              entityForName:entityForName inManagedObjectContext:theContext];
-    // create a new fetch request
-    NSFetchRequest *request = [[NSFetchRequest alloc] init];
-    [request setEntity:entityDescription];
-
-    // create an error variable to pass to the execute method
-    NSError *error;
-    
-    // retrieve results
-    NSArray *array = [theContext executeFetchRequest:request error:&error];
-    if (array == nil) {
-        //error handling, e.g. display err
-    }
-    return array;
-}
-
--(NSArray*)getManagedObjects:(NSString*)entityForName withPredicate:(NSPredicate*)predicate sortedBy:(NSSortDescriptor*)sortDescriptor{
-    // get entity description for entity we are selecting
-    NSEntityDescription *entityDescription = [NSEntityDescription
-                                              entityForName:entityForName inManagedObjectContext:theContext];
-    // create a new fetch request
-    NSFetchRequest *request = [[NSFetchRequest alloc] init];
-    [request setEntity:entityDescription];
-    
-     // apply a filter by creating a predicate and adding it to the request
-    [request setPredicate:predicate];
-
-     // create a sort rule and add it to the request
-     [request setSortDescriptors:@[sortDescriptor]];
-
-    // create an error variable to pass to the execute method
-    NSError *error;
-    
-    // retrieve results
-    NSArray *array = [theContext executeFetchRequest:request error:&error];
-    if (array == nil) {
-        //error handling, e.g. display err
-    }
-    return array;
 }
 
 #pragma mark - Navigation

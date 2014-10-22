@@ -27,6 +27,30 @@
     }
 }
 
+-(void)createAndAddUsers:(NSArray*)array {
+//    for (NSString *databaseId in array) {
+//        User *user;
+//        // see if User object already exists in Core Data
+//        NSPredicate *aUser = [NSPredicate predicateWithFormat:@"databaseId = %@",databaseId];
+//        NSSortDescriptor *sortBy = [NSSortDescriptor sortDescriptorWithKey:@"databaseId" ascending:YES];
+//        NSArray *searchResults = [self getManagedObjects:@"User" withPredicate:aUser sortedBy:sortBy];
+//        if (searchResults.count > 0) {
+//            user = [self getManagedObjects:@"User" withPredicate:aUser sortedBy:sortBy][0];
+//        }
+//        
+//        if (!self.thisUser) {
+//            // if User object doesn't already exist in Core Data, create it and update from server
+//            User *newUser = [NSEntityDescription insertNewObjectForEntityForName:@"User" inManagedObjectContext:theContext];
+//            
+//            NSString *userId = [[NSUserDefaults standardUserDefaults] valueForKey:@"thisUserId"];
+//            [newUser setValue:userId forKey:@"databaseId"];
+//            [serverHandler updateUserFromServer:newUser];
+//            
+//            self.thisUser = newUser;
+//        }
+//    }
+}
+
 -(NSDictionary*)toDictionary {
     NSMutableDictionary* jsonable = [NSMutableDictionary dictionary];
     jsonable[@"creationTimestamp"] = self.creationTimestamp;
@@ -46,9 +70,9 @@
 -(UIImage*)getThumbnail {
     UIImage *image;
     if (self.spotPhotos.allObjects.count > 0) {
-//        Photo *firstPhoto = self.spotPhotos.allObjects[0];
-//        image = [firstPhoto getImage];
-        image = [UIImage imageNamed:@"defaultSpotPhoto.jpg"]; // !!! - hotfix
+        Photo *firstPhoto = self.spotPhotos.allObjects[0];
+        image = [firstPhoto getImage];
+//        image = [UIImage imageNamed:@"defaultSpotPhoto.jpg"]; // !!! - hotfix
         NSLog(@"photo");
     } else {
         image = [UIImage imageNamed:@"noSpotPhoto.jpg"];

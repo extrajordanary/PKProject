@@ -18,7 +18,9 @@
         self.creationTimestamp = dictionary[@"creationTimestamp"];
         self.latitude = dictionary[@"latitude"];
         self.longitude = dictionary[@"longitude"];
-        
+        self.localPath = dictionary[@"localPath"];
+//        self.onlinePath = dictionary[@"onlinePath"];
+        self.onlinePath = @"https://s3-us-west-1.amazonaws.com/travalt-photos/defaultSpotPhoto.jpg";
         // TODO: photoByUser - but I don't need to create these objects every time.
         // TODO: photoSpot
     }
@@ -29,6 +31,9 @@
     jsonable[@"creationTimestamp"] = self.creationTimestamp;
     jsonable[@"latitude"] = self.latitude;
     jsonable[@"longitude"] = self.longitude;
+//    jsonable[@"localPath"] = self.localPath;
+//    jsonable[@"onlinePath"] = self.onlinePath;
+    
     jsonable[@"photoByUser"] = self.photoByUser.databaseId; // only one
     
     if (self.photoSpot.databaseId) {
@@ -39,12 +44,12 @@
     return jsonable;
 }
 
-/*
+
  // TODO: re-implement using fetching from local or online path
 -(UIImage*)getImage {
-    UIImage *image=[UIImage imageWithData:self.imageBinary];
+    NSData *recievedData = [NSData dataWithContentsOfURL:[NSURL URLWithString:self.onlinePath]];
+    UIImage *image=[UIImage imageWithData:recievedData];
     return image;
 }
- */
 
 @end
