@@ -45,6 +45,8 @@ static const CGFloat kDefaultZoomMiles = 0.5; // TODO : make dynamic/adjustable?
     
     [self startStandardMapUpdates];
     
+    self.nearbySpots = [[NSMutableArray alloc] init];
+    
     self.mapView.showsUserLocation = YES;
     self.mapView.showsPointsOfInterest = NO;
 }
@@ -156,15 +158,33 @@ static const CGFloat kDefaultZoomMiles = 0.5; // TODO : make dynamic/adjustable?
 #pragma mark - Spots
 -(void)updateNearbySpots {
     // TODO: get only nearby spots based on coords, vs. all spots like now
+    // TODO: how to handle offline use
     
-    // get nearby spots from database, create Spot objects, populate map
-    self.nearbySpots = [[NSMutableArray alloc] init];
+    // get nearby spots from database, create Spot objects as needed, populate map
+    [self.nearbySpots removeAllObjects];
+    NSArray *allSpots = [[NSArray alloc] init];
+    allSpots = [coreDataHandler getManagedObjects:@"Spot"];
+    
     [serverHandler getSpotsFromServer:^void (NSDictionary *spots) {
-        for (NSDictionary *item in spots) {
-            // TODO: use coreDataHandler
-            Spot *newSpot = [coreDataHandler newSpot];
-            [newSpot updateFromDictionary:item];
-            [self.nearbySpots addObject:newSpot];
+        for (NSDictionary *serverSpot in spots) {
+            // see if Spot object already exists in Core Data
+            Spot *nextSpot;
+            NSString *databaseId = serverSpot[@"_id"];
+            NSPredicate *findSpot = [NSPredicate predicateWithFormat:@"databaseId = %@",databaseId];
+            NSArray *searchResults = [coreDataHandler getManagedObjects:@"Spot" withPredicate:findSpot];
+            if (searchResults.count > 0) {
+                nextSpot = searchResults[0];
+            }
+            
+            // if Spot object doesn't already exist in Core Data, create it
+            if (!nextSpot) {
+                NSLog(@"new");
+                nextSpot = [coreDataHandler newSpot];
+            }
+            NSLog(@"    spot object");
+            // update Spot from server info and then add to array
+            [nextSpot updateFromDictionary:serverSpot];
+            [self.nearbySpots addObject:nextSpot];
         }
         dispatch_async(dispatch_get_main_queue(), ^(void){
             [self placeSpotMarkers];
