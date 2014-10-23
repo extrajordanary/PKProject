@@ -18,6 +18,7 @@
 + (id)sharedCoreDataHandler;
 
 -(NSArray*)getManagedObjects:(NSString*)entityForName;
+-(NSArray*)getManagedObjects:(NSString*)entityForName withPredicate:(NSPredicate*)predicate;
 -(NSArray*)getManagedObjects:(NSString*)entityForName
                withPredicate:(NSPredicate*)predicate
                     sortedBy:(NSSortDescriptor*)sortDescriptor;

@@ -85,6 +85,28 @@
     return array;
 }
 
+-(NSArray*)getManagedObjects:(NSString*)entityForName withPredicate:(NSPredicate*)predicate {
+    // get entity description for entity we are selecting
+    NSEntityDescription *entityDescription = [NSEntityDescription
+                                              entityForName:entityForName inManagedObjectContext:theContext];
+    // create a new fetch request
+    NSFetchRequest *request = [[NSFetchRequest alloc] init];
+    [request setEntity:entityDescription];
+    
+    // apply a filter by creating a predicate and adding it to the request
+    [request setPredicate:predicate];
+    
+    // create an error variable to pass to the execute method
+    NSError *error;
+    
+    // retrieve results
+    NSArray *array = [theContext executeFetchRequest:request error:&error];
+    if (array == nil) {
+        //error handling, e.g. display err
+    }
+    return array;
+}
+
 -(NSArray*)getManagedObjects:(NSString*)entityForName withPredicate:(NSPredicate*)predicate sortedBy:(NSSortDescriptor*)sortDescriptor{
     // get entity description for entity we are selecting
     NSEntityDescription *entityDescription = [NSEntityDescription
