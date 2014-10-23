@@ -8,6 +8,7 @@
 
 #import "CoreDataHandler.h"
 #import "AppDelegate.h"
+#import "ServerObject+Extended.h"
 #import "User+Extended.h"
 #import "Spot+Extended.h"
 #import "Photo+Extended.h"
@@ -66,6 +67,23 @@
 
 
 #pragma mark - Search
+-(Spot*)getSpotWithDatabaseId:(NSString*)databaseId {
+    AppDelegate* appDelegate = [UIApplication sharedApplication].delegate;
+    NSManagedObjectModel* model = appDelegate.managedObjectModel;
+    
+    NSDictionary* substitutionDictionary = @{@"DATABASE_ID" : databaseId};
+    NSFetchRequest* fetchRequest = [model fetchRequestFromTemplateWithName:@"existingSpot"
+                                                     substitutionVariables:substitutionDictionary];
+    
+    NSError *error;
+    NSArray *results = [theContext executeFetchRequest:fetchRequest error:&error];
+    if (results.count > 0)
+    {
+        return results[0];
+    }
+    return nil;
+}
+
 -(NSArray*)getManagedObjects:(NSString*)entityForName {
     // get entity description for entity we are selecting
     NSEntityDescription *entityDescription = [NSEntityDescription

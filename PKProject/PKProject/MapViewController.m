@@ -170,11 +170,14 @@ static const CGFloat kDefaultZoomMiles = 0.5; // TODO : make dynamic/adjustable?
             // see if Spot object already exists in Core Data
             Spot *nextSpot;
             NSString *databaseId = serverSpot[@"_id"];
-            NSPredicate *findSpot = [NSPredicate predicateWithFormat:@"databaseId = %@",databaseId];
-            NSArray *searchResults = [coreDataHandler getManagedObjects:@"Spot" withPredicate:findSpot];
-            if (searchResults.count > 0) {
-                nextSpot = searchResults[0];
-            }
+            
+//            NSPredicate *findSpot = [NSPredicate predicateWithFormat:@"databaseId = %@",databaseId];
+//            NSArray *searchResults = [coreDataHandler getManagedObjects:@"Spot" withPredicate:findSpot];
+//            if (searchResults.count > 0) {
+//                nextSpot = searchResults[0];
+//            }
+            
+            nextSpot = [coreDataHandler getSpotWithDatabaseId:databaseId];
             
             // if Spot object doesn't already exist in Core Data, create it
             if (!nextSpot) {

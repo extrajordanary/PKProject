@@ -27,6 +27,11 @@
     return array;
 }
 
+//-(NSArray*)getManagedObjects:(NSString*)entityForName withPredicate:(NSPredicate*)predicate {
+//    CoreDataHandler *coreDataHandler = [CoreDataHandler sharedCoreDataHandler];
+//    [coreDataHandler getManagedObjects:entityForName withPredicate:predicate];
+//}
+
 -(void)updateCoreData {
     CoreDataHandler *coreDataHandler = [CoreDataHandler sharedCoreDataHandler];
     [coreDataHandler updateCoreData];

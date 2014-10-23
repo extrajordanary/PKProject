@@ -50,8 +50,18 @@
 
  // TODO: re-implement using fetching from local or online path
 -(UIImage*)getImage {
-    NSData *recievedData = [NSData dataWithContentsOfURL:[NSURL URLWithString:self.onlinePath]];
-    UIImage *image=[UIImage imageWithData:recievedData];
+    UIImage *image;
+    if (![self.localPath isEqualToString:@"NA"]) {
+        // if localPath has been set and is valid, load image
+        // set image to return variable
+    } else if (![self.onlinePath isEqualToString:@"NA"]) {
+        // if onlinePath has been set and is valid, load image
+        NSData *recievedData = [NSData dataWithContentsOfURL:[NSURL URLWithString:self.onlinePath]];
+        // save image to a local URL
+        // add local URL to localPath
+        // set image to return variable
+        image =[UIImage imageWithData:recievedData];
+    }
     return image;
 }
 

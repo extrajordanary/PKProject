@@ -10,6 +10,7 @@
 #import "User+Extended.h"
 #import "Photo+Extended.h"
 #import "ServerObject+Extended.h"
+#import "CoreDataHandler.h"
 
 @implementation Spot (Extended)
 
@@ -23,34 +24,37 @@
         // photos and users need to be connected by seeing if core data object with that id already exists
         // if not pull and create it before setting up the connection
         // TODO: create User object
+        [self createAndAddUser:dictionary[@"spotByUser"]];
         // TODO: create Photo objects
         
         [self updateCoreData];
     }
 }
 
--(void)createAndAddUsers:(NSArray*)array {
-//    for (NSString *databaseId in array) {
-//        User *user;
-//        // see if User object already exists in Core Data
-//        NSPredicate *aUser = [NSPredicate predicateWithFormat:@"databaseId = %@",databaseId];
+-(void)createAndAddUser:(NSArray*)array {
+   /* for (NSString *databaseId in array) {
+        CoreDataHandler *coreDataHandler = [CoreDataHandler sharedCoreDataHandler];
+        User *user;
+        // see if User object already exists in Core Data
+        NSPredicate *aUser = [NSPredicate predicateWithFormat:@"databaseId = %@",databaseId];
 //        NSSortDescriptor *sortBy = [NSSortDescriptor sortDescriptorWithKey:@"databaseId" ascending:YES];
-//        NSArray *searchResults = [self getManagedObjects:@"User" withPredicate:aUser sortedBy:sortBy];
-//        if (searchResults.count > 0) {
-//            user = [self getManagedObjects:@"User" withPredicate:aUser sortedBy:sortBy][0];
-//        }
-//        
-//        if (!self.thisUser) {
-//            // if User object doesn't already exist in Core Data, create it and update from server
-//            User *newUser = [NSEntityDescription insertNewObjectForEntityForName:@"User" inManagedObjectContext:theContext];
-//            
-//            NSString *userId = [[NSUserDefaults standardUserDefaults] valueForKey:@"thisUserId"];
-//            [newUser setValue:userId forKey:@"databaseId"];
-//            [serverHandler updateUserFromServer:newUser];
-//            
-//            self.thisUser = newUser;
-//        }
-//    }
+        NSArray *searchResults = [coreDataHandler getManagedObjects:@"User" withPredicate:aUser];
+        if (searchResults.count > 0) {
+            user = searchResults[0];
+        }
+        
+        if (!user) {
+            // if User object doesn't already exist in Core Data, create it and update from server
+            user = [NSEntityDescription insertNewObjectForEntityForName:@"User" inManagedObjectContext:theContext];
+            
+            NSString *userId = [[NSUserDefaults standardUserDefaults] valueForKey:@"thisUserId"];
+            [newUser setValue:userId forKey:@"databaseId"];
+            [serverHandler updateUserFromServer:newUser];
+            
+            self.aUser = newUser;
+        }
+   }
+    */
 }
 
 -(NSDictionary*)toDictionary {
@@ -71,11 +75,13 @@
 
 -(UIImage*)getThumbnail {
     UIImage *image;
+    // if there are Photo objects associated with this spot, get the image of the first one
     if (self.spotPhotos.allObjects.count > 0) {
         Photo *firstPhoto = self.spotPhotos.allObjects[0];
         image = [firstPhoto getImage];
         NSLog(@"photo");
     }
+    // if there are no Photo objects or the returned value is nil, use the "no image found" photo
     if (!image) {
         image = [UIImage imageNamed:@"noSpotPhoto.jpg"];
         NSLog(@"no photo found");

@@ -12,11 +12,13 @@
 @class User;
 @class Spot;
 @class Photo;
+@class ServerObject;
 
 @interface CoreDataHandler : NSObject
 
 + (id)sharedCoreDataHandler;
 
+-(Spot*)getSpotWithDatabaseId:(NSString*)databaseId;
 -(NSArray*)getManagedObjects:(NSString*)entityForName;
 -(NSArray*)getManagedObjects:(NSString*)entityForName withPredicate:(NSPredicate*)predicate;
 -(NSArray*)getManagedObjects:(NSString*)entityForName
