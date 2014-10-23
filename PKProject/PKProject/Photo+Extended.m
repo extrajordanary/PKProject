@@ -9,6 +9,7 @@
 #import "Photo+Extended.h"
 #import "Spot+Extended.h"
 #import "User+Extended.h"
+#import "ServerObject+Extended.h"
 
 @implementation Photo (Extended)
 
@@ -19,10 +20,12 @@
         self.latitude = dictionary[@"latitude"];
         self.longitude = dictionary[@"longitude"];
         self.localPath = dictionary[@"localPath"];
-//        self.onlinePath = dictionary[@"onlinePath"];
-        self.onlinePath = @"https://s3-us-west-1.amazonaws.com/travalt-photos/defaultSpotPhoto.jpg";
+        self.onlinePath = dictionary[@"onlinePath"];
+//        self.onlinePath = @"https://s3-us-west-1.amazonaws.com/travalt-photos/defaultSpotPhoto.jpg";
         // TODO: photoByUser - but I don't need to create these objects every time.
         // TODO: photoSpot
+        
+        [self updateCoreData];
     }
 }
 
@@ -31,8 +34,8 @@
     jsonable[@"creationTimestamp"] = self.creationTimestamp;
     jsonable[@"latitude"] = self.latitude;
     jsonable[@"longitude"] = self.longitude;
-//    jsonable[@"localPath"] = self.localPath;
-//    jsonable[@"onlinePath"] = self.onlinePath;
+    jsonable[@"localPath"] = self.localPath;
+    jsonable[@"onlinePath"] = self.onlinePath;
     
     jsonable[@"photoByUser"] = self.photoByUser.databaseId; // only one
     

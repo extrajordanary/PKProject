@@ -24,6 +24,8 @@
         // if not pull and create it before setting up the connection
         // TODO: create User object
         // TODO: create Photo objects
+        
+        [self updateCoreData];
     }
 }
 
@@ -72,11 +74,11 @@
     if (self.spotPhotos.allObjects.count > 0) {
         Photo *firstPhoto = self.spotPhotos.allObjects[0];
         image = [firstPhoto getImage];
-//        image = [UIImage imageNamed:@"defaultSpotPhoto.jpg"]; // !!! - hotfix
         NSLog(@"photo");
-    } else {
+    }
+    if (!image) {
         image = [UIImage imageNamed:@"noSpotPhoto.jpg"];
-        NSLog(@"no photo");
+        NSLog(@"no photo found");
     }
     return image;
 }

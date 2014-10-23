@@ -158,6 +158,9 @@ static const CGFloat kDefaultZoomMiles = 0.2;
     newPhoto.latitude = [NSNumber numberWithDouble:spotMarker.coordinate.latitude];
     newPhoto.longitude = [NSNumber numberWithDouble:spotMarker.coordinate.longitude];
     
+    // !!! - AWS testing only
+    newPhoto.onlinePath = @"https://s3-us-west-1.amazonaws.com/travalt-photos/defaultSpotPhoto.jpg";
+    
     [newSpot setSpotByUser:self.thisUser];
     [newPhoto setPhotoByUser:self.thisUser];
     [newSpot addSpotPhotosObject:newPhoto];
