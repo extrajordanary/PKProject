@@ -35,7 +35,7 @@
         <relationship name="userCreatedSpot" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Spot" inverseName="spotByUser" inverseEntity="Spot" syncable="YES"/>
         <relationship name="userSpots" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Spot" inverseName="spotUsers" inverseEntity="Spot" syncable="YES"/>
     </entity>
-    <fetchRequest name="existingSpot" entity="Spot" predicateString="databaseId == $DATABASE_ID" fetchLimit="10" fetchBatchSize="10"/>
+    <fetchRequest name="existingObject" entity="ServerObject" predicateString="databaseId == $DATABASE_ID"/>
     <elements>
         <element name="Photo" positionX="-963" positionY="-9" width="128" height="150"/>
         <element name="ServerObject" positionX="-965" positionY="-126" width="128" height="58"/>

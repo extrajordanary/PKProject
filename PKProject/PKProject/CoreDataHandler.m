@@ -50,29 +50,18 @@
 }
 
 #pragma mark - Create
--(User*)newUser {
-    User *newUser = [NSEntityDescription insertNewObjectForEntityForName:@"User" inManagedObjectContext:theContext];
-    return newUser;
+-(ServerObject*)createNew:(NSString*)entityType {
+    ServerObject* newEntitiy = [NSEntityDescription insertNewObjectForEntityForName:entityType inManagedObjectContext:theContext];
+    return newEntitiy;
 }
-
--(Spot*)newSpot {
-    Spot *newSpot = [NSEntityDescription insertNewObjectForEntityForName:@"Spot" inManagedObjectContext:theContext];
-    return newSpot;
-}
-
--(Photo*)newPhoto {
-    Photo *newPhoto = [NSEntityDescription insertNewObjectForEntityForName:@"Photo" inManagedObjectContext:theContext];
-    return newPhoto;
-}
-
 
 #pragma mark - Search
--(Spot*)getSpotWithDatabaseId:(NSString*)databaseId {
+-(ServerObject*)getObjectWithDatabaseId:(NSString*)databaseId {
     AppDelegate* appDelegate = [UIApplication sharedApplication].delegate;
     NSManagedObjectModel* model = appDelegate.managedObjectModel;
     
     NSDictionary* substitutionDictionary = @{@"DATABASE_ID" : databaseId};
-    NSFetchRequest* fetchRequest = [model fetchRequestFromTemplateWithName:@"existingSpot"
+    NSFetchRequest* fetchRequest = [model fetchRequestFromTemplateWithName:@"existingObject"
                                                      substitutionVariables:substitutionDictionary];
     
     NSError *error;

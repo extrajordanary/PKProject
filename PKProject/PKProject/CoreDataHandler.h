@@ -18,15 +18,15 @@
 
 + (id)sharedCoreDataHandler;
 
--(Spot*)getSpotWithDatabaseId:(NSString*)databaseId;
+-(ServerObject*)getObjectWithDatabaseId:(NSString*)databaseId;
+
 -(NSArray*)getManagedObjects:(NSString*)entityForName;
 -(NSArray*)getManagedObjects:(NSString*)entityForName withPredicate:(NSPredicate*)predicate;
 -(NSArray*)getManagedObjects:(NSString*)entityForName
                withPredicate:(NSPredicate*)predicate
                     sortedBy:(NSSortDescriptor*)sortDescriptor;
--(User*)newUser;
--(Spot*)newSpot;
--(Photo*)newPhoto;
+
+-(ServerObject*)createNew:(NSString*)entityType;
 
 -(void)updateCoreData;
 

@@ -170,19 +170,14 @@ static const CGFloat kDefaultZoomMiles = 0.5; // TODO : make dynamic/adjustable?
             // see if Spot object already exists in Core Data
             Spot *nextSpot;
             NSString *databaseId = serverSpot[@"_id"];
-            
-//            NSPredicate *findSpot = [NSPredicate predicateWithFormat:@"databaseId = %@",databaseId];
-//            NSArray *searchResults = [coreDataHandler getManagedObjects:@"Spot" withPredicate:findSpot];
-//            if (searchResults.count > 0) {
-//                nextSpot = searchResults[0];
-//            }
-            
-            nextSpot = [coreDataHandler getSpotWithDatabaseId:databaseId];
-            
+
+            nextSpot = (Spot*)[coreDataHandler getObjectWithDatabaseId:databaseId];
+         
             // if Spot object doesn't already exist in Core Data, create it
             if (!nextSpot) {
                 NSLog(@"new");
-                nextSpot = [coreDataHandler newSpot];
+//                nextSpot = [coreDataHandler newSpot];
+                nextSpot = (Spot*)[coreDataHandler createNew:@"Spot"];
             }
             NSLog(@"    spot object");
             // update Spot from server info and then add to array
@@ -229,13 +224,16 @@ static const CGFloat kDefaultZoomMiles = 0.5; // TODO : make dynamic/adjustable?
     NSPredicate *thisUser = [NSPredicate predicateWithFormat:@"databaseId = %@",thisUserId];
     NSSortDescriptor *sortBy = [NSSortDescriptor sortDescriptorWithKey:@"databaseId" ascending:YES];
     NSArray *searchResults = [coreDataHandler getManagedObjects:@"User" withPredicate:thisUser sortedBy:sortBy];
+    
     if (searchResults.count > 0) {
         self.thisUser = searchResults[0];
     }
     
     if (!self.thisUser) {
         // if User object doesn't already exist in Core Data, create it and update from server
-        User *newUser = [coreDataHandler newUser];
+//        User *newUser = [coreDataHandler newUser];
+        User *newUser = (User*)[coreDataHandler createNew:@"User"];
+        
         
         NSString *userId = [[NSUserDefaults standardUserDefaults] valueForKey:@"thisUserId"];
         [newUser setValue:userId forKey:@"databaseId"];
