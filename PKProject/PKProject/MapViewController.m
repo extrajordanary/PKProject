@@ -177,7 +177,6 @@ static const CGFloat kDefaultZoomMiles = 0.5; // TODO : make dynamic/adjustable?
             // if Spot object doesn't already exist in Core Data, create it
             if (!nextSpot) {
                 NSLog(@"new");
-//                nextSpot = [coreDataHandler newSpot];
                 nextSpot = (Spot*)[coreDataHandler createNew:@"Spot"];
             }
             NSLog(@"    spot object");

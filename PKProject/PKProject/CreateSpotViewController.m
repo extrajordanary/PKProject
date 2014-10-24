@@ -185,7 +185,9 @@ static const CGFloat kDefaultZoomMiles = 0.2;
     // save photo to local cache and save path to photo.localPath
     NSData *saveImage = UIImageJPEGRepresentation(self.spotImage.image,1.0);
     NSString *cachesFolder = [NSSearchPathForDirectoriesInDomains(NSCachesDirectory, NSUserDomainMask, YES) lastObject];
-    NSString *file = [cachesFolder stringByAppendingPathComponent:@"testPhoto.png"];
+    // TODO: want this to be Photo's databaseId, temp using random number
+    NSString *randomFileName = [NSString stringWithFormat:@"photo%i", arc4random_uniform(9999)];
+    NSString *file = [cachesFolder stringByAppendingPathComponent:randomFileName];
     newPhoto.localPath = file;
     [saveImage writeToFile:file options:NSDataWritingAtomic error:nil];
     
