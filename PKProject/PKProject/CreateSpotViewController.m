@@ -183,7 +183,7 @@ static const CGFloat kDefaultZoomMiles = 0.2;
     newPhoto.onlinePath = @"https://s3-us-west-1.amazonaws.com/travalt-photos/defaultSpotPhoto.jpg";
     
     // save photo to local cache and save path to photo.localPath
-    NSData *saveImage = UIImagePNGRepresentation(self.spotImage.image);
+    NSData *saveImage = UIImageJPEGRepresentation(self.spotImage.image,1.0);
     NSString *cachesFolder = [NSSearchPathForDirectoriesInDomains(NSCachesDirectory, NSUserDomainMask, YES) lastObject];
     NSString *file = [cachesFolder stringByAppendingPathComponent:@"testPhoto.png"];
     newPhoto.localPath = file;
