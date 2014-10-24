@@ -182,14 +182,18 @@ static const CGFloat kDefaultZoomMiles = 0.2;
     // !!! - AWS testing only
     newPhoto.onlinePath = @"https://s3-us-west-1.amazonaws.com/travalt-photos/defaultSpotPhoto.jpg";
     
-    // Asynchronusly:
     // save photo to local cache and save path to photo.localPath
+    NSData *saveImage = UIImagePNGRepresentation(self.spotImage.image);
+    NSString *cachesFolder = [NSSearchPathForDirectoriesInDomains(NSCachesDirectory, NSUserDomainMask, YES) lastObject];
+    NSString *file = [cachesFolder stringByAppendingPathComponent:@"testPhoto.png"];
+    newPhoto.localPath = file;
+    [saveImage writeToFile:file options:NSDataWritingAtomic error:nil];
     
-    // upload photo to server and save path to photo.onlinePath
+    // Asynchronusly: upload photo to server and save path to photo.onlinePath
     
     [newSpot setSpotByUser:self.thisUser];
-    [newPhoto setPhotoByUser:self.thisUser];
     [newSpot addSpotPhotosObject:newPhoto];
+    [newPhoto setPhotoByUser:self.thisUser];
 
     [coreDataHandler updateCoreData];
     

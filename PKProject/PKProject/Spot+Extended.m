@@ -80,7 +80,6 @@
     if (self.spotPhotos.allObjects.count > 0) {
         Photo *firstPhoto = self.spotPhotos.allObjects[0];
         image = [firstPhoto getImage];
-        NSLog(@"photo");
     }
     // if there are no Photo objects or the returned value is nil, use the "no image found" photo
     if (!image) {
