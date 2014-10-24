@@ -122,6 +122,7 @@ static NSString* const kPhotos = @"/collections/photos";
             NSArray* responseArray = @[[NSJSONSerialization JSONObjectWithData:data options:0 error:NULL]];
             if (isExistingSpot) {
                 // do nothing bc response array just has success msg
+                // TODO: maybe here I should save a timestamp for most recent update?
             } else {
                 // get _id from returned data and save it to the Spot databaseId property
                 spot.databaseId = responseArray[0][0][@"_id"];

@@ -12,12 +12,11 @@
 
 @implementation ServerObject (Extended)
 
-// for getting an array of databaseIds to save on the server
-#pragma message "The use case for method is a little unclear. Are you trying to filter out objects that already have been synced with the server?"
--(NSMutableArray*)arrayOfObjectIds:(NSArray*)objects {
+// for getting an array of databaseIds from relationship Objects to save on the server
+-(NSMutableArray*)arrayOfObjectIds:(NSArray*)relationshipObjects {
     NSMutableArray *array = [[NSMutableArray alloc] init];
-    if (objects.count > 0) {
-        for (ServerObject *item in objects) {
+    if (relationshipObjects.count > 0) {
+        for (ServerObject *item in relationshipObjects) {
             if (item.databaseId) {
                 [array addObject:item.databaseId];
             } else {

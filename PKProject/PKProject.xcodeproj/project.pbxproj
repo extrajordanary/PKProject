@@ -46,8 +46,8 @@
 		1762F6FE19F1BC4400EE71C2 /* Photo.m in Sources */ = {isa = PBXBuildFile; fileRef = 1762F6FD19F1BC4400EE71C2 /* Photo.m */; };
 		1762F70119F1BC4400EE71C2 /* Spot.m in Sources */ = {isa = PBXBuildFile; fileRef = 1762F70019F1BC4400EE71C2 /* Spot.m */; };
 		1762F70419F1BC4400EE71C2 /* User.m in Sources */ = {isa = PBXBuildFile; fileRef = 1762F70319F1BC4400EE71C2 /* User.m */; };
+		17A6D94519FAC33F0038EC1E /* AWSiOSSDKv2.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 17A6D94419FAC33F0038EC1E /* AWSiOSSDKv2.framework */; };
 		17C7BF9F19E85A3900BD019A /* ServerObjects+Extended.m in Sources */ = {isa = PBXBuildFile; fileRef = 17C7BF9E19E85A3900BD019A /* ServerObjects+Extended.m */; };
-		17F2C5E119F83C21008C86AE /* AWSiOSSDKv2.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 17F2C5E019F83C21008C86AE /* AWSiOSSDKv2.framework */; };
 		17F2C5E319F83C4B008C86AE /* libsqlite3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 17F2C5E219F83C4B008C86AE /* libsqlite3.dylib */; };
 		17F2C5E519F83C56008C86AE /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 17F2C5E419F83C56008C86AE /* libz.dylib */; };
 		17F2C5ED19F83CD4008C86AE /* Bolts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 17F2C5E619F83CD4008C86AE /* Bolts.framework */; };
@@ -142,9 +142,9 @@
 		1762F70019F1BC4400EE71C2 /* Spot.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Spot.m; sourceTree = "<group>"; };
 		1762F70219F1BC4400EE71C2 /* User.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = User.h; sourceTree = "<group>"; };
 		1762F70319F1BC4400EE71C2 /* User.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = User.m; sourceTree = "<group>"; };
+		17A6D94419FAC33F0038EC1E /* AWSiOSSDKv2.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = AWSiOSSDKv2.framework; sourceTree = "<group>"; };
 		17C7BF9D19E85A3900BD019A /* ServerObject+Extended.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "ServerObject+Extended.h"; sourceTree = "<group>"; };
 		17C7BF9E19E85A3900BD019A /* ServerObjects+Extended.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "ServerObjects+Extended.m"; sourceTree = "<group>"; };
-		17F2C5E019F83C21008C86AE /* AWSiOSSDKv2.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AWSiOSSDKv2.framework; path = "../../../../../Desktop/aws-ios-sdk-2.0.8/frameworks/AWSiOSSDKv2.framework"; sourceTree = "<group>"; };
 		17F2C5E219F83C4B008C86AE /* libsqlite3.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libsqlite3.dylib; path = usr/lib/libsqlite3.dylib; sourceTree = SDKROOT; };
 		17F2C5E419F83C56008C86AE /* libz.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.dylib; path = usr/lib/libz.dylib; sourceTree = SDKROOT; };
 		17F2C5E619F83CD4008C86AE /* Bolts.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Bolts.framework; path = "../../../../../Desktop/aws-ios-sdk-2.0.8/third-party/Bolts.framework"; sourceTree = "<group>"; };
@@ -188,7 +188,7 @@
 				17F2C5F319F83CD4008C86AE /* XMLDictionary.framework in Frameworks */,
 				17F2C5E519F83C56008C86AE /* libz.dylib in Frameworks */,
 				17F2C5E319F83C4B008C86AE /* libsqlite3.dylib in Frameworks */,
-				17F2C5E119F83C21008C86AE /* AWSiOSSDKv2.framework in Frameworks */,
+				17A6D94519FAC33F0038EC1E /* AWSiOSSDKv2.framework in Frameworks */,
 				175DA63119DB499A00897710 /* CoreLocation.framework in Frameworks */,
 				175DA62F19DB499300897710 /* MapKit.framework in Frameworks */,
 			);
@@ -354,7 +354,7 @@
 				17F2C5EC19F83CD4008C86AE /* XMLDictionary.framework */,
 				17F2C5E419F83C56008C86AE /* libz.dylib */,
 				17F2C5E219F83C4B008C86AE /* libsqlite3.dylib */,
-				17F2C5E019F83C21008C86AE /* AWSiOSSDKv2.framework */,
+				17A6D94419FAC33F0038EC1E /* AWSiOSSDKv2.framework */,
 				175DA63019DB499A00897710 /* CoreLocation.framework */,
 				175DA62E19DB499300897710 /* MapKit.framework */,
 			);
@@ -659,6 +659,7 @@
 					"$(inherited)",
 					"/Users/Jordan/Desktop/aws-ios-sdk-2.0.8/frameworks",
 					"/Users/Jordan/Desktop/aws-ios-sdk-2.0.8/third-party",
+					"$(PROJECT_DIR)",
 				);
 				INFOPLIST_FILE = PKProject/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -675,6 +676,7 @@
 					"$(inherited)",
 					"/Users/Jordan/Desktop/aws-ios-sdk-2.0.8/frameworks",
 					"/Users/Jordan/Desktop/aws-ios-sdk-2.0.8/third-party",
+					"$(PROJECT_DIR)",
 				);
 				INFOPLIST_FILE = PKProject/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";

@@ -165,10 +165,11 @@ static const CGFloat kDefaultZoomMiles = 0.2;
     [newPhoto setPhotoByUser:self.thisUser];
     [newSpot addSpotPhotosObject:newPhoto];
 
+    [coreDataHandler updateCoreData];
+    
     // completion block then saves the photo to the server, then updates spot and user again
     // TODO: should serverHandler have a special createNewSpot:(Spot*)spot withPhoto:(Photo*)photo method? Probably
     [serverHandler pushSpotToServer:newSpot];
-#pragma message "Don't you want to call 'updateCoreData' in this method?"
 }
 
 #pragma mark - Navigation
