@@ -206,10 +206,17 @@
                                         </connections>
                                     </barButtonItem>
                                     <barButtonItem style="plain" systemItem="flexibleSpace" id="d98-mb-2jD"/>
-                                    <barButtonItem systemItem="camera" id="qdT-GD-av2">
+                                    <barButtonItem systemItem="organize" id="qdT-GD-av2">
                                         <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <connections>
-                                            <action selector="changePicture:" destination="Vve-Eo-Ty2" id="Fp8-Pf-46b"/>
+                                            <action selector="pictureFromPhotoLibrary:" destination="Vve-Eo-Ty2" id="G56-4A-SuX"/>
+                                        </connections>
+                                    </barButtonItem>
+                                    <barButtonItem width="40" style="plain" systemItem="fixedSpace" id="HvU-gQ-OPN"/>
+                                    <barButtonItem systemItem="camera" id="beZ-p4-TrK">
+                                        <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        <connections>
+                                            <action selector="pictureFromCamera:" destination="Vve-Eo-Ty2" id="HYc-ts-4ty"/>
                                         </connections>
                                     </barButtonItem>
                                     <barButtonItem style="plain" systemItem="flexibleSpace" id="73h-MQ-LJu"/>

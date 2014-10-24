@@ -113,16 +113,22 @@ static const CGFloat kDefaultZoomMiles = 0.2;
 }
 
 #pragma mark - Image Picker
-- (IBAction)changePicture:(id)sender {
+- (IBAction)pictureFromCamera:(id)sender {
     UIImagePickerController* imagePicker = [[UIImagePickerController alloc] init];
     imagePicker.delegate = self;
 
-    // TODO: always give user the option to choose instead of assuming one or the other
-    if ([UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera]) {
-        imagePicker.sourceType = UIImagePickerControllerSourceTypeCamera;
-    } else {
-        imagePicker.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
-    }
+    imagePicker.sourceType = UIImagePickerControllerSourceTypeCamera;
+    
+    [self presentViewController:imagePicker animated:YES completion:^{
+        //
+    }];
+}
+
+- (IBAction)pictureFromPhotoLibrary:(id)sender {
+    UIImagePickerController* imagePicker = [[UIImagePickerController alloc] init];
+    imagePicker.delegate = self;
+    
+    imagePicker.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
     
     [self presentViewController:imagePicker animated:YES completion:^{
         //
@@ -141,13 +147,15 @@ static const CGFloat kDefaultZoomMiles = 0.2;
     // set current view controller image
     self.spotImage.image = image;
     
-    // Save the image to Travalt Album in their Photo Library
-    [self.library saveImage:image toAlbum:@"Travalt" withCompletionBlock:^(NSError *error) {
-        NSLog(@"Image saving");
-        if (error!=nil) {
-            NSLog(@"Big error: %@", [error description]);
-        }
-    }];
+    if (picker.sourceType == UIImagePickerControllerSourceTypeCamera) {
+        // Save new images to Travalt Album in their Photo Library
+        [self.library saveImage:image toAlbum:@"Travalt" withCompletionBlock:^(NSError *error) {
+            NSLog(@"Image saving");
+            if (error!=nil) {
+                NSLog(@"Big error: %@", [error description]);
+            }
+        }];
+    }
     
     [coreDataHandler updateCoreData];
     
