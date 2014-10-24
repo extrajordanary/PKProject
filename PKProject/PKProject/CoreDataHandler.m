@@ -12,11 +12,13 @@
 #import "User+Extended.h"
 #import "Spot+Extended.h"
 #import "Photo+Extended.h"
+#import "ServerHandler.h"
 
 // for creating new mangaged objects and querying them
 
 @implementation CoreDataHandler {
     NSManagedObjectContext *theContext;
+    ServerHandler *serverHandler;
 }
 
 #pragma mark - Singleton Methods
@@ -33,6 +35,7 @@
     if (self = [super init]) {
         // ??? - Anything to include here?
         theContext = ((AppDelegate *)[UIApplication sharedApplication].delegate).managedObjectContext;
+        serverHandler = [ServerHandler sharedServerHandler];
     }
     return self;
 }
@@ -72,6 +75,21 @@
     }
     return nil;
 }
+
+-(ServerObject*)returnObjectOfType:(NSString*)type forId:(NSString*)databaseId {
+
+    ServerObject *object;
+    object = [self getObjectWithDatabaseId:databaseId];
+    if (!object) {
+        // if the desired object doesn't already exist, create a new one
+        object = [self createNew:type];
+        [object setValue:databaseId forKey:@"databaseId"];
+        // update object from server
+        [serverHandler updateObjectFromServer:object];
+    }
+    return object;
+}
+
 
 -(NSArray*)getManagedObjects:(NSString*)entityForName {
     // get entity description for entity we are selecting

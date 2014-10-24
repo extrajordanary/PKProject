@@ -19,6 +19,7 @@
 + (id)sharedCoreDataHandler;
 
 -(ServerObject*)getObjectWithDatabaseId:(NSString*)databaseId;
+-(ServerObject*)returnObjectOfType:(NSString*)type forId:(NSString*)databaseId;
 
 -(NSArray*)getManagedObjects:(NSString*)entityForName;
 -(NSArray*)getManagedObjects:(NSString*)entityForName withPredicate:(NSPredicate*)predicate;

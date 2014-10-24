@@ -11,6 +11,7 @@
 #import "Photo+Extended.h"
 #import "ServerObject+Extended.h"
 #import "CoreDataHandler.h"
+#import "ServerHandler.h"
 
 @implementation Spot (Extended)
 
@@ -24,37 +25,37 @@
         // photos and users need to be connected by seeing if core data object with that id already exists
         // if not pull and create it before setting up the connection
         // TODO: create User object
-        [self createAndAddUser:dictionary[@"spotByUser"]];
+        [self createAndAddUser:dictionary[@"spotByUser"][0]];
         // TODO: create Photo objects
         
         [self updateCoreData];
     }
 }
 
--(void)createAndAddUser:(NSArray*)array {
-   /* for (NSString *databaseId in array) {
-        CoreDataHandler *coreDataHandler = [CoreDataHandler sharedCoreDataHandler];
-        User *user;
-        // see if User object already exists in Core Data
-        NSPredicate *aUser = [NSPredicate predicateWithFormat:@"databaseId = %@",databaseId];
-//        NSSortDescriptor *sortBy = [NSSortDescriptor sortDescriptorWithKey:@"databaseId" ascending:YES];
-        NSArray *searchResults = [coreDataHandler getManagedObjects:@"User" withPredicate:aUser];
-        if (searchResults.count > 0) {
-            user = searchResults[0];
-        }
-        
-        if (!user) {
-            // if User object doesn't already exist in Core Data, create it and update from server
-            user = [NSEntityDescription insertNewObjectForEntityForName:@"User" inManagedObjectContext:theContext];
-            
-            NSString *userId = [[NSUserDefaults standardUserDefaults] valueForKey:@"thisUserId"];
-            [newUser setValue:userId forKey:@"databaseId"];
-            [serverHandler updateUserFromServer:newUser];
-            
-            self.aUser = newUser;
-        }
-   }
-    */
+-(void)createAndAddUser:(NSString*)databaseId {
+//    for (NSString *databaseId in array) {
+        // TODO: implement methods such that coreDataHandler and serverHandler are only in ServerObject files
+        /* TODO: OR, create method in coreDataHandler that does all the work of checking if we have that
+         object, creates it if not already existing, refreshes it from the server, and returns in */
+    CoreDataHandler *coreDataHandler = [CoreDataHandler sharedCoreDataHandler];
+//        ServerHandler *serverHandler = [ServerHandler sharedServerHandler];
+//        
+//        User *user;
+//        user = (User*)[coreDataHandler getObjectWithDatabaseId:databaseId];
+//
+//        if (!user) {
+//            // if User object doesn't already exist in Core Data, create it and update from server
+//            user = (User*)[coreDataHandler createNew:@"User"];
+//            
+//            // must set databaseId value before passing it to be updated from server
+//            [user setValue:databaseId forKey:@"databaseId"];
+//            [serverHandler updateUserFromServer:user];
+//            
+//        }
+//   }
+    User *user;
+    user = (User*)[coreDataHandler returnObjectOfType:@"User" forId:databaseId];
+    [self setSpotByUser:user];
 }
 
 -(NSDictionary*)toDictionary {
