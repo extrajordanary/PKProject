@@ -13,6 +13,7 @@
 @implementation ServerObject (Extended)
 
 // for getting an array of databaseIds to save on the server
+#pragma message "The use case for method is a little unclear. Are you trying to filter out objects that already have been synced with the server?"
 -(NSMutableArray*)arrayOfObjectIds:(NSArray*)objects {
     NSMutableArray *array = [[NSMutableArray alloc] init];
     if (objects.count > 0) {
