@@ -11,12 +11,15 @@
 @class User;
 @class Spot;
 @class Photo;
+@class ServerObject;
 
 @interface ServerHandler : NSObject
 
 @property (nonatomic, retain) NSString *myUserId;
 
 + (id) sharedServerHandler;
+
+-(void)updateObjectFromServer:(ServerObject*)object;
 -(void)updateUserFromServer:(User*)user;
 -(void)getSpotsFromServer:(void (^)(NSDictionary*))spotHandlingBlock;
 -(void)pushSpotToServer:(Spot*)spot;

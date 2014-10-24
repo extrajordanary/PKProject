@@ -37,6 +37,11 @@ static NSString* const kPhotos = @"/collections/photos";
     return self;
 }
 
+-(void)updateObjectFromServer:(ServerObject*)object {
+    // see what the object type is, then pass it to the appropriate method
+    NSLog(@"object fake updated from server");
+}
+
 #pragma mark - Users
 // given a User object, method pulls updated User info from server and updates object properties
 - (void)updateUserFromServer:(User*)user {
