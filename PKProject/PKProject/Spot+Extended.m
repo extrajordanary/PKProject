@@ -25,7 +25,7 @@
         // photos and users need to be connected by seeing if core data object with that id already exists
         // if not pull and create it before setting up the connection
         // TODO: create User object
-        [self createAndAddUser:dictionary[@"spotByUser"][0]];
+        [self createAndAddUser:dictionary[@"spotByUser"]];
         // TODO: create Photo objects
         
         [self updateCoreData];
