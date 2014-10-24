@@ -44,8 +44,8 @@ static const CGFloat kDefaultZoomMiles = 0.2;
     [self zoomToCurrentLocation];
     
     // create new Spot and Photo objects
-    newSpot = [coreDataHandler newSpot];
-    newPhoto = [coreDataHandler newPhoto];
+    newSpot = (Spot*)[coreDataHandler createNew:@"Spot"];
+    newPhoto = (Photo*)[coreDataHandler createNew:@"Photo"];
 
     self.spotImage.image = [UIImage imageNamed:@"defaultSpotPhoto.jpg"];
     [self.spotImage setClipsToBounds:YES];
