@@ -47,6 +47,7 @@
 		1762F70119F1BC4400EE71C2 /* Spot.m in Sources */ = {isa = PBXBuildFile; fileRef = 1762F70019F1BC4400EE71C2 /* Spot.m */; };
 		1762F70419F1BC4400EE71C2 /* User.m in Sources */ = {isa = PBXBuildFile; fileRef = 1762F70319F1BC4400EE71C2 /* User.m */; };
 		17A6D94519FAC33F0038EC1E /* AWSiOSSDKv2.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 17A6D94419FAC33F0038EC1E /* AWSiOSSDKv2.framework */; };
+		17A6D94819FACF490038EC1E /* ALAssetsLibrary+CustomPhotoAlbum.m in Sources */ = {isa = PBXBuildFile; fileRef = 17A6D94719FACF490038EC1E /* ALAssetsLibrary+CustomPhotoAlbum.m */; };
 		17C7BF9F19E85A3900BD019A /* ServerObjects+Extended.m in Sources */ = {isa = PBXBuildFile; fileRef = 17C7BF9E19E85A3900BD019A /* ServerObjects+Extended.m */; };
 		17F2C5E319F83C4B008C86AE /* libsqlite3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 17F2C5E219F83C4B008C86AE /* libsqlite3.dylib */; };
 		17F2C5E519F83C56008C86AE /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 17F2C5E419F83C56008C86AE /* libz.dylib */; };
@@ -143,6 +144,8 @@
 		1762F70219F1BC4400EE71C2 /* User.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = User.h; sourceTree = "<group>"; };
 		1762F70319F1BC4400EE71C2 /* User.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = User.m; sourceTree = "<group>"; };
 		17A6D94419FAC33F0038EC1E /* AWSiOSSDKv2.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = AWSiOSSDKv2.framework; sourceTree = "<group>"; };
+		17A6D94619FACF490038EC1E /* ALAssetsLibrary+CustomPhotoAlbum.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "ALAssetsLibrary+CustomPhotoAlbum.h"; sourceTree = "<group>"; };
+		17A6D94719FACF490038EC1E /* ALAssetsLibrary+CustomPhotoAlbum.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "ALAssetsLibrary+CustomPhotoAlbum.m"; sourceTree = "<group>"; };
 		17C7BF9D19E85A3900BD019A /* ServerObject+Extended.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "ServerObject+Extended.h"; sourceTree = "<group>"; };
 		17C7BF9E19E85A3900BD019A /* ServerObjects+Extended.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "ServerObjects+Extended.m"; sourceTree = "<group>"; };
 		17F2C5E219F83C4B008C86AE /* libsqlite3.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libsqlite3.dylib; path = usr/lib/libsqlite3.dylib; sourceTree = SDKROOT; };
@@ -285,6 +288,8 @@
 				171BA9ED19DC7F5800C66676 /* Core Data Classes */,
 				175DA62D19DB493200897710 /* Structure */,
 				175DA60119DA1D2800897710 /* Supporting Files */,
+				17A6D94619FACF490038EC1E /* ALAssetsLibrary+CustomPhotoAlbum.h */,
+				17A6D94719FACF490038EC1E /* ALAssetsLibrary+CustomPhotoAlbum.m */,
 			);
 			path = PKProject;
 			sourceTree = "<group>";
@@ -524,6 +529,7 @@
 				175DA60719DA1D2800897710 /* AppDelegate.m in Sources */,
 				17C7BF9F19E85A3900BD019A /* ServerObjects+Extended.m in Sources */,
 				1762F70419F1BC4400EE71C2 /* User.m in Sources */,
+				17A6D94819FACF490038EC1E /* ALAssetsLibrary+CustomPhotoAlbum.m in Sources */,
 				1762F6FE19F1BC4400EE71C2 /* Photo.m in Sources */,
 				171BA9F619DF545C00C66676 /* ServerHandler.m in Sources */,
 				175DA60A19DA1D2800897710 /* PKProject.xcdatamodeld in Sources */,

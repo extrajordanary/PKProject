@@ -8,6 +8,7 @@
 
 #import "CreateSpotViewController.h"
 #import "AppDelegate.h"
+#import "ALAssetsLibrary+CustomPhotoAlbum.h"
 
 #import "ServerHandler.h"
 #import "CoreDataHandler.h"
@@ -19,6 +20,7 @@
 
 @property (strong, nonatomic) IBOutlet MKMapView *mapView;
 @property (strong, nonatomic) IBOutlet UIImageView *spotImage;
+@property (strong, atomic) ALAssetsLibrary* library;
 
 @end
 
@@ -38,6 +40,8 @@ static const CGFloat kDefaultZoomMiles = 0.2;
     // Do any additional setup after loading the view.
     serverHandler = [ServerHandler sharedServerHandler];
     coreDataHandler = [CoreDataHandler sharedCoreDataHandler];
+    self.library = [[ALAssetsLibrary alloc] init];
+    
     spotMarker = [[MKPointAnnotation alloc] init];
     
     self.locationManager.delegate = self;
@@ -56,6 +60,10 @@ static const CGFloat kDefaultZoomMiles = 0.2;
     
     spotMarker.coordinate = self.locationManager.location.coordinate;
     [self.mapView addAnnotation:spotMarker];
+}
+
+-(void)viewWillDisappear:(BOOL)animated {
+    [super viewWillDisappear:animated];
 }
 
 #pragma mark - Location Manager
@@ -130,15 +138,20 @@ static const CGFloat kDefaultZoomMiles = 0.2;
 
 - (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingImage:(UIImage *)image editingInfo:(NSDictionary *)editingInfo
 {
-    [self dismissModalViewControllerAnimated:YES];
-    
     // set current view controller image
     self.spotImage.image = image;
     
-    // assign photo to Photo
-    // TODO: save the image locally and online and update properties
-
+    // Save the image to Travalt Album in their Photo Library
+    [self.library saveImage:image toAlbum:@"Travalt" withCompletionBlock:^(NSError *error) {
+        NSLog(@"Image saving");
+        if (error!=nil) {
+            NSLog(@"Big error: %@", [error description]);
+        }
+    }];
+    
     [coreDataHandler updateCoreData];
+    
+    [self dismissModalViewControllerAnimated:YES];
 }
 
 #pragma mark - Data
@@ -161,6 +174,11 @@ static const CGFloat kDefaultZoomMiles = 0.2;
     // !!! - AWS testing only
     newPhoto.onlinePath = @"https://s3-us-west-1.amazonaws.com/travalt-photos/defaultSpotPhoto.jpg";
     
+    // Asynchronusly:
+    // save photo to local cache and save path to photo.localPath
+    
+    // upload photo to server and save path to photo.onlinePath
+    
     [newSpot setSpotByUser:self.thisUser];
     [newPhoto setPhotoByUser:self.thisUser];
     [newSpot addSpotPhotosObject:newPhoto];
@@ -181,6 +199,7 @@ static const CGFloat kDefaultZoomMiles = 0.2;
     else if ([segue.identifier isEqualToString:@"Save"]) {
         [self saveNewSpot];
     }
+    self.library = nil;
 }
 
 
