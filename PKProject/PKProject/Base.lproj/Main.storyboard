@@ -31,6 +31,7 @@
                             </mapView>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" alwaysBounceHorizontal="YES" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="Y2f-Cd-NF3">
                                 <rect key="frame" x="-4" y="356" width="608" height="200"/>
+                                <color key="backgroundColor" red="0.1101989790126511" green="0.47133492224676798" blue="0.68417503720238093" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="300" id="89T-Gc-4T0"/>
                                     <constraint firstAttribute="width" secondItem="Y2f-Cd-NF3" secondAttribute="height" multiplier="1:1" id="SGp-dM-4wn"/>
@@ -97,6 +98,12 @@
                                     <outlet property="delegate" destination="TcK-Hn-xC7" id="M8L-gs-BOG"/>
                                 </connections>
                             </collectionView>
+                            <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="No Nearby Spots :(" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="UmG-Hv-TSs">
+                                <rect key="frame" x="175" y="438" width="250" height="36"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="30"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                             <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="da5-SJ-rr9">
                                 <rect key="frame" x="-4" y="556" width="608" height="44"/>
                                 <color key="backgroundColor" red="0.083179518090000001" green="0.61142557959999999" blue="0.84152088989999996" alpha="1" colorSpace="calibratedRGB"/>
@@ -146,6 +153,7 @@
                             <constraint firstItem="37e-li-9oJ" firstAttribute="top" secondItem="iQc-0O-ViA" secondAttribute="topMargin" id="6Vm-5g-9Od"/>
                             <constraint firstAttribute="trailingMargin" secondItem="eVJ-2k-ZOB" secondAttribute="trailing" constant="-20" id="71G-hD-lWh"/>
                             <constraint firstItem="eVJ-2k-ZOB" firstAttribute="leading" secondItem="iQc-0O-ViA" secondAttribute="leadingMargin" constant="-20" id="EEL-jF-E1r"/>
+                            <constraint firstItem="Y2f-Cd-NF3" firstAttribute="centerX" secondItem="UmG-Hv-TSs" secondAttribute="centerX" id="Lql-1i-8PL"/>
                             <constraint firstItem="Z82-Z6-PAr" firstAttribute="top" secondItem="da5-SJ-rr9" secondAttribute="bottom" id="NdU-fU-vzr"/>
                             <constraint firstItem="da5-SJ-rr9" firstAttribute="top" secondItem="Y2f-Cd-NF3" secondAttribute="bottom" id="Nzi-UM-5K0"/>
                             <constraint firstAttribute="trailingMargin" secondItem="37e-li-9oJ" secondAttribute="trailing" constant="-20" id="PW7-Wr-Q6T"/>
@@ -156,6 +164,7 @@
                             <constraint firstItem="37e-li-9oJ" firstAttribute="leading" secondItem="iQc-0O-ViA" secondAttribute="leadingMargin" constant="-20" id="eU3-lS-zjh"/>
                             <constraint firstItem="Y2f-Cd-NF3" firstAttribute="leading" secondItem="iQc-0O-ViA" secondAttribute="leadingMargin" constant="-20" id="nGX-Yl-cbL"/>
                             <constraint firstItem="da5-SJ-rr9" firstAttribute="leading" secondItem="iQc-0O-ViA" secondAttribute="leadingMargin" constant="-20" id="o6Q-SX-6gr"/>
+                            <constraint firstItem="Y2f-Cd-NF3" firstAttribute="centerY" secondItem="UmG-Hv-TSs" secondAttribute="centerY" id="pYX-kJ-YWa"/>
                             <constraint firstItem="Z82-Z6-PAr" firstAttribute="top" secondItem="Y2f-Cd-NF3" secondAttribute="bottom" id="u2Q-zg-ojZ"/>
                             <constraint firstItem="Y2f-Cd-NF3" firstAttribute="top" secondItem="eVJ-2k-ZOB" secondAttribute="bottom" id="u9u-wC-7sF"/>
                         </constraints>
@@ -170,6 +179,7 @@
                     <connections>
                         <outlet property="collectionView" destination="Y2f-Cd-NF3" id="a67-Rd-u5i"/>
                         <outlet property="mapView" destination="eVJ-2k-ZOB" id="n0z-PB-vjS"/>
+                        <outlet property="noSpotsText" destination="UmG-Hv-TSs" id="t7u-cb-IdY"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="RhI-xC-4p8" userLabel="First Responder" sceneMemberID="firstResponder"/>

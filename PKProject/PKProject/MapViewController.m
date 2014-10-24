@@ -23,6 +23,7 @@
 @property (strong, nonatomic) CLLocationManager *locationManager;
 @property (strong, nonatomic) User *thisUser;
 @property (strong, nonatomic) NSMutableArray *nearbySpots;
+@property (strong, nonatomic) IBOutlet UILabel *noSpotsText;
 
 @end
 
@@ -185,8 +186,13 @@ static const CGFloat kDefaultZoomMiles = 0.5; // TODO : make dynamic/adjustable?
             [self.nearbySpots addObject:nextSpot];
         }
         dispatch_async(dispatch_get_main_queue(), ^(void){
-            [self placeSpotMarkers];
-            [self.collectionView reloadData]; // populates scrollable photo previews
+            if (self.nearbySpots.count > 0) {
+                self.noSpotsText.hidden = YES;
+                [self placeSpotMarkers];
+                [self.collectionView reloadData]; // populates scrollable photo previews
+            } else {
+                self.noSpotsText.hidden = NO;
+            }
         });
     }];
 }

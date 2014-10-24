@@ -55,7 +55,8 @@
         // if localPath has been set and is valid, load image
         // set image to return variable
         NSLog(@"local cache image");
-        image = [UIImage imageWithData:[NSData dataWithContentsOfFile:self.localPath]];
+//        image = [UIImage imageWithData:[NSData dataWithContentsOfFile:self.localPath]];
+        image = [UIImage imageWithContentsOfFile:self.localPath];
     } else if (self.onlinePath && ![self.onlinePath isEqualToString:@"NA"]) {
         // if onlinePath has been set and is valid, load image
         NSData *recievedData = [NSData dataWithContentsOfURL:[NSURL URLWithString:self.onlinePath]];
