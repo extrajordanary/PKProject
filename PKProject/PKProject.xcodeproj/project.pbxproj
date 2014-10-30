@@ -28,6 +28,13 @@
 		1734B7A219E469A1009B228A /* sampleSpotPic21.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 1734B78E19E469A1009B228A /* sampleSpotPic21.jpg */; };
 		1734B7A319E469A1009B228A /* sampleSpotPic22.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 1734B78F19E469A1009B228A /* sampleSpotPic22.jpg */; };
 		1734B7A619E4954A009B228A /* CreateSpotViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1734B7A519E4954A009B228A /* CreateSpotViewController.m */; };
+		175BC87A1A02BB5800EFAEEA /* Bolts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 175BC8731A02BB5800EFAEEA /* Bolts.framework */; };
+		175BC87B1A02BB5800EFAEEA /* GZIP.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 175BC8741A02BB5800EFAEEA /* GZIP.framework */; };
+		175BC87C1A02BB5800EFAEEA /* Mantle.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 175BC8751A02BB5800EFAEEA /* Mantle.framework */; };
+		175BC87D1A02BB5800EFAEEA /* Reachability.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 175BC8761A02BB5800EFAEEA /* Reachability.framework */; };
+		175BC87E1A02BB5800EFAEEA /* TMCache.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 175BC8771A02BB5800EFAEEA /* TMCache.framework */; };
+		175BC87F1A02BB5800EFAEEA /* UICKeyChainStore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 175BC8781A02BB5800EFAEEA /* UICKeyChainStore.framework */; };
+		175BC8801A02BB5800EFAEEA /* XMLDictionary.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 175BC8791A02BB5800EFAEEA /* XMLDictionary.framework */; };
 		175DA60419DA1D2800897710 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 175DA60319DA1D2800897710 /* main.m */; };
 		175DA60719DA1D2800897710 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 175DA60619DA1D2800897710 /* AppDelegate.m */; };
 		175DA60A19DA1D2800897710 /* PKProject.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 175DA60819DA1D2800897710 /* PKProject.xcdatamodeld */; };
@@ -52,13 +59,6 @@
 		17C7BF9F19E85A3900BD019A /* ServerObjects+Extended.m in Sources */ = {isa = PBXBuildFile; fileRef = 17C7BF9E19E85A3900BD019A /* ServerObjects+Extended.m */; };
 		17F2C5E319F83C4B008C86AE /* libsqlite3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 17F2C5E219F83C4B008C86AE /* libsqlite3.dylib */; };
 		17F2C5E519F83C56008C86AE /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 17F2C5E419F83C56008C86AE /* libz.dylib */; };
-		17F2C5ED19F83CD4008C86AE /* Bolts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 17F2C5E619F83CD4008C86AE /* Bolts.framework */; };
-		17F2C5EE19F83CD4008C86AE /* GZIP.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 17F2C5E719F83CD4008C86AE /* GZIP.framework */; };
-		17F2C5EF19F83CD4008C86AE /* Mantle.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 17F2C5E819F83CD4008C86AE /* Mantle.framework */; };
-		17F2C5F019F83CD4008C86AE /* Reachability.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 17F2C5E919F83CD4008C86AE /* Reachability.framework */; };
-		17F2C5F119F83CD4008C86AE /* TMCache.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 17F2C5EA19F83CD4008C86AE /* TMCache.framework */; };
-		17F2C5F219F83CD4008C86AE /* UICKeyChainStore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 17F2C5EB19F83CD4008C86AE /* UICKeyChainStore.framework */; };
-		17F2C5F319F83CD4008C86AE /* XMLDictionary.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 17F2C5EC19F83CD4008C86AE /* XMLDictionary.framework */; };
 		17F2C60519F83D6E008C86AE /* autoscaling-2011-01-01.json in Resources */ = {isa = PBXBuildFile; fileRef = 17F2C5F619F83D6E008C86AE /* autoscaling-2011-01-01.json */; };
 		17F2C60619F83D6E008C86AE /* cib-2014-06-30.json in Resources */ = {isa = PBXBuildFile; fileRef = 17F2C5F719F83D6E008C86AE /* cib-2014-06-30.json */; };
 		17F2C60719F83D6E008C86AE /* css-2014-06-30.json in Resources */ = {isa = PBXBuildFile; fileRef = 17F2C5F819F83D6E008C86AE /* css-2014-06-30.json */; };
@@ -114,6 +114,13 @@
 		1734B78F19E469A1009B228A /* sampleSpotPic22.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = sampleSpotPic22.jpg; sourceTree = "<group>"; };
 		1734B7A419E4954A009B228A /* CreateSpotViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CreateSpotViewController.h; sourceTree = "<group>"; };
 		1734B7A519E4954A009B228A /* CreateSpotViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CreateSpotViewController.m; sourceTree = "<group>"; };
+		175BC8731A02BB5800EFAEEA /* Bolts.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Bolts.framework; sourceTree = "<group>"; };
+		175BC8741A02BB5800EFAEEA /* GZIP.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = GZIP.framework; sourceTree = "<group>"; };
+		175BC8751A02BB5800EFAEEA /* Mantle.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Mantle.framework; sourceTree = "<group>"; };
+		175BC8761A02BB5800EFAEEA /* Reachability.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Reachability.framework; sourceTree = "<group>"; };
+		175BC8771A02BB5800EFAEEA /* TMCache.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = TMCache.framework; sourceTree = "<group>"; };
+		175BC8781A02BB5800EFAEEA /* UICKeyChainStore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = UICKeyChainStore.framework; sourceTree = "<group>"; };
+		175BC8791A02BB5800EFAEEA /* XMLDictionary.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = XMLDictionary.framework; sourceTree = "<group>"; };
 		175DA5FE19DA1D2800897710 /* CVALT.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CVALT.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		175DA60219DA1D2800897710 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		175DA60319DA1D2800897710 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -152,13 +159,6 @@
 		17C7BF9E19E85A3900BD019A /* ServerObjects+Extended.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "ServerObjects+Extended.m"; sourceTree = "<group>"; };
 		17F2C5E219F83C4B008C86AE /* libsqlite3.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libsqlite3.dylib; path = usr/lib/libsqlite3.dylib; sourceTree = SDKROOT; };
 		17F2C5E419F83C56008C86AE /* libz.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.dylib; path = usr/lib/libz.dylib; sourceTree = SDKROOT; };
-		17F2C5E619F83CD4008C86AE /* Bolts.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Bolts.framework; path = "../../../../../Desktop/aws-ios-sdk-2.0.8/third-party/Bolts.framework"; sourceTree = "<group>"; };
-		17F2C5E719F83CD4008C86AE /* GZIP.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GZIP.framework; path = "../../../../../Desktop/aws-ios-sdk-2.0.8/third-party/GZIP.framework"; sourceTree = "<group>"; };
-		17F2C5E819F83CD4008C86AE /* Mantle.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Mantle.framework; path = "../../../../../Desktop/aws-ios-sdk-2.0.8/third-party/Mantle.framework"; sourceTree = "<group>"; };
-		17F2C5E919F83CD4008C86AE /* Reachability.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Reachability.framework; path = "../../../../../Desktop/aws-ios-sdk-2.0.8/third-party/Reachability.framework"; sourceTree = "<group>"; };
-		17F2C5EA19F83CD4008C86AE /* TMCache.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = TMCache.framework; path = "../../../../../Desktop/aws-ios-sdk-2.0.8/third-party/TMCache.framework"; sourceTree = "<group>"; };
-		17F2C5EB19F83CD4008C86AE /* UICKeyChainStore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UICKeyChainStore.framework; path = "../../../../../Desktop/aws-ios-sdk-2.0.8/third-party/UICKeyChainStore.framework"; sourceTree = "<group>"; };
-		17F2C5EC19F83CD4008C86AE /* XMLDictionary.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XMLDictionary.framework; path = "../../../../../Desktop/aws-ios-sdk-2.0.8/third-party/XMLDictionary.framework"; sourceTree = "<group>"; };
 		17F2C5F619F83D6E008C86AE /* autoscaling-2011-01-01.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "autoscaling-2011-01-01.json"; sourceTree = "<group>"; };
 		17F2C5F719F83D6E008C86AE /* cib-2014-06-30.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "cib-2014-06-30.json"; sourceTree = "<group>"; };
 		17F2C5F819F83D6E008C86AE /* css-2014-06-30.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "css-2014-06-30.json"; sourceTree = "<group>"; };
@@ -184,15 +184,15 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				17F2C5ED19F83CD4008C86AE /* Bolts.framework in Frameworks */,
-				17F2C5EE19F83CD4008C86AE /* GZIP.framework in Frameworks */,
-				17F2C5EF19F83CD4008C86AE /* Mantle.framework in Frameworks */,
-				17F2C5F019F83CD4008C86AE /* Reachability.framework in Frameworks */,
-				17F2C5F119F83CD4008C86AE /* TMCache.framework in Frameworks */,
-				17F2C5F219F83CD4008C86AE /* UICKeyChainStore.framework in Frameworks */,
-				17F2C5F319F83CD4008C86AE /* XMLDictionary.framework in Frameworks */,
+				175BC87D1A02BB5800EFAEEA /* Reachability.framework in Frameworks */,
+				175BC87E1A02BB5800EFAEEA /* TMCache.framework in Frameworks */,
+				175BC87B1A02BB5800EFAEEA /* GZIP.framework in Frameworks */,
+				175BC87A1A02BB5800EFAEEA /* Bolts.framework in Frameworks */,
 				17F2C5E519F83C56008C86AE /* libz.dylib in Frameworks */,
+				175BC87F1A02BB5800EFAEEA /* UICKeyChainStore.framework in Frameworks */,
 				17F2C5E319F83C4B008C86AE /* libsqlite3.dylib in Frameworks */,
+				175BC8801A02BB5800EFAEEA /* XMLDictionary.framework in Frameworks */,
+				175BC87C1A02BB5800EFAEEA /* Mantle.framework in Frameworks */,
 				17A6D94519FAC33F0038EC1E /* AWSiOSSDKv2.framework in Frameworks */,
 				175DA63119DB499A00897710 /* CoreLocation.framework in Frameworks */,
 				175DA62F19DB499300897710 /* MapKit.framework in Frameworks */,
@@ -353,13 +353,13 @@
 		17F2C5F419F83CE0008C86AE /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				17F2C5E619F83CD4008C86AE /* Bolts.framework */,
-				17F2C5E719F83CD4008C86AE /* GZIP.framework */,
-				17F2C5E819F83CD4008C86AE /* Mantle.framework */,
-				17F2C5E919F83CD4008C86AE /* Reachability.framework */,
-				17F2C5EA19F83CD4008C86AE /* TMCache.framework */,
-				17F2C5EB19F83CD4008C86AE /* UICKeyChainStore.framework */,
-				17F2C5EC19F83CD4008C86AE /* XMLDictionary.framework */,
+				175BC8731A02BB5800EFAEEA /* Bolts.framework */,
+				175BC8741A02BB5800EFAEEA /* GZIP.framework */,
+				175BC8751A02BB5800EFAEEA /* Mantle.framework */,
+				175BC8761A02BB5800EFAEEA /* Reachability.framework */,
+				175BC8771A02BB5800EFAEEA /* TMCache.framework */,
+				175BC8781A02BB5800EFAEEA /* UICKeyChainStore.framework */,
+				175BC8791A02BB5800EFAEEA /* XMLDictionary.framework */,
 				17F2C5E419F83C56008C86AE /* libz.dylib */,
 				17F2C5E219F83C4B008C86AE /* libsqlite3.dylib */,
 				17A6D94419FAC33F0038EC1E /* AWSiOSSDKv2.framework */,
@@ -667,8 +667,6 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
-					"/Users/Jordan/Desktop/aws-ios-sdk-2.0.8/frameworks",
-					"/Users/Jordan/Desktop/aws-ios-sdk-2.0.8/third-party",
 					"$(PROJECT_DIR)",
 				);
 				INFOPLIST_FILE = PKProject/Info.plist;
@@ -684,8 +682,6 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
-					"/Users/Jordan/Desktop/aws-ios-sdk-2.0.8/frameworks",
-					"/Users/Jordan/Desktop/aws-ios-sdk-2.0.8/third-party",
 					"$(PROJECT_DIR)",
 				);
 				INFOPLIST_FILE = PKProject/Info.plist;
