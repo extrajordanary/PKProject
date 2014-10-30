@@ -45,7 +45,7 @@
     NSError *error = nil;
     
     // save the context to persist changes
-    [theContext save:&error];
+    [theContext save:&error]; // !!! Thread 4: EXC_BAD_ACCESS (code = 1, address=...)
     
     if (error) {
         // TODO: error handling
@@ -84,9 +84,9 @@
         // if the desired object doesn't already exist, create a new one
         object = [self createNew:type];
         [object setValue:databaseId forKey:@"databaseId"];
-        // update object from server
-        [serverHandler updateObjectFromServer:object];
     }
+    // update object from server
+    [serverHandler updateObjectFromServer:object];
     return object;
 }
 

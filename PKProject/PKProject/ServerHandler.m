@@ -13,7 +13,7 @@
 
 // This class is responsible for handling all calls to the server
 
-static NSString* const kBaseURL = @"http://travalt.herokuapp.com";
+static NSString* const kBaseURL = @"http://travalt.herokuapp.com"; //TODO: change name on heroku to cvalt
 static NSString* const kUsers = @"/collections/users"; 
 static NSString* const kSpots = @"/collections/spots";
 static NSString* const kPhotos = @"/collections/photos";
@@ -37,13 +37,25 @@ static NSString* const kPhotos = @"/collections/photos";
     return self;
 }
 
+#pragma mark - Generalized Method Calls
 -(void)updateObjectFromServer:(ServerObject*)object {
     // see what the object type is, then pass it to the appropriate method
+    // TODO: implement
+    if ([object isKindOfClass:[User class]]) {
+        NSLog(@"USER updated from server");
+        [self updateUserFromServer:(User*)object];
+    } else if ([object isKindOfClass:[Photo class]]) {
+        NSLog(@"PHOTO updated from server");
+        [self updatePhotoFromServer:(Photo*)object];
+    } else {
     NSLog(@"object fake updated from server");
+    }
 }
 
+// TODO: same as above for pushObjectToServer:(ServerObject*)object
+
 #pragma mark - Users
-// given a User object, method pulls updated User info from server and updates object properties
+// given a User object, method pulls updated User info from server and updates core data properties
 - (void)updateUserFromServer:(User*)user {
     NSString* userId = user.databaseId;
     NSString* requestURL = [NSString stringWithFormat:@"%@%@/%@",kBaseURL,kUsers,userId];
@@ -173,6 +185,30 @@ static NSString* const kPhotos = @"/collections/photos";
             }
         }
     }];
+    [dataTask resume];
+}
+
+// given a Photo object, method pulls updated Photo info from server and updates core data properties
+- (void)updatePhotoFromServer:(Photo*)photo {
+    NSString* photoId = photo.databaseId;
+    NSString* requestURL = [NSString stringWithFormat:@"%@%@/%@",kBaseURL,kPhotos,photoId];
+    NSURL* url = [NSURL URLWithString:requestURL];
+    NSMutableURLRequest* request = [NSMutableURLRequest requestWithURL:url];
+    
+    request.HTTPMethod = @"GET";
+    [request addValue:@"application/json" forHTTPHeaderField:@"Accept"];
+    
+    NSURLSessionConfiguration* config = [NSURLSessionConfiguration defaultSessionConfiguration];
+    NSURLSession* session = [NSURLSession sessionWithConfiguration:config];
+    
+    NSURLSessionDataTask* dataTask = [session dataTaskWithRequest:request
+                                                completionHandler:^(NSData *data, NSURLResponse *response, NSError *error) {
+                                                    if (error == nil) {
+                                                        NSDictionary* responseDictionary = [NSJSONSerialization JSONObjectWithData:data options:0 error:NULL];
+                                                        [photo updateFromDictionary:responseDictionary];
+                                                    }
+                                                }];
+    
     [dataTask resume];
 }
 

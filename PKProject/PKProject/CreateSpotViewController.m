@@ -14,7 +14,7 @@
 #import "CoreDataHandler.h"
 #import "Spot+Extended.h"
 #import "User+Extended.h"
-#import "Photo.h"
+#import "Photo+Extended.h"
 
 @interface CreateSpotViewController ()
 
@@ -180,16 +180,17 @@ static const CGFloat kDefaultZoomMiles = 0.2;
     newPhoto.longitude = [NSNumber numberWithDouble:spotMarker.coordinate.longitude];
     
     // !!! - AWS testing only
-    newPhoto.onlinePath = @"https://s3-us-west-1.amazonaws.com/travalt-photos/defaultSpotPhoto.jpg";
+    newPhoto.onlinePath = @"https://s3-us-west-1.amazonaws.com/cvalt-photos/cvalt-logo-square2.png";
     
-    // save photo to local cache and save path to photo.localPath
-    NSData *saveImage = UIImageJPEGRepresentation(self.spotImage.image,1.0);
-    NSString *cachesFolder = [NSSearchPathForDirectoriesInDomains(NSCachesDirectory, NSUserDomainMask, YES) lastObject];
-    // TODO: want this to be Photo's databaseId, temp using random number
-    NSString *randomFileName = [NSString stringWithFormat:@"photo%i", arc4random_uniform(9999)];
-    NSString *file = [cachesFolder stringByAppendingPathComponent:randomFileName];
-    newPhoto.localPath = file;
-    [saveImage writeToFile:file options:NSDataWritingAtomic error:nil];
+//    // save photo to local cache and save path to photo.localPath
+//    NSData *saveImage = UIImageJPEGRepresentation(self.spotImage.image,1.0);
+//    NSString *cachesFolder = [NSSearchPathForDirectoriesInDomains(NSCachesDirectory, NSUserDomainMask, YES) lastObject];
+//    // TODO: want this to be Photo's databaseId, temp using random number
+//    NSString *randomFileName = [NSString stringWithFormat:@"photo%i", arc4random_uniform(9999)];
+//    NSString *file = [cachesFolder stringByAppendingPathComponent:randomFileName];
+//    newPhoto.localPath = file;
+//    [saveImage writeToFile:file options:NSDataWritingAtomic error:nil];
+    [newPhoto saveImageToLocalCache:self.spotImage.image];
     
     // Asynchronusly: upload photo to server and save path to photo.onlinePath
     

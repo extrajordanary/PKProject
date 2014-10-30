@@ -21,7 +21,6 @@
         self.longitude = dictionary[@"longitude"];
         self.localPath = dictionary[@"localPath"];
         self.onlinePath = dictionary[@"onlinePath"];
-//        self.onlinePath = @"https://s3-us-west-1.amazonaws.com/travalt-photos/defaultSpotPhoto.jpg";
         // TODO: photoByUser - but I don't need to create these objects every time.
         // TODO: photoSpot
         
@@ -54,10 +53,12 @@
     if (self.localPath && ![self.localPath isEqualToString:@"NA"]) {
         // if localPath has been set and is valid, load image
         // set image to return variable
-        NSLog(@"local cache image");
-//        image = [UIImage imageWithData:[NSData dataWithContentsOfFile:self.localPath]];
+        NSLog(@"local image");
         image = [UIImage imageWithContentsOfFile:self.localPath];
-    } else if (self.onlinePath && ![self.onlinePath isEqualToString:@"NA"]) {
+    }
+    // if image is still nil and there's a valid online path
+    if (!image && self.onlinePath && ![self.onlinePath isEqualToString:@"NA"]) {
+        NSLog(@"online image");
         // if onlinePath has been set and is valid, load image
         NSData *recievedData = [NSData dataWithContentsOfURL:[NSURL URLWithString:self.onlinePath]];
         // save image to a local URL
@@ -66,6 +67,17 @@
         image =[UIImage imageWithData:recievedData];
     }
     return image;
+}
+
+-(void)saveImageToLocalCache:(UIImage*)image {
+    // save photo to local cache and save path to photo.localPath
+    NSData *saveImage = UIImageJPEGRepresentation(image,1.0);
+    NSString *cachesFolder = [NSSearchPathForDirectoriesInDomains(NSCachesDirectory, NSUserDomainMask, YES) lastObject];
+    // TODO: want this to be Photo's databaseId, temp using random number
+    NSString *randomFileName = [NSString stringWithFormat:@"photo%i", arc4random_uniform(9999)];
+    NSString *file = [cachesFolder stringByAppendingPathComponent:randomFileName];
+    self.localPath = file;
+    [saveImage writeToFile:file options:NSDataWritingAtomic error:nil];
 }
 
 @end

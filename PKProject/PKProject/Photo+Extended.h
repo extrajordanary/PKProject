@@ -14,5 +14,6 @@
 -(void)updateFromDictionary:(NSDictionary*)dictionary;
 -(NSDictionary*)toDictionary;
 -(UIImage*)getImage;
+-(void)saveImageToLocalCache:(UIImage*)image;
 
 @end
