@@ -182,7 +182,8 @@ static const CGFloat kDefaultZoomMiles = 0.2;
     // !!! - AWS testing only
     newPhoto.onlinePath = @"https://s3-us-west-1.amazonaws.com/cvalt-photos/cvalt-logo-square2.png";
     
-//    // save photo to local cache and save path to photo.localPath
+    // save photo to local cache and save path to photo.localPath
+    [newPhoto saveImageToLocalCache:self.spotImage.image];
 //    NSData *saveImage = UIImageJPEGRepresentation(self.spotImage.image,1.0);
 //    NSString *cachesFolder = [NSSearchPathForDirectoriesInDomains(NSCachesDirectory, NSUserDomainMask, YES) lastObject];
 //    // TODO: want this to be Photo's databaseId, temp using random number
@@ -190,9 +191,8 @@ static const CGFloat kDefaultZoomMiles = 0.2;
 //    NSString *file = [cachesFolder stringByAppendingPathComponent:randomFileName];
 //    newPhoto.localPath = file;
 //    [saveImage writeToFile:file options:NSDataWritingAtomic error:nil];
-    [newPhoto saveImageToLocalCache:self.spotImage.image];
     
-    // Asynchronusly: upload photo to server and save path to photo.onlinePath
+    // TODO: Asynchronusly: upload photo to server and save path to photo.onlinePath
     
     [newSpot setSpotByUser:self.thisUser];
     [newSpot addSpotPhotosObject:newPhoto];

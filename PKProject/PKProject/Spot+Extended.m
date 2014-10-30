@@ -67,11 +67,11 @@
 
 -(UIImage*)getThumbnail {
     UIImage *image;
+    NSLog(@"getting photo...");
     // if there are Photo objects associated with this spot, get the image of the first one
     if (self.spotPhotos.allObjects.count > 0) {
         Photo *firstPhoto = self.spotPhotos.allObjects[0];
         image = [firstPhoto getImage];
-        NSLog(@"getting photo...");
     }
     // if there are no Photo objects or the returned value is nil, use the "no image found" photo
     if (!image) {
