@@ -48,6 +48,7 @@
 		1762F70419F1BC4400EE71C2 /* User.m in Sources */ = {isa = PBXBuildFile; fileRef = 1762F70319F1BC4400EE71C2 /* User.m */; };
 		17A6D94519FAC33F0038EC1E /* AWSiOSSDKv2.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 17A6D94419FAC33F0038EC1E /* AWSiOSSDKv2.framework */; };
 		17A6D94819FACF490038EC1E /* ALAssetsLibrary+CustomPhotoAlbum.m in Sources */ = {isa = PBXBuildFile; fileRef = 17A6D94719FACF490038EC1E /* ALAssetsLibrary+CustomPhotoAlbum.m */; };
+		17BA1B7A1A02B31B008E59CD /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 17BA1B791A02B31B008E59CD /* Images.xcassets */; };
 		17C7BF9F19E85A3900BD019A /* ServerObjects+Extended.m in Sources */ = {isa = PBXBuildFile; fileRef = 17C7BF9E19E85A3900BD019A /* ServerObjects+Extended.m */; };
 		17F2C5E319F83C4B008C86AE /* libsqlite3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 17F2C5E219F83C4B008C86AE /* libsqlite3.dylib */; };
 		17F2C5E519F83C56008C86AE /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 17F2C5E419F83C56008C86AE /* libz.dylib */; };
@@ -113,7 +114,7 @@
 		1734B78F19E469A1009B228A /* sampleSpotPic22.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = sampleSpotPic22.jpg; sourceTree = "<group>"; };
 		1734B7A419E4954A009B228A /* CreateSpotViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CreateSpotViewController.h; sourceTree = "<group>"; };
 		1734B7A519E4954A009B228A /* CreateSpotViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CreateSpotViewController.m; sourceTree = "<group>"; };
-		175DA5FE19DA1D2800897710 /* PKProject.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PKProject.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		175DA5FE19DA1D2800897710 /* CVALT.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CVALT.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		175DA60219DA1D2800897710 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		175DA60319DA1D2800897710 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		175DA60519DA1D2800897710 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -146,6 +147,7 @@
 		17A6D94419FAC33F0038EC1E /* AWSiOSSDKv2.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = AWSiOSSDKv2.framework; sourceTree = "<group>"; };
 		17A6D94619FACF490038EC1E /* ALAssetsLibrary+CustomPhotoAlbum.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "ALAssetsLibrary+CustomPhotoAlbum.h"; sourceTree = "<group>"; };
 		17A6D94719FACF490038EC1E /* ALAssetsLibrary+CustomPhotoAlbum.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "ALAssetsLibrary+CustomPhotoAlbum.m"; sourceTree = "<group>"; };
+		17BA1B791A02B31B008E59CD /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		17C7BF9D19E85A3900BD019A /* ServerObject+Extended.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "ServerObject+Extended.h"; sourceTree = "<group>"; };
 		17C7BF9E19E85A3900BD019A /* ServerObjects+Extended.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "ServerObjects+Extended.m"; sourceTree = "<group>"; };
 		17F2C5E219F83C4B008C86AE /* libsqlite3.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libsqlite3.dylib; path = usr/lib/libsqlite3.dylib; sourceTree = SDKROOT; };
@@ -252,6 +254,7 @@
 		175DA5F519DA1D2800897710 = {
 			isa = PBXGroup;
 			children = (
+				17BA1B791A02B31B008E59CD /* Images.xcassets */,
 				17F2C5F519F83D6E008C86AE /* service-definitions */,
 				17F2C5F419F83CE0008C86AE /* Frameworks */,
 				175DA60019DA1D2800897710 /* PKProject */,
@@ -263,7 +266,7 @@
 		175DA5FF19DA1D2800897710 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				175DA5FE19DA1D2800897710 /* PKProject.app */,
+				175DA5FE19DA1D2800897710 /* CVALT.app */,
 				175DA61A19DA1D2800897710 /* PKProjectTests.xctest */,
 			);
 			name = Products;
@@ -405,7 +408,7 @@
 			);
 			name = PKProject;
 			productName = PKProject;
-			productReference = 175DA5FE19DA1D2800897710 /* PKProject.app */;
+			productReference = 175DA5FE19DA1D2800897710 /* CVALT.app */;
 			productType = "com.apple.product-type.application";
 		};
 		175DA61919DA1D2800897710 /* PKProjectTests */ = {
@@ -471,6 +474,7 @@
 				1734B79119E469A1009B228A /* sampleSpotPic04.jpg in Resources */,
 				17F2C60919F83D6E008C86AE /* ec2-2014-06-15.json in Resources */,
 				1734B79519E469A1009B228A /* sampleSpotPic08.jpg in Resources */,
+				17BA1B7A1A02B31B008E59CD /* Images.xcassets in Resources */,
 				1734B79919E469A1009B228A /* sampleSpotPic12.jpg in Resources */,
 				1734B79E19E469A1009B228A /* sampleSpotPic17.jpg in Resources */,
 				1734B79219E469A1009B228A /* sampleSpotPic05.jpg in Resources */,
@@ -670,7 +674,7 @@
 				INFOPLIST_FILE = PKProject/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				OTHER_LDFLAGS = "-ObjC";
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = CVALT;
 			};
 			name = Debug;
 		};
@@ -687,7 +691,7 @@
 				INFOPLIST_FILE = PKProject/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				OTHER_LDFLAGS = "-ObjC";
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = CVALT;
 			};
 			name = Release;
 		};
