@@ -20,7 +20,7 @@
 @property (nonatomic, retain) NSNumber * numberOfFavorites;
 @property (nonatomic, retain) User *spotByUser;
 @property (nonatomic, retain) NSSet *spotPhotos;
-@property (nonatomic, retain) NSSet *spotUsers;
+@property (nonatomic, retain) NSSet *spotUsers; // people who have saved this spot
 @end
 
 @interface Spot (CoreDataGeneratedAccessors)

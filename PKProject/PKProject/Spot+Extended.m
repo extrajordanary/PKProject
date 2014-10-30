@@ -22,40 +22,31 @@
         self.latitude = dictionary[@"latitude"];
         self.longitude = dictionary[@"longitude"];
         self.numberOfFavorites = dictionary[@"numberOfFavorites"];
-        // photos and users need to be connected by seeing if core data object with that id already exists
-        // if not pull and create it before setting up the connection
-        // TODO: create User object
-        [self createAndAddUser:dictionary[@"spotByUser"]];
-        // TODO: create Photo objects
+
+        // TODO: each of the following two gets the CoreDataHandler, redundancy
+        [self updateSpotByUser:dictionary[@"spotByUser"]];
+        [self updateSpotPhotos:dictionary[@"spotPhotos"]];
         
         [self updateCoreData];
     }
 }
 
--(void)createAndAddUser:(NSString*)databaseId {
-//    for (NSString *databaseId in array) {
-        // TODO: implement methods such that coreDataHandler and serverHandler are only in ServerObject files
-        /* TODO: OR, create method in coreDataHandler that does all the work of checking if we have that
-         object, creates it if not already existing, refreshes it from the server, and returns in */
+-(void)updateSpotByUser:(NSString*)databaseId {
     CoreDataHandler *coreDataHandler = [CoreDataHandler sharedCoreDataHandler];
-//        ServerHandler *serverHandler = [ServerHandler sharedServerHandler];
-//        
-//        User *user;
-//        user = (User*)[coreDataHandler getObjectWithDatabaseId:databaseId];
-//
-//        if (!user) {
-//            // if User object doesn't already exist in Core Data, create it and update from server
-//            user = (User*)[coreDataHandler createNew:@"User"];
-//            
-//            // must set databaseId value before passing it to be updated from server
-//            [user setValue:databaseId forKey:@"databaseId"];
-//            [serverHandler updateUserFromServer:user];
-//            
-//        }
-//   }
     User *user;
+    // coreDataHandler gets or creates the User object and updates it from the server
     user = (User*)[coreDataHandler returnObjectOfType:@"User" forId:databaseId];
     [self setSpotByUser:user];
+}
+
+-(void)updateSpotPhotos:(NSArray*)databaseIds {
+    CoreDataHandler *coreDataHandler = [CoreDataHandler sharedCoreDataHandler];
+    for (NSString *databaseId in databaseIds) {
+        Photo *photo;
+        // coreDataHandler gets or creates the User object and updates it from the server
+        photo = (Photo*)[coreDataHandler returnObjectOfType:@"Photo" forId:databaseId];
+        [self addSpotPhotosObject:photo];
+    }
 }
 
 -(NSDictionary*)toDictionary {

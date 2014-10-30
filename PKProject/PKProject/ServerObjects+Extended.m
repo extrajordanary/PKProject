@@ -20,6 +20,8 @@
             if (item.databaseId) {
                 [array addObject:item.databaseId];
             } else {
+                // if object not yet saved to the server and has no database id
+                // assign it the default value so that the array will at least know the correct number of objects
                 [array addObject:@"0"];
             }
         }
