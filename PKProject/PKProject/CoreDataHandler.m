@@ -45,6 +45,7 @@
     NSError *error = nil;
     
     // save the context to persist changes
+#pragma message "Make sure all calls to CoreData are happening on the MainThread, this could be causing the crash"
     [theContext save:&error]; // !!! Thread 4: EXC_BAD_ACCESS (code = 1, address=...)
     
     if (error) {

@@ -193,7 +193,7 @@ static const CGFloat kDefaultZoomMiles = 0.2;
 //    [saveImage writeToFile:file options:NSDataWritingAtomic error:nil];
     
     // TODO: Asynchronusly: upload photo to server and save path to photo.onlinePath
-    
+#pragma message "Use dot-syntax instead of calling the setter method directly"
     [newSpot setSpotByUser:self.thisUser];
     [newSpot addSpotPhotosObject:newPhoto];
     [newPhoto setPhotoByUser:self.thisUser];
