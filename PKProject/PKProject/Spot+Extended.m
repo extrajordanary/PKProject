@@ -11,7 +11,7 @@
 #import "Photo+Extended.h"
 #import "ServerObject+Extended.h"
 #import "CoreDataHandler.h"
-#import "ServerHandler.h"
+//#import "ServerHandler.h"
 
 @implementation Spot (Extended)
 
@@ -44,6 +44,7 @@
     for (NSString *databaseId in databaseIds) {
         Photo *photo;
         // coreDataHandler gets or creates the User object and updates it from the server
+#pragma message "Got the enumeration issue here once"
         photo = (Photo*)[coreDataHandler returnObjectOfType:@"Photo" forId:databaseId];
         [self addSpotPhotosObject:photo];
     }

@@ -35,8 +35,11 @@
 //}
 
 -(void)updateCoreData {
-    CoreDataHandler *coreDataHandler = [CoreDataHandler sharedCoreDataHandler];
-    [coreDataHandler updateCoreData];
+    // don't save if 
+    if (self.databaseId) {
+        CoreDataHandler *coreDataHandler = [CoreDataHandler sharedCoreDataHandler];
+        [coreDataHandler updateCoreData];
+    }
 }
 
 @end

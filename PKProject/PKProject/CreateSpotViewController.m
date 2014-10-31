@@ -148,8 +148,8 @@ static const CGFloat kDefaultZoomMiles = 0.2;
     self.spotImage.image = image;
     
     if (picker.sourceType == UIImagePickerControllerSourceTypeCamera) {
-        // Save new images to Travalt Album in their Photo Library
-        [self.library saveImage:image toAlbum:@"Travalt" withCompletionBlock:^(NSError *error) {
+        // Save new images to CVALT Album in their Photo Library
+        [self.library saveImage:image toAlbum:@"CVALT" withCompletionBlock:^(NSError *error) {
             NSLog(@"Image saving");
             if (error!=nil) {
                 NSLog(@"Big error: %@", [error description]);
@@ -180,17 +180,10 @@ static const CGFloat kDefaultZoomMiles = 0.2;
     newPhoto.longitude = [NSNumber numberWithDouble:spotMarker.coordinate.longitude];
     
     // !!! - AWS testing only
-    newPhoto.onlinePath = @"https://s3-us-west-1.amazonaws.com/cvalt-photos/cvalt-logo-square2.png";
+    newPhoto.onlinePath = @"https://s3-us-west-1.amazonaws.com/cvalt-photos/cvalt-logo-square.jpg";
     
     // save photo to local cache and save path to photo.localPath
     [newPhoto saveImageToLocalCache:self.spotImage.image];
-//    NSData *saveImage = UIImageJPEGRepresentation(self.spotImage.image,1.0);
-//    NSString *cachesFolder = [NSSearchPathForDirectoriesInDomains(NSCachesDirectory, NSUserDomainMask, YES) lastObject];
-//    // TODO: want this to be Photo's databaseId, temp using random number
-//    NSString *randomFileName = [NSString stringWithFormat:@"photo%i", arc4random_uniform(9999)];
-//    NSString *file = [cachesFolder stringByAppendingPathComponent:randomFileName];
-//    newPhoto.localPath = file;
-//    [saveImage writeToFile:file options:NSDataWritingAtomic error:nil];
     
     // TODO: Asynchronusly: upload photo to server and save path to photo.onlinePath
 #pragma message "Use dot-syntax instead of calling the setter method directly"

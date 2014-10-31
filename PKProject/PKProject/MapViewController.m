@@ -186,6 +186,7 @@ static const CGFloat kDefaultZoomMiles = 0.5; // TODO : make dynamic/adjustable?
             [nextSpot updateFromDictionary:serverSpot];
             [self.nearbySpots addObject:nextSpot];
         }
+        // force to main thread for UI updates
         dispatch_async(dispatch_get_main_queue(), ^(void){
             if (self.nearbySpots.count > 0) {
                 self.noSpotsText.hidden = YES;
