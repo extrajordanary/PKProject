@@ -41,16 +41,19 @@
 }
 
 -(void)updateCoreData {
-    // create error to pass to the save method
-    NSError *error = nil;
-    
-    // save the context to persist changes
-#pragma message "Make sure all calls to CoreData are happening on the MainThread, this could be causing the crash"
-    [theContext save:&error]; // !!! Thread 4: EXC_BAD_ACCESS (code = 1, address=...)
-    
-    if (error) {
-        // TODO: error handling
-    }
+    // force to main thread to avoid access conflicts between different threads
+    dispatch_async(dispatch_get_main_queue(), ^(void){
+        // create error to pass to the save method
+        NSError *error = nil;
+        
+        // save the context to persist changes
+        [theContext save:&error]; // !!! Thread 4: EXC_BAD_ACCESS (code = 1, address=...)
+        
+        if (error) {
+            // TODO: error handling
+        }
+    });
+
 }
 
 #pragma mark - Create
