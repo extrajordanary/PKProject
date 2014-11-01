@@ -7,7 +7,10 @@
 //
 
 #import <Foundation/Foundation.h>
+#import <AWSiOSSDKv2/AWSS3.h>
 
 @interface AWSHandler : NSObject
+
++(id) sharedAWSHandler;
 
 @end

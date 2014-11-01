@@ -28,6 +28,7 @@
 		1734B7A219E469A1009B228A /* sampleSpotPic21.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 1734B78E19E469A1009B228A /* sampleSpotPic21.jpg */; };
 		1734B7A319E469A1009B228A /* sampleSpotPic22.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 1734B78F19E469A1009B228A /* sampleSpotPic22.jpg */; };
 		1734B7A619E4954A009B228A /* CreateSpotViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1734B7A519E4954A009B228A /* CreateSpotViewController.m */; };
+		174A537D1A045947007B7358 /* AWSHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 174A537C1A045947007B7358 /* AWSHandler.m */; };
 		175BC87A1A02BB5800EFAEEA /* Bolts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 175BC8731A02BB5800EFAEEA /* Bolts.framework */; };
 		175BC87B1A02BB5800EFAEEA /* GZIP.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 175BC8741A02BB5800EFAEEA /* GZIP.framework */; };
 		175BC87C1A02BB5800EFAEEA /* Mantle.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 175BC8751A02BB5800EFAEEA /* Mantle.framework */; };
@@ -114,6 +115,8 @@
 		1734B78F19E469A1009B228A /* sampleSpotPic22.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = sampleSpotPic22.jpg; sourceTree = "<group>"; };
 		1734B7A419E4954A009B228A /* CreateSpotViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CreateSpotViewController.h; sourceTree = "<group>"; };
 		1734B7A519E4954A009B228A /* CreateSpotViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CreateSpotViewController.m; sourceTree = "<group>"; };
+		174A537B1A045947007B7358 /* AWSHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AWSHandler.h; sourceTree = "<group>"; };
+		174A537C1A045947007B7358 /* AWSHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AWSHandler.m; sourceTree = "<group>"; };
 		175BC8731A02BB5800EFAEEA /* Bolts.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Bolts.framework; sourceTree = "<group>"; };
 		175BC8741A02BB5800EFAEEA /* GZIP.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = GZIP.framework; sourceTree = "<group>"; };
 		175BC8751A02BB5800EFAEEA /* Mantle.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Mantle.framework; sourceTree = "<group>"; };
@@ -287,6 +290,8 @@
 				171BA9F519DF545C00C66676 /* ServerHandler.m */,
 				17F2C61419F8554E008C86AE /* CoreDataHandler.h */,
 				17F2C61519F8554E008C86AE /* CoreDataHandler.m */,
+				174A537B1A045947007B7358 /* AWSHandler.h */,
+				174A537C1A045947007B7358 /* AWSHandler.m */,
 				1762F70519F1BC5200EE71C2 /* Core Data Extended */,
 				171BA9ED19DC7F5800C66676 /* Core Data Classes */,
 				175DA62D19DB493200897710 /* Structure */,
@@ -529,6 +534,7 @@
 			files = (
 				171BAA0819DF79EA00C66676 /* Spot+Extended.m in Sources */,
 				1762F70119F1BC4400EE71C2 /* Spot.m in Sources */,
+				174A537D1A045947007B7358 /* AWSHandler.m in Sources */,
 				171BA9F319DF4AD000C66676 /* User+Extended.m in Sources */,
 				175DA60719DA1D2800897710 /* AppDelegate.m in Sources */,
 				17C7BF9F19E85A3900BD019A /* ServerObjects+Extended.m in Sources */,

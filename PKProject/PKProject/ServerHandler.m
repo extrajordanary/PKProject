@@ -48,6 +48,7 @@ static NSString* const kPhotos = @"/collections/photos";
         NSLog(@"PHOTO updated from server");
         [self updatePhotoFromServer:(Photo*)object];
     } else {
+        // TODO: spot method
     NSLog(@"object fake updated from server");
     }
 }
@@ -109,6 +110,7 @@ static NSString* const kPhotos = @"/collections/photos";
 -(void)pushSpotToServer:(Spot*)spot {
     if (!spot || spot.latitude == nil || spot.longitude == nil || spot.spotPhotos == nil) {
         // TODO: error?
+        NSLog(@"Error saving spot to server");
         return; //input safety check
     }
     NSString* spots = [kBaseURL stringByAppendingPathComponent:kSpots];
@@ -134,10 +136,13 @@ static NSString* const kPhotos = @"/collections/photos";
             NSArray* responseArray = @[[NSJSONSerialization JSONObjectWithData:data options:0 error:NULL]];
             if (isExistingSpot) {
                 // do nothing bc response array just has success msg
+                NSLog(@"Spot updated on server");
                 // TODO: maybe here I should save a timestamp for most recent update?
             } else {
+                NSLog(@"Spot saved to server");
                 // get _id from returned data and save it to the Spot databaseId property
                 spot.databaseId = responseArray[0][0][@"_id"];
+                // TODO: if I allow multiple photos at once, do a forin
                 [self pushPhotoToServer:spot.spotPhotos.allObjects[0]]; // !!! - only safe for NEW spots with no other photos
             }
         }
@@ -151,6 +156,7 @@ static NSString* const kPhotos = @"/collections/photos";
 -(void)pushPhotoToServer:(Photo*)photo {
     if (!photo || photo.latitude == nil || photo.longitude == nil) { // || photo.imageBinary == nil) {
         // TODO: error?
+        NSLog(@"Error saving photo to server");
         return; //input safety check
     }
     NSString* photos = [kBaseURL stringByAppendingPathComponent:kPhotos];
@@ -162,7 +168,7 @@ static NSString* const kPhotos = @"/collections/photos";
     NSMutableURLRequest* request = [NSMutableURLRequest requestWithURL:url];
     request.HTTPMethod = isExistingPhoto ? @"PUT" : @"POST";
     
-    // get converted Spot for uploading to server
+    // get converted Photo for uploading to server
     NSData* data = [NSJSONSerialization dataWithJSONObject:[photo toDictionary] options:0 error:NULL];
     request.HTTPBody = data;
     
@@ -176,12 +182,17 @@ static NSString* const kPhotos = @"/collections/photos";
             NSArray* responseArray = @[[NSJSONSerialization JSONObjectWithData:data options:0 error:NULL]];
             if (isExistingPhoto) {
                 // do nothing bc response array just has success msg
+                NSLog(@"Photo updated on server");
             } else {
+                NSLog(@"Photo saved to server");
                 // get _id from returned data and save it to the Photo databaseId property
                 photo.databaseId = responseArray[0][0][@"_id"];
                 // update Spot on server now that it can add the photo databaseId
                 [self pushSpotToServer:photo.photoSpot];
                 // TODO: update User to include new photo databaseId
+                
+                // now that photo has a databaseId, save image locally and online
+                [photo receivedDatabaseId];
             }
         }
     }];

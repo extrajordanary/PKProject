@@ -15,5 +15,6 @@
 -(NSDictionary*)toDictionary;
 -(UIImage*)getImage;
 -(void)saveImageToLocalCache:(UIImage*)image;
+-(void)receivedDatabaseId;
 
 @end

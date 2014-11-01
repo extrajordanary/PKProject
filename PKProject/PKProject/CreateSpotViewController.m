@@ -58,6 +58,7 @@ static const CGFloat kDefaultZoomMiles = 0.2;
 -(void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
     
+    // TODO: allow user to pick up and move marker
     spotMarker.coordinate = self.locationManager.location.coordinate;
     [self.mapView addAnnotation:spotMarker];
 }
@@ -179,17 +180,12 @@ static const CGFloat kDefaultZoomMiles = 0.2;
     newPhoto.latitude = [NSNumber numberWithDouble:spotMarker.coordinate.latitude];
     newPhoto.longitude = [NSNumber numberWithDouble:spotMarker.coordinate.longitude];
     
-    // !!! - AWS testing only
-    newPhoto.onlinePath = @"https://s3-us-west-1.amazonaws.com/cvalt-photos/cvalt-logo-square.jpg";
-    
-    // save photo to local cache and save path to photo.localPath
+    // save photo to local cache
     [newPhoto saveImageToLocalCache:self.spotImage.image];
     
-    // TODO: Asynchronusly: upload photo to server and save path to photo.onlinePath
-#pragma message "Use dot-syntax instead of calling the setter method directly"
-    [newSpot setSpotByUser:self.thisUser];
+    newSpot.spotByUser = self.thisUser;
+    newPhoto.photoByUser = self.thisUser;
     [newSpot addSpotPhotosObject:newPhoto];
-    [newPhoto setPhotoByUser:self.thisUser];
 
     [coreDataHandler updateCoreData];
     

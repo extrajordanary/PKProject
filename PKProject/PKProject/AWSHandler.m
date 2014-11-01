@@ -10,4 +10,16 @@
 
 @implementation AWSHandler
 
+#pragma mark - Singleton Methods
++(id) sharedAWSHandler {
+    static AWSHandler *sharedAWSHandler = nil;
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{
+        sharedAWSHandler = [[self alloc] init];
+    });
+    return sharedAWSHandler;
+}
+
+
+
 @end
