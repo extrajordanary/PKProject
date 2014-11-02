@@ -90,7 +90,8 @@
         [object setValue:databaseId forKey:@"databaseId"];
     }
     // update object from server
-    [serverHandler updateObjectFromServer:object];
+    // !!! - disabled temporarily to reduce frequency of core data issues and bc things don't change after initial creation now anyway
+//    [serverHandler updateObjectFromServer:object];
     return object;
 }
 

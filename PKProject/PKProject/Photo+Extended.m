@@ -126,6 +126,8 @@ static NSString* const kAWSBase = @"https://s3-us-west-1.amazonaws.com/cvalt-pho
 -(void)saveImageToAWS:(NSString*)imagePath {
     NSLog(@"sending to AWSHandler");
     AWSHandler *aws = [AWSHandler sharedAWSHandler];
+    // prepending "file:///" for error:
+    // CFURLCopyResourcePropertyForKey failed because it was passed this URL which has no scheme: ...
     NSString *fixedString = [NSString stringWithFormat:@"file:///%@",imagePath];
     NSURL *imageUrl = [NSURL URLWithString:fixedString];
     NSString *imageName = [NSString stringWithFormat:@"%@.jpg",self.databaseId];
@@ -135,7 +137,6 @@ static NSString* const kAWSBase = @"https://s3-us-west-1.amazonaws.com/cvalt-pho
 -(NSString*)getTempLocalPath {
     NSString *cachesFolder = [NSSearchPathForDirectoriesInDomains(NSCachesDirectory, NSUserDomainMask, YES) lastObject];
     NSString *lat = [NSString stringWithFormat:@"%i",(int)([self.latitude floatValue]*10000)];
-//    NSString *temp = @"temp";
     NSString *localPath = [[cachesFolder stringByAppendingPathComponent:lat] stringByAppendingString:@".jpg"];
     NSLog(@"%@",localPath);
     return localPath;
