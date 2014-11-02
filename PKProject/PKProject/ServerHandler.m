@@ -40,16 +40,17 @@ static NSString* const kPhotos = @"/collections/photos";
 #pragma mark - Generalized Method Calls
 -(void)updateObjectFromServer:(ServerObject*)object {
     // see what the object type is, then pass it to the appropriate method
-    // TODO: implement
-    if ([object isKindOfClass:[User class]]) {
-        NSLog(@"USER updated from server");
-        [self updateUserFromServer:(User*)object];
-    } else if ([object isKindOfClass:[Photo class]]) {
-        NSLog(@"PHOTO updated from server");
-        [self updatePhotoFromServer:(Photo*)object];
-    } else {
-        // TODO: spot method
-    NSLog(@"object fake updated from server");
+    if (object.databaseId) {
+        if ([object isKindOfClass:[User class]]) {
+            NSLog(@"USER updated from server");
+            [self updateUserFromServer:(User*)object];
+        } else if ([object isKindOfClass:[Photo class]]) {
+            NSLog(@"PHOTO updated from server");
+            [self updatePhotoFromServer:(Photo*)object];
+        } else {
+            // TODO: spot method
+            NSLog(@"object fake updated from server");
+        }
     }
 }
 

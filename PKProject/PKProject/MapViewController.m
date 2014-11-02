@@ -165,8 +165,8 @@ static const CGFloat kDefaultZoomMiles = 0.5; // TODO : make dynamic/adjustable?
     
     // get nearby spots from database, create Spot objects as needed, populate map
     [self.nearbySpots removeAllObjects];
-    NSArray *allSpots = [[NSArray alloc] init];
-    allSpots = [coreDataHandler getManagedObjects:@"Spot"];
+    NSArray *allSpots = [[NSArray alloc] init];     // for debugging only
+    allSpots = [coreDataHandler getManagedObjects:@"Spot"];     // for debugging only
     
     [serverHandler getSpotsFromServer:^void (NSDictionary *spots) {
         for (NSDictionary *serverSpot in spots) {

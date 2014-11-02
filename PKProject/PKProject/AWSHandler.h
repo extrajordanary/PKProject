@@ -14,6 +14,6 @@
 @interface AWSHandler : NSObject //<AmazonServiceRequestDelegate>
 
 +(id) sharedAWSHandler;
--(void)uploadImageFromFile:(NSString*)fullImagePath withName:(NSString*)name;
+-(void)uploadImageFromURL:(NSURL*)imageUrl withName:(NSString*)name;
 
 @end

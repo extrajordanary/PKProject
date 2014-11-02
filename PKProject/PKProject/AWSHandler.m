@@ -45,7 +45,7 @@
         
         [AWSServiceManager defaultServiceManager].defaultServiceConfiguration = configuration;
         
-//        s3TransferManager = [[AWSS3TransferManager new] initWithConfiguration:configuration identifier:"cvalt"];
+//        s3TransferManager = [[AWSS3TransferManager new] initWithConfiguration:configuration identifier:@"cvalt"];
         s3TransferManager = [AWSS3TransferManager defaultS3TransferManager];
         
 //        AWSCognito *syncClient = [AWSCognito defaultCognito];
@@ -56,12 +56,13 @@
     return self;
 }
 
--(void)uploadImageFromFile:(NSString*)fullImagePath withName:(NSString*)name {
+-(void)uploadImageFromURL:(NSURL*)imageUrl withName:(NSString*)name {
+    NSLog(@"uploading to S3");
     AWSS3TransferManagerUploadRequest *uploadRequest = [AWSS3TransferManagerUploadRequest new];
     uploadRequest.bucket = @"cvalt-photos";
     uploadRequest.key = name;
-    NSURL *url = [NSURL URLWithString:fullImagePath];
-    uploadRequest.body = url;
+//    NSURL *url = [NSURL URLWithString:imageUrl];
+    uploadRequest.body = imageUrl;
     
     [s3TransferManager upload:uploadRequest];
 }

@@ -11,6 +11,7 @@
 #import "User+Extended.h"
 #import "ServerObject+Extended.h"
 #import "ServerHandler.h"
+#import "AWSHandler.h"
 
 static NSString* const kAWSBase = @"https://s3-us-west-1.amazonaws.com/cvalt-photos/";
 
@@ -55,11 +56,7 @@ static NSString* const kAWSBase = @"https://s3-us-west-1.amazonaws.com/cvalt-pho
     // TODO: what to do when Photo doesn't have databaseId when image is requested?
     if (self.databaseId && ![self.databaseId isEqualToString:@"0"]) {
         // check if an image has been saved to the local cache
-        NSString *cachesFolder = [NSSearchPathForDirectoriesInDomains(NSCachesDirectory, NSUserDomainMask, YES) lastObject];
-
-        NSString *localPath = [[cachesFolder stringByAppendingPathComponent:self.databaseId] stringByAppendingString:@".jpg"];
-        // set image to return variable
-        image = [UIImage imageWithContentsOfFile:localPath];
+        image = [UIImage imageWithContentsOfFile:[self getLocalPath]];
         
         // if image is still nil, download the image from online
         if (!image) {
@@ -76,9 +73,12 @@ static NSString* const kAWSBase = @"https://s3-us-west-1.amazonaws.com/cvalt-pho
         }
     } else { // must still be using temp image
         NSLog(@"Using temp photo path");
-        NSString *cachesFolder = [NSSearchPathForDirectoriesInDomains(NSCachesDirectory, NSUserDomainMask, YES) lastObject];
-        NSString *localPath = [cachesFolder stringByAppendingString:self.creationTimestamp];
-        image = [UIImage imageWithContentsOfFile:localPath];
+//        NSString *cachesFolder = [NSSearchPathForDirectoriesInDomains(NSCachesDirectory, NSUserDomainMask, YES) lastObject];
+//        // TODO: use different temp file naming method
+//        NSString *lat = [NSString stringWithFormat:@"%i",(int)self.latitude];
+//        NSString *localPath = [[cachesFolder stringByAppendingString:lat] stringByAppendingString:@".jpg"]; // TODO: reduce redundancy
+        
+        image = [UIImage imageWithContentsOfFile:[self getTempLocalPath]];
     }
     
     return image;
@@ -87,13 +87,18 @@ static NSString* const kAWSBase = @"https://s3-us-west-1.amazonaws.com/cvalt-pho
 -(void)saveImageToLocalCache:(UIImage*)image {
     NSData *saveImage = UIImageJPEGRepresentation(image,1.0);
 
-    NSString *cachesFolder = [NSSearchPathForDirectoriesInDomains(NSCachesDirectory, NSUserDomainMask, YES) lastObject];
+//    NSString *cachesFolder = [NSSearchPathForDirectoriesInDomains(NSCachesDirectory, NSUserDomainMask, YES) lastObject];
     NSString *localPath;
     if (self.databaseId) {
-        localPath = [[cachesFolder stringByAppendingPathComponent:self.databaseId] stringByAppendingString:@".jpg"];
+//        localPath = [[cachesFolder stringByAppendingPathComponent:self.databaseId] stringByAppendingString:@".jpg"];
+        localPath = [self getLocalPath];
+        NSLog(@"saving to final");
     } else {
         // if Photo hasn't gotten a permanent databaseId yet, save to a temp location
-        localPath = [cachesFolder stringByAppendingString:self.creationTimestamp];
+//        NSString *lat = [NSString stringWithFormat:@"%i",(int)self.latitude];
+//        localPath = [[cachesFolder stringByAppendingString:lat] stringByAppendingString:@".jpg"];
+        localPath = [self getTempLocalPath];
+        NSLog(@"saving to temp");
     }
     
     [saveImage writeToFile:localPath options:NSDataWritingAtomic error:nil];
@@ -102,20 +107,45 @@ static NSString* const kAWSBase = @"https://s3-us-west-1.amazonaws.com/cvalt-pho
 -(void)receivedDatabaseId {
     // called from callback when photo has been saved to the server
     // get the image saved in the temp location
-    NSString *cachesFolder = [NSSearchPathForDirectoriesInDomains(NSCachesDirectory, NSUserDomainMask, YES) lastObject];
-    NSString *localPath = [cachesFolder stringByAppendingString:self.creationTimestamp];
+    NSLog(@"databaseId recieved");
+
+//    NSString *cachesFolder = [NSSearchPathForDirectoriesInDomains(NSCachesDirectory, NSUserDomainMask, YES) lastObject];
+//    NSString *lat = [NSString stringWithFormat:@"%i",(int)self.latitude];
+//    NSString *localPath = [[cachesFolder stringByAppendingString:lat] stringByAppendingString:@".jpg"];
+    NSString *localPath = [self getTempLocalPath];
     UIImage *image = [UIImage imageWithContentsOfFile:localPath];
     
     // should now save to the correct path using database Id
     [self saveImageToLocalCache:image];
-    [self saveImageToAWS:image];
+    [self saveImageToAWS:localPath];
     
     // TODO: delete old temp file in local cache
     
 }
 
--(void)saveImageToAWS:(UIImage*)image {
-    NSLog(@"fake saving to AWS");
+-(void)saveImageToAWS:(NSString*)imagePath {
+    NSLog(@"sending to AWSHandler");
+    AWSHandler *aws = [AWSHandler sharedAWSHandler];
+    NSString *fixedString = [NSString stringWithFormat:@"file:///%@",imagePath];
+    NSURL *imageUrl = [NSURL URLWithString:fixedString];
+    NSString *imageName = [NSString stringWithFormat:@"%@.jpg",self.databaseId];
+    [aws uploadImageFromURL:imageUrl withName:imageName];
+}
+
+-(NSString*)getTempLocalPath {
+    NSString *cachesFolder = [NSSearchPathForDirectoriesInDomains(NSCachesDirectory, NSUserDomainMask, YES) lastObject];
+    NSString *lat = [NSString stringWithFormat:@"%i",(int)([self.latitude floatValue]*10000)];
+//    NSString *temp = @"temp";
+    NSString *localPath = [[cachesFolder stringByAppendingPathComponent:lat] stringByAppendingString:@".jpg"];
+    NSLog(@"%@",localPath);
+    return localPath;
+}
+
+-(NSString*)getLocalPath {
+    NSString *cachesFolder = [NSSearchPathForDirectoriesInDomains(NSCachesDirectory, NSUserDomainMask, YES) lastObject];
+    NSString *localPath = [[cachesFolder stringByAppendingPathComponent:self.databaseId] stringByAppendingString:@".jpg"];
+    NSLog(@"%@",localPath);
+    return localPath;
 }
 
 @end
