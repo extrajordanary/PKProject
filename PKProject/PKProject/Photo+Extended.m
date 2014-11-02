@@ -126,9 +126,9 @@ static NSString* const kAWSBase = @"https://s3-us-west-1.amazonaws.com/cvalt-pho
 -(void)saveImageToAWS:(NSString*)imagePath {
     NSLog(@"sending to AWSHandler");
     AWSHandler *aws = [AWSHandler sharedAWSHandler];
-    // prepending "file:///" for error:
+    // prepending "file://" for error:
     // CFURLCopyResourcePropertyForKey failed because it was passed this URL which has no scheme: ...
-    NSString *fixedString = [NSString stringWithFormat:@"file:///%@",imagePath];
+    NSString *fixedString = [NSString stringWithFormat:@"file://%@",imagePath];
     NSURL *imageUrl = [NSURL URLWithString:fixedString];
     NSString *imageName = [NSString stringWithFormat:@"%@.jpg",self.databaseId];
     [aws uploadImageFromURL:imageUrl withName:imageName];

@@ -40,7 +40,7 @@
                                                               unauthRoleArn:@"arn:aws:iam::698954936319:role/Cognito_CVALTUnauth_DefaultRole"
                                                               authRoleArn:@"arn:aws:iam::698954936319:role/Cognito_CVALTAuth_DefaultRole"];
         
-        AWSServiceConfiguration *configuration = [AWSServiceConfiguration configurationWithRegion:AWSRegionUSEast1
+        AWSServiceConfiguration *configuration = [AWSServiceConfiguration configurationWithRegion:AWSRegionUSWest1
                                                                               credentialsProvider:credentialsProvider];
         
         [AWSServiceManager defaultServiceManager].defaultServiceConfiguration = configuration;
@@ -64,7 +64,22 @@
 //    NSURL *url = [NSURL URLWithString:imageUrl];
     uploadRequest.body = imageUrl;
     
-    [s3TransferManager upload:uploadRequest];
+//    [s3TransferManager upload:uploadRequest];
+    
+    [[s3TransferManager upload:uploadRequest] continueWithExecutor:[BFExecutor mainThreadExecutor] withBlock:^id(BFTask *task) {
+        if (task.error != nil) {
+            if( task.error.code != AWSS3TransferManagerErrorCancelled
+               &&
+               task.error.code != AWSS3TransferManagerErrorPaused
+               )
+            {
+                NSLog(@"upload failed");
+            }
+        } else {
+            NSLog(@"upload succeeded");
+        }
+        return nil;
+    }];
 }
 
 
