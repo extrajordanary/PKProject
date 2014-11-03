@@ -55,6 +55,13 @@
 		1762F6FE19F1BC4400EE71C2 /* Photo.m in Sources */ = {isa = PBXBuildFile; fileRef = 1762F6FD19F1BC4400EE71C2 /* Photo.m */; };
 		1762F70119F1BC4400EE71C2 /* Spot.m in Sources */ = {isa = PBXBuildFile; fileRef = 1762F70019F1BC4400EE71C2 /* Spot.m */; };
 		1762F70419F1BC4400EE71C2 /* User.m in Sources */ = {isa = PBXBuildFile; fileRef = 1762F70319F1BC4400EE71C2 /* User.m */; };
+		17A2FC671A0843CB00564441 /* libHeap.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 17A2FC661A0843CB00564441 /* libHeap.a */; };
+		17A2FC6A1A08445500564441 /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 17A2FC691A08445500564441 /* CFNetwork.framework */; };
+		17A2FC6C1A08446100564441 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 17A2FC6B1A08446100564441 /* Foundation.framework */; };
+		17A2FC6E1A08446E00564441 /* libicucore.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 17A2FC6D1A08446E00564441 /* libicucore.dylib */; };
+		17A2FC701A08447E00564441 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 17A2FC6F1A08447E00564441 /* Security.framework */; };
+		17A2FC721A08448500564441 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 17A2FC711A08448500564441 /* SystemConfiguration.framework */; };
+		17A2FC741A08448F00564441 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 17A2FC731A08448F00564441 /* UIKit.framework */; };
 		17A6D94519FAC33F0038EC1E /* AWSiOSSDKv2.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 17A6D94419FAC33F0038EC1E /* AWSiOSSDKv2.framework */; };
 		17A6D94819FACF490038EC1E /* ALAssetsLibrary+CustomPhotoAlbum.m in Sources */ = {isa = PBXBuildFile; fileRef = 17A6D94719FACF490038EC1E /* ALAssetsLibrary+CustomPhotoAlbum.m */; };
 		17BA1B7A1A02B31B008E59CD /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 17BA1B791A02B31B008E59CD /* Images.xcassets */; };
@@ -156,6 +163,14 @@
 		1762F70019F1BC4400EE71C2 /* Spot.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Spot.m; sourceTree = "<group>"; };
 		1762F70219F1BC4400EE71C2 /* User.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = User.h; sourceTree = "<group>"; };
 		1762F70319F1BC4400EE71C2 /* User.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = User.m; sourceTree = "<group>"; };
+		17A2FC661A0843CB00564441 /* libHeap.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libHeap.a; sourceTree = "<group>"; };
+		17A2FC681A0843EB00564441 /* Heap.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Heap.h; sourceTree = "<group>"; };
+		17A2FC691A08445500564441 /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
+		17A2FC6B1A08446100564441 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		17A2FC6D1A08446E00564441 /* libicucore.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libicucore.dylib; path = usr/lib/libicucore.dylib; sourceTree = SDKROOT; };
+		17A2FC6F1A08447E00564441 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
+		17A2FC711A08448500564441 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
+		17A2FC731A08448F00564441 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		17A6D94419FAC33F0038EC1E /* AWSiOSSDKv2.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = AWSiOSSDKv2.framework; sourceTree = "<group>"; };
 		17A6D94619FACF490038EC1E /* ALAssetsLibrary+CustomPhotoAlbum.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "ALAssetsLibrary+CustomPhotoAlbum.h"; sourceTree = "<group>"; };
 		17A6D94719FACF490038EC1E /* ALAssetsLibrary+CustomPhotoAlbum.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "ALAssetsLibrary+CustomPhotoAlbum.m"; sourceTree = "<group>"; };
@@ -189,6 +204,12 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				17A2FC741A08448F00564441 /* UIKit.framework in Frameworks */,
+				17A2FC721A08448500564441 /* SystemConfiguration.framework in Frameworks */,
+				17A2FC701A08447E00564441 /* Security.framework in Frameworks */,
+				17A2FC6E1A08446E00564441 /* libicucore.dylib in Frameworks */,
+				17A2FC6C1A08446100564441 /* Foundation.framework in Frameworks */,
+				17A2FC6A1A08445500564441 /* CFNetwork.framework in Frameworks */,
 				175BC87D1A02BB5800EFAEEA /* Reachability.framework in Frameworks */,
 				174A538F1A058F42007B7358 /* AWSCognitoSync.framework in Frameworks */,
 				175BC87E1A02BB5800EFAEEA /* TMCache.framework in Frameworks */,
@@ -200,6 +221,7 @@
 				175BC8801A02BB5800EFAEEA /* XMLDictionary.framework in Frameworks */,
 				175BC87C1A02BB5800EFAEEA /* Mantle.framework in Frameworks */,
 				17A6D94519FAC33F0038EC1E /* AWSiOSSDKv2.framework in Frameworks */,
+				17A2FC671A0843CB00564441 /* libHeap.a in Frameworks */,
 				175DA63119DB499A00897710 /* CoreLocation.framework in Frameworks */,
 				175DA62F19DB499300897710 /* MapKit.framework in Frameworks */,
 			);
@@ -301,6 +323,7 @@
 				175DA60119DA1D2800897710 /* Supporting Files */,
 				17A6D94619FACF490038EC1E /* ALAssetsLibrary+CustomPhotoAlbum.h */,
 				17A6D94719FACF490038EC1E /* ALAssetsLibrary+CustomPhotoAlbum.m */,
+				17A2FC681A0843EB00564441 /* Heap.h */,
 			);
 			path = PKProject;
 			sourceTree = "<group>";
@@ -361,6 +384,13 @@
 		17F2C5F419F83CE0008C86AE /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				17A2FC731A08448F00564441 /* UIKit.framework */,
+				17A2FC711A08448500564441 /* SystemConfiguration.framework */,
+				17A2FC6F1A08447E00564441 /* Security.framework */,
+				17A2FC6D1A08446E00564441 /* libicucore.dylib */,
+				17A2FC6B1A08446100564441 /* Foundation.framework */,
+				17A2FC691A08445500564441 /* CFNetwork.framework */,
+				17A2FC661A0843CB00564441 /* libHeap.a */,
 				174A538E1A058F42007B7358 /* AWSCognitoSync.framework */,
 				175BC8731A02BB5800EFAEEA /* Bolts.framework */,
 				175BC8741A02BB5800EFAEEA /* GZIP.framework */,
@@ -681,7 +711,15 @@
 				);
 				INFOPLIST_FILE = PKProject/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				OTHER_LDFLAGS = "-ObjC";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+				);
+				OTHER_LDFLAGS = (
+					"-ObjC",
+					"-all_load",
+					"-ObjC",
+				);
 				PRODUCT_NAME = CVALT;
 			};
 			name = Debug;
@@ -696,7 +734,15 @@
 				);
 				INFOPLIST_FILE = PKProject/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				OTHER_LDFLAGS = "-ObjC";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+				);
+				OTHER_LDFLAGS = (
+					"-ObjC",
+					"-all_load",
+					"-ObjC",
+				);
 				PRODUCT_NAME = CVALT;
 			};
 			name = Release;

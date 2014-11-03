@@ -7,6 +7,7 @@
 //
 
 #import "AppDelegate.h"
+#import "Heap.h"
 
 @interface AppDelegate ()
 
@@ -30,6 +31,14 @@
 //        [[NSUserDefaults standardUserDefaults] setObject:@"542efcec4a1cef02006d1021" forKey:@"thisUserId"];
 //        [[NSUserDefaults standardUserDefaults] synchronize];
 //    }
+    
+        [Heap setAppId:@"1618197093"];
+#ifdef DEBUG
+        [Heap enableVisualizer];
+#endif
+        
+        /* Other launch code goes here */
+
     
     return YES;
 }
