@@ -95,9 +95,9 @@ static const CGFloat kDefaultZoomMiles = 0.5; // TODO : make dynamic/adjustable?
 - (void)locationManager:(CLLocationManager *)manager didUpdateLocations:(NSArray *)locations {
     CLLocation* location = [locations lastObject];
     [self zoomToCurrentLocation];
-    NSLog(@"latitude %+.6f, longitude %+.6f\n",
-          location.coordinate.latitude,
-          location.coordinate.longitude);
+//    NSLog(@"latitude %+.6f, longitude %+.6f\n",
+//          location.coordinate.latitude,
+//          location.coordinate.longitude);
 }
 
 -(void)zoomToCurrentLocation {
@@ -122,12 +122,14 @@ static const CGFloat kDefaultZoomMiles = 0.5; // TODO : make dynamic/adjustable?
     if (!cell) {
         
     }
-    cell.spot = self.nearbySpots[indexPath.row];
+//    cell.spot = self.nearbySpots[indexPath.row];
     
     // TODO: create method for cell to load images asynchronously for when they'll be downloading from online
-    UIImage *image = [cell.spot getThumbnail]; // returns image for first Photo object
-    [cell.imageView setImage:image];
-
+//    UIImage *image = [cell.spot getThumbnail]; // returns image for first Photo object
+//    [cell.imageView setImage:image];
+    [cell.imageView setImage:[UIImage imageNamed:@"loadingSpotPhoto.jpg"]];
+    [cell displayInfoForSpot:self.nearbySpots[indexPath.row]];
+    
     return cell;
 }
 // 4
@@ -178,10 +180,10 @@ static const CGFloat kDefaultZoomMiles = 0.5; // TODO : make dynamic/adjustable?
          
             // if Spot object doesn't already exist in Core Data, create it
             if (!nextSpot) {
-                NSLog(@"new");
+//                NSLog(@"new");
                 nextSpot = (Spot*)[coreDataHandler createNew:@"Spot"];
             }
-            NSLog(@"    spot object");
+//            NSLog(@"    spot object");
             // update Spot from server info and then add to array
             [nextSpot updateFromDictionary:serverSpot];
             [self.nearbySpots addObject:nextSpot];

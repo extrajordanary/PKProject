@@ -15,4 +15,6 @@
 @property (strong, nonatomic) IBOutlet UIImageView *imageView;
 @property (weak, nonatomic) Spot *spot;
 
+-(void)displayInfoForSpot:(Spot*)spot;
+
 @end
