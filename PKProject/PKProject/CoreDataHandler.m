@@ -15,6 +15,9 @@
 #import "ServerHandler.h"
 
 // for creating new mangaged objects and querying them
+// !!! -  inside each method, nest all actions inside main thread
+//dispatch_async(dispatch_get_main_queue(), ^(void){
+//});
 
 @implementation CoreDataHandler {
     NSManagedObjectContext *theContext;
@@ -58,30 +61,29 @@
 
 #pragma mark - Create
 -(ServerObject*)createNew:(NSString*)entityType {
-    ServerObject* newEntitiy = [NSEntityDescription insertNewObjectForEntityForName:entityType inManagedObjectContext:theContext];
-    return newEntitiy;
+        ServerObject* newEntitiy = [NSEntityDescription insertNewObjectForEntityForName:entityType inManagedObjectContext:theContext];
+        return newEntitiy;
 }
 
 #pragma mark - Search
 -(ServerObject*)getObjectWithDatabaseId:(NSString*)databaseId {
-    AppDelegate* appDelegate = [UIApplication sharedApplication].delegate;
-    NSManagedObjectModel* model = appDelegate.managedObjectModel;
-    
-    NSDictionary* substitutionDictionary = @{@"DATABASE_ID" : databaseId};
-    NSFetchRequest* fetchRequest = [model fetchRequestFromTemplateWithName:@"existingObject"
-                                                     substitutionVariables:substitutionDictionary];
-    
-    NSError *error;
-    NSArray *results = [theContext executeFetchRequest:fetchRequest error:&error];
-    if (results.count > 0)
-    {
-        return results[0];
-    }
-    return nil;
+        AppDelegate* appDelegate = [UIApplication sharedApplication].delegate;
+        NSManagedObjectModel* model = appDelegate.managedObjectModel;
+        
+        NSDictionary* substitutionDictionary = @{@"DATABASE_ID" : databaseId};
+        NSFetchRequest* fetchRequest = [model fetchRequestFromTemplateWithName:@"existingObject"
+                                                         substitutionVariables:substitutionDictionary];
+        
+        NSError *error;
+        NSArray *results = [theContext executeFetchRequest:fetchRequest error:&error];
+        if (results.count > 0)
+        {
+            return results[0];
+        }
+        return nil;
 }
 
 -(ServerObject*)returnObjectOfType:(NSString*)type forId:(NSString*)databaseId {
-
     ServerObject *object;
     object = [self getObjectWithDatabaseId:databaseId];
     if (!object) {
@@ -91,10 +93,9 @@
     }
     // update object from server
     // !!! - disabled temporarily to reduce frequency of core data issues and bc things don't change after initial creation now anyway
-//    [serverHandler updateObjectFromServer:object];
+    [serverHandler updateObjectFromServer:object];
     return object;
 }
-
 
 -(NSArray*)getManagedObjects:(NSString*)entityForName {
     // get entity description for entity we are selecting
@@ -161,5 +162,6 @@
     }
     return array;
 }
+
 
 @end

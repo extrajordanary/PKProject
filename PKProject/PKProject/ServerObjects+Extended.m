@@ -35,11 +35,13 @@
 //}
 
 -(void)updateCoreData {
-    // don't save if 
-    if (self.databaseId) {
-        CoreDataHandler *coreDataHandler = [CoreDataHandler sharedCoreDataHandler];
-        [coreDataHandler updateCoreData];
-    }
+    // don't save if
+    dispatch_async(dispatch_get_main_queue(), ^(void){
+        if (self.databaseId) {
+            CoreDataHandler *coreDataHandler = [CoreDataHandler sharedCoreDataHandler];
+            [coreDataHandler updateCoreData];
+        }
+    });
 }
 
 @end

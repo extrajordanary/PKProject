@@ -32,22 +32,29 @@
 }
 
 -(void)updateSpotByUser:(NSString*)databaseId {
-    CoreDataHandler *coreDataHandler = [CoreDataHandler sharedCoreDataHandler];
-    User *user;
-    // coreDataHandler gets or creates the User object and updates it from the server
-    user = (User*)[coreDataHandler returnObjectOfType:@"User" forId:databaseId];
-    [self setSpotByUser:user];
+    // TODO: main queue here?
+//    dispatch_async(dispatch_get_main_queue(), ^(void){
+        CoreDataHandler *coreDataHandler = [CoreDataHandler sharedCoreDataHandler];
+        User *user;
+        // coreDataHandler gets or creates the User object and updates it from the server
+        user = (User*)[coreDataHandler returnObjectOfType:@"User" forId:databaseId];
+        [self setSpotByUser:user];
+//    });
 }
 
 -(void)updateSpotPhotos:(NSArray*)databaseIds {
-    CoreDataHandler *coreDataHandler = [CoreDataHandler sharedCoreDataHandler];
-    for (NSString *databaseId in databaseIds) {
-        Photo *photo;
-        // coreDataHandler gets or creates the User object and updates it from the server
-#pragma message "Got the enumeration issue here once"
-        photo = (Photo*)[coreDataHandler returnObjectOfType:@"Photo" forId:databaseId];
-        [self addSpotPhotosObject:photo];
-    }
+    // TODO: main queue here?
+//    dispatch_async(dispatch_get_main_queue(), ^(void){
+        CoreDataHandler *coreDataHandler = [CoreDataHandler sharedCoreDataHandler];
+        for (NSString *databaseId in databaseIds) {
+            Photo *photo;
+            // coreDataHandler gets or creates the User object and updates it from the server
+    #pragma message "Got the enumeration issue here once"
+            photo = (Photo*)[coreDataHandler returnObjectOfType:@"Photo" forId:databaseId];
+            [self addSpotPhotosObject:photo];
+        }
+//    });
+
 }
 
 -(NSDictionary*)toDictionary {
