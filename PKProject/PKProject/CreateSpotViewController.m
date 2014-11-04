@@ -125,7 +125,9 @@ static const CGFloat kDefaultZoomMiles = 0.2;
 //    }];
     [self useCamera];
 }
-- (IBAction)touchUseCamera:(id)sender {
+
+- (IBAction)tapUseCamera:(UITapGestureRecognizer *)sender {
+    NSLog(@"tapped");
     [self useCamera];
 }
 

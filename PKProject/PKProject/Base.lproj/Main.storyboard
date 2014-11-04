@@ -2,6 +2,7 @@
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6250" systemVersion="14A389" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="TcK-Hn-xC7">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6244"/>
+        <capability name="Alignment constraints with different attributes" minToolsVersion="5.1"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
@@ -261,7 +262,7 @@
                                 </items>
                                 <color key="barTintColor" red="0.083179518090000001" green="0.61142557959999999" blue="0.84152088989999996" alpha="1" colorSpace="calibratedRGB"/>
                             </toolbar>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="3WT-Nh-yy9">
+                            <imageView contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="3WT-Nh-yy9">
                                 <rect key="frame" x="0.0" y="0.0" width="556" height="556"/>
                                 <gestureRecognizers/>
                                 <constraints>
@@ -273,6 +274,7 @@
                             </imageView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <gestureRecognizers/>
                         <constraints>
                             <constraint firstItem="3WT-Nh-yy9" firstAttribute="top" secondItem="5wd-pG-u3H" secondAttribute="bottom" id="09G-OY-b9m"/>
                             <constraint firstAttribute="trailingMargin" secondItem="5wd-pG-u3H" secondAttribute="trailing" constant="-16" id="2ow-rW-XMR"/>
@@ -360,7 +362,7 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Opf-bm-fU0" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <tapGestureRecognizer id="daw-T6-qfl">
                     <connections>
-                        <action selector="touchUseCamera:" destination="Vve-Eo-Ty2" id="6kE-b9-cHn"/>
+                        <action selector="tapUseCamera:" destination="Vve-Eo-Ty2" id="lih-BM-EfD"/>
                     </connections>
                 </tapGestureRecognizer>
             </objects>
