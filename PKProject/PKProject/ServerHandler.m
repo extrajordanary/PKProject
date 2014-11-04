@@ -15,7 +15,8 @@
 
 static NSString* const kBaseURL = @"http://travalt.herokuapp.com"; //TODO: change name on heroku to cvalt
 static NSString* const kUsers = @"/collections/users"; 
-static NSString* const kSpots = @"/collections/spots";
+static NSString* const kSpots = @"/collections/spots"; // for real spots
+//static NSString* const kSpots = @"/collections/devspots"; // - for testing
 static NSString* const kPhotos = @"/collections/photos";
 
 @implementation ServerHandler
@@ -217,7 +218,9 @@ static NSString* const kPhotos = @"/collections/photos";
                                                 completionHandler:^(NSData *data, NSURLResponse *response, NSError *error) {
                                                     if (error == nil) {
                                                         NSDictionary* responseDictionary = [NSJSONSerialization JSONObjectWithData:data options:0 error:NULL];
-                                                        [photo updateFromDictionary:responseDictionary];
+                                                        dispatch_async(dispatch_get_main_queue(), ^(void){
+                                                            [photo updateFromDictionary:responseDictionary];
+                                                        });
                                                     }
                                                 }];
     

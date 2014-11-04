@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6245" systemVersion="14A389" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="TcK-Hn-xC7">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6250" systemVersion="14A389" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="TcK-Hn-xC7">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6238"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6244"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
@@ -19,7 +19,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="eVJ-2k-ZOB">
-                                <rect key="frame" x="-4" y="0.0" width="608" height="356"/>
+                                <rect key="frame" x="-4" y="0.0" width="608" height="400"/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="eVJ-2k-ZOB" secondAttribute="height" multiplier="1:1" id="mxe-eL-67G"/>
                                 </constraints>
@@ -30,7 +30,7 @@
                                 </variation>
                             </mapView>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" alwaysBounceHorizontal="YES" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="Y2f-Cd-NF3">
-                                <rect key="frame" x="-4" y="356" width="608" height="200"/>
+                                <rect key="frame" x="-4" y="400" width="608" height="200"/>
                                 <color key="backgroundColor" red="0.1101989790126511" green="0.47133492224676798" blue="0.68417503720238093" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="300" id="89T-Gc-4T0"/>
@@ -99,7 +99,7 @@
                                 </connections>
                             </collectionView>
                             <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="No Nearby Spots :(" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="UmG-Hv-TSs">
-                                <rect key="frame" x="175" y="438" width="250" height="36"/>
+                                <rect key="frame" x="175" y="482" width="250" height="36"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="30"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <nil key="highlightedColor"/>
@@ -132,7 +132,7 @@
                                     <barButtonItem systemItem="add" id="sB0-3r-HAo">
                                         <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <connections>
-                                            <segue destination="Vve-Eo-Ty2" kind="showDetail" identifier="CreateSpot" id="Hru-SO-2e2"/>
+                                            <segue destination="Vve-Eo-Ty2" kind="show" identifier="CreateSpot" id="Hru-SO-2e2"/>
                                         </connections>
                                     </barButtonItem>
                                     <barButtonItem width="5" style="plain" systemItem="fixedSpace" id="y5L-YY-1Hq"/>
@@ -146,12 +146,28 @@
                                     <constraint firstAttribute="height" constant="20" id="Qsc-rE-ZwD"/>
                                 </constraints>
                             </view>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="oEi-Mv-BLa">
+                                <rect key="frame" x="556" y="20" width="44" height="44"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="44" id="8tj-GX-NPV"/>
+                                    <constraint firstAttribute="width" constant="44" id="l0s-DZ-BuG"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="40"/>
+                                <state key="normal" title="+">
+                                    <color key="titleColor" red="0.110198979" green="0.47133492220000001" blue="0.68417503719999995" alpha="1" colorSpace="calibratedRGB"/>
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <segue destination="Vve-Eo-Ty2" kind="show" identifier="CreateSpot" id="G3J-lA-PRB"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="eVJ-2k-ZOB" firstAttribute="top" secondItem="37e-li-9oJ" secondAttribute="bottom" constant="-20" id="4fH-5Q-wzu"/>
                             <constraint firstItem="37e-li-9oJ" firstAttribute="top" secondItem="iQc-0O-ViA" secondAttribute="topMargin" id="6Vm-5g-9Od"/>
                             <constraint firstAttribute="trailingMargin" secondItem="eVJ-2k-ZOB" secondAttribute="trailing" constant="-20" id="71G-hD-lWh"/>
+                            <constraint firstItem="Z82-Z6-PAr" firstAttribute="top" secondItem="Y2f-Cd-NF3" secondAttribute="bottom" priority="750" id="89g-Ts-wsw"/>
                             <constraint firstItem="eVJ-2k-ZOB" firstAttribute="leading" secondItem="iQc-0O-ViA" secondAttribute="leadingMargin" constant="-20" id="EEL-jF-E1r"/>
                             <constraint firstItem="Y2f-Cd-NF3" firstAttribute="centerX" secondItem="UmG-Hv-TSs" secondAttribute="centerX" id="Lql-1i-8PL"/>
                             <constraint firstItem="Z82-Z6-PAr" firstAttribute="top" secondItem="da5-SJ-rr9" secondAttribute="bottom" id="NdU-fU-vzr"/>
@@ -165,14 +181,19 @@
                             <constraint firstItem="Y2f-Cd-NF3" firstAttribute="leading" secondItem="iQc-0O-ViA" secondAttribute="leadingMargin" constant="-20" id="nGX-Yl-cbL"/>
                             <constraint firstItem="da5-SJ-rr9" firstAttribute="leading" secondItem="iQc-0O-ViA" secondAttribute="leadingMargin" constant="-20" id="o6Q-SX-6gr"/>
                             <constraint firstItem="Y2f-Cd-NF3" firstAttribute="centerY" secondItem="UmG-Hv-TSs" secondAttribute="centerY" id="pYX-kJ-YWa"/>
+                            <constraint firstItem="oEi-Mv-BLa" firstAttribute="trailing" secondItem="iQc-0O-ViA" secondAttribute="trailingMargin" constant="16" id="sNI-Km-cop"/>
                             <constraint firstItem="Z82-Z6-PAr" firstAttribute="top" secondItem="Y2f-Cd-NF3" secondAttribute="bottom" id="u2Q-zg-ojZ"/>
                             <constraint firstItem="Y2f-Cd-NF3" firstAttribute="top" secondItem="eVJ-2k-ZOB" secondAttribute="bottom" id="u9u-wC-7sF"/>
+                            <constraint firstItem="oEi-Mv-BLa" firstAttribute="top" secondItem="Rpg-4N-JGk" secondAttribute="bottom" id="w7J-oe-uSx"/>
                         </constraints>
                         <variation key="default">
+                            <mask key="subviews">
+                                <exclude reference="da5-SJ-rr9"/>
+                            </mask>
                             <mask key="constraints">
                                 <exclude reference="RI0-73-v8E"/>
-                                <exclude reference="Nzi-UM-5K0"/>
                                 <exclude reference="u2Q-zg-ojZ"/>
+                                <exclude reference="Nzi-UM-5K0"/>
                             </mask>
                         </variation>
                     </view>
@@ -242,9 +263,13 @@
                             </toolbar>
                             <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="3WT-Nh-yy9">
                                 <rect key="frame" x="0.0" y="0.0" width="556" height="556"/>
+                                <gestureRecognizers/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="3WT-Nh-yy9" secondAttribute="height" multiplier="1:1" id="Oey-Nw-MMH"/>
                                 </constraints>
+                                <connections>
+                                    <outletCollection property="gestureRecognizers" destination="daw-T6-qfl" appends="YES" id="hw5-px-clm"/>
+                                </connections>
                             </imageView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -333,6 +358,11 @@
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Opf-bm-fU0" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <tapGestureRecognizer id="daw-T6-qfl">
+                    <connections>
+                        <action selector="touchUseCamera:" destination="Vve-Eo-Ty2" id="6kE-b9-cHn"/>
+                    </connections>
+                </tapGestureRecognizer>
             </objects>
             <point key="canvasLocation" x="912" y="-370.5"/>
         </scene>
@@ -341,6 +371,7 @@
         <image name="loadingSpotPhoto.jpg" width="2448" height="2448"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="3jh-wH-MsC"/>
+        <segue reference="G3J-lA-PRB"/>
+        <segue reference="ElS-Rz-Lye"/>
     </inferredMetricsTieBreakers>
 </document>

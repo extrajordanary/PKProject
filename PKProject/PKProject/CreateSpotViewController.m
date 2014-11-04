@@ -115,9 +115,24 @@ static const CGFloat kDefaultZoomMiles = 0.2;
 
 #pragma mark - Image Picker
 - (IBAction)pictureFromCamera:(id)sender {
+//    UIImagePickerController* imagePicker = [[UIImagePickerController alloc] init];
+//    imagePicker.delegate = self;
+//
+//    imagePicker.sourceType = UIImagePickerControllerSourceTypeCamera;
+//    
+//    [self presentViewController:imagePicker animated:YES completion:^{
+//        //
+//    }];
+    [self useCamera];
+}
+- (IBAction)touchUseCamera:(id)sender {
+    [self useCamera];
+}
+
+-(void)useCamera {
     UIImagePickerController* imagePicker = [[UIImagePickerController alloc] init];
     imagePicker.delegate = self;
-
+    
     imagePicker.sourceType = UIImagePickerControllerSourceTypeCamera;
     
     [self presentViewController:imagePicker animated:YES completion:^{
