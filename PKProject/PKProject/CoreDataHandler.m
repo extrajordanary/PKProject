@@ -15,9 +15,6 @@
 #import "ServerHandler.h"
 
 // for creating new mangaged objects and querying them
-// !!! -  inside each method, nest all actions inside main thread
-//dispatch_async(dispatch_get_main_queue(), ^(void){
-//});
 
 @implementation CoreDataHandler {
     NSManagedObjectContext *theContext;
@@ -92,7 +89,6 @@
         [object setValue:databaseId forKey:@"databaseId"];
     }
     // update object from server
-    // !!! - disabled temporarily to reduce frequency of core data issues and bc things don't change after initial creation now anyway
     [serverHandler updateObjectFromServer:object];
     return object;
 }

@@ -11,21 +11,6 @@
 
 @implementation PhotoCollectionViewCell
 
-// ??? - below not even used
--(id)initWithFrame:(CGRect)frame {
-    self = [super initWithFrame:frame];
-    if (self) {
-        // Initialization code
-        self.imageView = [[UIImageView alloc] initWithFrame:self.frame];
-        [self.contentView addSubview:self.imageView];
-        [self.imageView setClipsToBounds:YES];
-        
-        // TODO: put default loading image here?
-        self.imageView.image = [UIImage imageNamed:@"loadingSpotPhoto.jpg"];
-    }
-    return self;
-}
-
 // assign a spot to the cell and initiate the image updating
 -(void)displayInfoForSpot:(Spot*)spot {
     // assign spot to self

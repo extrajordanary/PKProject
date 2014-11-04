@@ -73,11 +73,6 @@ static NSString* const kAWSBase = @"https://s3-us-west-1.amazonaws.com/cvalt-pho
         }
     } else { // must still be using temp image
         NSLog(@"Using temp photo path");
-//        NSString *cachesFolder = [NSSearchPathForDirectoriesInDomains(NSCachesDirectory, NSUserDomainMask, YES) lastObject];
-//        // TODO: use different temp file naming method
-//        NSString *lat = [NSString stringWithFormat:@"%i",(int)self.latitude];
-//        NSString *localPath = [[cachesFolder stringByAppendingString:lat] stringByAppendingString:@".jpg"]; // TODO: reduce redundancy
-        
         image = [UIImage imageWithContentsOfFile:[self getTempLocalPath]];
     }
     
@@ -87,16 +82,12 @@ static NSString* const kAWSBase = @"https://s3-us-west-1.amazonaws.com/cvalt-pho
 -(void)saveImageToLocalCache:(UIImage*)image {
     NSData *saveImage = UIImageJPEGRepresentation(image,1.0);
 
-//    NSString *cachesFolder = [NSSearchPathForDirectoriesInDomains(NSCachesDirectory, NSUserDomainMask, YES) lastObject];
     NSString *localPath;
     if (self.databaseId) {
-//        localPath = [[cachesFolder stringByAppendingPathComponent:self.databaseId] stringByAppendingString:@".jpg"];
         localPath = [self getLocalPath];
         NSLog(@"saving to final");
     } else {
         // if Photo hasn't gotten a permanent databaseId yet, save to a temp location
-//        NSString *lat = [NSString stringWithFormat:@"%i",(int)self.latitude];
-//        localPath = [[cachesFolder stringByAppendingString:lat] stringByAppendingString:@".jpg"];
         localPath = [self getTempLocalPath];
         NSLog(@"saving to temp");
     }
@@ -109,9 +100,6 @@ static NSString* const kAWSBase = @"https://s3-us-west-1.amazonaws.com/cvalt-pho
     // get the image saved in the temp location
     NSLog(@"databaseId recieved");
 
-//    NSString *cachesFolder = [NSSearchPathForDirectoriesInDomains(NSCachesDirectory, NSUserDomainMask, YES) lastObject];
-//    NSString *lat = [NSString stringWithFormat:@"%i",(int)self.latitude];
-//    NSString *localPath = [[cachesFolder stringByAppendingString:lat] stringByAppendingString:@".jpg"];
     NSString *localPath = [self getTempLocalPath];
     UIImage *image = [UIImage imageWithContentsOfFile:localPath];
     
@@ -120,14 +108,12 @@ static NSString* const kAWSBase = @"https://s3-us-west-1.amazonaws.com/cvalt-pho
     [self saveImageToAWS:localPath];
     
     // TODO: delete old temp file in local cache
-    
 }
 
 -(void)saveImageToAWS:(NSString*)imagePath {
     NSLog(@"sending to AWSHandler");
     AWSHandler *aws = [AWSHandler sharedAWSHandler];
-    // prepending "file://" for error:
-    // CFURLCopyResourcePropertyForKey failed because it was passed this URL which has no scheme: ...
+
     NSString *fixedString = [NSString stringWithFormat:@"file://%@",imagePath];
     NSURL *imageUrl = [NSURL URLWithString:fixedString];
     NSString *imageName = [NSString stringWithFormat:@"%@.jpg",self.databaseId];
@@ -135,6 +121,7 @@ static NSString* const kAWSBase = @"https://s3-us-west-1.amazonaws.com/cvalt-pho
 }
 
 -(NSString*)getTempLocalPath {
+    // TODO: create string from timestamp to use instead of latitude
     NSString *cachesFolder = [NSSearchPathForDirectoriesInDomains(NSCachesDirectory, NSUserDomainMask, YES) lastObject];
     NSString *lat = [NSString stringWithFormat:@"%i",(int)([self.latitude floatValue]*10000)];
     NSString *localPath = [[cachesFolder stringByAppendingPathComponent:lat] stringByAppendingString:@".jpg"];

@@ -122,22 +122,12 @@ static const CGFloat kDefaultZoomMiles = 0.5; // TODO : make dynamic/adjustable?
     if (!cell) {
         
     }
-//    cell.spot = self.nearbySpots[indexPath.row];
-    
-    // TODO: create method for cell to load images asynchronously for when they'll be downloading from online
-//    UIImage *image = [cell.spot getThumbnail]; // returns image for first Photo object
-//    [cell.imageView setImage:image];
+
     [cell.imageView setImage:[UIImage imageNamed:@"loadingSpotPhoto.jpg"]];
     [cell displayInfoForSpot:self.nearbySpots[indexPath.row]];
     
     return cell;
 }
-// 4
-/*- (UICollectionReusableView *)collectionView:
- (UICollectionView *)collectionView viewForSupplementaryElementOfKind:(NSString *)kind atIndexPath:(NSIndexPath *)indexPath
- {
- return [[UICollectionReusableView alloc] init];
- }*/
 
 #pragma mark - UICollectionViewDelegate
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath

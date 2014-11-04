@@ -166,7 +166,7 @@ static const CGFloat kDefaultZoomMiles = 0.2;
 #pragma mark - Data
 -(void)saveNewSpot {
     // assign final values to both spot and photo
-    // TODO: move dateFormatter into a getTimestamp method in ServerObject class
+    // TODO: move dateFormatter into a singleton class
     NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
     [dateFormatter setTimeZone:[NSTimeZone timeZoneWithAbbreviation:@"GMT"]];
     [dateFormatter setDateStyle:NSDateFormatterLongStyle];
