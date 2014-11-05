@@ -113,6 +113,17 @@ static const CGFloat kDefaultZoomMiles = 0.2;
           location.coordinate.longitude);
 }
 
+#pragma mark - Location Setting
+- (IBAction)setLocation:(UILongPressGestureRecognizer *)sender {
+    CGPoint point = [sender locationInView:self.mapView];
+    // offset y value so that user can see the bottom of the marker to place it more accurately
+    CGPoint adjustedPoint = CGPointMake(point.x, point.y - 15);
+    CLLocationCoordinate2D tapPoint = [self.mapView convertPoint:adjustedPoint toCoordinateFromView:self.mapView];
+    
+    spotMarker.coordinate = tapPoint;
+}
+
+
 #pragma mark - Image Picker
 - (IBAction)pictureFromCamera:(id)sender {
 //    UIImagePickerController* imagePicker = [[UIImagePickerController alloc] init];
