@@ -93,7 +93,7 @@ static const CGFloat kDefaultZoomMiles = 0.5; // TODO : make dynamic/adjustable?
 
 // Delegate method from the CLLocationManagerDelegate protocol.
 - (void)locationManager:(CLLocationManager *)manager didUpdateLocations:(NSArray *)locations {
-    CLLocation* location = [locations lastObject];
+//    CLLocation* location = [locations lastObject];
     [self zoomToCurrentLocation];
 //    NSLog(@"latitude %+.6f, longitude %+.6f\n",
 //          location.coordinate.latitude,
@@ -106,10 +106,6 @@ static const CGFloat kDefaultZoomMiles = 0.5; // TODO : make dynamic/adjustable?
 }
 
 #pragma mark - UICollectionView
-// Will use this when user touches marker on map
-//- (void)scrollToItemAtIndexPath:(NSIndexPath *)indexPath atScrollPosition:(UICollectionViewScrollPosition)scrollPosition animated:(BOOL)animated;
-
-#pragma mark - UICollectionView Datasource
 
 - (NSInteger)collectionView:(UICollectionView *)view numberOfItemsInSection:(NSInteger)section {
     return [self.nearbySpots count];
@@ -129,16 +125,17 @@ static const CGFloat kDefaultZoomMiles = 0.5; // TODO : make dynamic/adjustable?
     return cell;
 }
 
-#pragma mark - UICollectionViewDelegate
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
 {
-    // TODO: Select Item
+    NSLog(@"selected cell %i",(int)indexPath.row);
+    [collectionView scrollToItemAtIndexPath:indexPath atScrollPosition:UICollectionViewScrollPositionCenteredHorizontally animated:YES];
+    // TODO: Highlight the appropriate marker on the map
 }
+
 - (void)collectionView:(UICollectionView *)collectionView didDeselectItemAtIndexPath:(NSIndexPath *)indexPath {
     // TODO: Deselect item
 }
 
-#pragma mark – UICollectionViewDelegateFlowLayout
 - (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath {
     int height = collectionView.frame.size.height;
 
@@ -181,9 +178,9 @@ static const CGFloat kDefaultZoomMiles = 0.5; // TODO : make dynamic/adjustable?
                 [self.nearbySpots addObject:nextSpot];
             }
         // force to main thread for UI updates
-//        dispatch_async(dispatch_get_main_queue(), ^(void){
             if (self.nearbySpots.count > 0) {
                 self.noSpotsText.hidden = YES;
+                // TODO: should spot markers be children of the cells? Of the spots?
                 [self placeSpotMarkers];
                 [self.collectionView reloadData]; // populates scrollable photo previews
             } else {
@@ -233,7 +230,6 @@ static const CGFloat kDefaultZoomMiles = 0.5; // TODO : make dynamic/adjustable?
     
     if (!self.thisUser) {
         // if User object doesn't already exist in Core Data, create it and update from server
-//        User *newUser = [coreDataHandler newUser];
         User *newUser = (User*)[coreDataHandler createNew:@"User"];
         
         
@@ -252,6 +248,18 @@ static const CGFloat kDefaultZoomMiles = 0.5; // TODO : make dynamic/adjustable?
         createSpotViewController.thisUser = self.thisUser;
         createSpotViewController.locationManager = self.locationManager;
     }
+}
+
+- (IBAction)spotDoubleTap:(UITapGestureRecognizer *)sender {
+    CGPoint tapLocation = [sender locationInView:self.collectionView];
+    NSIndexPath *tappedIndexPath = [self.collectionView indexPathForItemAtPoint:tapLocation];
+    PhotoCollectionViewCell *tappedCell = (PhotoCollectionViewCell*)[self.collectionView cellForItemAtIndexPath:tappedIndexPath];
+
+    [self viewSpotDetails:tappedCell.spot];
+}
+
+-(void)viewSpotDetails:(Spot*)spot {
+    NSLog(@"view spot %@",spot.databaseId);
 }
 
 @end

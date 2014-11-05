@@ -43,10 +43,10 @@ static NSString* const kPhotos = @"/collections/photos";
     // see what the object type is, then pass it to the appropriate method
     if (object.databaseId) {
         if ([object isKindOfClass:[User class]]) {
-            NSLog(@"USER updated from server");
+//            NSLog(@"USER updated from server");
             [self updateUserFromServer:(User*)object];
         } else if ([object isKindOfClass:[Photo class]]) {
-            NSLog(@"PHOTO updated from server");
+//            NSLog(@"PHOTO updated from server");
             [self updatePhotoFromServer:(Photo*)object];
         } else {
             // TODO: spot method
@@ -75,7 +75,9 @@ static NSString* const kPhotos = @"/collections/photos";
                                                 completionHandler:^(NSData *data, NSURLResponse *response, NSError *error) {
                                                     if (error == nil) {
                                                         NSDictionary* responseDictionary = [NSJSONSerialization JSONObjectWithData:data options:0 error:NULL];
-                                                        [user updateFromDictionary:responseDictionary];
+                                                        dispatch_async(dispatch_get_main_queue(), ^(void){
+                                                            [user updateFromDictionary:responseDictionary];
+                                                        });
                                                     }
                                                 }];
     
