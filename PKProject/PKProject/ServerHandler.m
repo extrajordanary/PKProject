@@ -15,8 +15,8 @@
 
 static NSString* const kBaseURL = @"http://travalt.herokuapp.com"; //TODO: change name on heroku to cvalt
 static NSString* const kUsers = @"/collections/users"; 
-//static NSString* const kSpots = @"/collections/spots"; // for real spots
-static NSString* const kSpots = @"/collections/devspots"; // - for testing
+static NSString* const kSpots = @"/collections/spots"; // for real spots
+//static NSString* const kSpots = @"/collections/devspots"; // - for testing
 static NSString* const kPhotos = @"/collections/photos";
 
 @implementation ServerHandler
