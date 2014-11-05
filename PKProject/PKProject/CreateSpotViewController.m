@@ -53,14 +53,14 @@ static const CGFloat kDefaultZoomMiles = 0.2;
 
     self.spotImage.image = [UIImage imageNamed:@"defaultSpotPhoto.jpg"];
     [self.spotImage setClipsToBounds:YES];
+    
+    spotMarker.coordinate = self.locationManager.location.coordinate;
+    [self.mapView addAnnotation:spotMarker];
 }
 
 -(void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
-    
-    // TODO: allow user to pick up and move marker
-    spotMarker.coordinate = self.locationManager.location.coordinate;
-    [self.mapView addAnnotation:spotMarker];
+    //
 }
 
 -(void)viewWillDisappear:(BOOL)animated {
@@ -125,15 +125,8 @@ static const CGFloat kDefaultZoomMiles = 0.2;
 
 
 #pragma mark - Image Picker
+// from former button, not sure if I'll be using it in final UI
 - (IBAction)pictureFromCamera:(id)sender {
-//    UIImagePickerController* imagePicker = [[UIImagePickerController alloc] init];
-//    imagePicker.delegate = self;
-//
-//    imagePicker.sourceType = UIImagePickerControllerSourceTypeCamera;
-//    
-//    [self presentViewController:imagePicker animated:YES completion:^{
-//        //
-//    }];
     [self useCamera];
 }
 
@@ -153,7 +146,11 @@ static const CGFloat kDefaultZoomMiles = 0.2;
     }];
 }
 
-- (IBAction)pictureFromPhotoLibrary:(id)sender {
+- (IBAction)selectChoosePhoto:(id)sender {
+    [self pictureFromPhotoLibrary];
+}
+
+- (void)pictureFromPhotoLibrary {
     UIImagePickerController* imagePicker = [[UIImagePickerController alloc] init];
     imagePicker.delegate = self;
     
@@ -162,6 +159,11 @@ static const CGFloat kDefaultZoomMiles = 0.2;
     [self presentViewController:imagePicker animated:YES completion:^{
         //
     }];
+}
+
+// from former button, not sure if I'll be using it in final UI
+- (IBAction)pictureFromPhotoLibrary:(id)sender {
+    [self pictureFromPhotoLibrary];
 }
 
 - (void)imagePickerControllerDidCancel:(UIImagePickerController *)picker
@@ -194,7 +196,7 @@ static const CGFloat kDefaultZoomMiles = 0.2;
 #pragma mark - Data
 -(void)saveNewSpot {
     // assign final values to both spot and photo
-    // TODO: move dateFormatter into a singleton class
+    // TODO: move dateFormatter into a singleton class?
     NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
     [dateFormatter setTimeZone:[NSTimeZone timeZoneWithAbbreviation:@"GMT"]];
     [dateFormatter setDateStyle:NSDateFormatterLongStyle];
