@@ -117,7 +117,7 @@
                                         </constraints>
                                         <fontDescription key="fontDescription" type="system" pointSize="40"/>
                                         <state key="normal" title="+">
-                                            <color key="titleColor" red="0.20199064275791978" green="1" blue="0.39730375935913043" alpha="1" colorSpace="calibratedRGB"/>
+                                            <color key="titleColor" red="0.20392156862745098" green="1" blue="0.396078431372549" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                             <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
                                         <connections>
@@ -125,7 +125,7 @@
                                         </connections>
                                     </button>
                                 </subviews>
-                                <color key="backgroundColor" red="0.071800326265095249" green="0.41632887303705052" blue="0.90239025297619047" alpha="1" colorSpace="calibratedRGB"/>
+                                <color key="backgroundColor" red="0.071800326270000006" green="0.41632887299999999" blue="0.90239025299999998" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="trailing" secondItem="oEi-Mv-BLa" secondAttribute="trailing" id="7Z8-TG-PUE"/>
                                     <constraint firstAttribute="height" constant="54" id="Qsc-rE-ZwD"/>
