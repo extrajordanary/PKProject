@@ -17,6 +17,10 @@
 		1731D5211A0B042A0068A769 /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1731D5201A0B042A0068A769 /* LoginViewController.m */; };
 		1734B7A619E4954A009B228A /* CreateSpotViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1734B7A519E4954A009B228A /* CreateSpotViewController.m */; };
 		1740BBA31A0B46770033D2DE /* LocationManagerHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 1740BBA21A0B46770033D2DE /* LocationManagerHandler.m */; };
+		1740BBA51A0C07260033D2DE /* cvalt-findMe.png in Resources */ = {isa = PBXBuildFile; fileRef = 1740BBA41A0C07260033D2DE /* cvalt-findMe.png */; };
+		1740BBA71A0C08AF0033D2DE /* cvalt-findMe2.png in Resources */ = {isa = PBXBuildFile; fileRef = 1740BBA61A0C08AF0033D2DE /* cvalt-findMe2.png */; };
+		1740BBA91A0C0B120033D2DE /* cvalt-findMe2s.png in Resources */ = {isa = PBXBuildFile; fileRef = 1740BBA81A0C0B120033D2DE /* cvalt-findMe2s.png */; };
+		1740BBAB1A0C0B790033D2DE /* cvalt-findMe2s2.png in Resources */ = {isa = PBXBuildFile; fileRef = 1740BBAA1A0C0B790033D2DE /* cvalt-findMe2s2.png */; };
 		174A537D1A045947007B7358 /* AWSHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 174A537C1A045947007B7358 /* AWSHandler.m */; };
 		174A538F1A058F42007B7358 /* AWSCognitoSync.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 174A538E1A058F42007B7358 /* AWSCognitoSync.framework */; };
 		175BC87A1A02BB5800EFAEEA /* Bolts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 175BC8731A02BB5800EFAEEA /* Bolts.framework */; };
@@ -102,6 +106,10 @@
 		1734B7A519E4954A009B228A /* CreateSpotViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CreateSpotViewController.m; sourceTree = "<group>"; };
 		1740BBA11A0B46770033D2DE /* LocationManagerHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LocationManagerHandler.h; sourceTree = "<group>"; };
 		1740BBA21A0B46770033D2DE /* LocationManagerHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LocationManagerHandler.m; sourceTree = "<group>"; };
+		1740BBA41A0C07260033D2DE /* cvalt-findMe.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "cvalt-findMe.png"; path = "../cvalt-findMe.png"; sourceTree = "<group>"; };
+		1740BBA61A0C08AF0033D2DE /* cvalt-findMe2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "cvalt-findMe2.png"; sourceTree = "<group>"; };
+		1740BBA81A0C0B120033D2DE /* cvalt-findMe2s.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "cvalt-findMe2s.png"; sourceTree = "<group>"; };
+		1740BBAA1A0C0B790033D2DE /* cvalt-findMe2s2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "cvalt-findMe2s2.png"; sourceTree = "<group>"; };
 		174A537B1A045947007B7358 /* AWSHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AWSHandler.h; sourceTree = "<group>"; };
 		174A537C1A045947007B7358 /* AWSHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AWSHandler.m; sourceTree = "<group>"; };
 		174A538E1A058F42007B7358 /* AWSCognitoSync.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = AWSCognitoSync.framework; sourceTree = "<group>"; };
@@ -233,6 +241,10 @@
 		1734B77B19E469A1009B228A /* SampleSpots */ = {
 			isa = PBXGroup;
 			children = (
+				1740BBAA1A0C0B790033D2DE /* cvalt-findMe2s2.png */,
+				1740BBA81A0C0B120033D2DE /* cvalt-findMe2s.png */,
+				1740BBA61A0C08AF0033D2DE /* cvalt-findMe2.png */,
+				1740BBA41A0C07260033D2DE /* cvalt-findMe.png */,
 				1731D51D1A0B027B0068A769 /* cvalt-textLogo-blue.png */,
 				1731D51B1A0B002F0068A769 /* cvalt-textLogo.png */,
 				1731D5191A0AF6DB0068A769 /* cvalt-roundedButton.png */,
@@ -480,19 +492,23 @@
 			files = (
 				17F2C60919F83D6E008C86AE /* ec2-2014-06-15.json in Resources */,
 				1731D5181A0AB9040068A769 /* Images.xcassets in Resources */,
+				1740BBA71A0C08AF0033D2DE /* cvalt-findMe2.png in Resources */,
 				17F2C61319F83D6E008C86AE /* sts-2011-06-15.json in Resources */,
 				17F2C61819F867C4008C86AE /* loadingSpotPhoto.jpg in Resources */,
 				175DA61019DA1D2800897710 /* Main.storyboard in Resources */,
 				17F2C61119F83D6E008C86AE /* sns-2010-03-31.json in Resources */,
 				1762F6ED19EF192700EE71C2 /* defaultSpotPhoto.jpg in Resources */,
 				17F2C60519F83D6E008C86AE /* autoscaling-2011-01-01.json in Resources */,
+				1740BBAB1A0C0B790033D2DE /* cvalt-findMe2s2.png in Resources */,
 				17F2C60719F83D6E008C86AE /* css-2014-06-30.json in Resources */,
 				1731D51A1A0AF6DB0068A769 /* cvalt-roundedButton.png in Resources */,
 				1731D51C1A0B002F0068A769 /* cvalt-textLogo.png in Resources */,
+				1740BBA91A0C0B120033D2DE /* cvalt-findMe2s.png in Resources */,
 				17F2C60D19F83D6E008C86AE /* mobileanalytics-2014-06-30.json in Resources */,
 				17F2C61019F83D6E008C86AE /* sdb-2009-04-15.json in Resources */,
 				17F2C60C19F83D6E008C86AE /* kinesis-2013-12-02.json in Resources */,
 				17F2C60819F83D6E008C86AE /* dynamodb-2012-08-10.json in Resources */,
+				1740BBA51A0C07260033D2DE /* cvalt-findMe.png in Resources */,
 				17F2C60F19F83D6E008C86AE /* s3-2006-03-01.json in Resources */,
 				17F2C60A19F83D6E008C86AE /* elasticloadbalancing-2012-06-01.json in Resources */,
 				17F2C60619F83D6E008C86AE /* cib-2014-06-30.json in Resources */,
