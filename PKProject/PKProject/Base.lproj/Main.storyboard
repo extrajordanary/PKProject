@@ -170,16 +170,38 @@
                                             <segue destination="Vve-Eo-Ty2" kind="show" identifier="CreateSpot" id="G3J-lA-PRB"/>
                                         </connections>
                                     </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="i7b-9c-ca6">
+                                        <rect key="frame" x="4" y="12" width="46" height="44"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="46" id="NeP-Lm-M5E"/>
+                                            <constraint firstAttribute="height" constant="44" id="VgG-5q-qQw"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" type="system" pointSize="25"/>
+                                        <inset key="contentEdgeInsets" minX="0.0" minY="0.0" maxX="0.0" maxY="-6"/>
+                                        <state key="normal" title="Me">
+                                            <color key="titleColor" red="0.20392156859999999" green="1" blue="0.39607843139999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="showUserLocation:" destination="TcK-Hn-xC7" eventType="touchDown" id="ZYI-Rk-Bhu"/>
+                                        </connections>
+                                    </button>
                                 </subviews>
                                 <color key="backgroundColor" red="0.071800326270000006" green="0.41632887299999999" blue="0.90239025299999998" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="trailing" secondItem="oEi-Mv-BLa" secondAttribute="trailing" id="7Z8-TG-PUE"/>
+                                    <constraint firstAttribute="bottomMargin" secondItem="i7b-9c-ca6" secondAttribute="bottom" id="OId-RZ-tQS"/>
                                     <constraint firstAttribute="height" constant="54" id="Qsc-rE-ZwD"/>
+                                    <constraint firstItem="i7b-9c-ca6" firstAttribute="leading" secondItem="37e-li-9oJ" secondAttribute="leadingMargin" constant="-4" id="Ufp-bk-xHv"/>
                                     <constraint firstItem="oEi-Mv-BLa" firstAttribute="leading" secondItem="37e-li-9oJ" secondAttribute="leading" id="ZBU-DY-zeA"/>
+                                    <constraint firstItem="i7b-9c-ca6" firstAttribute="leading" secondItem="37e-li-9oJ" secondAttribute="leadingMargin" id="iTg-5W-487"/>
                                     <constraint firstAttribute="bottom" secondItem="oEi-Mv-BLa" secondAttribute="bottom" id="pe2-7j-OmJ"/>
+                                    <constraint firstAttribute="bottomMargin" secondItem="i7b-9c-ca6" secondAttribute="bottom" constant="-10" id="yN8-U6-n7E"/>
                                 </constraints>
                                 <variation key="default">
                                     <mask key="constraints">
+                                        <exclude reference="OId-RZ-tQS"/>
+                                        <exclude reference="iTg-5W-487"/>
                                         <exclude reference="ZBU-DY-zeA"/>
                                     </mask>
                                 </variation>

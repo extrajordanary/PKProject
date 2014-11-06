@@ -15,12 +15,13 @@
 #import "Spot+Extended.h"
 #import "Photo+Extended.h"
 #import "PhotoCollectionViewCell.h"
+#import "LocationManagerHandler.h"
 
 @interface MapViewController ()
 
 @property (strong, nonatomic) IBOutlet MKMapView *mapView;
 @property (strong, nonatomic) IBOutlet UICollectionView *collectionView;
-@property (strong, nonatomic) CLLocationManager *locationManager;
+//@property (strong, nonatomic) CLLocationManager *locationManager;
 @property (strong, nonatomic) User *thisUser;
 @property (strong, nonatomic) NSMutableArray *nearbySpots;
 @property (strong, nonatomic) IBOutlet UILabel *noSpotsText;
@@ -30,6 +31,7 @@
 @implementation MapViewController {
     ServerHandler *serverHandler;
     CoreDataHandler *coreDataHandler;
+    LocationManagerHandler *locationHandler;
     NSString *thisUserId;
 }
 
@@ -45,8 +47,14 @@ static const CGFloat kDefaultZoomMiles = 0.5; // TODO : make dynamic/adjustable?
     // Do any additional setup after loading the view.
     serverHandler = [ServerHandler sharedServerHandler];
     coreDataHandler = [CoreDataHandler sharedCoreDataHandler];
+    locationHandler = [LocationManagerHandler sharedLocationManagerHandler];
     
-    [self startStandardMapUpdates];
+    // listen for changes from location manager
+    [locationHandler addObserver:self forKeyPath:@"currentLocation" options:NSKeyValueObservingOptionNew context:nil];
+    [locationHandler addObserver:self forKeyPath:@"isAuthorized" options:NSKeyValueObservingOptionNew context:nil];
+
+    
+//    [self startStandardMapUpdates];
     
     self.nearbySpots = [[NSMutableArray alloc] init];
     
@@ -59,55 +67,90 @@ static const CGFloat kDefaultZoomMiles = 0.5; // TODO : make dynamic/adjustable?
 
     [self getThisUser];
     [self updateNearbySpots];
+    
+    if (locationHandler.isAuthorized) {
+        [self zoomToCurrentLocation];
+    }
 }
 
 #pragma mark - Location Manager
 // TODO: create location manager singleton
 // TODO: only zoom to location the first time
 // TODO: search bar
-- (BOOL)startStandardMapUpdates
-{
-    // Create the location manager if this object does not already have one.
-    if (nil == self.locationManager) {
-        self.locationManager = [[CLLocationManager alloc] init];
-    }
-    
-    self.locationManager.delegate = self;
-    self.locationManager.desiredAccuracy = kCLLocationAccuracyKilometer;
-    
-    // Set a movement threshold for new events.
-    self.locationManager.distanceFilter = 500; // meters
-    
-    if(IS_OS_8_OR_LATER) {
-        [self.locationManager requestAlwaysAuthorization];
-    }
-    
-    [self.locationManager startUpdatingLocation];
-    [self.locationManager startUpdatingHeading];
-    
-    return YES;
-}
+
+//- (BOOL)startStandardMapUpdates
+//{
+//    // Create the location manager if this object does not already have one.
+//    if (nil == self.locationManager) {
+//        self.locationManager = [[CLLocationManager alloc] init];
+//    }
+//    
+//    self.locationManager.delegate = self;
+//    self.locationManager.desiredAccuracy = kCLLocationAccuracyKilometer;
+//    
+//    // Set a movement threshold for new events.
+//    self.locationManager.distanceFilter = 500; // meters
+//    
+//    if(IS_OS_8_OR_LATER) {
+//        [self.locationManager requestAlwaysAuthorization];
+//    }
+//
+//    [self.locationManager startUpdatingLocation];
+//    [self.locationManager startUpdatingHeading];
+//
+//    return YES;
+//}
+
+//- (BOOL)startStandardMapUpdates
+//{
+//    // Create the location manager if this object does not already have one.
+//    if (nil == self.locationManager) {
+//        self.locationManager = [[CLLocationManager alloc] init];
+//    }
+//    
+//    self.locationManager.delegate = self;
+//    self.locationManager.desiredAccuracy = kCLLocationAccuracyKilometer;
+//    
+//    // Set a movement threshold for new events.
+//    self.locationManager.distanceFilter = 500; // meters
+//    
+//    if(IS_OS_8_OR_LATER) {
+//        [self.locationManager requestAlwaysAuthorization];
+//    }
+//    
+//    [self.locationManager startUpdatingLocation];
+//    [self.locationManager startUpdatingHeading];
+//    
+//    return YES;
+//}
 
 // delegate method called when user changes authorization to allow location tracking
-- (void)locationManager:(CLLocationManager *)manager didChangeAuthorizationStatus:(CLAuthorizationStatus)status {
-    if (status) {
-        [self zoomToCurrentLocation];
-    }
-}
+//- (void)locationManager:(CLLocationManager *)manager didChangeAuthorizationStatus:(CLAuthorizationStatus)status {
+//    if (status) {
+//        [self zoomToCurrentLocation];
+//    }
+//}
+//
+//// Delegate method from the CLLocationManagerDelegate protocol.
+//- (void)locationManager:(CLLocationManager *)manager didUpdateLocations:(NSArray *)locations {
+//    [self zoomToCurrentLocation];
+//
+//}
 
-// Delegate method from the CLLocationManagerDelegate protocol.
-- (void)locationManager:(CLLocationManager *)manager didUpdateLocations:(NSArray *)locations {
-//    CLLocation* location = [locations lastObject];
+#pragma mark - Map
+- (IBAction)showUserLocation:(id)sender {
     [self zoomToCurrentLocation];
-//    NSLog(@"latitude %+.6f, longitude %+.6f\n",
-//          location.coordinate.latitude,
-//          location.coordinate.longitude);
 }
 
 -(void)zoomToCurrentLocation {
-    MKCoordinateRegion viewRegion = MKCoordinateRegionMakeWithDistance(self.locationManager.location.coordinate, kDefaultZoomMiles*kMetersPerMile, kDefaultZoomMiles*kMetersPerMile);
+    MKCoordinateRegion viewRegion = MKCoordinateRegionMakeWithDistance(locationHandler.currentLocation.coordinate, kDefaultZoomMiles*kMetersPerMile, kDefaultZoomMiles*kMetersPerMile);
     [self.mapView setRegion:viewRegion animated:YES];
 }
+
+//-(void)zoomToCurrentLocation {
+//    MKCoordinateRegion viewRegion = MKCoordinateRegionMakeWithDistance(self.locationManager.location.coordinate, kDefaultZoomMiles*kMetersPerMile, kDefaultZoomMiles*kMetersPerMile);
+//    [self.mapView setRegion:viewRegion animated:YES];
+//}
 
 #pragma mark - UICollectionView
 
@@ -250,7 +293,7 @@ static const CGFloat kDefaultZoomMiles = 0.5; // TODO : make dynamic/adjustable?
     if ([segue.identifier isEqualToString:@"CreateSpot"]) {
         CreateSpotViewController *createSpotViewController = [segue destinationViewController];
         createSpotViewController.thisUser = self.thisUser;
-        createSpotViewController.locationManager = self.locationManager;
+//        createSpotViewController.locationManager = self.locationManager;
     }
 }
 
@@ -264,6 +307,20 @@ static const CGFloat kDefaultZoomMiles = 0.5; // TODO : make dynamic/adjustable?
 
 -(void)viewSpotDetails:(Spot*)spot {
     NSLog(@"view spot %@",spot.databaseId);
+}
+
+#pragma mark - Listeners
+- (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object  change:(NSDictionary *)change context:(void *)context
+{
+    if([keyPath isEqualToString:@"currentLocation"]) {
+        [self zoomToCurrentLocation];
+    }
+    else if([keyPath isEqualToString:@"isAuthorized"]) {
+        if (locationHandler.isAuthorized) {
+            [locationHandler startUpdatingLocation];
+            [self zoomToCurrentLocation];
+        }
+    }
 }
 
 @end

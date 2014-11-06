@@ -16,6 +16,7 @@
 #import "Spot+Extended.h"
 #import "User+Extended.h"
 #import "Photo+Extended.h"
+#import "LocationManagerHandler.h"
 
 @interface CreateSpotViewController ()
 
@@ -30,6 +31,7 @@
     Photo *newPhoto;
     ServerHandler *serverHandler;
     CoreDataHandler *coreDataHandler;
+    LocationManagerHandler *locationHandler;
     MKPointAnnotation *spotMarker;
     NSDictionary *imageInfo;
 }
@@ -42,12 +44,21 @@ static const CGFloat kDefaultZoomMiles = 0.2;
     // Do any additional setup after loading the view.
     serverHandler = [ServerHandler sharedServerHandler];
     coreDataHandler = [CoreDataHandler sharedCoreDataHandler];
-    self.library = [[ALAssetsLibrary alloc] init];
+    locationHandler = [LocationManagerHandler sharedLocationManagerHandler];
+    
+    // listen for changes from location manager
+    [locationHandler addObserver:self forKeyPath:@"currentLocation" options:NSKeyValueObservingOptionNew context:nil];
+    [locationHandler addObserver:self forKeyPath:@"isAuthorized" options:NSKeyValueObservingOptionNew context:nil];
+    
+    self.mapView.showsUserLocation = YES;
+    self.mapView.showsPointsOfInterest = NO;
     
     spotMarker = [[MKPointAnnotation alloc] init];
+    spotMarker.coordinate = locationHandler.currentLocation.coordinate;
+    [self.mapView addAnnotation:spotMarker];
     
-    self.locationManager.delegate = self;
-    [self zoomToCurrentLocation];
+//    self.locationManager.delegate = self;
+//    [self zoomToCurrentLocation];
     
     // create new Spot and Photo objects
     newSpot = (Spot*)[coreDataHandler createNew:@"Spot"];
@@ -56,8 +67,7 @@ static const CGFloat kDefaultZoomMiles = 0.2;
     self.spotImage.image = [UIImage imageNamed:@"defaultSpotPhoto.jpg"];
     [self.spotImage setClipsToBounds:YES];
     
-    spotMarker.coordinate = self.locationManager.location.coordinate;
-    [self.mapView addAnnotation:spotMarker];
+    self.library = [[ALAssetsLibrary alloc] init];
     
     UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Add A Spot"
                                                     message:@"Please use a photo that provides a good sense of the overall location. You'll be able to add more photos of objects and tricks later."
@@ -69,7 +79,10 @@ static const CGFloat kDefaultZoomMiles = 0.2;
 
 -(void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
-    //
+    
+    if (locationHandler.isAuthorized) {
+        [self zoomToCurrentLocation];
+    }
 }
 
 -(void)viewWillDisappear:(BOOL)animated {
@@ -78,49 +91,49 @@ static const CGFloat kDefaultZoomMiles = 0.2;
 
 #pragma mark - Location Manager
 // ??? - is this even being used?
-- (BOOL)startStandardMapUpdates
-{
-    // Create the location manager if this object does not already have one.
-    if (nil == self.locationManager) {
-        self.locationManager = [[CLLocationManager alloc] init];
-    }
-    
-    self.locationManager.delegate = self;
-    self.locationManager.desiredAccuracy = kCLLocationAccuracyKilometer;
-    
-    // Set a movement threshold for new events.
-    self.locationManager.distanceFilter = 500; // meters
-    
-    [self.locationManager requestAlwaysAuthorization];
-    
-    [self.locationManager startUpdatingLocation];
-    [self.locationManager startUpdatingHeading];
-    
-    return YES;
-}
+//- (BOOL)startStandardMapUpdates
+//{
+//    // Create the location manager if this object does not already have one.
+//    if (nil == self.locationManager) {
+//        self.locationManager = [[CLLocationManager alloc] init];
+//    }
+//    
+//    self.locationManager.delegate = self;
+//    self.locationManager.desiredAccuracy = kCLLocationAccuracyKilometer;
+//    
+//    // Set a movement threshold for new events.
+//    self.locationManager.distanceFilter = 500; // meters
+//    
+//    [self.locationManager requestAlwaysAuthorization];
+//    
+//    [self.locationManager startUpdatingLocation];
+//    [self.locationManager startUpdatingHeading];
+//    
+//    return YES;
+//}
 
 // ??? - is this even being used?
 // delegate method called when user changes authorization to allow location tracking
-- (void)locationManager:(CLLocationManager *)manager didChangeAuthorizationStatus:(CLAuthorizationStatus)status {
-    if (status) {
-        [self zoomToCurrentLocation];
-    }
-}
+//- (void)locationManager:(CLLocationManager *)manager didChangeAuthorizationStatus:(CLAuthorizationStatus)status {
+//    if (status) {
+//        [self zoomToCurrentLocation];
+//    }
+//}
 
 -(void)zoomToCurrentLocation {
-    MKCoordinateRegion viewRegion = MKCoordinateRegionMakeWithDistance(self.locationManager.location.coordinate, kDefaultZoomMiles*kMetersPerMile, kDefaultZoomMiles*kMetersPerMile);
+    MKCoordinateRegion viewRegion = MKCoordinateRegionMakeWithDistance(locationHandler.currentLocation.coordinate, kDefaultZoomMiles*kMetersPerMile, kDefaultZoomMiles*kMetersPerMile);
     [self.mapView setRegion:viewRegion animated:YES];
 }
 
-// ??? - is this even being used?
-// Delegate method from the CLLocationManagerDelegate protocol.
-- (void)locationManager:(CLLocationManager *)manager didUpdateLocations:(NSArray *)locations {
-    CLLocation* location = [locations lastObject];
-
-    NSLog(@"latitude %+.6f, longitude %+.6f\n",
-          location.coordinate.latitude,
-          location.coordinate.longitude);
-}
+//// ??? - is this even being used?
+//// Delegate method from the CLLocationManagerDelegate protocol.
+//- (void)locationManager:(CLLocationManager *)manager didUpdateLocations:(NSArray *)locations {
+//    CLLocation* location = [locations lastObject];
+//
+//    NSLog(@"latitude %+.6f, longitude %+.6f\n",
+//          location.coordinate.latitude,
+//          location.coordinate.longitude);
+//}
 
 #pragma mark - Location Setting
 - (IBAction)setLocation:(UILongPressGestureRecognizer *)sender {
@@ -314,5 +327,18 @@ static const CGFloat kDefaultZoomMiles = 0.2;
     }
 }
 
+#pragma mark - Listeners
+- (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object  change:(NSDictionary *)change context:(void *)context
+{
+    if([keyPath isEqualToString:@"currentLocation"]) {
+        [self zoomToCurrentLocation];
+    }
+    else if([keyPath isEqualToString:@"isAuthorized"]) {
+        if (locationHandler.isAuthorized) {
+            [locationHandler startUpdatingLocation];
+            [self zoomToCurrentLocation];
+        }
+    }
+}
 
 @end

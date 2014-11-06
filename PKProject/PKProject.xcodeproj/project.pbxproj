@@ -16,6 +16,7 @@
 		1731D51E1A0B027B0068A769 /* cvalt-textLogo-blue.png in Resources */ = {isa = PBXBuildFile; fileRef = 1731D51D1A0B027B0068A769 /* cvalt-textLogo-blue.png */; };
 		1731D5211A0B042A0068A769 /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1731D5201A0B042A0068A769 /* LoginViewController.m */; };
 		1734B7A619E4954A009B228A /* CreateSpotViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1734B7A519E4954A009B228A /* CreateSpotViewController.m */; };
+		1740BBA31A0B46770033D2DE /* LocationManagerHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 1740BBA21A0B46770033D2DE /* LocationManagerHandler.m */; };
 		174A537D1A045947007B7358 /* AWSHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 174A537C1A045947007B7358 /* AWSHandler.m */; };
 		174A538F1A058F42007B7358 /* AWSCognitoSync.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 174A538E1A058F42007B7358 /* AWSCognitoSync.framework */; };
 		175BC87A1A02BB5800EFAEEA /* Bolts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 175BC8731A02BB5800EFAEEA /* Bolts.framework */; };
@@ -99,6 +100,8 @@
 		1731D5201A0B042A0068A769 /* LoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginViewController.m; sourceTree = "<group>"; };
 		1734B7A419E4954A009B228A /* CreateSpotViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CreateSpotViewController.h; sourceTree = "<group>"; };
 		1734B7A519E4954A009B228A /* CreateSpotViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CreateSpotViewController.m; sourceTree = "<group>"; };
+		1740BBA11A0B46770033D2DE /* LocationManagerHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LocationManagerHandler.h; sourceTree = "<group>"; };
+		1740BBA21A0B46770033D2DE /* LocationManagerHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LocationManagerHandler.m; sourceTree = "<group>"; };
 		174A537B1A045947007B7358 /* AWSHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AWSHandler.h; sourceTree = "<group>"; };
 		174A537C1A045947007B7358 /* AWSHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AWSHandler.m; sourceTree = "<group>"; };
 		174A538E1A058F42007B7358 /* AWSCognitoSync.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = AWSCognitoSync.framework; sourceTree = "<group>"; };
@@ -280,6 +283,8 @@
 				17F2C61519F8554E008C86AE /* CoreDataHandler.m */,
 				174A537B1A045947007B7358 /* AWSHandler.h */,
 				174A537C1A045947007B7358 /* AWSHandler.m */,
+				1740BBA11A0B46770033D2DE /* LocationManagerHandler.h */,
+				1740BBA21A0B46770033D2DE /* LocationManagerHandler.m */,
 				1762F70519F1BC5200EE71C2 /* Core Data Extended */,
 				171BA9ED19DC7F5800C66676 /* Core Data Classes */,
 				175DA62D19DB493200897710 /* Structure */,
@@ -524,6 +529,7 @@
 				1762F70419F1BC4400EE71C2 /* User.m in Sources */,
 				17A6D94819FACF490038EC1E /* ALAssetsLibrary+CustomPhotoAlbum.m in Sources */,
 				1762F6FE19F1BC4400EE71C2 /* Photo.m in Sources */,
+				1740BBA31A0B46770033D2DE /* LocationManagerHandler.m in Sources */,
 				171BA9F619DF545C00C66676 /* ServerHandler.m in Sources */,
 				175DA60A19DA1D2800897710 /* PKProject.xcdatamodeld in Sources */,
 				1762F6F019EF28A200EE71C2 /* Photo+Extended.m in Sources */,
@@ -660,7 +666,7 @@
 					"$(PROJECT_DIR)",
 				);
 				INFOPLIST_FILE = PKProject/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
@@ -684,7 +690,7 @@
 					"$(PROJECT_DIR)",
 				);
 				INFOPLIST_FILE = PKProject/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
