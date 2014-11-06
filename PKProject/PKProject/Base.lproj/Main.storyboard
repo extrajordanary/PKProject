@@ -9,7 +9,7 @@
         <!--Login-->
         <scene sceneID="NWA-Lp-H4g">
             <objects>
-                <viewController title="Login" id="7te-ND-4sz" sceneMemberID="viewController">
+                <viewController title="Login" id="7te-ND-4sz" customClass="LoginViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="aXY-gK-2Do"/>
                         <viewControllerLayoutGuide type="bottom" id="nUK-V2-C4c"/>
