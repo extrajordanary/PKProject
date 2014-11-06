@@ -1,11 +1,57 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6250" systemVersion="14A389" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="TcK-Hn-xC7">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6250" systemVersion="14A389" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="7te-ND-4sz">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6244"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
+        <!--Login-->
+        <scene sceneID="NWA-Lp-H4g">
+            <objects>
+                <viewController title="Login" id="7te-ND-4sz" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="aXY-gK-2Do"/>
+                        <viewControllerLayoutGuide type="bottom" id="nUK-V2-C4c"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="NWp-I9-TsQ">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="cvalt-textLogo.png" translatesAutoresizingMaskIntoConstraints="NO" id="f0O-Nm-kZb">
+                                <rect key="frame" x="16" y="200" width="568" height="200"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="200" id="itd-SC-jAt"/>
+                                </constraints>
+                            </imageView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dwT-x1-wKG">
+                                <rect key="frame" x="278" y="532" width="45" height="48"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="30"/>
+                                <state key="normal" title="GO">
+                                    <color key="titleColor" red="0.20392156859999999" green="1" blue="0.39607843139999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <segue destination="TcK-Hn-xC7" kind="show" id="Lxy-EF-foa"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" red="0.071800326270000006" green="0.41632887299999999" blue="0.90239025299999998" alpha="1" colorSpace="calibratedRGB"/>
+                        <color key="tintColor" red="0.071800326270000006" green="0.41632887299999999" blue="0.90239025299999998" alpha="1" colorSpace="calibratedRGB"/>
+                        <constraints>
+                            <constraint firstAttribute="centerX" secondItem="f0O-Nm-kZb" secondAttribute="centerX" id="1Kd-NG-nzK"/>
+                            <constraint firstAttribute="centerX" secondItem="dwT-x1-wKG" secondAttribute="centerX" id="9d1-rn-Y8c"/>
+                            <constraint firstItem="f0O-Nm-kZb" firstAttribute="leading" secondItem="NWp-I9-TsQ" secondAttribute="leadingMargin" id="D3s-tr-rda"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="f0O-Nm-kZb" secondAttribute="trailing" id="G7H-Em-MEI"/>
+                            <constraint firstItem="nUK-V2-C4c" firstAttribute="top" secondItem="dwT-x1-wKG" secondAttribute="bottom" constant="20" id="j5q-y0-mH0"/>
+                            <constraint firstAttribute="centerY" secondItem="f0O-Nm-kZb" secondAttribute="centerY" id="vYF-sh-McG"/>
+                        </constraints>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Yj3-rn-Q2D" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-384" y="694"/>
+        </scene>
         <!--Map-->
         <scene sceneID="vOa-67-X6z">
             <objects>
@@ -390,9 +436,10 @@
         </scene>
     </scenes>
     <resources>
+        <image name="cvalt-textLogo.png" width="1422" height="688"/>
         <image name="loadingSpotPhoto.jpg" width="2448" height="2448"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="Jfo-ea-G8v"/>
+        <segue reference="Lxy-EF-foa"/>
     </inferredMetricsTieBreakers>
 </document>
