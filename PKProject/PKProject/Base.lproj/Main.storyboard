@@ -279,7 +279,7 @@
                                     </mask>
                                 </variation>
                             </view>
-                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleAspectFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="5wd-pG-u3H">
+                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleAspectFill" misplaced="YES" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="5wd-pG-u3H">
                                 <gestureRecognizers/>
                                 <constraints>
                                     <constraint firstAttribute="height" priority="250" constant="100" id="uE5-2c-oA9"/>

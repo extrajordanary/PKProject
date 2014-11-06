@@ -11,23 +11,7 @@
 		171BA9F619DF545C00C66676 /* ServerHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 171BA9F519DF545C00C66676 /* ServerHandler.m */; };
 		171BAA0819DF79EA00C66676 /* Spot+Extended.m in Sources */ = {isa = PBXBuildFile; fileRef = 171BAA0719DF79EA00C66676 /* Spot+Extended.m */; };
 		1731D5181A0AB9040068A769 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1731D5171A0AB9040068A769 /* Images.xcassets */; };
-		1734B79019E469A1009B228A /* sampleSpotPic03.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 1734B77C19E469A1009B228A /* sampleSpotPic03.jpg */; };
-		1734B79119E469A1009B228A /* sampleSpotPic04.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 1734B77D19E469A1009B228A /* sampleSpotPic04.jpg */; };
-		1734B79219E469A1009B228A /* sampleSpotPic05.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 1734B77E19E469A1009B228A /* sampleSpotPic05.jpg */; };
-		1734B79319E469A1009B228A /* sampleSpotPic06.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 1734B77F19E469A1009B228A /* sampleSpotPic06.jpg */; };
-		1734B79419E469A1009B228A /* sampleSpotPic07.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 1734B78019E469A1009B228A /* sampleSpotPic07.jpg */; };
-		1734B79519E469A1009B228A /* sampleSpotPic08.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 1734B78119E469A1009B228A /* sampleSpotPic08.jpg */; };
-		1734B79619E469A1009B228A /* sampleSpotPic09.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 1734B78219E469A1009B228A /* sampleSpotPic09.jpg */; };
-		1734B79819E469A1009B228A /* sampleSpotPic11.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 1734B78419E469A1009B228A /* sampleSpotPic11.jpg */; };
-		1734B79919E469A1009B228A /* sampleSpotPic12.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 1734B78519E469A1009B228A /* sampleSpotPic12.jpg */; };
-		1734B79A19E469A1009B228A /* sampleSpotPic13.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 1734B78619E469A1009B228A /* sampleSpotPic13.jpg */; };
-		1734B79B19E469A1009B228A /* sampleSpotPic14.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 1734B78719E469A1009B228A /* sampleSpotPic14.jpg */; };
-		1734B79C19E469A1009B228A /* sampleSpotPic15.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 1734B78819E469A1009B228A /* sampleSpotPic15.jpg */; };
-		1734B79D19E469A1009B228A /* sampleSpotPic16.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 1734B78919E469A1009B228A /* sampleSpotPic16.jpg */; };
-		1734B79E19E469A1009B228A /* sampleSpotPic17.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 1734B78A19E469A1009B228A /* sampleSpotPic17.jpg */; };
-		1734B7A119E469A1009B228A /* sampleSpotPic20.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 1734B78D19E469A1009B228A /* sampleSpotPic20.jpg */; };
-		1734B7A219E469A1009B228A /* sampleSpotPic21.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 1734B78E19E469A1009B228A /* sampleSpotPic21.jpg */; };
-		1734B7A319E469A1009B228A /* sampleSpotPic22.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 1734B78F19E469A1009B228A /* sampleSpotPic22.jpg */; };
+		1731D51A1A0AF6DB0068A769 /* cvalt-roundedButton.png in Resources */ = {isa = PBXBuildFile; fileRef = 1731D5191A0AF6DB0068A769 /* cvalt-roundedButton.png */; };
 		1734B7A619E4954A009B228A /* CreateSpotViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1734B7A519E4954A009B228A /* CreateSpotViewController.m */; };
 		174A537D1A045947007B7358 /* AWSHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 174A537C1A045947007B7358 /* AWSHandler.m */; };
 		174A538F1A058F42007B7358 /* AWSCognitoSync.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 174A538E1A058F42007B7358 /* AWSCognitoSync.framework */; };
@@ -105,23 +89,7 @@
 		171BAA0619DF79EA00C66676 /* Spot+Extended.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Spot+Extended.h"; sourceTree = "<group>"; };
 		171BAA0719DF79EA00C66676 /* Spot+Extended.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "Spot+Extended.m"; sourceTree = "<group>"; };
 		1731D5171A0AB9040068A769 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
-		1734B77C19E469A1009B228A /* sampleSpotPic03.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = sampleSpotPic03.jpg; sourceTree = "<group>"; };
-		1734B77D19E469A1009B228A /* sampleSpotPic04.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = sampleSpotPic04.jpg; sourceTree = "<group>"; };
-		1734B77E19E469A1009B228A /* sampleSpotPic05.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = sampleSpotPic05.jpg; sourceTree = "<group>"; };
-		1734B77F19E469A1009B228A /* sampleSpotPic06.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = sampleSpotPic06.jpg; sourceTree = "<group>"; };
-		1734B78019E469A1009B228A /* sampleSpotPic07.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = sampleSpotPic07.jpg; sourceTree = "<group>"; };
-		1734B78119E469A1009B228A /* sampleSpotPic08.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = sampleSpotPic08.jpg; sourceTree = "<group>"; };
-		1734B78219E469A1009B228A /* sampleSpotPic09.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = sampleSpotPic09.jpg; sourceTree = "<group>"; };
-		1734B78419E469A1009B228A /* sampleSpotPic11.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = sampleSpotPic11.jpg; sourceTree = "<group>"; };
-		1734B78519E469A1009B228A /* sampleSpotPic12.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = sampleSpotPic12.jpg; sourceTree = "<group>"; };
-		1734B78619E469A1009B228A /* sampleSpotPic13.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = sampleSpotPic13.jpg; sourceTree = "<group>"; };
-		1734B78719E469A1009B228A /* sampleSpotPic14.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = sampleSpotPic14.jpg; sourceTree = "<group>"; };
-		1734B78819E469A1009B228A /* sampleSpotPic15.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = sampleSpotPic15.jpg; sourceTree = "<group>"; };
-		1734B78919E469A1009B228A /* sampleSpotPic16.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = sampleSpotPic16.jpg; sourceTree = "<group>"; };
-		1734B78A19E469A1009B228A /* sampleSpotPic17.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = sampleSpotPic17.jpg; sourceTree = "<group>"; };
-		1734B78D19E469A1009B228A /* sampleSpotPic20.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = sampleSpotPic20.jpg; sourceTree = "<group>"; };
-		1734B78E19E469A1009B228A /* sampleSpotPic21.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = sampleSpotPic21.jpg; sourceTree = "<group>"; };
-		1734B78F19E469A1009B228A /* sampleSpotPic22.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = sampleSpotPic22.jpg; sourceTree = "<group>"; };
+		1731D5191A0AF6DB0068A769 /* cvalt-roundedButton.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "cvalt-roundedButton.png"; sourceTree = "<group>"; };
 		1734B7A419E4954A009B228A /* CreateSpotViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CreateSpotViewController.h; sourceTree = "<group>"; };
 		1734B7A519E4954A009B228A /* CreateSpotViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CreateSpotViewController.m; sourceTree = "<group>"; };
 		174A537B1A045947007B7358 /* AWSHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AWSHandler.h; sourceTree = "<group>"; };
@@ -255,26 +223,10 @@
 		1734B77B19E469A1009B228A /* SampleSpots */ = {
 			isa = PBXGroup;
 			children = (
+				1731D5191A0AF6DB0068A769 /* cvalt-roundedButton.png */,
 				17F2C61719F867C4008C86AE /* loadingSpotPhoto.jpg */,
 				1762F6F719F0674000EE71C2 /* noSpotPhoto.jpg */,
 				1762F6EC19EF192700EE71C2 /* defaultSpotPhoto.jpg */,
-				1734B77C19E469A1009B228A /* sampleSpotPic03.jpg */,
-				1734B77D19E469A1009B228A /* sampleSpotPic04.jpg */,
-				1734B77E19E469A1009B228A /* sampleSpotPic05.jpg */,
-				1734B77F19E469A1009B228A /* sampleSpotPic06.jpg */,
-				1734B78019E469A1009B228A /* sampleSpotPic07.jpg */,
-				1734B78119E469A1009B228A /* sampleSpotPic08.jpg */,
-				1734B78219E469A1009B228A /* sampleSpotPic09.jpg */,
-				1734B78419E469A1009B228A /* sampleSpotPic11.jpg */,
-				1734B78519E469A1009B228A /* sampleSpotPic12.jpg */,
-				1734B78619E469A1009B228A /* sampleSpotPic13.jpg */,
-				1734B78719E469A1009B228A /* sampleSpotPic14.jpg */,
-				1734B78819E469A1009B228A /* sampleSpotPic15.jpg */,
-				1734B78919E469A1009B228A /* sampleSpotPic16.jpg */,
-				1734B78A19E469A1009B228A /* sampleSpotPic17.jpg */,
-				1734B78D19E469A1009B228A /* sampleSpotPic20.jpg */,
-				1734B78E19E469A1009B228A /* sampleSpotPic21.jpg */,
-				1734B78F19E469A1009B228A /* sampleSpotPic22.jpg */,
 			);
 			path = SampleSpots;
 			sourceTree = "<group>";
@@ -510,44 +462,28 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				1734B79119E469A1009B228A /* sampleSpotPic04.jpg in Resources */,
 				17F2C60919F83D6E008C86AE /* ec2-2014-06-15.json in Resources */,
-				1734B79519E469A1009B228A /* sampleSpotPic08.jpg in Resources */,
 				1731D5181A0AB9040068A769 /* Images.xcassets in Resources */,
-				1734B79919E469A1009B228A /* sampleSpotPic12.jpg in Resources */,
-				1734B79E19E469A1009B228A /* sampleSpotPic17.jpg in Resources */,
-				1734B79219E469A1009B228A /* sampleSpotPic05.jpg in Resources */,
 				17F2C61319F83D6E008C86AE /* sts-2011-06-15.json in Resources */,
 				17F2C61819F867C4008C86AE /* loadingSpotPhoto.jpg in Resources */,
-				1734B79819E469A1009B228A /* sampleSpotPic11.jpg in Resources */,
 				175DA61019DA1D2800897710 /* Main.storyboard in Resources */,
-				1734B79D19E469A1009B228A /* sampleSpotPic16.jpg in Resources */,
-				1734B79319E469A1009B228A /* sampleSpotPic06.jpg in Resources */,
 				17F2C61119F83D6E008C86AE /* sns-2010-03-31.json in Resources */,
-				1734B79A19E469A1009B228A /* sampleSpotPic13.jpg in Resources */,
 				1762F6ED19EF192700EE71C2 /* defaultSpotPhoto.jpg in Resources */,
 				17F2C60519F83D6E008C86AE /* autoscaling-2011-01-01.json in Resources */,
 				17F2C60719F83D6E008C86AE /* css-2014-06-30.json in Resources */,
-				1734B79619E469A1009B228A /* sampleSpotPic09.jpg in Resources */,
+				1731D51A1A0AF6DB0068A769 /* cvalt-roundedButton.png in Resources */,
 				17F2C60D19F83D6E008C86AE /* mobileanalytics-2014-06-30.json in Resources */,
 				17F2C61019F83D6E008C86AE /* sdb-2009-04-15.json in Resources */,
-				1734B7A119E469A1009B228A /* sampleSpotPic20.jpg in Resources */,
-				1734B79019E469A1009B228A /* sampleSpotPic03.jpg in Resources */,
 				17F2C60C19F83D6E008C86AE /* kinesis-2013-12-02.json in Resources */,
-				1734B79419E469A1009B228A /* sampleSpotPic07.jpg in Resources */,
 				17F2C60819F83D6E008C86AE /* dynamodb-2012-08-10.json in Resources */,
 				17F2C60F19F83D6E008C86AE /* s3-2006-03-01.json in Resources */,
 				17F2C60A19F83D6E008C86AE /* elasticloadbalancing-2012-06-01.json in Resources */,
 				17F2C60619F83D6E008C86AE /* cib-2014-06-30.json in Resources */,
 				17F2C60B19F83D6E008C86AE /* email-2010-12-01.json in Resources */,
-				1734B7A319E469A1009B228A /* sampleSpotPic22.jpg in Resources */,
-				1734B79C19E469A1009B228A /* sampleSpotPic15.jpg in Resources */,
 				1762F6F819F0674000EE71C2 /* noSpotPhoto.jpg in Resources */,
 				17F2C60E19F83D6E008C86AE /* monitoring-2010-08-01.json in Resources */,
 				175DA61519DA1D2800897710 /* LaunchScreen.xib in Resources */,
-				1734B7A219E469A1009B228A /* sampleSpotPic21.jpg in Resources */,
 				17F2C61219F83D6E008C86AE /* sqs-2012-11-05.json in Resources */,
-				1734B79B19E469A1009B228A /* sampleSpotPic14.jpg in Resources */,
 				175DA61219DA1D2800897710 /* Images.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
