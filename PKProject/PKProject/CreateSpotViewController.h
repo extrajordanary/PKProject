@@ -15,7 +15,8 @@
 @interface CreateSpotViewController : UIViewController <UIImagePickerControllerDelegate,
                                                         UINavigationControllerDelegate,
                                                         MKMapViewDelegate,
-                                                        CLLocationManagerDelegate>
+                                                        CLLocationManagerDelegate,
+                                                        UIAlertViewDelegate>
 @property (strong, nonatomic) User *thisUser;
 @property (strong, nonatomic) CLLocationManager *locationManager;
 

@@ -51,8 +51,8 @@
                                             <rect key="frame" x="0.0" y="0.0" width="175" height="196"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" image="loadingSpotPhoto.jpg" translatesAutoresizingMaskIntoConstraints="NO" id="1Ze-Cx-e06">
-                                                    <rect key="frame" x="-2" y="-2" width="54" height="54"/>
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="loadingSpotPhoto.jpg" translatesAutoresizingMaskIntoConstraints="NO" id="1Ze-Cx-e06">
+                                                    <rect key="frame" x="-2" y="-2" width="179" height="200"/>
                                                 </imageView>
                                             </subviews>
                                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
@@ -192,8 +192,8 @@
                         <rect key="frame" x="0.0" y="64" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="3WT-Nh-yy9">
-                                <rect key="frame" x="0.0" y="54" width="600" height="546"/>
+                            <imageView contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="3WT-Nh-yy9">
+                                <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                                 <gestureRecognizers/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="3WT-Nh-yy9" secondAttribute="height" multiplier="1:1" id="Oey-Nw-MMH"/>
@@ -220,7 +220,7 @@
                                             <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
                                         <connections>
-                                            <segue destination="TcK-Hn-xC7" kind="show" identifier="Save" id="tdA-E1-UE8"/>
+                                            <action selector="saveButton:" destination="Vve-Eo-Ty2" eventType="touchDown" id="0OQ-8l-eeA"/>
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xuR-bN-x5P">
@@ -279,7 +279,7 @@
                                     </mask>
                                 </variation>
                             </view>
-                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleAspectFill" misplaced="YES" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="5wd-pG-u3H">
+                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleAspectFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="5wd-pG-u3H">
                                 <gestureRecognizers/>
                                 <constraints>
                                     <constraint firstAttribute="height" priority="250" constant="100" id="uE5-2c-oA9"/>
@@ -371,6 +371,7 @@
                     <connections>
                         <outlet property="mapView" destination="5wd-pG-u3H" id="Rzk-v6-g0Z"/>
                         <outlet property="spotImage" destination="3WT-Nh-yy9" id="9z6-x0-HfY"/>
+                        <segue destination="TcK-Hn-xC7" kind="show" identifier="Save" id="Jfo-ea-G8v"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Opf-bm-fU0" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -392,6 +393,6 @@
         <image name="loadingSpotPhoto.jpg" width="2448" height="2448"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="j1e-ia-nOc"/>
+        <segue reference="Jfo-ea-G8v"/>
     </inferredMetricsTieBreakers>
 </document>

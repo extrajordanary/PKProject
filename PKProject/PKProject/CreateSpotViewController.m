@@ -9,6 +9,7 @@
 #import "CreateSpotViewController.h"
 #import "AppDelegate.h"
 #import "ALAssetsLibrary+CustomPhotoAlbum.h"
+#import "MapViewController.h"
 
 #import "ServerHandler.h"
 #import "CoreDataHandler.h"
@@ -30,6 +31,7 @@
     ServerHandler *serverHandler;
     CoreDataHandler *coreDataHandler;
     MKPointAnnotation *spotMarker;
+    NSDictionary *imageInfo;
 }
 
 static const CGFloat kMetersPerMile = 1609.344;
@@ -56,6 +58,13 @@ static const CGFloat kDefaultZoomMiles = 0.2;
     
     spotMarker.coordinate = self.locationManager.location.coordinate;
     [self.mapView addAnnotation:spotMarker];
+    
+    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Add A Spot"
+                                                    message:@"Please use a photo that provides a good sense of the overall location. You'll be able to add more photos of objects and tricks later."
+                                                   delegate:nil
+                                          cancelButtonTitle:@"Got it!"
+                                          otherButtonTitles:nil];
+    [alert show];
 }
 
 -(void)viewWillAppear:(BOOL)animated {
@@ -123,6 +132,20 @@ static const CGFloat kDefaultZoomMiles = 0.2;
     spotMarker.coordinate = tapPoint;
 }
 
+-(void)locationFromPhoto:(CLLocation*)location {
+    if (location) {
+        NSLog(@"update marker location from photo");
+        spotMarker.coordinate = location.coordinate;
+    } else {
+        // popup to let user know they need to set the location manually
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"No Photo Location"
+                                                        message:@"Please set the spot location manually."
+                                                       delegate:nil
+                                              cancelButtonTitle:@"I won't forget!"
+                                              otherButtonTitles:nil];
+        [alert show];
+    }
+}
 
 #pragma mark - Image Picker
 // from former button, not sure if I'll be using it in final UI
@@ -131,7 +154,6 @@ static const CGFloat kDefaultZoomMiles = 0.2;
 }
 
 - (IBAction)tapUseCamera:(UITapGestureRecognizer *)sender {
-    NSLog(@"tapped");
     [self useCamera];
 }
 
@@ -173,13 +195,41 @@ static const CGFloat kDefaultZoomMiles = 0.2;
     }];
 }
 
-- (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingImage:(UIImage *)image editingInfo:(NSDictionary *)editingInfo
-{
+- (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info {
+
+    UIImage *image = [info objectForKey:UIImagePickerControllerOriginalImage];
     // set current view controller image
     self.spotImage.image = image;
-    
-    if (picker.sourceType == UIImagePickerControllerSourceTypeCamera) {
-        // Save new images to CVALT Album in their Photo Library
+
+    if ([picker sourceType] == UIImagePickerControllerSourceTypePhotoLibrary) {
+        // get the ALAsset to get the meta data to update the location
+
+        // Get the asset url
+        NSURL *url = [info objectForKey:@"UIImagePickerControllerReferenceURL"];
+        
+        // We need to use blocks. This block will handle the ALAsset that's returned:
+        ALAssetsLibraryAssetForURLResultBlock resultblock = ^(ALAsset *myasset)
+        {
+            // Get the location property from the asset
+            CLLocation *location = [myasset valueForProperty:ALAssetPropertyLocation];
+            [self locationFromPhoto:location];
+        };
+        // This block will handle errors:
+        ALAssetsLibraryAccessFailureBlock failureblock  = ^(NSError *myerror)
+        {
+            NSLog(@"Can not get asset - %@",[myerror localizedDescription]);
+            // Do something to handle the error
+        };
+        
+        // Use the url to get the asset from ALAssetsLibrary,
+        // the blocks that we just created will handle results
+        ALAssetsLibrary* assetslibrary = [[ALAssetsLibrary alloc] init];
+        [assetslibrary assetForURL:url
+                       resultBlock:resultblock
+                      failureBlock:failureblock];
+        
+    } else if (picker.sourceType == UIImagePickerControllerSourceTypeCamera) {
+        // Save new image to CVALT Album in their Photo Library
         [self.library saveImage:image toAlbum:@"CVALT" withCompletionBlock:^(NSError *error) {
             NSLog(@"Image saving");
             if (error!=nil) {
@@ -187,10 +237,10 @@ static const CGFloat kDefaultZoomMiles = 0.2;
             }
         }];
     }
-    
+
     [coreDataHandler updateCoreData];
-    
-    [self dismissModalViewControllerAnimated:YES];
+
+    [[picker presentingViewController] dismissViewControllerAnimated:YES completion:nil];
 }
 
 #pragma mark - Data
@@ -231,9 +281,37 @@ static const CGFloat kDefaultZoomMiles = 0.2;
         //
     }
     else if ([segue.identifier isEqualToString:@"Save"]) {
+
         [self saveNewSpot];
     }
     self.library = nil;
+}
+
+- (IBAction)saveButton:(id)sender {
+    // popup to confirm information before saving
+    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Confirm New Spot"
+                                                    message:@"Is all the information correct?"
+                                                   delegate:self
+                                          cancelButtonTitle:@"Not yet..."
+                                          otherButtonTitles:@"All good!",nil];
+    [alert show];
+}
+
+//-(void)returnToMapView {
+//    MapViewController *mapVC = [[MapViewController alloc] init];
+//    
+//    [self presentViewController:mapVC animated:YES];
+//}
+
+#pragma mark - Alert Delegates
+- (void)alertView:(UIAlertView *)alertView didDismissWithButtonIndex:(NSInteger)buttonIndex {
+    NSLog(@"alert dismissed with button %i", (int)buttonIndex);
+    if ((int)buttonIndex == 1) {
+//        [self saveNewSpot];
+        // segue back to mapViewController
+//        [self returnToMapView];
+        [self performSegueWithIdentifier:@"Save" sender:alertView];
+    }
 }
 
 

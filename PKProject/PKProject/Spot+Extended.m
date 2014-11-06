@@ -49,7 +49,6 @@
         for (NSString *databaseId in databaseIds) {
             Photo *photo;
             // coreDataHandler gets or creates the User object and updates it from the server
-    #pragma message "Got the enumeration issue here once"
             photo = (Photo*)[coreDataHandler returnObjectOfType:@"Photo" forId:databaseId];
             [self addSpotPhotosObject:photo];
         }
