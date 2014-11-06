@@ -163,7 +163,7 @@ static const CGFloat kDefaultZoomMiles = 0.5; // TODO : make dynamic/adjustable?
     
     PhotoCollectionViewCell *cell = (PhotoCollectionViewCell*)[cv dequeueReusableCellWithReuseIdentifier:@"Photo" forIndexPath:indexPath];
     if (!cell) {
-        
+        // ???
     }
 
     [cell.imageView setImage:[UIImage imageNamed:@"loadingSpotPhoto.jpg"]];

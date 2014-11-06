@@ -19,8 +19,12 @@
     if (self) {
         self.databaseId = dictionary[@"_id"];
         self.creationTimestamp = dictionary[@"creationTimestamp"];
-        self.latitude = dictionary[@"latitude"];
-        self.longitude = dictionary[@"longitude"];
+//        self.latitude = dictionary[@"latitude"];
+//        self.longitude = dictionary[@"longitude"];
+        
+        self.latitude = dictionary[@"location"][@"coordinates"][1];
+        self.longitude = dictionary[@"location"][@"coordinates"][0];
+        
         self.numberOfFavorites = dictionary[@"numberOfFavorites"];
 
         // TODO: each of the following two gets the CoreDataHandler, redundancy
@@ -61,6 +65,10 @@
     jsonable[@"creationTimestamp"] = self.creationTimestamp;
     jsonable[@"latitude"] = self.latitude;
     jsonable[@"longitude"] = self.longitude;
+    
+    //make a geoJSON object e.g. { "type": "Point", "coordinates": [100.0, 0.0] }
+    jsonable[@"location"] = @{@"type":@"Point", @"coordinates" : @[@([self.longitude doubleValue]), @([self.latitude doubleValue])] };
+    
     jsonable[@"numberOfFavorites"] = self.numberOfFavorites;
     jsonable[@"spotByUser"] = self.spotByUser.databaseId;
     

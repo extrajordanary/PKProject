@@ -81,7 +81,8 @@ static const CGFloat kDefaultZoomMiles = 0.2;
     [super viewWillAppear:animated];
     
     if (locationHandler.isAuthorized) {
-        [self zoomToCurrentLocation];
+//        [self zoomToCurrentLocation];
+        [self zoomToMarker];
     }
 }
 
@@ -122,6 +123,11 @@ static const CGFloat kDefaultZoomMiles = 0.2;
 
 -(void)zoomToCurrentLocation {
     MKCoordinateRegion viewRegion = MKCoordinateRegionMakeWithDistance(locationHandler.currentLocation.coordinate, kDefaultZoomMiles*kMetersPerMile, kDefaultZoomMiles*kMetersPerMile);
+    [self.mapView setRegion:viewRegion animated:YES];
+}
+
+-(void)zoomToMarker {
+    MKCoordinateRegion viewRegion = MKCoordinateRegionMakeWithDistance(spotMarker.coordinate, kDefaultZoomMiles*kMetersPerMile, kDefaultZoomMiles*kMetersPerMile);
     [self.mapView setRegion:viewRegion animated:YES];
 }
 

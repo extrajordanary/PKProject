@@ -34,6 +34,7 @@
 //    [coreDataHandler getManagedObjects:entityForName withPredicate:predicate];
 //}
 
+
 -(void)updateCoreData {
     // don't save if
     dispatch_async(dispatch_get_main_queue(), ^(void){
