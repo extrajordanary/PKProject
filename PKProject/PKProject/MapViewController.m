@@ -33,6 +33,8 @@
     NSString *thisUserId;
 }
 
+#define IS_OS_8_OR_LATER ([[[UIDevice currentDevice] systemVersion] floatValue] >= 8.0)
+
 static const CGFloat kMetersPerMile = 1609.344;
 static const CGFloat kDefaultZoomMiles = 0.5; // TODO : make dynamic/adjustable?
 
@@ -76,7 +78,9 @@ static const CGFloat kDefaultZoomMiles = 0.5; // TODO : make dynamic/adjustable?
     // Set a movement threshold for new events.
     self.locationManager.distanceFilter = 500; // meters
     
-    [self.locationManager requestAlwaysAuthorization];
+    if(IS_OS_8_OR_LATER) {
+        [self.locationManager requestAlwaysAuthorization];
+    }
     
     [self.locationManager startUpdatingLocation];
     [self.locationManager startUpdatingHeading];
