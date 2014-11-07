@@ -21,7 +21,6 @@
 
 @property (strong, nonatomic) IBOutlet MKMapView *mapView;
 @property (strong, nonatomic) IBOutlet UICollectionView *collectionView;
-//@property (strong, nonatomic) CLLocationManager *locationManager;
 @property (strong, nonatomic) User *thisUser;
 @property (strong, nonatomic) NSMutableArray *nearbySpots;
 @property (strong, nonatomic) IBOutlet UILabel *noSpotsText;
@@ -53,9 +52,6 @@ static const CGFloat kDefaultZoomMiles = 0.5; // TODO : make dynamic/adjustable?
     [locationHandler addObserver:self forKeyPath:@"currentLocation" options:NSKeyValueObservingOptionNew context:nil];
     [locationHandler addObserver:self forKeyPath:@"isAuthorized" options:NSKeyValueObservingOptionNew context:nil];
 
-    
-//    [self startStandardMapUpdates];
-    
     self.nearbySpots = [[NSMutableArray alloc] init];
     
     self.mapView.showsUserLocation = YES;
@@ -66,76 +62,19 @@ static const CGFloat kDefaultZoomMiles = 0.5; // TODO : make dynamic/adjustable?
     [super viewWillAppear:animated];
 
     [self getThisUser];
-    [self updateNearbySpots];
+//    [self updateNearbySpots];
     
+    // TODO: remove redundant calls to getSpots as a result of multiple zooms
     if (locationHandler.isAuthorized) {
         [self zoomToCurrentLocation];
     }
+
 }
 
 #pragma mark - Location Manager
-// TODO: create location manager singleton
 // TODO: only zoom to location the first time
 // TODO: search bar
 
-//- (BOOL)startStandardMapUpdates
-//{
-//    // Create the location manager if this object does not already have one.
-//    if (nil == self.locationManager) {
-//        self.locationManager = [[CLLocationManager alloc] init];
-//    }
-//    
-//    self.locationManager.delegate = self;
-//    self.locationManager.desiredAccuracy = kCLLocationAccuracyKilometer;
-//    
-//    // Set a movement threshold for new events.
-//    self.locationManager.distanceFilter = 500; // meters
-//    
-//    if(IS_OS_8_OR_LATER) {
-//        [self.locationManager requestAlwaysAuthorization];
-//    }
-//
-//    [self.locationManager startUpdatingLocation];
-//    [self.locationManager startUpdatingHeading];
-//
-//    return YES;
-//}
-
-//- (BOOL)startStandardMapUpdates
-//{
-//    // Create the location manager if this object does not already have one.
-//    if (nil == self.locationManager) {
-//        self.locationManager = [[CLLocationManager alloc] init];
-//    }
-//    
-//    self.locationManager.delegate = self;
-//    self.locationManager.desiredAccuracy = kCLLocationAccuracyKilometer;
-//    
-//    // Set a movement threshold for new events.
-//    self.locationManager.distanceFilter = 500; // meters
-//    
-//    if(IS_OS_8_OR_LATER) {
-//        [self.locationManager requestAlwaysAuthorization];
-//    }
-//    
-//    [self.locationManager startUpdatingLocation];
-//    [self.locationManager startUpdatingHeading];
-//    
-//    return YES;
-//}
-
-// delegate method called when user changes authorization to allow location tracking
-//- (void)locationManager:(CLLocationManager *)manager didChangeAuthorizationStatus:(CLAuthorizationStatus)status {
-//    if (status) {
-//        [self zoomToCurrentLocation];
-//    }
-//}
-//
-//// Delegate method from the CLLocationManagerDelegate protocol.
-//- (void)locationManager:(CLLocationManager *)manager didUpdateLocations:(NSArray *)locations {
-//    [self zoomToCurrentLocation];
-//
-//}
 
 #pragma mark - Map
 - (IBAction)showUserLocation:(id)sender {
@@ -145,12 +84,9 @@ static const CGFloat kDefaultZoomMiles = 0.5; // TODO : make dynamic/adjustable?
 -(void)zoomToCurrentLocation {
     MKCoordinateRegion viewRegion = MKCoordinateRegionMakeWithDistance(locationHandler.currentLocation.coordinate, kDefaultZoomMiles*kMetersPerMile, kDefaultZoomMiles*kMetersPerMile);
     [self.mapView setRegion:viewRegion animated:YES];
+    
+    [self getSpotsInRegion:viewRegion];
 }
-
-//-(void)zoomToCurrentLocation {
-//    MKCoordinateRegion viewRegion = MKCoordinateRegionMakeWithDistance(self.locationManager.location.coordinate, kDefaultZoomMiles*kMetersPerMile, kDefaultZoomMiles*kMetersPerMile);
-//    [self.mapView setRegion:viewRegion animated:YES];
-//}
 
 #pragma mark - UICollectionView
 
@@ -195,8 +131,55 @@ static const CGFloat kDefaultZoomMiles = 0.5; // TODO : make dynamic/adjustable?
 }
 
 #pragma mark - Spots
--(void)updateNearbySpots {
-    // TODO: get only nearby spots based on coords, vs. all spots like now
+
+- (IBAction)refreshSpots:(id)sender {
+    [self getSpotsInView];
+}
+
+-(void)getSpotsInView {
+    [self getSpotsInRegion:self.mapView.region];
+}
+
+-(void)getSpotsInRegion:(MKCoordinateRegion)region {
+    
+    [self.nearbySpots removeAllObjects];
+    // remove all markers
+    [self removeSpotMarkers];
+    
+    [serverHandler queryRegion:region handleResponse:^void (NSDictionary *spots) {
+        // force to main thread for UI updates
+        dispatch_async(dispatch_get_main_queue(), ^(void){
+            for (NSDictionary *serverSpot in spots) {
+                // see if Spot object already exists in Core Data
+                Spot *nextSpot;
+                NSString *databaseId = serverSpot[@"_id"];
+                
+                nextSpot = (Spot*)[coreDataHandler getObjectWithDatabaseId:databaseId];
+                
+                // if Spot object doesn't already exist in Core Data, create it
+                if (!nextSpot) {
+                    //                NSLog(@"new");
+                    nextSpot = (Spot*)[coreDataHandler createNew:@"Spot"];
+                }
+                //            NSLog(@"    spot object");
+                // update Spot from server info and then add to array
+                [nextSpot updateFromDictionary:serverSpot];
+                [self.nearbySpots addObject:nextSpot];
+            }
+            [self.collectionView reloadData]; // populates scrollable photo previews
+            if (self.nearbySpots.count > 0) {
+                self.noSpotsText.hidden = YES;
+                // TODO: should spot markers be children of the cells? Of the spots?
+                [self placeSpotMarkers];
+//                [self.collectionView reloadData]; // populates scrollable photo previews
+            } else {
+                self.noSpotsText.hidden = NO;
+            }
+        });
+    }];
+}
+
+-(void)updateNearbySpots { // !!! -- actually gets all spots
     // TODO: how to handle offline use
     
     // get nearby spots from database, create Spot objects as needed, populate map
@@ -244,6 +227,14 @@ static const CGFloat kDefaultZoomMiles = 0.5; // TODO : make dynamic/adjustable?
         MKPointAnnotation *spotMarker = [[MKPointAnnotation alloc] init];
         spotMarker.coordinate = [spot getCoordinate];
         [self.mapView addAnnotation:spotMarker];
+    }
+}
+
+// removes all previous markers
+-(void)removeSpotMarkers {
+    for (id<MKAnnotation> annotation in self.mapView.annotations)
+    {
+        [self.mapView removeAnnotation:annotation];
     }
 }
 

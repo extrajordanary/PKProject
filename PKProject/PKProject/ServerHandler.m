@@ -10,6 +10,7 @@
 #import "User+Extended.h"
 #import "Spot+Extended.h"
 #import "Photo+Extended.h"
+//#import <MapKit/MapKit.h>
 
 // This class is responsible for handling all calls to the server
 
@@ -85,6 +86,50 @@ static NSString* const kPhotos = @"/collections/photos";
 }
 
 #pragma mark - Spots
+// creates the required query for returning Spots within an MKCoordinateRegion
+- (void) queryRegion:(MKCoordinateRegion)region handleResponse:(void (^)(NSDictionary*))spotHandlingBlock {
+    // TODO: fix cross hemisphere logic?
+    //note assumes the NE hemisphere. This logic should really check first.
+    //also note that searches across hemisphere lines are not interpreted properly by Mongo
+    CLLocationDegrees x0 = region.center.longitude - region.span.longitudeDelta/2;
+    CLLocationDegrees x1 = region.center.longitude + region.span.longitudeDelta/2;
+    CLLocationDegrees y0 = region.center.latitude - region.span.latitudeDelta/2;
+    CLLocationDegrees y1 = region.center.latitude + region.span.latitudeDelta/2;
+    
+    NSString* boxQuery = [NSString stringWithFormat:@"{\"$geoWithin\":{\"$box\":[[%f,%f],[%f,%f]]}}",x0,y0,x1,y1];
+    NSLog(@"%@",boxQuery);
+    NSString* locationInBox = [NSString stringWithFormat:@"{\"location\":%@}", boxQuery];
+    NSString* escBox = (NSString *)CFBridgingRelease(CFURLCreateStringByAddingPercentEscapes(NULL,
+                                                                                             (CFStringRef) locationInBox,
+                                                                                             NULL,
+                                                                                             (CFStringRef) @"!*();':@&=+$,/?%#[]{}",
+                                                                                             kCFStringEncodingUTF8));
+    NSString* query = [NSString stringWithFormat:@"?query=%@", escBox];
+    [self runSpotQuery:query handleResponse:spotHandlingBlock];
+}
+
+- (void) runSpotQuery:(NSString *)queryString handleResponse:(void (^)(NSDictionary*))spotHandlingBlock {
+    NSString* urlStr = [[kBaseURL stringByAppendingPathComponent:kSpots] stringByAppendingString:queryString];
+    NSURL* url = [NSURL URLWithString:urlStr];
+    
+    NSMutableURLRequest* request = [NSMutableURLRequest requestWithURL:url];
+    request.HTTPMethod = @"GET";
+    [request addValue:@"application/json" forHTTPHeaderField:@"Accept"];
+    
+    NSURLSessionConfiguration* config = [NSURLSessionConfiguration defaultSessionConfiguration];
+    NSURLSession* session = [NSURLSession sessionWithConfiguration:config];
+    
+    NSURLSessionDataTask* dataTask = [session dataTaskWithRequest:request completionHandler:^(NSData *data, NSURLResponse *response, NSError *error) {
+        if (error == nil) {
+            NSDictionary* responseDictionary = [NSJSONSerialization JSONObjectWithData:data options:0 error:NULL];
+            spotHandlingBlock(responseDictionary);
+            
+            NSLog(@"received %lu items", (unsigned long)responseDictionary.count);
+        }
+    }];
+    [dataTask resume];
+}
+
 // returns all Spots from server and passes them to a block which will parse the info in the desired fashion
 // TODO: update method to take query parameters
 -(void)getSpotsFromServer:(void (^)(NSDictionary*))spotHandlingBlock {

@@ -7,13 +7,15 @@
 //
 
 #import <Foundation/Foundation.h>
+#import <MapKit/MapKit.h>
 
 @class User;
 @class Spot;
 @class Photo;
 @class ServerObject;
+//@class MKCoordinateRegion;
 
-@interface ServerHandler : NSObject
+@interface ServerHandler : NSObject <MKMapViewDelegate>
 
 @property (nonatomic, retain) NSString *myUserId;
 
@@ -21,6 +23,8 @@
 
 -(void)updateObjectFromServer:(ServerObject*)object;
 -(void)updateUserFromServer:(User*)user;
+
+-(void)queryRegion:(MKCoordinateRegion)region handleResponse:(void (^)(NSDictionary*))spotHandlingBlock;
 -(void)getSpotsFromServer:(void (^)(NSDictionary*))spotHandlingBlock;
 -(void)pushSpotToServer:(Spot*)spot;
 -(void)pushPhotoToServer:(Photo*)photo;

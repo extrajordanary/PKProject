@@ -63,8 +63,8 @@
 -(NSDictionary*)toDictionary {
     NSMutableDictionary* jsonable = [NSMutableDictionary dictionary];
     jsonable[@"creationTimestamp"] = self.creationTimestamp;
-    jsonable[@"latitude"] = self.latitude;
-    jsonable[@"longitude"] = self.longitude;
+//    jsonable[@"latitude"] = self.latitude;
+//    jsonable[@"longitude"] = self.longitude;
     
     //make a geoJSON object e.g. { "type": "Point", "coordinates": [100.0, 0.0] }
     jsonable[@"location"] = @{@"type":@"Point", @"coordinates" : @[@([self.longitude doubleValue]), @([self.latitude doubleValue])] };

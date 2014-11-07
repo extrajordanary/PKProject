@@ -52,7 +52,7 @@ static NSString* const kAWSBase = @"https://s3-us-west-1.amazonaws.com/cvalt-pho
 
 -(UIImage*)getImage {
     UIImage *image;
-//    NSLog(@"checking for local image");
+    NSLog(@"checking for local image");
     // TODO: what to do when Photo doesn't have databaseId when image is requested?
     if (self.databaseId && ![self.databaseId isEqualToString:@"0"]) {
         // check if an image has been saved to the local cache
@@ -61,18 +61,18 @@ static NSString* const kAWSBase = @"https://s3-us-west-1.amazonaws.com/cvalt-pho
         // if image is still nil, download the image from online
         if (!image) {
             NSString *onlinePath = [[kAWSBase stringByAppendingString:self.databaseId] stringByAppendingString:@".jpg"];
-//            NSLog(@"checking for online image: %@",onlinePath);
+            NSLog(@"checking for online image: %@",onlinePath);
             NSData *recievedData = [NSData dataWithContentsOfURL:[NSURL URLWithString:onlinePath]];
             // set image to return variable
             image =[UIImage imageWithData:recievedData];
             if (image) {
-//                NSLog(@"saving locally");
+                NSLog(@"saving locally");
                 // for quicker retrieval next time
                 [self saveImageToLocalCache:image];
             }
         }
     } else { // must still be using temp image
-//        NSLog(@"Using temp photo path");
+        NSLog(@"Using temp photo path");
         image = [UIImage imageWithContentsOfFile:[self getTempLocalPath]];
     }
     
