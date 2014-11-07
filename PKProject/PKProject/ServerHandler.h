@@ -13,7 +13,6 @@
 @class Spot;
 @class Photo;
 @class ServerObject;
-//@class MKCoordinateRegion;
 
 @interface ServerHandler : NSObject <MKMapViewDelegate>
 

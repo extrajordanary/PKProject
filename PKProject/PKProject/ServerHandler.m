@@ -10,7 +10,6 @@
 #import "User+Extended.h"
 #import "Spot+Extended.h"
 #import "Photo+Extended.h"
-//#import <MapKit/MapKit.h>
 
 // This class is responsible for handling all calls to the server
 
@@ -131,7 +130,6 @@ static NSString* const kPhotos = @"/collections/photos";
 }
 
 // returns all Spots from server and passes them to a block which will parse the info in the desired fashion
-// TODO: update method to take query parameters
 -(void)getSpotsFromServer:(void (^)(NSDictionary*))spotHandlingBlock {
     NSString* requestURL = [NSString stringWithFormat:@"%@%@",kBaseURL,kSpots];
     NSURL* url = [NSURL URLWithString:requestURL];

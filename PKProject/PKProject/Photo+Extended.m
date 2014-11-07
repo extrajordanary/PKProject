@@ -21,10 +21,16 @@ static NSString* const kAWSBase = @"https://s3-us-west-1.amazonaws.com/cvalt-pho
     if (self) {
         self.databaseId = dictionary[@"_id"];
         self.creationTimestamp = dictionary[@"creationTimestamp"];
-        self.latitude = dictionary[@"latitude"];
-        self.longitude = dictionary[@"longitude"];
-        self.localPath = dictionary[@"localPath"]; // check if the new one is NA before overwriting local data
-        self.onlinePath = dictionary[@"onlinePath"];
+        
+        self.latitude = dictionary[@"location"][@"coordinates"][1];
+        self.longitude = dictionary[@"location"][@"coordinates"][0];
+        
+//        self.latitude = dictionary[@"latitude"];
+//        self.longitude = dictionary[@"longitude"];
+
+//        self.localPath = dictionary[@"localPath"]; // check if the new one is NA before overwriting local data
+//        self.onlinePath = dictionary[@"onlinePath"];
+        
         // TODO: photoByUser - but I don't need to create these objects every time.
         // TODO: photoSpot
         
@@ -35,10 +41,13 @@ static NSString* const kAWSBase = @"https://s3-us-west-1.amazonaws.com/cvalt-pho
 -(NSDictionary*)toDictionary {
     NSMutableDictionary* jsonable = [NSMutableDictionary dictionary];
     jsonable[@"creationTimestamp"] = self.creationTimestamp;
-    jsonable[@"latitude"] = self.latitude;
-    jsonable[@"longitude"] = self.longitude;
-    jsonable[@"localPath"] = self.localPath;
-    jsonable[@"onlinePath"] = self.onlinePath;
+    
+    jsonable[@"location"] = @{@"type":@"Point", @"coordinates" : @[@([self.longitude doubleValue]), @([self.latitude doubleValue])] };
+
+//    jsonable[@"latitude"] = self.latitude;
+//    jsonable[@"longitude"] = self.longitude;
+//    jsonable[@"localPath"] = self.localPath;
+//    jsonable[@"onlinePath"] = self.onlinePath;
     
     jsonable[@"photoByUser"] = self.photoByUser.databaseId; // only one
     
@@ -53,7 +62,6 @@ static NSString* const kAWSBase = @"https://s3-us-west-1.amazonaws.com/cvalt-pho
 -(UIImage*)getImage {
     UIImage *image;
     NSLog(@"checking for local image");
-    // TODO: what to do when Photo doesn't have databaseId when image is requested?
     if (self.databaseId && ![self.databaseId isEqualToString:@"0"]) {
         // check if an image has been saved to the local cache
         image = [UIImage imageWithContentsOfFile:[self getLocalPath]];

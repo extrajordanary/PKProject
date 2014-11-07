@@ -62,7 +62,6 @@ static const CGFloat kDefaultZoomMiles = 0.5; // TODO : make dynamic/adjustable?
     [super viewWillAppear:animated];
 
     [self getThisUser];
-//    [self updateNearbySpots];
     
     // TODO: remove redundant calls to getSpots as a result of multiple zooms
     if (locationHandler.isAuthorized) {
@@ -71,12 +70,9 @@ static const CGFloat kDefaultZoomMiles = 0.5; // TODO : make dynamic/adjustable?
 
 }
 
-#pragma mark - Location Manager
+#pragma mark - Map
 // TODO: only zoom to location the first time
 // TODO: search bar
-
-
-#pragma mark - Map
 - (IBAction)showUserLocation:(id)sender {
     [self zoomToCurrentLocation];
 }
@@ -85,7 +81,7 @@ static const CGFloat kDefaultZoomMiles = 0.5; // TODO : make dynamic/adjustable?
     MKCoordinateRegion viewRegion = MKCoordinateRegionMakeWithDistance(locationHandler.currentLocation.coordinate, kDefaultZoomMiles*kMetersPerMile, kDefaultZoomMiles*kMetersPerMile);
     [self.mapView setRegion:viewRegion animated:YES];
     
-    [self getSpotsInRegion:viewRegion];
+    [self getSpotsInRegion:viewRegion]; // TODO: call this elsewhere
 }
 
 #pragma mark - UICollectionView
@@ -99,7 +95,7 @@ static const CGFloat kDefaultZoomMiles = 0.5; // TODO : make dynamic/adjustable?
     
     PhotoCollectionViewCell *cell = (PhotoCollectionViewCell*)[cv dequeueReusableCellWithReuseIdentifier:@"Photo" forIndexPath:indexPath];
     if (!cell) {
-        // ???
+        // TODO: error handling
     }
 
     [cell.imageView setImage:[UIImage imageNamed:@"loadingSpotPhoto.jpg"]];
@@ -132,6 +128,7 @@ static const CGFloat kDefaultZoomMiles = 0.5; // TODO : make dynamic/adjustable?
 
 #pragma mark - Spots
 
+// allows user to actively refresh visible spots
 - (IBAction)refreshSpots:(id)sender {
     [self getSpotsInView];
 }
@@ -141,7 +138,8 @@ static const CGFloat kDefaultZoomMiles = 0.5; // TODO : make dynamic/adjustable?
 }
 
 -(void)getSpotsInRegion:(MKCoordinateRegion)region {
-    
+    // TODO: how to handle offline use
+
     [self.nearbySpots removeAllObjects];
     // remove all markers
     [self removeSpotMarkers];
@@ -179,46 +177,46 @@ static const CGFloat kDefaultZoomMiles = 0.5; // TODO : make dynamic/adjustable?
     }];
 }
 
--(void)updateNearbySpots { // !!! -- actually gets all spots
-    // TODO: how to handle offline use
-    
-    // get nearby spots from database, create Spot objects as needed, populate map
-    [self.nearbySpots removeAllObjects];
-    NSArray *allSpots = [[NSArray alloc] init];     // for debugging only
-    allSpots = [coreDataHandler getManagedObjects:@"Spot"];     // for debugging only
-    
-    [serverHandler getSpotsFromServer:^void (NSDictionary *spots) {
-        // force to main thread for UI updates
-        dispatch_async(dispatch_get_main_queue(), ^(void){
-            for (NSDictionary *serverSpot in spots) {
-                // see if Spot object already exists in Core Data
-                Spot *nextSpot;
-                NSString *databaseId = serverSpot[@"_id"];
-
-                nextSpot = (Spot*)[coreDataHandler getObjectWithDatabaseId:databaseId];
-             
-                // if Spot object doesn't already exist in Core Data, create it
-                if (!nextSpot) {
-    //                NSLog(@"new");
-                    nextSpot = (Spot*)[coreDataHandler createNew:@"Spot"];
-                }
-    //            NSLog(@"    spot object");
-                // update Spot from server info and then add to array
-                [nextSpot updateFromDictionary:serverSpot];
-                [self.nearbySpots addObject:nextSpot];
-            }
-        // force to main thread for UI updates
-            if (self.nearbySpots.count > 0) {
-                self.noSpotsText.hidden = YES;
-                // TODO: should spot markers be children of the cells? Of the spots?
-                [self placeSpotMarkers];
-                [self.collectionView reloadData]; // populates scrollable photo previews
-            } else {
-                self.noSpotsText.hidden = NO;
-            }
-        });
-    }];
-}
+//-(void)updateNearbySpots { // !!! -- actually gets all spots
+//    // TODO: how to handle offline use
+//    
+//    // get nearby spots from database, create Spot objects as needed, populate map
+//    [self.nearbySpots removeAllObjects];
+//    NSArray *allSpots = [[NSArray alloc] init];     // for debugging only
+//    allSpots = [coreDataHandler getManagedObjects:@"Spot"];     // for debugging only
+//    
+//    [serverHandler getSpotsFromServer:^void (NSDictionary *spots) {
+//        // force to main thread for UI updates
+//        dispatch_async(dispatch_get_main_queue(), ^(void){
+//            for (NSDictionary *serverSpot in spots) {
+//                // see if Spot object already exists in Core Data
+//                Spot *nextSpot;
+//                NSString *databaseId = serverSpot[@"_id"];
+//
+//                nextSpot = (Spot*)[coreDataHandler getObjectWithDatabaseId:databaseId];
+//             
+//                // if Spot object doesn't already exist in Core Data, create it
+//                if (!nextSpot) {
+//    //                NSLog(@"new");
+//                    nextSpot = (Spot*)[coreDataHandler createNew:@"Spot"];
+//                }
+//    //            NSLog(@"    spot object");
+//                // update Spot from server info and then add to array
+//                [nextSpot updateFromDictionary:serverSpot];
+//                [self.nearbySpots addObject:nextSpot];
+//            }
+//        // force to main thread for UI updates
+//            if (self.nearbySpots.count > 0) {
+//                self.noSpotsText.hidden = YES;
+//                // TODO: should spot markers be children of the cells? Of the spots?
+//                [self placeSpotMarkers];
+//                [self.collectionView reloadData]; // populates scrollable photo previews
+//            } else {
+//                self.noSpotsText.hidden = NO;
+//            }
+//        });
+//    }];
+//}
 
 // populates the map with pins at each Spot location
 -(void)placeSpotMarkers {
@@ -242,6 +240,7 @@ static const CGFloat kDefaultZoomMiles = 0.5; // TODO : make dynamic/adjustable?
 
 #pragma mark - Users
 -(void)getThisUser {
+    // TODO: still relevant after implementing login?
     thisUserId = [[NSUserDefaults standardUserDefaults] valueForKey:@"thisUserId"];
 
 // check if user has stored user _id, if not, create new user on server and save the _id
@@ -258,6 +257,7 @@ static const CGFloat kDefaultZoomMiles = 0.5; // TODO : make dynamic/adjustable?
     }
 
     // see if User object already exists in Core Data
+    // TODO: change this out for the generic search
     NSPredicate *thisUser = [NSPredicate predicateWithFormat:@"databaseId = %@",thisUserId];
     NSSortDescriptor *sortBy = [NSSortDescriptor sortDescriptorWithKey:@"databaseId" ascending:YES];
     NSArray *searchResults = [coreDataHandler getManagedObjects:@"User" withPredicate:thisUser sortedBy:sortBy];
@@ -284,7 +284,6 @@ static const CGFloat kDefaultZoomMiles = 0.5; // TODO : make dynamic/adjustable?
     if ([segue.identifier isEqualToString:@"CreateSpot"]) {
         CreateSpotViewController *createSpotViewController = [segue destinationViewController];
         createSpotViewController.thisUser = self.thisUser;
-//        createSpotViewController.locationManager = self.locationManager;
     }
 }
 
@@ -297,6 +296,7 @@ static const CGFloat kDefaultZoomMiles = 0.5; // TODO : make dynamic/adjustable?
 }
 
 -(void)viewSpotDetails:(Spot*)spot {
+    // TODO: implement detail view
     NSLog(@"view spot %@",spot.databaseId);
 }
 

@@ -29,12 +29,6 @@
     return array;
 }
 
-//-(NSArray*)getManagedObjects:(NSString*)entityForName withPredicate:(NSPredicate*)predicate {
-//    CoreDataHandler *coreDataHandler = [CoreDataHandler sharedCoreDataHandler];
-//    [coreDataHandler getManagedObjects:entityForName withPredicate:predicate];
-//}
-
-
 -(void)updateCoreData {
     // don't save if
     dispatch_async(dispatch_get_main_queue(), ^(void){

@@ -45,13 +45,7 @@
         
         [AWSServiceManager defaultServiceManager].defaultServiceConfiguration = configuration;
         
-//        s3TransferManager = [[AWSS3TransferManager new] initWithConfiguration:configuration identifier:@"cvalt"];
         s3TransferManager = [AWSS3TransferManager defaultS3TransferManager];
-        
-//        AWSCognito *syncClient = [AWSCognito defaultCognito];
-//        AWSCognitoDataset *dataset = [syncClient openOrCreateDataset:@"myDataset"];
-//        [dataset setString:@"myValue" forKey:@"myKey"];
-//        [dataset synchronize];
     }
     return self;
 }
@@ -71,6 +65,7 @@
                )
             {
                 NSLog(@"upload failed");
+                // TODO: handle failure - key photo object so it can try again later? try once more?
             }
         } else {
             NSLog(@"upload succeeded");
@@ -79,31 +74,4 @@
     }];
 }
 
-
-//- (BFTask *)upload:(AWSS3TransferManagerUploadRequest *)uploadRequest
-
-//S3PutObjectRequest *putObjectRequest = [[S3PutObjectRequest alloc] initWithKey:my_key inBucket: my_bucket_name];
-//[putObjectRequest setFilename:videoMetaData.videoFilePath];
-//
-//[putObjectRequest addMetadataWithValue:[UserSessionInfo sharedSessionInfo].userEmail forKey:@"email"];
-//[putObjectRequest addMetadataWithValue:[UtilHelper formatDuration:videoMetaData.length] forKey:@"videolength"];
-//[putObjectRequest addMetadataWithValue:@"Landscape" forKey:@"orientation"];
-//[putObjectRequest addMetadataWithValue:[NSString stringWithFormat:@"%d", data.length] forKey:@"size"];
-//
-//putObjectRequest.contentType = @"video/quicktime";
-//self.uploadFileOperation = [self.s3TransferManager upload:putObjectRequest];
-
-
-
-//AmazonS3Client *s3Client = [[AmazonS3Client alloc] initWithAccessKey:@"Key_Goes_here" withSecretKey:@"Secret_Goes_Here"];
-//
-//NSString *imageName = [NSString stringWithFormat:@"%@.png", @"cpa"];
-//
-//S3PutObjectRequest *objReq = [[S3PutObjectRequest alloc] initWithKey:imageName inBucket:@"bucket_name"];
-//objReq.contentType = @"image/png";
-//objReq.cannedACL   = [S3CannedACL publicRead];
-//objReq.data = UIImagePNGRepresentation(myFace);
-//objReq.delegate = self;
-//
-//[s3Client putObject:objReq];
 @end

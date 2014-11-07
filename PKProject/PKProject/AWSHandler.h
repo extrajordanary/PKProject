@@ -11,7 +11,7 @@
 #import <AWSiOSSDKv2/AWSCore.h>
 #import <AWSiOSSDKv2/AWSS3TransferManager.h>
 
-@interface AWSHandler : NSObject //<AmazonServiceRequestDelegate>
+@interface AWSHandler : NSObject
 
 +(id) sharedAWSHandler;
 -(void)uploadImageFromURL:(NSURL*)imageUrl withName:(NSString*)name;

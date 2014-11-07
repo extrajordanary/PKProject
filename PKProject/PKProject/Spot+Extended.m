@@ -19,8 +19,6 @@
     if (self) {
         self.databaseId = dictionary[@"_id"];
         self.creationTimestamp = dictionary[@"creationTimestamp"];
-//        self.latitude = dictionary[@"latitude"];
-//        self.longitude = dictionary[@"longitude"];
         
         self.latitude = dictionary[@"location"][@"coordinates"][1];
         self.longitude = dictionary[@"location"][@"coordinates"][0];
@@ -36,35 +34,26 @@
 }
 
 -(void)updateSpotByUser:(NSString*)databaseId {
-    // TODO: main queue here?
-//    dispatch_async(dispatch_get_main_queue(), ^(void){
-        CoreDataHandler *coreDataHandler = [CoreDataHandler sharedCoreDataHandler];
-        User *user;
-        // coreDataHandler gets or creates the User object and updates it from the server
-        user = (User*)[coreDataHandler returnObjectOfType:@"User" forId:databaseId];
-        [self setSpotByUser:user];
-//    });
+    CoreDataHandler *coreDataHandler = [CoreDataHandler sharedCoreDataHandler];
+    User *user;
+    // coreDataHandler gets or creates the User object and updates it from the server
+    user = (User*)[coreDataHandler returnObjectOfType:@"User" forId:databaseId];
+    [self setSpotByUser:user];
 }
 
 -(void)updateSpotPhotos:(NSArray*)databaseIds {
-    // TODO: main queue here?
-//    dispatch_async(dispatch_get_main_queue(), ^(void){
-        CoreDataHandler *coreDataHandler = [CoreDataHandler sharedCoreDataHandler];
-        for (NSString *databaseId in databaseIds) {
-            Photo *photo;
-            // coreDataHandler gets or creates the User object and updates it from the server
-            photo = (Photo*)[coreDataHandler returnObjectOfType:@"Photo" forId:databaseId];
-            [self addSpotPhotosObject:photo];
-        }
-//    });
-
+    CoreDataHandler *coreDataHandler = [CoreDataHandler sharedCoreDataHandler];
+    for (NSString *databaseId in databaseIds) {
+        Photo *photo;
+        // coreDataHandler gets or creates the User object and updates it from the server
+        photo = (Photo*)[coreDataHandler returnObjectOfType:@"Photo" forId:databaseId];
+        [self addSpotPhotosObject:photo];
+    }
 }
 
 -(NSDictionary*)toDictionary {
     NSMutableDictionary* jsonable = [NSMutableDictionary dictionary];
     jsonable[@"creationTimestamp"] = self.creationTimestamp;
-//    jsonable[@"latitude"] = self.latitude;
-//    jsonable[@"longitude"] = self.longitude;
     
     //make a geoJSON object e.g. { "type": "Point", "coordinates": [100.0, 0.0] }
     jsonable[@"location"] = @{@"type":@"Point", @"coordinates" : @[@([self.longitude doubleValue]), @([self.latitude doubleValue])] };

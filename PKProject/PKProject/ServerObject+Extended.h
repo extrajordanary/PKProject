@@ -11,7 +11,6 @@
 @interface ServerObject (Extended)
 
 -(NSMutableArray*)arrayOfObjectIds:(NSArray*)objects;
-//-(NSArray*)getManagedObjects:(NSString*)entityForName withPredicate:(NSPredicate*)predicate;
 -(void)updateCoreData;
 
 @end

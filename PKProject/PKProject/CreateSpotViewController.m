@@ -57,9 +57,6 @@ static const CGFloat kDefaultZoomMiles = 0.2;
     spotMarker.coordinate = locationHandler.currentLocation.coordinate;
     [self.mapView addAnnotation:spotMarker];
     
-//    self.locationManager.delegate = self;
-//    [self zoomToCurrentLocation];
-    
     // create new Spot and Photo objects
     newSpot = (Spot*)[coreDataHandler createNew:@"Spot"];
     newPhoto = (Photo*)[coreDataHandler createNew:@"Photo"];
@@ -81,7 +78,6 @@ static const CGFloat kDefaultZoomMiles = 0.2;
     [super viewWillAppear:animated];
     
     if (locationHandler.isAuthorized) {
-//        [self zoomToCurrentLocation];
         [self zoomToMarker];
     }
 }
@@ -90,37 +86,7 @@ static const CGFloat kDefaultZoomMiles = 0.2;
     [super viewWillDisappear:animated];
 }
 
-#pragma mark - Location Manager
-// ??? - is this even being used?
-//- (BOOL)startStandardMapUpdates
-//{
-//    // Create the location manager if this object does not already have one.
-//    if (nil == self.locationManager) {
-//        self.locationManager = [[CLLocationManager alloc] init];
-//    }
-//    
-//    self.locationManager.delegate = self;
-//    self.locationManager.desiredAccuracy = kCLLocationAccuracyKilometer;
-//    
-//    // Set a movement threshold for new events.
-//    self.locationManager.distanceFilter = 500; // meters
-//    
-//    [self.locationManager requestAlwaysAuthorization];
-//    
-//    [self.locationManager startUpdatingLocation];
-//    [self.locationManager startUpdatingHeading];
-//    
-//    return YES;
-//}
-
-// ??? - is this even being used?
-// delegate method called when user changes authorization to allow location tracking
-//- (void)locationManager:(CLLocationManager *)manager didChangeAuthorizationStatus:(CLAuthorizationStatus)status {
-//    if (status) {
-//        [self zoomToCurrentLocation];
-//    }
-//}
-
+#pragma mark - Map
 -(void)zoomToCurrentLocation {
     MKCoordinateRegion viewRegion = MKCoordinateRegionMakeWithDistance(locationHandler.currentLocation.coordinate, kDefaultZoomMiles*kMetersPerMile, kDefaultZoomMiles*kMetersPerMile);
     [self.mapView setRegion:viewRegion animated:YES];
@@ -130,16 +96,6 @@ static const CGFloat kDefaultZoomMiles = 0.2;
     MKCoordinateRegion viewRegion = MKCoordinateRegionMakeWithDistance(spotMarker.coordinate, kDefaultZoomMiles*kMetersPerMile, kDefaultZoomMiles*kMetersPerMile);
     [self.mapView setRegion:viewRegion animated:YES];
 }
-
-//// ??? - is this even being used?
-//// Delegate method from the CLLocationManagerDelegate protocol.
-//- (void)locationManager:(CLLocationManager *)manager didUpdateLocations:(NSArray *)locations {
-//    CLLocation* location = [locations lastObject];
-//
-//    NSLog(@"latitude %+.6f, longitude %+.6f\n",
-//          location.coordinate.latitude,
-//          location.coordinate.longitude);
-//}
 
 #pragma mark - Location Setting
 - (IBAction)setLocation:(UILongPressGestureRecognizer *)sender {
@@ -316,19 +272,10 @@ static const CGFloat kDefaultZoomMiles = 0.2;
     [alert show];
 }
 
-//-(void)returnToMapView {
-//    MapViewController *mapVC = [[MapViewController alloc] init];
-//    
-//    [self presentViewController:mapVC animated:YES];
-//}
-
 #pragma mark - Alert Delegates
 - (void)alertView:(UIAlertView *)alertView didDismissWithButtonIndex:(NSInteger)buttonIndex {
     NSLog(@"alert dismissed with button %i", (int)buttonIndex);
     if ((int)buttonIndex == 1) {
-//        [self saveNewSpot];
-        // segue back to mapViewController
-//        [self returnToMapView];
         [self performSegueWithIdentifier:@"Save" sender:alertView];
     }
 }
