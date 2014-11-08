@@ -694,6 +694,7 @@
 					"-ObjC",
 				);
 				PRODUCT_NAME = CVALT;
+				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
 		};
@@ -718,6 +719,7 @@
 					"-ObjC",
 				);
 				PRODUCT_NAME = CVALT;
+				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;
 		};

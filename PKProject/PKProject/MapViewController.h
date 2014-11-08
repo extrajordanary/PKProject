@@ -12,4 +12,6 @@
 
 @interface MapViewController : UIViewController  <MKMapViewDelegate, CLLocationManagerDelegate, UITextFieldDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout>
 
+-(IBAction)unwindToMapView:(UIStoryboardSegue*)unwindSegue;
+
 @end

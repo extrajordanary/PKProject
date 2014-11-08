@@ -111,6 +111,7 @@ static const CGFloat kDefaultZoomMiles = 0.2;
     if (location) {
         NSLog(@"update marker location from photo");
         spotMarker.coordinate = location.coordinate;
+        [self zoomToMarker];
     } else {
         // popup to let user know they need to set the location manually
         UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"No Photo Location"
@@ -257,7 +258,7 @@ static const CGFloat kDefaultZoomMiles = 0.2;
     }
     else if ([segue.identifier isEqualToString:@"Save"]) {
 
-        [self saveNewSpot];
+//        [self saveNewSpot];
     }
     self.library = nil;
 }
@@ -276,7 +277,9 @@ static const CGFloat kDefaultZoomMiles = 0.2;
 - (void)alertView:(UIAlertView *)alertView didDismissWithButtonIndex:(NSInteger)buttonIndex {
     NSLog(@"alert dismissed with button %i", (int)buttonIndex);
     if ((int)buttonIndex == 1) {
-        [self performSegueWithIdentifier:@"Save" sender:alertView];
+//        [self performSegueWithIdentifier:@"Save" sender:alertView];
+        [self saveNewSpot];
+        [self performSegueWithIdentifier:@"BackToMap" sender:alertView];
     }
 }
 

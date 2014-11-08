@@ -259,11 +259,107 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="RhI-xC-4p8" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <tapGestureRecognizer numberOfTapsRequired="2" id="19g-xY-wij">
                     <connections>
-                        <action selector="spotDoubleTap:" destination="TcK-Hn-xC7" id="baf-FK-kXg"/>
+                        <segue destination="W2W-T9-HBv" kind="presentation" modalPresentationStyle="formSheet" id="zXH-Hz-tRL"/>
                     </connections>
                 </tapGestureRecognizer>
             </objects>
             <point key="canvasLocation" x="460" y="694"/>
+        </scene>
+        <!--View Details-->
+        <scene sceneID="zQ7-4F-P1W">
+            <objects>
+                <viewController title="Spot Detail" modalPresentationStyle="pageSheet" id="W2W-T9-HBv" userLabel="View Details" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="gC7-sC-tde"/>
+                        <viewControllerLayoutGuide type="bottom" id="WVp-WT-4RK"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="pwG-pb-Yvt">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="wZJ-eJ-Ggt">
+                                <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                                <subviews>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Ej4-2U-HKN">
+                                        <rect key="frame" x="-16" y="0.0" width="632" height="54"/>
+                                        <subviews>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Cv7-g5-s13">
+                                                <rect key="frame" x="564" y="10" width="44" height="44"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="44" id="2Dj-kS-evO"/>
+                                                    <constraint firstAttribute="width" constant="44" id="G9i-7n-b1g"/>
+                                                </constraints>
+                                                <fontDescription key="fontDescription" type="system" pointSize="40"/>
+                                                <state key="normal" title="+">
+                                                    <color key="titleColor" red="0.20392156859999999" green="1" blue="0.39607843139999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                                </state>
+                                            </button>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="UwD-b8-zk4">
+                                                <rect key="frame" x="16" y="12" width="80" height="44"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="44" id="gsV-5p-J0b"/>
+                                                    <constraint firstAttribute="width" constant="80" id="lIb-ea-cmZ"/>
+                                                </constraints>
+                                                <fontDescription key="fontDescription" type="system" pointSize="25"/>
+                                                <inset key="contentEdgeInsets" minX="0.0" minY="0.0" maxX="0.0" maxY="-10"/>
+                                                <state key="normal" title="Back">
+                                                    <color key="titleColor" red="0.20392156859999999" green="1" blue="0.39607843139999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                                </state>
+                                                <connections>
+                                                    <segue destination="aTC-ck-Pkl" kind="unwind" identifier="" unwindAction="unwindToMapView:" id="RFf-2L-Koh"/>
+                                                </connections>
+                                            </button>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="se3-qW-47k" userLabel="refresh">
+                                                <rect key="frame" x="256" y="14" width="120" height="40"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="40" id="FPV-FG-65Y"/>
+                                                    <constraint firstAttribute="width" constant="120" id="nId-gh-bjT"/>
+                                                </constraints>
+                                                <fontDescription key="fontDescription" type="system" pointSize="25"/>
+                                                <inset key="contentEdgeInsets" minX="0.0" minY="0.0" maxX="0.0" maxY="-10"/>
+                                                <state key="normal" title="+ My List">
+                                                    <color key="titleColor" red="0.20392156859999999" green="1" blue="0.39607843139999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                                </state>
+                                            </button>
+                                        </subviews>
+                                        <color key="backgroundColor" red="0.071800326270000006" green="0.41632887299999999" blue="0.90239025299999998" alpha="1" colorSpace="calibratedRGB"/>
+                                        <constraints>
+                                            <constraint firstAttribute="bottom" secondItem="se3-qW-47k" secondAttribute="bottom" id="TFX-gj-SFs"/>
+                                            <constraint firstItem="UwD-b8-zk4" firstAttribute="leading" secondItem="Ej4-2U-HKN" secondAttribute="leading" constant="16" id="ZYj-IF-K5J"/>
+                                            <constraint firstAttribute="bottom" secondItem="UwD-b8-zk4" secondAttribute="bottom" constant="-2" id="b9m-zO-odd"/>
+                                            <constraint firstAttribute="trailing" secondItem="Cv7-g5-s13" secondAttribute="trailing" constant="24" id="bYm-hI-4fX"/>
+                                            <constraint firstAttribute="height" constant="54" id="f3L-Pn-31p"/>
+                                            <constraint firstAttribute="bottom" secondItem="Cv7-g5-s13" secondAttribute="bottom" id="jEb-fM-UNM"/>
+                                            <constraint firstAttribute="centerX" secondItem="se3-qW-47k" secondAttribute="centerX" id="quK-FV-BgA"/>
+                                        </constraints>
+                                    </view>
+                                </subviews>
+                                <color key="backgroundColor" red="0.20392156859999999" green="1" blue="0.39607843139999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstItem="Ej4-2U-HKN" firstAttribute="leading" secondItem="wZJ-eJ-Ggt" secondAttribute="leading" constant="-16" id="Yu3-j9-MFL"/>
+                                    <constraint firstAttribute="trailing" secondItem="Ej4-2U-HKN" secondAttribute="trailing" constant="-16" id="gmU-IM-qop"/>
+                                    <constraint firstItem="Ej4-2U-HKN" firstAttribute="top" secondItem="wZJ-eJ-Ggt" secondAttribute="top" id="nE5-JK-nYx"/>
+                                </constraints>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="wZJ-eJ-Ggt" firstAttribute="top" secondItem="gC7-sC-tde" secondAttribute="bottom" id="8zX-3j-3Tf"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="wZJ-eJ-Ggt" secondAttribute="trailing" constant="-16" id="GxH-8S-mYd"/>
+                            <constraint firstItem="wZJ-eJ-Ggt" firstAttribute="leading" secondItem="pwG-pb-Yvt" secondAttribute="leadingMargin" constant="-16" id="I87-l0-YU4"/>
+                            <constraint firstAttribute="bottomMargin" secondItem="wZJ-eJ-Ggt" secondAttribute="bottom" id="Ji2-Op-LJ7"/>
+                        </constraints>
+                    </view>
+                    <simulatedStatusBarMetrics key="simulatedStatusBarMetrics" statusBarStyle="lightContent"/>
+                    <nil key="simulatedTopBarMetrics"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Tac-QI-LuN" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <exit id="aTC-ck-Pkl" userLabel="Exit" sceneMemberID="exit"/>
+            </objects>
+            <point key="canvasLocation" x="1210" y="780"/>
         </scene>
         <!--Create Spot-->
         <scene sceneID="xCq-ZK-cb0">
@@ -320,7 +416,7 @@
                                             <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
                                         <connections>
-                                            <segue destination="TcK-Hn-xC7" kind="show" identifier="Cancel" id="j1e-ia-nOc"/>
+                                            <segue destination="2Bz-V8-iTI" kind="unwind" identifier="BackToMap" unwindAction="unwindToMapView:" id="bfM-an-SJg"/>
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="FKM-No-rGD">
@@ -456,10 +552,10 @@
                     <connections>
                         <outlet property="mapView" destination="5wd-pG-u3H" id="Rzk-v6-g0Z"/>
                         <outlet property="spotImage" destination="3WT-Nh-yy9" id="9z6-x0-HfY"/>
-                        <segue destination="TcK-Hn-xC7" kind="show" identifier="Save" id="Jfo-ea-G8v"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Opf-bm-fU0" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <exit id="2Bz-V8-iTI" userLabel="Exit" sceneMemberID="exit"/>
                 <tapGestureRecognizer id="daw-T6-qfl">
                     <connections>
                         <action selector="tapUseCamera:" destination="Vve-Eo-Ty2" id="lih-BM-EfD"/>
@@ -471,7 +567,7 @@
                     </connections>
                 </pongPressGestureRecognizer>
             </objects>
-            <point key="canvasLocation" x="1057" y="-223.5"/>
+            <point key="canvasLocation" x="1133" y="-196"/>
         </scene>
     </scenes>
     <resources>
@@ -479,7 +575,4 @@
         <image name="cvalt-textLogo.png" width="1422" height="688"/>
         <image name="loadingSpotPhoto.jpg" width="2448" height="2448"/>
     </resources>
-    <inferredMetricsTieBreakers>
-        <segue reference="Lxy-EF-foa"/>
-    </inferredMetricsTieBreakers>
 </document>

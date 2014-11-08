@@ -32,6 +32,7 @@
     CoreDataHandler *coreDataHandler;
     LocationManagerHandler *locationHandler;
     NSString *thisUserId;
+    BOOL firstZoom;
 }
 
 #define IS_OS_8_OR_LATER ([[[UIDevice currentDevice] systemVersion] floatValue] >= 8.0)
@@ -56,12 +57,13 @@ static const CGFloat kDefaultZoomMiles = 0.5; // TODO : make dynamic/adjustable?
     
     self.mapView.showsUserLocation = YES;
     self.mapView.showsPointsOfInterest = NO;
+    
+    [self getThisUser];
+    firstZoom = YES;
 }
 
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
-
-    [self getThisUser];
     
     // TODO: remove redundant calls to getSpots as a result of multiple zooms
     if (locationHandler.isAuthorized) {
@@ -81,7 +83,11 @@ static const CGFloat kDefaultZoomMiles = 0.5; // TODO : make dynamic/adjustable?
     MKCoordinateRegion viewRegion = MKCoordinateRegionMakeWithDistance(locationHandler.currentLocation.coordinate, kDefaultZoomMiles*kMetersPerMile, kDefaultZoomMiles*kMetersPerMile);
     [self.mapView setRegion:viewRegion animated:YES];
     
-    [self getSpotsInRegion:viewRegion]; // TODO: call this elsewhere
+    if (firstZoom) {
+        firstZoom = NO;
+        [self getSpotsInRegion:self.mapView.region];
+    }
+//    [self getSpotsInRegion:viewRegion]; // TODO: call this elsewhere
 }
 
 #pragma mark - UICollectionView
@@ -298,6 +304,10 @@ static const CGFloat kDefaultZoomMiles = 0.5; // TODO : make dynamic/adjustable?
 -(void)viewSpotDetails:(Spot*)spot {
     // TODO: implement detail view
     NSLog(@"view spot %@",spot.databaseId);
+}
+
+-(IBAction)unwindToMapView:(UIStoryboardSegue*)unwindSegue {
+    NSLog(@"unwinding to MapView");
 }
 
 #pragma mark - Listeners
