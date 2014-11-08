@@ -139,9 +139,11 @@ static const CGFloat kDefaultZoomMiles = 0.2;
     
     imagePicker.sourceType = UIImagePickerControllerSourceTypeCamera;
     
+    // TODO: still getting snapshotting warning message here
     [self presentViewController:imagePicker animated:YES completion:^{
         //
     }];
+    
 }
 
 - (IBAction)selectChoosePhoto:(id)sender {

@@ -65,7 +65,6 @@ static const CGFloat kDefaultZoomMiles = 0.5; // TODO : make dynamic/adjustable?
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
     
-    // TODO: remove redundant calls to getSpots as a result of multiple zooms
     if (locationHandler.isAuthorized) {
         [self zoomToCurrentLocation];
     }
@@ -83,11 +82,8 @@ static const CGFloat kDefaultZoomMiles = 0.5; // TODO : make dynamic/adjustable?
     MKCoordinateRegion viewRegion = MKCoordinateRegionMakeWithDistance(locationHandler.currentLocation.coordinate, kDefaultZoomMiles*kMetersPerMile, kDefaultZoomMiles*kMetersPerMile);
     [self.mapView setRegion:viewRegion animated:YES];
     
-    if (firstZoom) {
-        firstZoom = NO;
-        [self getSpotsInRegion:self.mapView.region];
-    }
-//    [self getSpotsInRegion:viewRegion]; // TODO: call this elsewhere
+    // TODO: remove redundant calls to getSpots as a result of multiple zooms
+    [self getSpotsInRegion:viewRegion];
 }
 
 #pragma mark - UICollectionView
