@@ -13,6 +13,10 @@
 
 // assign a spot to the cell and initiate the image updating
 -(void)displayInfoForSpot:(Spot*)spot {
+//    [self displayImage:[UIImage imageNamed:@"cvalt-roundedButton2.png"]];
+//    self.loadingIndicator.activityIndicatorViewStyle = UIActivityIndicatorViewStyleWhiteLarge;
+    [self.loadingIndicator startAnimating];
+    
     // assign spot to self
     self.spot = spot;
     
@@ -22,6 +26,7 @@
         UIImage *image = [self.spot getThumbnail]; // returns image for first Photo object
         dispatch_async(dispatch_get_main_queue(), ^(void){
             [self displayImage:image];
+            [self.loadingIndicator stopAnimating];
         });
     });
     // TODO: number of favorites

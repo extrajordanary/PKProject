@@ -24,6 +24,7 @@
 @property (strong, nonatomic) User *thisUser;
 @property (strong, nonatomic) NSMutableArray *nearbySpots;
 @property (strong, nonatomic) IBOutlet UILabel *noSpotsText;
+@property (strong, nonatomic) IBOutlet UIActivityIndicatorView *activityIndicator;
 
 @end
 
@@ -57,6 +58,8 @@ static const CGFloat kDefaultZoomMiles = 0.5; // TODO : make dynamic/adjustable?
     
     self.mapView.showsUserLocation = YES;
     self.mapView.showsPointsOfInterest = NO;
+    
+//    self.activityIndicator.activityIndicatorViewStyle = UIActivityIndicatorViewStyleWhiteLarge;
     
     [self getThisUser];
     firstZoom = YES;
@@ -143,8 +146,12 @@ static const CGFloat kDefaultZoomMiles = 0.5; // TODO : make dynamic/adjustable?
     // TODO: how to handle offline use
 
     [self.nearbySpots removeAllObjects];
-    // remove all markers
-    [self removeSpotMarkers];
+//    // remove all markers
+//    [self removeSpotMarkers];
+    
+    // start the activity indicator
+    [self.activityIndicator startAnimating];
+    self.noSpotsText.hidden = YES;
     
     [serverHandler queryRegion:region handleResponse:^void (NSDictionary *spots) {
         // force to main thread for UI updates
@@ -167,6 +174,13 @@ static const CGFloat kDefaultZoomMiles = 0.5; // TODO : make dynamic/adjustable?
                 [self.nearbySpots addObject:nextSpot];
             }
             [self.collectionView reloadData]; // populates scrollable photo previews
+            
+            // stop the activity indicator - hides automatically
+            [self.activityIndicator stopAnimating];
+            
+            // remove all markers
+            [self removeSpotMarkers];
+            
             if (self.nearbySpots.count > 0) {
                 self.noSpotsText.hidden = YES;
                 // TODO: should spot markers be children of the cells? Of the spots?

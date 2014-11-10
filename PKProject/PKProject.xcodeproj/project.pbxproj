@@ -57,6 +57,7 @@
 		17A2FC741A08448F00564441 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 17A2FC731A08448F00564441 /* UIKit.framework */; };
 		17A6D94519FAC33F0038EC1E /* AWSiOSSDKv2.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 17A6D94419FAC33F0038EC1E /* AWSiOSSDKv2.framework */; };
 		17A6D94819FACF490038EC1E /* ALAssetsLibrary+CustomPhotoAlbum.m in Sources */ = {isa = PBXBuildFile; fileRef = 17A6D94719FACF490038EC1E /* ALAssetsLibrary+CustomPhotoAlbum.m */; };
+		17AB142D1A11746000BA881F /* cvalt-roundedButton2.png in Resources */ = {isa = PBXBuildFile; fileRef = 17AB142C1A11746000BA881F /* cvalt-roundedButton2.png */; };
 		17C7BF9F19E85A3900BD019A /* ServerObjects+Extended.m in Sources */ = {isa = PBXBuildFile; fileRef = 17C7BF9E19E85A3900BD019A /* ServerObjects+Extended.m */; };
 		17F2C5E319F83C4B008C86AE /* libsqlite3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 17F2C5E219F83C4B008C86AE /* libsqlite3.dylib */; };
 		17F2C5E519F83C56008C86AE /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 17F2C5E419F83C56008C86AE /* libz.dylib */; };
@@ -76,7 +77,6 @@
 		17F2C61219F83D6E008C86AE /* sqs-2012-11-05.json in Resources */ = {isa = PBXBuildFile; fileRef = 17F2C60319F83D6E008C86AE /* sqs-2012-11-05.json */; };
 		17F2C61319F83D6E008C86AE /* sts-2011-06-15.json in Resources */ = {isa = PBXBuildFile; fileRef = 17F2C60419F83D6E008C86AE /* sts-2011-06-15.json */; };
 		17F2C61619F8554E008C86AE /* CoreDataHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 17F2C61519F8554E008C86AE /* CoreDataHandler.m */; };
-		17F2C61819F867C4008C86AE /* loadingSpotPhoto.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 17F2C61719F867C4008C86AE /* loadingSpotPhoto.jpg */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -161,6 +161,7 @@
 		17A6D94419FAC33F0038EC1E /* AWSiOSSDKv2.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = AWSiOSSDKv2.framework; sourceTree = "<group>"; };
 		17A6D94619FACF490038EC1E /* ALAssetsLibrary+CustomPhotoAlbum.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "ALAssetsLibrary+CustomPhotoAlbum.h"; sourceTree = "<group>"; };
 		17A6D94719FACF490038EC1E /* ALAssetsLibrary+CustomPhotoAlbum.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "ALAssetsLibrary+CustomPhotoAlbum.m"; sourceTree = "<group>"; };
+		17AB142C1A11746000BA881F /* cvalt-roundedButton2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "cvalt-roundedButton2.png"; sourceTree = "<group>"; };
 		17C7BF9D19E85A3900BD019A /* ServerObject+Extended.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "ServerObject+Extended.h"; sourceTree = "<group>"; };
 		17C7BF9E19E85A3900BD019A /* ServerObjects+Extended.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "ServerObjects+Extended.m"; sourceTree = "<group>"; };
 		17F2C5E219F83C4B008C86AE /* libsqlite3.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libsqlite3.dylib; path = usr/lib/libsqlite3.dylib; sourceTree = SDKROOT; };
@@ -182,7 +183,6 @@
 		17F2C60419F83D6E008C86AE /* sts-2011-06-15.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "sts-2011-06-15.json"; sourceTree = "<group>"; };
 		17F2C61419F8554E008C86AE /* CoreDataHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CoreDataHandler.h; sourceTree = "<group>"; };
 		17F2C61519F8554E008C86AE /* CoreDataHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CoreDataHandler.m; sourceTree = "<group>"; };
-		17F2C61719F867C4008C86AE /* loadingSpotPhoto.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = loadingSpotPhoto.jpg; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -241,6 +241,7 @@
 		1734B77B19E469A1009B228A /* SampleSpots */ = {
 			isa = PBXGroup;
 			children = (
+				17AB142C1A11746000BA881F /* cvalt-roundedButton2.png */,
 				1740BBAA1A0C0B790033D2DE /* cvalt-findMe2s2.png */,
 				1740BBA81A0C0B120033D2DE /* cvalt-findMe2s.png */,
 				1740BBA61A0C08AF0033D2DE /* cvalt-findMe2.png */,
@@ -248,7 +249,6 @@
 				1731D51D1A0B027B0068A769 /* cvalt-textLogo-blue.png */,
 				1731D51B1A0B002F0068A769 /* cvalt-textLogo.png */,
 				1731D5191A0AF6DB0068A769 /* cvalt-roundedButton.png */,
-				17F2C61719F867C4008C86AE /* loadingSpotPhoto.jpg */,
 				1762F6F719F0674000EE71C2 /* noSpotPhoto.jpg */,
 				1762F6EC19EF192700EE71C2 /* defaultSpotPhoto.jpg */,
 			);
@@ -491,10 +491,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				17F2C60919F83D6E008C86AE /* ec2-2014-06-15.json in Resources */,
+				17AB142D1A11746000BA881F /* cvalt-roundedButton2.png in Resources */,
 				1731D5181A0AB9040068A769 /* Images.xcassets in Resources */,
 				1740BBA71A0C08AF0033D2DE /* cvalt-findMe2.png in Resources */,
 				17F2C61319F83D6E008C86AE /* sts-2011-06-15.json in Resources */,
-				17F2C61819F867C4008C86AE /* loadingSpotPhoto.jpg in Resources */,
 				175DA61019DA1D2800897710 /* Main.storyboard in Resources */,
 				17F2C61119F83D6E008C86AE /* sns-2010-03-31.json in Resources */,
 				1762F6ED19EF192700EE71C2 /* defaultSpotPhoto.jpg in Resources */,
