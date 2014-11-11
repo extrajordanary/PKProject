@@ -7,6 +7,7 @@
 //
 
 #import "LoginViewController.h"
+#import <FacebookSDK/FacebookSDK.h>
 
 @interface LoginViewController ()
 
@@ -21,6 +22,11 @@
     // Do any additional setup after loading the view.
     
     // check if user is logged in and set BOOL
+    
+    // FB login
+    FBLoginView *loginView = [[FBLoginView alloc] init];
+    loginView.center = self.view.center;
+    [self.view addSubview:loginView];
 }
 
 -(void)viewDidAppear:(BOOL)animated {
@@ -29,7 +35,7 @@
     // if loggedIn go to mapVC
     
     // else use login popup
-    [self loginPopup];
+//    [self loginPopup];
 }
 
 - (void)didReceiveMemoryWarning {

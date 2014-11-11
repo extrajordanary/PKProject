@@ -10,6 +10,8 @@
 		171BA9F319DF4AD000C66676 /* User+Extended.m in Sources */ = {isa = PBXBuildFile; fileRef = 171BA9F219DF4AD000C66676 /* User+Extended.m */; };
 		171BA9F619DF545C00C66676 /* ServerHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 171BA9F519DF545C00C66676 /* ServerHandler.m */; };
 		171BAA0819DF79EA00C66676 /* Spot+Extended.m in Sources */ = {isa = PBXBuildFile; fileRef = 171BAA0719DF79EA00C66676 /* Spot+Extended.m */; };
+		172B411F1A1192DE004AB03C /* FacebookSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 172B411E1A1192DE004AB03C /* FacebookSDK.framework */; };
+		172B41231A119B44004AB03C /* Bolts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 172B41221A119B44004AB03C /* Bolts.framework */; };
 		1731D5181A0AB9040068A769 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1731D5171A0AB9040068A769 /* Images.xcassets */; };
 		1731D51A1A0AF6DB0068A769 /* cvalt-roundedButton.png in Resources */ = {isa = PBXBuildFile; fileRef = 1731D5191A0AF6DB0068A769 /* cvalt-roundedButton.png */; };
 		1731D51C1A0B002F0068A769 /* cvalt-textLogo.png in Resources */ = {isa = PBXBuildFile; fileRef = 1731D51B1A0B002F0068A769 /* cvalt-textLogo.png */; };
@@ -23,7 +25,6 @@
 		1740BBAB1A0C0B790033D2DE /* cvalt-findMe2s2.png in Resources */ = {isa = PBXBuildFile; fileRef = 1740BBAA1A0C0B790033D2DE /* cvalt-findMe2s2.png */; };
 		174A537D1A045947007B7358 /* AWSHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 174A537C1A045947007B7358 /* AWSHandler.m */; };
 		174A538F1A058F42007B7358 /* AWSCognitoSync.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 174A538E1A058F42007B7358 /* AWSCognitoSync.framework */; };
-		175BC87A1A02BB5800EFAEEA /* Bolts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 175BC8731A02BB5800EFAEEA /* Bolts.framework */; };
 		175BC87B1A02BB5800EFAEEA /* GZIP.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 175BC8741A02BB5800EFAEEA /* GZIP.framework */; };
 		175BC87C1A02BB5800EFAEEA /* Mantle.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 175BC8751A02BB5800EFAEEA /* Mantle.framework */; };
 		175BC87D1A02BB5800EFAEEA /* Reachability.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 175BC8761A02BB5800EFAEEA /* Reachability.framework */; };
@@ -96,6 +97,8 @@
 		171BA9F519DF545C00C66676 /* ServerHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ServerHandler.m; sourceTree = "<group>"; };
 		171BAA0619DF79EA00C66676 /* Spot+Extended.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Spot+Extended.h"; sourceTree = "<group>"; };
 		171BAA0719DF79EA00C66676 /* Spot+Extended.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "Spot+Extended.m"; sourceTree = "<group>"; };
+		172B411E1A1192DE004AB03C /* FacebookSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FacebookSDK.framework; sourceTree = "<group>"; };
+		172B41221A119B44004AB03C /* Bolts.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Bolts.framework; sourceTree = "<group>"; };
 		1731D5171A0AB9040068A769 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		1731D5191A0AF6DB0068A769 /* cvalt-roundedButton.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "cvalt-roundedButton.png"; sourceTree = "<group>"; };
 		1731D51B1A0B002F0068A769 /* cvalt-textLogo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "cvalt-textLogo.png"; sourceTree = "<group>"; };
@@ -113,7 +116,6 @@
 		174A537B1A045947007B7358 /* AWSHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AWSHandler.h; sourceTree = "<group>"; };
 		174A537C1A045947007B7358 /* AWSHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AWSHandler.m; sourceTree = "<group>"; };
 		174A538E1A058F42007B7358 /* AWSCognitoSync.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = AWSCognitoSync.framework; sourceTree = "<group>"; };
-		175BC8731A02BB5800EFAEEA /* Bolts.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Bolts.framework; sourceTree = "<group>"; };
 		175BC8741A02BB5800EFAEEA /* GZIP.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = GZIP.framework; sourceTree = "<group>"; };
 		175BC8751A02BB5800EFAEEA /* Mantle.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Mantle.framework; sourceTree = "<group>"; };
 		175BC8761A02BB5800EFAEEA /* Reachability.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Reachability.framework; sourceTree = "<group>"; };
@@ -196,11 +198,11 @@
 				17A2FC6E1A08446E00564441 /* libicucore.dylib in Frameworks */,
 				17A2FC6C1A08446100564441 /* Foundation.framework in Frameworks */,
 				17A2FC6A1A08445500564441 /* CFNetwork.framework in Frameworks */,
+				172B41231A119B44004AB03C /* Bolts.framework in Frameworks */,
 				175BC87D1A02BB5800EFAEEA /* Reachability.framework in Frameworks */,
 				174A538F1A058F42007B7358 /* AWSCognitoSync.framework in Frameworks */,
 				175BC87E1A02BB5800EFAEEA /* TMCache.framework in Frameworks */,
 				175BC87B1A02BB5800EFAEEA /* GZIP.framework in Frameworks */,
-				175BC87A1A02BB5800EFAEEA /* Bolts.framework in Frameworks */,
 				17F2C5E519F83C56008C86AE /* libz.dylib in Frameworks */,
 				175BC87F1A02BB5800EFAEEA /* UICKeyChainStore.framework in Frameworks */,
 				17F2C5E319F83C4B008C86AE /* libsqlite3.dylib in Frameworks */,
@@ -210,6 +212,7 @@
 				17A2FC671A0843CB00564441 /* libHeap.a in Frameworks */,
 				175DA63119DB499A00897710 /* CoreLocation.framework in Frameworks */,
 				175DA62F19DB499300897710 /* MapKit.framework in Frameworks */,
+				172B411F1A1192DE004AB03C /* FacebookSDK.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -364,6 +367,8 @@
 		17F2C5F419F83CE0008C86AE /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				172B41221A119B44004AB03C /* Bolts.framework */,
+				172B411E1A1192DE004AB03C /* FacebookSDK.framework */,
 				17A2FC731A08448F00564441 /* UIKit.framework */,
 				17A2FC711A08448500564441 /* SystemConfiguration.framework */,
 				17A2FC6F1A08447E00564441 /* Security.framework */,
@@ -372,7 +377,6 @@
 				17A2FC691A08445500564441 /* CFNetwork.framework */,
 				17A2FC661A0843CB00564441 /* libHeap.a */,
 				174A538E1A058F42007B7358 /* AWSCognitoSync.framework */,
-				175BC8731A02BB5800EFAEEA /* Bolts.framework */,
 				175BC8741A02BB5800EFAEEA /* GZIP.framework */,
 				175BC8751A02BB5800EFAEEA /* Mantle.framework */,
 				175BC8761A02BB5800EFAEEA /* Reachability.framework */,

@@ -8,6 +8,7 @@
 
 #import "AppDelegate.h"
 #import "Heap.h"
+#import <FacebookSDK/FacebookSDK.h>
 
 @interface AppDelegate ()
 
@@ -32,15 +33,26 @@
 //        [[NSUserDefaults standardUserDefaults] synchronize];
 //    }
     
-        [Heap setAppId:@"1618197093"];
+    [Heap setAppId:@"1618197093"];
 #ifdef DEBUG
-        [Heap enableVisualizer];
+    [Heap enableVisualizer];
 #endif
-        
+    
+    // Logs 'install' and 'app activate' App Events with FacebookSDK
+    [FBAppEvents activateApp];
+    
         /* Other launch code goes here */
 
     
     return YES;
+}
+
+- (BOOL)application:(UIApplication *)application
+            openURL:(NSURL *)url
+  sourceApplication:(NSString *)sourceApplication
+         annotation:(id)annotation {
+    // attempt to extract a token from the url
+    return [FBAppCall handleOpenURL:url sourceApplication:sourceApplication];
 }
 
 - (void)applicationWillResignActive:(UIApplication *)application {
