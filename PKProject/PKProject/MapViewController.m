@@ -102,8 +102,7 @@ static const CGFloat kDefaultZoomMiles = 0.5; // TODO : make dynamic/adjustable?
     if (!cell) {
         // TODO: error handling
     }
-
-    [cell.imageView setImage:[UIImage imageNamed:@"loadingSpotPhoto.jpg"]];
+    
     [cell displayInfoForSpot:self.nearbySpots[indexPath.row]];
     
     return cell;
@@ -173,10 +172,12 @@ static const CGFloat kDefaultZoomMiles = 0.5; // TODO : make dynamic/adjustable?
                 [nextSpot updateFromDictionary:serverSpot];
                 [self.nearbySpots addObject:nextSpot];
             }
-            [self.collectionView reloadData]; // populates scrollable photo previews
-            
             // stop the activity indicator - hides automatically
             [self.activityIndicator stopAnimating];
+            
+            [self.collectionView reloadData]; // populates scrollable photo previews
+            
+
             
             // remove all markers
             [self removeSpotMarkers];

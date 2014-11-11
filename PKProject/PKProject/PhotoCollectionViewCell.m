@@ -13,8 +13,8 @@
 
 // assign a spot to the cell and initiate the image updating
 -(void)displayInfoForSpot:(Spot*)spot {
-//    [self displayImage:[UIImage imageNamed:@"cvalt-roundedButton2.png"]];
-//    self.loadingIndicator.activityIndicatorViewStyle = UIActivityIndicatorViewStyleWhiteLarge;
+    [self displayImage:nil];
+    
     [self.loadingIndicator startAnimating];
     
     // assign spot to self
