@@ -24,9 +24,9 @@
     // check if user is logged in and set BOOL
     
     // FB login
-    FBLoginView *loginView = [[FBLoginView alloc] init];
-    loginView.center = self.view.center;
-    [self.view addSubview:loginView];
+//    FBLoginView *loginView = [[FBLoginView alloc] init];
+//    loginView.center = self.view.center;
+//    [self.view addSubview:loginView];
 }
 
 -(void)viewDidAppear:(BOOL)animated {
