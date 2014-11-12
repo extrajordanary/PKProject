@@ -80,6 +80,7 @@
 #pragma mark - Alert Delegates
 - (void)alertView:(UIAlertView *)alertView didDismissWithButtonIndex:(NSInteger)buttonIndex {
     NSLog(@"alert dismissed with button %i", (int)buttonIndex);
+#pragma message "Following cast to (int) is not necessary"
     if ((int)buttonIndex == 1) {
         NSString *name = [alertView textFieldAtIndex:0].text;
         NSString *pword = [alertView textFieldAtIndex:1].text;

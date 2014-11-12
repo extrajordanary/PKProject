@@ -121,7 +121,7 @@ static NSString* const kAWSBase = @"https://s3-us-west-1.amazonaws.com/cvalt-pho
 -(void)saveImageToAWS:(NSString*)imagePath {
     NSLog(@"sending to AWSHandler");
     AWSHandler *aws = [AWSHandler sharedAWSHandler];
-
+#pragma message "Didn't look into AWS code in detail; Does the following block ensure that each image has a globally unique name?"
     NSString *fixedString = [NSString stringWithFormat:@"file://%@",imagePath];
     NSURL *imageUrl = [NSURL URLWithString:fixedString];
     NSString *imageName = [NSString stringWithFormat:@"%@.jpg",self.databaseId];
