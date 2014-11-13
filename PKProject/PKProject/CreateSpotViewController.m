@@ -299,4 +299,8 @@ static const CGFloat kDefaultZoomMiles = 0.2;
     }
 }
 
+-(IBAction)unwindToCreateSpot:(UIStoryboardSegue*)unwindSegue {
+    NSLog(@"unwinding to MapView");
+}
+
 @end

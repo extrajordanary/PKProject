@@ -16,7 +16,7 @@
 		1731D51A1A0AF6DB0068A769 /* cvalt-roundedButton.png in Resources */ = {isa = PBXBuildFile; fileRef = 1731D5191A0AF6DB0068A769 /* cvalt-roundedButton.png */; };
 		1731D51C1A0B002F0068A769 /* cvalt-textLogo.png in Resources */ = {isa = PBXBuildFile; fileRef = 1731D51B1A0B002F0068A769 /* cvalt-textLogo.png */; };
 		1731D51E1A0B027B0068A769 /* cvalt-textLogo-blue.png in Resources */ = {isa = PBXBuildFile; fileRef = 1731D51D1A0B027B0068A769 /* cvalt-textLogo-blue.png */; };
-		1731D5211A0B042A0068A769 /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1731D5201A0B042A0068A769 /* LoginViewController.m */; };
+		1731D5211A0B042A0068A769 /* SignUpViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1731D5201A0B042A0068A769 /* SignUpViewController.m */; };
 		1734B7A619E4954A009B228A /* CreateSpotViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1734B7A519E4954A009B228A /* CreateSpotViewController.m */; };
 		1740BBA31A0B46770033D2DE /* LocationManagerHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 1740BBA21A0B46770033D2DE /* LocationManagerHandler.m */; };
 		1740BBA51A0C07260033D2DE /* cvalt-findMe.png in Resources */ = {isa = PBXBuildFile; fileRef = 1740BBA41A0C07260033D2DE /* cvalt-findMe.png */; };
@@ -103,8 +103,8 @@
 		1731D5191A0AF6DB0068A769 /* cvalt-roundedButton.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "cvalt-roundedButton.png"; sourceTree = "<group>"; };
 		1731D51B1A0B002F0068A769 /* cvalt-textLogo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "cvalt-textLogo.png"; sourceTree = "<group>"; };
 		1731D51D1A0B027B0068A769 /* cvalt-textLogo-blue.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "cvalt-textLogo-blue.png"; path = "../cvalt-textLogo-blue.png"; sourceTree = "<group>"; };
-		1731D51F1A0B042A0068A769 /* LoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginViewController.h; sourceTree = "<group>"; };
-		1731D5201A0B042A0068A769 /* LoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginViewController.m; sourceTree = "<group>"; };
+		1731D51F1A0B042A0068A769 /* SignUpViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SignUpViewController.h; sourceTree = "<group>"; };
+		1731D5201A0B042A0068A769 /* SignUpViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SignUpViewController.m; sourceTree = "<group>"; };
 		1734B7A419E4954A009B228A /* CreateSpotViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CreateSpotViewController.h; sourceTree = "<group>"; };
 		1734B7A519E4954A009B228A /* CreateSpotViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CreateSpotViewController.m; sourceTree = "<group>"; };
 		1740BBA11A0B46770033D2DE /* LocationManagerHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LocationManagerHandler.h; sourceTree = "<group>"; };
@@ -284,8 +284,8 @@
 			children = (
 				175DA60519DA1D2800897710 /* AppDelegate.h */,
 				175DA60619DA1D2800897710 /* AppDelegate.m */,
-				1731D51F1A0B042A0068A769 /* LoginViewController.h */,
-				1731D5201A0B042A0068A769 /* LoginViewController.m */,
+				1731D51F1A0B042A0068A769 /* SignUpViewController.h */,
+				1731D5201A0B042A0068A769 /* SignUpViewController.m */,
 				175DA62A19DB491700897710 /* MapViewController.h */,
 				175DA62B19DB491700897710 /* MapViewController.m */,
 				1762F6F419EF40C500EE71C2 /* PhotoCollectionViewCell.h */,
@@ -556,7 +556,7 @@
 				1762F6FB19F1BC4300EE71C2 /* ServerObject.m in Sources */,
 				1734B7A619E4954A009B228A /* CreateSpotViewController.m in Sources */,
 				175DA60419DA1D2800897710 /* main.m in Sources */,
-				1731D5211A0B042A0068A769 /* LoginViewController.m in Sources */,
+				1731D5211A0B042A0068A769 /* SignUpViewController.m in Sources */,
 				17F2C61619F8554E008C86AE /* CoreDataHandler.m in Sources */,
 				175DA62C19DB491700897710 /* MapViewController.m in Sources */,
 				1762F6F619EF40C500EE71C2 /* PhotoCollectionViewCell.m in Sources */,
