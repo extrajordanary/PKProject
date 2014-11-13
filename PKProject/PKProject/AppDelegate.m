@@ -8,10 +8,12 @@
 
 #import "AppDelegate.h"
 #import "Heap.h"
-//#import <FacebookSDK/FacebookSDK.h>
+#import "CoreDataHandler.h"
 #import "SignUpViewController.h"
 
 @interface AppDelegate ()
+
+@property (nonatomic, weak) CoreDataHandler *coreDataHandler;
 
 @end
 
@@ -27,11 +29,6 @@
     UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
     
     UIViewController *viewController = [storyboard instantiateViewControllerWithIdentifier:@"signIn"];
-    
-//    if ([[NSUserDefaults standardUserDefaults] objectForKey:@"FBLoggedIn"] == nil) {
-//        [[NSUserDefaults standardUserDefaults] setObject:@"NO" forKey:@"FBLoggedIn"];
-//        [[NSUserDefaults standardUserDefaults] synchronize];
-//    }
     
 //    // check if user has stored user _id, if not, create new user on server and save the _id
 //    if (![[NSUserDefaults standardUserDefaults] objectForKey:@"thisUserId"]) {
@@ -146,8 +143,6 @@
 // Show the user the logged-out UI
 - (void)userLoggedOut
 {
-    // Confirm logout message
-//    [self showMessage:@"You're now logged out" withTitle:@""];
     NSLog(@"now logged out");
 
     // update value in NSUserDefaults so that other VC's can access
@@ -158,13 +153,45 @@
 // Show the user the logged-in UI
 - (void)userLoggedIn
 {
-    // Welcome message
-//    [self showMessage:@"You're now logged in" withTitle:@"Welcome!"];
     NSLog(@"now logged in");
 
     // update value in NSUserDefaults so that other VC's can access
     [[NSUserDefaults standardUserDefaults] setObject:@"YES" forKey:@"FBLoggedIn"];
-    [[NSUserDefaults standardUserDefaults] synchronize];
+    
+    [self getUserFacebookInformation];
+//    [self checkForExistingAccount];
+    
+//    // if don't have existing User object create one
+//    // TODO: get user's fb id
+//    [[NSUserDefaults standardUserDefaults] setObject:@"542efcec4a1cef02006d1021" forKey:@"thisUserFacebookId"];
+//    [[NSUserDefaults standardUserDefaults] synchronize];
+//    
+//    self.coreDataHandler = [CoreDataHandler sharedCoreDataHandler];
+//
+//    
+//    if ([self.coreDataHandler getThisUser]) {
+//        NSLog(@"existing user in coredata");
+//    }
+}
+
+-(void)getUserFacebookInformation {
+    [FBRequestConnection startForMeWithCompletionHandler:^(FBRequestConnection *connection, id result, NSError *error) {
+        if (!error) {
+            // Success! Include your code to handle the results here
+            NSLog(@"user info: %@", result);
+            
+            // call CoreDataHandler to either update or create new user
+            
+        } else {
+            // An error occurred, we need to handle the error
+            // See: https://developers.facebook.com/docs/ios/errors
+        }
+    }];
+}
+
+-(void)checkForExistingAccount {
+    // do I already have a user id in nsuserdefaults?
+    // if yes, does the facebook id match the one that was just returned
 }
 
 // Show an alert message
