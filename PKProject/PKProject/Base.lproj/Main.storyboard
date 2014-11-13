@@ -519,7 +519,7 @@
                                             <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
                                         <connections>
-                                            <segue destination="2Bz-V8-iTI" kind="unwind" unwindAction="unwindToMapView:" id="7m8-1b-iMq"/>
+                                            <segue destination="2Bz-V8-iTI" kind="unwind" identifier="BackToMap" unwindAction="unwindToMapView:" id="7m8-1b-iMq"/>
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="FKM-No-rGD">
