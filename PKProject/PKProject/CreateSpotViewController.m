@@ -229,9 +229,11 @@ static const CGFloat kDefaultZoomMiles = 0.2;
     [dateFormatter setTimeZone:[NSTimeZone timeZoneWithAbbreviation:@"GMT"]];
     [dateFormatter setDateStyle:NSDateFormatterLongStyle];
     [dateFormatter setTimeStyle:NSDateFormatterLongStyle];
+//    [dateFormatter setDateFormat:@"yyyy-MM-dd_HH-mm-ss"];
     NSDate *date = [NSDate date];
-    newSpot.creationTimestamp = [dateFormatter stringFromDate:date];
-    newPhoto.creationTimestamp = [dateFormatter stringFromDate:date];
+    NSString *formattedDate = [dateFormatter stringFromDate:date];
+    newSpot.creationTimestamp = formattedDate;
+    newPhoto.creationTimestamp = formattedDate;
     
     newSpot.latitude = [NSNumber numberWithDouble:spotMarker.coordinate.latitude];
     newSpot.longitude = [NSNumber numberWithDouble:spotMarker.coordinate.longitude];

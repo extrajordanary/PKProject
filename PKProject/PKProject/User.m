@@ -2,7 +2,7 @@
 //  User.m
 //  PKProject
 //
-//  Created by Jordan on 10/17/14.
+//  Created by Jordan on 11/13/14.
 //  Copyright (c) 2014 Byjor. All rights reserved.
 //
 
@@ -20,8 +20,7 @@
 @dynamic nameFirst;
 @dynamic nameLast;
 @dynamic nameUser;
-@dynamic photoLocalPath;
-@dynamic photoOnlinePath;
+@dynamic facebookId;
 @dynamic userCreatedPhoto;
 @dynamic userCreatedSpot;
 @dynamic userSpots;
