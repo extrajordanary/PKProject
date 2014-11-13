@@ -194,47 +194,6 @@ static const CGFloat kDefaultZoomMiles = 0.5; // TODO : make dynamic/adjustable?
     }];
 }
 
-//-(void)updateNearbySpots { // !!! -- actually gets all spots
-//    // TODO: how to handle offline use
-//    
-//    // get nearby spots from database, create Spot objects as needed, populate map
-//    [self.nearbySpots removeAllObjects];
-//    NSArray *allSpots = [[NSArray alloc] init];     // for debugging only
-//    allSpots = [coreDataHandler getManagedObjects:@"Spot"];     // for debugging only
-//    
-//    [serverHandler getSpotsFromServer:^void (NSDictionary *spots) {
-//        // force to main thread for UI updates
-//        dispatch_async(dispatch_get_main_queue(), ^(void){
-//            for (NSDictionary *serverSpot in spots) {
-//                // see if Spot object already exists in Core Data
-//                Spot *nextSpot;
-//                NSString *databaseId = serverSpot[@"_id"];
-//
-//                nextSpot = (Spot*)[coreDataHandler getObjectWithDatabaseId:databaseId];
-//             
-//                // if Spot object doesn't already exist in Core Data, create it
-//                if (!nextSpot) {
-//    //                NSLog(@"new");
-//                    nextSpot = (Spot*)[coreDataHandler createNew:@"Spot"];
-//                }
-//    //            NSLog(@"    spot object");
-//                // update Spot from server info and then add to array
-//                [nextSpot updateFromDictionary:serverSpot];
-//                [self.nearbySpots addObject:nextSpot];
-//            }
-//        // force to main thread for UI updates
-//            if (self.nearbySpots.count > 0) {
-//                self.noSpotsText.hidden = YES;
-//                // TODO: should spot markers be children of the cells? Of the spots?
-//                [self placeSpotMarkers];
-//                [self.collectionView reloadData]; // populates scrollable photo previews
-//            } else {
-//                self.noSpotsText.hidden = NO;
-//            }
-//        });
-//    }];
-//}
-
 // populates the map with pins at each Spot location
 -(void)placeSpotMarkers {
     for (Spot *spot in self.nearbySpots) {

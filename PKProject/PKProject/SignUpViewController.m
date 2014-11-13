@@ -29,19 +29,22 @@
     if ([loginStatus isEqualToString:@"YES"]) {
         self.loggedIn = YES;
     }
+    
+    // if loggedIn go directly to mapVC
+//    if (self.loggedIn ) {
+//        NSLog(@"logged in already");
+//        [self performSegueWithIdentifier:@"ToMap" sender:self];
+//    }
 }
 
 -(void)viewDidAppear:(BOOL)animated {
     [super viewDidAppear:animated];
-    
-    // if loggedIn go to mapVC
-    if (self.loggedIn ) {
-        NSLog(@"logged in");
-        [self performSegueWithIdentifier:@"ToMap" sender:self];
-    }
-    
-    // else use login popup
-//    [self loginPopup];
+
+    // if loggedIn go directly to mapVC
+//    if (self.loggedIn ) {
+//        NSLog(@"logged in already");
+//        [self performSegueWithIdentifier:@"ToMap" sender:self];
+//    }
 }
 
 - (void)didReceiveMemoryWarning {
@@ -52,6 +55,7 @@
 #pragma mark - UI Connections
 
 - (IBAction)emailLogin:(id)sender {
+    [self loginPopup];
 }
 
 - (IBAction)facebookLogin:(id)sender {

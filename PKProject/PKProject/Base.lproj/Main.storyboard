@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6250" systemVersion="14A389" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="7te-ND-4sz">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6250" systemVersion="14A389" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6244"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
@@ -10,7 +10,7 @@
         <!--Sign Up-->
         <scene sceneID="NWA-Lp-H4g">
             <objects>
-                <viewController title="Sign Up" id="7te-ND-4sz" customClass="SignUpViewController" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="signIn" title="Sign Up" id="7te-ND-4sz" customClass="SignUpViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="aXY-gK-2Do"/>
                         <viewControllerLayoutGuide type="bottom" id="nUK-V2-C4c"/>
@@ -145,7 +145,7 @@
         <!--Map-->
         <scene sceneID="vOa-67-X6z">
             <objects>
-                <viewController title="Map" id="TcK-Hn-xC7" customClass="MapViewController" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="mapVC" title="Map" id="TcK-Hn-xC7" customClass="MapViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="Rpg-4N-JGk"/>
                         <viewControllerLayoutGuide type="bottom" id="Z82-Z6-PAr"/>

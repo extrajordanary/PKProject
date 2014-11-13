@@ -21,6 +21,13 @@
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     // Override point for customization after application launch.
     
+    // default to having the sign in screen as the initial view
+    self.window = [[UIWindow alloc] initWithFrame:UIScreen.mainScreen.bounds];
+    
+    UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+    
+    UIViewController *viewController = [storyboard instantiateViewControllerWithIdentifier:@"signIn"];
+    
 //    if ([[NSUserDefaults standardUserDefaults] objectForKey:@"FBLoggedIn"] == nil) {
 //        [[NSUserDefaults standardUserDefaults] setObject:@"NO" forKey:@"FBLoggedIn"];
 //        [[NSUserDefaults standardUserDefaults] synchronize];
@@ -61,6 +68,9 @@
                                           [self sessionStateChanged:session state:state error:error];
                                       }];
         
+        // override initial VC to go to the map
+        viewController = [storyboard instantiateViewControllerWithIdentifier:@"mapVC"];
+        
         // If there's no cached session, update NSUserDefaults
     } else {
         NSLog(@"no session cached");
@@ -70,7 +80,9 @@
     
         
         /* Other launch code goes here */
-
+    
+    self.window.rootViewController = viewController;
+    [self.window makeKeyAndVisible];
     
     return YES;
 }
@@ -135,20 +147,21 @@
 - (void)userLoggedOut
 {
     // Confirm logout message
-    [self showMessage:@"You're now logged out" withTitle:@""];
-    
+//    [self showMessage:@"You're now logged out" withTitle:@""];
+    NSLog(@"now logged out");
+
     // update value in NSUserDefaults so that other VC's can access
     [[NSUserDefaults standardUserDefaults] setObject:@"NO" forKey:@"FBLoggedIn"];
     [[NSUserDefaults standardUserDefaults] synchronize];
-    
 }
 
 // Show the user the logged-in UI
 - (void)userLoggedIn
 {
     // Welcome message
-    [self showMessage:@"You're now logged in" withTitle:@"Welcome!"];
-    
+//    [self showMessage:@"You're now logged in" withTitle:@"Welcome!"];
+    NSLog(@"now logged in");
+
     // update value in NSUserDefaults so that other VC's can access
     [[NSUserDefaults standardUserDefaults] setObject:@"YES" forKey:@"FBLoggedIn"];
     [[NSUserDefaults standardUserDefaults] synchronize];
