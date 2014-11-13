@@ -7,10 +7,10 @@
         <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
     </dependencies>
     <scenes>
-        <!--Login-->
+        <!--Sign Up-->
         <scene sceneID="NWA-Lp-H4g">
             <objects>
-                <viewController title="Login" id="7te-ND-4sz" customClass="LoginViewController" sceneMemberID="viewController">
+                <viewController title="Sign Up" id="7te-ND-4sz" customClass="SignUpViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="aXY-gK-2Do"/>
                         <viewControllerLayoutGuide type="bottom" id="nUK-V2-C4c"/>
@@ -33,7 +33,7 @@
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
-                                    <segue destination="TcK-Hn-xC7" kind="show" id="Lxy-EF-foa"/>
+                                    <segue destination="TcK-Hn-xC7" kind="show" identifier="ToMap" id="Lxy-EF-foa"/>
                                 </connections>
                             </button>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="OIV-Ca-yYG">
@@ -46,19 +46,25 @@
                                             <constraint firstAttribute="height" constant="40" id="9Xe-j2-VQq"/>
                                         </constraints>
                                         <fontDescription key="fontDescription" type="system" pointSize="20"/>
-                                        <state key="normal" title="Sign Up">
+                                        <state key="normal" title="Facebook Login">
                                             <color key="titleColor" red="0.071800326270000006" green="0.41632887299999999" blue="0.90239025299999998" alpha="1" colorSpace="calibratedRGB"/>
                                             <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
+                                        <connections>
+                                            <action selector="facebookLogin:" destination="7te-ND-4sz" eventType="touchDown" id="X8y-bz-2s7"/>
+                                        </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="nuw-e9-s3U">
                                         <rect key="frame" x="0.0" y="80" width="200" height="40"/>
                                         <color key="backgroundColor" red="0.80218240490000003" green="0.80218240490000003" blue="0.80218240490000003" alpha="1" colorSpace="calibratedRGB"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="20"/>
-                                        <state key="normal" title="Log In">
+                                        <state key="normal" title="Email Login">
                                             <color key="titleColor" red="0.071800326270000006" green="0.41632887299999999" blue="0.90239025299999998" alpha="1" colorSpace="calibratedRGB"/>
                                             <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
+                                        <connections>
+                                            <action selector="emailLogin:" destination="7te-ND-4sz" eventType="touchDown" id="P4x-ye-Zov"/>
+                                        </connections>
                                     </button>
                                 </subviews>
                                 <constraints>
