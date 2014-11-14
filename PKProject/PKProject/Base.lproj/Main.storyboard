@@ -329,7 +329,7 @@
                                             <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
                                         <connections>
-                                            <segue destination="Vve-Eo-Ty2" kind="show" identifier="CreateSpot" id="G3J-lA-PRB"/>
+                                            <action selector="createSpotButton:" destination="TcK-Hn-xC7" eventType="touchDown" id="n4F-se-eYt"/>
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="i7b-9c-ca6">
@@ -438,6 +438,7 @@
                         <outlet property="collectionView" destination="Y2f-Cd-NF3" id="a67-Rd-u5i"/>
                         <outlet property="mapView" destination="eVJ-2k-ZOB" id="n0z-PB-vjS"/>
                         <outlet property="noSpotsText" destination="UmG-Hv-TSs" id="t7u-cb-IdY"/>
+                        <segue destination="Vve-Eo-Ty2" kind="show" identifier="CreateSpot" id="IS0-SS-Y8N"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="RhI-xC-4p8" userLabel="First Responder" sceneMemberID="firstResponder"/>

@@ -93,7 +93,6 @@
         [self.continueLabel setTitle:@"Continue >" forState:UIControlStateNormal];
     } else {
         [self.continueLabel setTitle:@"Continue without signing in >" forState:UIControlStateNormal];
-        
     }
 }
 

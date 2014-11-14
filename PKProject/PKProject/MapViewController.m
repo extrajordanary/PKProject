@@ -39,7 +39,7 @@
 #define IS_OS_8_OR_LATER ([[[UIDevice currentDevice] systemVersion] floatValue] >= 8.0)
 
 static const CGFloat kMetersPerMile = 1609.344;
-static const CGFloat kDefaultZoomMiles = 0.5; // TODO : make dynamic/adjustable?
+static const CGFloat kDefaultZoomMiles = 0.5;
 
 #pragma mark - View
 - (void)viewDidLoad {
@@ -59,9 +59,6 @@ static const CGFloat kDefaultZoomMiles = 0.5; // TODO : make dynamic/adjustable?
     self.mapView.showsUserLocation = YES;
     self.mapView.showsPointsOfInterest = NO;
     
-//    self.activityIndicator.activityIndicatorViewStyle = UIActivityIndicatorViewStyleWhiteLarge;
-    
-//    [self getThisUser];
     self.thisUser = coreDataHandler.thisUser;
     
     firstZoom = YES;
@@ -73,7 +70,6 @@ static const CGFloat kDefaultZoomMiles = 0.5; // TODO : make dynamic/adjustable?
     if (locationHandler.isAuthorized) {
         [self zoomToCurrentLocation];
     }
-
 }
 
 #pragma mark - Map
@@ -147,9 +143,7 @@ static const CGFloat kDefaultZoomMiles = 0.5; // TODO : make dynamic/adjustable?
     // TODO: how to handle offline use
 
     [self.nearbySpots removeAllObjects];
-//    // remove all markers
-//    [self removeSpotMarkers];
-    
+
     // start the activity indicator
     [self.activityIndicator startAnimating];
     self.noSpotsText.hidden = YES;
@@ -179,8 +173,6 @@ static const CGFloat kDefaultZoomMiles = 0.5; // TODO : make dynamic/adjustable?
             
             [self.collectionView reloadData]; // populates scrollable photo previews
             
-
-            
             // remove all markers
             [self removeSpotMarkers];
             
@@ -188,7 +180,6 @@ static const CGFloat kDefaultZoomMiles = 0.5; // TODO : make dynamic/adjustable?
                 self.noSpotsText.hidden = YES;
                 // TODO: should spot markers be children of the cells? Of the spots?
                 [self placeSpotMarkers];
-//                [self.collectionView reloadData]; // populates scrollable photo previews
             } else {
                 self.noSpotsText.hidden = NO;
             }
@@ -207,6 +198,7 @@ static const CGFloat kDefaultZoomMiles = 0.5; // TODO : make dynamic/adjustable?
 }
 
 // removes all previous markers
+// TODO: for smoother transition just remove markers whose id's aren't in updated spots list
 -(void)removeSpotMarkers {
     for (id<MKAnnotation> annotation in self.mapView.annotations)
     {
@@ -217,45 +209,45 @@ static const CGFloat kDefaultZoomMiles = 0.5; // TODO : make dynamic/adjustable?
 #pragma mark - Photos
 
 #pragma mark - Users
--(void)getThisUser {
-    // TODO: still relevant after implementing login?
-    thisUserId = [[NSUserDefaults standardUserDefaults] valueForKey:@"thisUserId"];
-
-// check if user has stored user _id, if not, create new user on server and save the _id
-    if (!thisUserId) {
-        // provide option to login with exisiting account
-        
-        // else create new user and save to server
-        
-        // save the returned objectID for thisUserId
-        
-        // cheating and hardcoding for now
-        [[NSUserDefaults standardUserDefaults] setObject:@"542efcec4a1cef02006d1021" forKey:@"thisUserId"];
-        [[NSUserDefaults standardUserDefaults] synchronize];
-    }
-
-    // see if User object already exists in Core Data
-    // TODO: change this out for the generic search
-    NSPredicate *thisUser = [NSPredicate predicateWithFormat:@"databaseId = %@",thisUserId];
-    NSSortDescriptor *sortBy = [NSSortDescriptor sortDescriptorWithKey:@"databaseId" ascending:YES];
-    NSArray *searchResults = [coreDataHandler getManagedObjects:@"User" withPredicate:thisUser sortedBy:sortBy];
-    
-    if (searchResults.count > 0) {
-        self.thisUser = searchResults[0];
-    }
-    
-    if (!self.thisUser) {
-        // if User object doesn't already exist in Core Data, create it and update from server
-        User *newUser = (User*)[coreDataHandler createNew:@"User"];
-        
-        
-        NSString *userId = [[NSUserDefaults standardUserDefaults] valueForKey:@"thisUserId"];
-        [newUser setValue:userId forKey:@"databaseId"];
-        [serverHandler updateUserFromServer:newUser];
-
-        self.thisUser = newUser;
-    }
-}
+//-(void)getThisUser {
+//    // TODO: still relevant after implementing login?
+//    thisUserId = [[NSUserDefaults standardUserDefaults] valueForKey:@"thisUserId"];
+//
+//// check if user has stored user _id, if not, create new user on server and save the _id
+//    if (!thisUserId) {
+//        // provide option to login with exisiting account
+//        
+//        // else create new user and save to server
+//        
+//        // save the returned objectID for thisUserId
+//        
+//        // cheating and hardcoding for now
+//        [[NSUserDefaults standardUserDefaults] setObject:@"542efcec4a1cef02006d1021" forKey:@"thisUserId"];
+//        [[NSUserDefaults standardUserDefaults] synchronize];
+//    }
+//
+//    // see if User object already exists in Core Data
+//    // TODO: change this out for the generic search
+//    NSPredicate *thisUser = [NSPredicate predicateWithFormat:@"databaseId = %@",thisUserId];
+//    NSSortDescriptor *sortBy = [NSSortDescriptor sortDescriptorWithKey:@"databaseId" ascending:YES];
+//    NSArray *searchResults = [coreDataHandler getManagedObjects:@"User" withPredicate:thisUser sortedBy:sortBy];
+//    
+//    if (searchResults.count > 0) {
+//        self.thisUser = searchResults[0];
+//    }
+//    
+//    if (!self.thisUser) {
+//        // if User object doesn't already exist in Core Data, create it and update from server
+//        User *newUser = (User*)[coreDataHandler createNew:@"User"];
+//        
+//        
+//        NSString *userId = [[NSUserDefaults standardUserDefaults] valueForKey:@"thisUserId"];
+//        [newUser setValue:userId forKey:@"databaseId"];
+//        [serverHandler updateUserFromServer:newUser];
+//
+//        self.thisUser = newUser;
+//    }
+//}
 
 #pragma mark - Navigation
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
@@ -264,6 +256,23 @@ static const CGFloat kDefaultZoomMiles = 0.5; // TODO : make dynamic/adjustable?
         createSpotViewController.thisUser = self.thisUser;
     }
 }
+
+- (IBAction)createSpotButton:(id)sender {
+    // check for permissions first - user must be logged in
+    BOOL loggedIn = [[NSUserDefaults standardUserDefaults] boolForKey:@"LoggedIn"];
+    if (loggedIn) {
+        [self performSegueWithIdentifier:@"CreateSpot" sender:self];
+    } else {
+        // warning message that user must sign in first
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Member Feature"
+                                                        message:@"You must be signed in to add new spots. Please visit the profile page and log in first."
+                                                       delegate:self
+                                              cancelButtonTitle:@"Okay!"
+                                              otherButtonTitles:nil];
+        [alert show];
+    }
+}
+
 
 - (IBAction)spotDoubleTap:(UITapGestureRecognizer *)sender {
     CGPoint tapLocation = [sender locationInView:self.collectionView];
