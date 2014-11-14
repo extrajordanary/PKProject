@@ -8,6 +8,7 @@
 
 #import "PhotoCollectionViewCell.h"
 #import "Spot+Extended.h"
+#import "MKAnnotationCustom.h"
 
 @implementation PhotoCollectionViewCell
 
@@ -35,6 +36,14 @@
 
 -(void)displayImage:(UIImage*)image {
     self.imageView.image = image;
+}
+
+-(MKAnnotationCustom*)getMarker {
+    CLLocationCoordinate2D coord = [self.spot getCoordinate];
+    MKAnnotationCustom *marker = [[MKAnnotationCustom alloc] initWithCoordinate:coord];
+    self.spotMarker = marker;
+    
+    return marker;
 }
 
 @end

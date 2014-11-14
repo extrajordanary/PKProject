@@ -13,6 +13,9 @@
 		172B411F1A1192DE004AB03C /* FacebookSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 172B411E1A1192DE004AB03C /* FacebookSDK.framework */; };
 		172B41231A119B44004AB03C /* Bolts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 172B41221A119B44004AB03C /* Bolts.framework */; };
 		172B41261A15446A004AB03C /* User.m in Sources */ = {isa = PBXBuildFile; fileRef = 172B41251A15446A004AB03C /* User.m */; };
+		172B41291A15DCA5004AB03C /* MKAnnotationCustom.m in Sources */ = {isa = PBXBuildFile; fileRef = 172B41281A15DCA5004AB03C /* MKAnnotationCustom.m */; };
+		172B41341A15F4B7004AB03C /* pinImage.png in Resources */ = {isa = PBXBuildFile; fileRef = 172B41321A15F4B7004AB03C /* pinImage.png */; };
+		172B41351A15F4B7004AB03C /* pinSelectedImage.png in Resources */ = {isa = PBXBuildFile; fileRef = 172B41331A15F4B7004AB03C /* pinSelectedImage.png */; };
 		1731D5181A0AB9040068A769 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1731D5171A0AB9040068A769 /* Images.xcassets */; };
 		1731D51A1A0AF6DB0068A769 /* cvalt-roundedButton.png in Resources */ = {isa = PBXBuildFile; fileRef = 1731D5191A0AF6DB0068A769 /* cvalt-roundedButton.png */; };
 		1731D51C1A0B002F0068A769 /* cvalt-textLogo.png in Resources */ = {isa = PBXBuildFile; fileRef = 1731D51B1A0B002F0068A769 /* cvalt-textLogo.png */; };
@@ -101,6 +104,10 @@
 		172B41221A119B44004AB03C /* Bolts.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Bolts.framework; sourceTree = "<group>"; };
 		172B41241A15446A004AB03C /* User.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = User.h; sourceTree = "<group>"; };
 		172B41251A15446A004AB03C /* User.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = User.m; sourceTree = "<group>"; };
+		172B41271A15DCA5004AB03C /* MKAnnotationCustom.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MKAnnotationCustom.h; sourceTree = "<group>"; };
+		172B41281A15DCA5004AB03C /* MKAnnotationCustom.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MKAnnotationCustom.m; sourceTree = "<group>"; };
+		172B41321A15F4B7004AB03C /* pinImage.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = pinImage.png; sourceTree = "<group>"; };
+		172B41331A15F4B7004AB03C /* pinSelectedImage.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = pinSelectedImage.png; sourceTree = "<group>"; };
 		1731D5171A0AB9040068A769 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		1731D5191A0AF6DB0068A769 /* cvalt-roundedButton.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "cvalt-roundedButton.png"; sourceTree = "<group>"; };
 		1731D51B1A0B002F0068A769 /* cvalt-textLogo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "cvalt-textLogo.png"; sourceTree = "<group>"; };
@@ -244,6 +251,8 @@
 		1734B77B19E469A1009B228A /* SampleSpots */ = {
 			isa = PBXGroup;
 			children = (
+				172B41321A15F4B7004AB03C /* pinImage.png */,
+				172B41331A15F4B7004AB03C /* pinSelectedImage.png */,
 				17AB142C1A11746000BA881F /* cvalt-roundedButton2.png */,
 				1740BBAA1A0C0B790033D2DE /* cvalt-findMe2s2.png */,
 				1740BBA81A0C0B120033D2DE /* cvalt-findMe2s.png */,
@@ -290,6 +299,8 @@
 				175DA62B19DB491700897710 /* MapViewController.m */,
 				1762F6F419EF40C500EE71C2 /* PhotoCollectionViewCell.h */,
 				1762F6F519EF40C500EE71C2 /* PhotoCollectionViewCell.m */,
+				172B41271A15DCA5004AB03C /* MKAnnotationCustom.h */,
+				172B41281A15DCA5004AB03C /* MKAnnotationCustom.m */,
 				1734B7A419E4954A009B228A /* CreateSpotViewController.h */,
 				1734B7A519E4954A009B228A /* CreateSpotViewController.m */,
 				171BA9F419DF545C00C66676 /* ServerHandler.h */,
@@ -504,6 +515,7 @@
 				17F2C61119F83D6E008C86AE /* sns-2010-03-31.json in Resources */,
 				1762F6ED19EF192700EE71C2 /* defaultSpotPhoto.jpg in Resources */,
 				17F2C60519F83D6E008C86AE /* autoscaling-2011-01-01.json in Resources */,
+				172B41341A15F4B7004AB03C /* pinImage.png in Resources */,
 				1740BBAB1A0C0B790033D2DE /* cvalt-findMe2s2.png in Resources */,
 				17F2C60719F83D6E008C86AE /* css-2014-06-30.json in Resources */,
 				1731D51A1A0AF6DB0068A769 /* cvalt-roundedButton.png in Resources */,
@@ -514,6 +526,7 @@
 				17F2C60C19F83D6E008C86AE /* kinesis-2013-12-02.json in Resources */,
 				17F2C60819F83D6E008C86AE /* dynamodb-2012-08-10.json in Resources */,
 				1740BBA51A0C07260033D2DE /* cvalt-findMe.png in Resources */,
+				172B41351A15F4B7004AB03C /* pinSelectedImage.png in Resources */,
 				17F2C60F19F83D6E008C86AE /* s3-2006-03-01.json in Resources */,
 				17F2C60A19F83D6E008C86AE /* elasticloadbalancing-2012-06-01.json in Resources */,
 				17F2C60619F83D6E008C86AE /* cib-2014-06-30.json in Resources */,
@@ -549,6 +562,7 @@
 				175DA60719DA1D2800897710 /* AppDelegate.m in Sources */,
 				17C7BF9F19E85A3900BD019A /* ServerObjects+Extended.m in Sources */,
 				17A6D94819FACF490038EC1E /* ALAssetsLibrary+CustomPhotoAlbum.m in Sources */,
+				172B41291A15DCA5004AB03C /* MKAnnotationCustom.m in Sources */,
 				1762F6FE19F1BC4400EE71C2 /* Photo.m in Sources */,
 				1740BBA31A0B46770033D2DE /* LocationManagerHandler.m in Sources */,
 				171BA9F619DF545C00C66676 /* ServerHandler.m in Sources */,

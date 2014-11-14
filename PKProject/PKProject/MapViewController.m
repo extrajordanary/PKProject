@@ -16,6 +16,7 @@
 #import "Photo+Extended.h"
 #import "PhotoCollectionViewCell.h"
 #import "LocationManagerHandler.h"
+#import "MKAnnotationCustom.h"
 
 @interface MapViewController ()
 
@@ -58,6 +59,7 @@ static const CGFloat kDefaultZoomMiles = 0.5;
     
     self.mapView.showsUserLocation = YES;
     self.mapView.showsPointsOfInterest = NO;
+    self.mapView.delegate = self;
     
     self.thisUser = coreDataHandler.thisUser;
     
@@ -87,6 +89,53 @@ static const CGFloat kDefaultZoomMiles = 0.5;
     [self getSpotsInRegion:viewRegion];
 }
 
+#pragma mark - MKMapViewDelegate methods
+
+- (MKAnnotationView *)mapView:(MKMapView *)mapView viewForAnnotation:(id <MKAnnotation>)annotation
+{
+    // If it's the user location, just return nil
+    if ([annotation isKindOfClass:[MKUserLocation class]])
+        return nil;
+    
+    // Handle any custom annotations.
+    if ([annotation isKindOfClass:[MKAnnotationCustom class]])
+    {
+        // Try to dequeue an existing annotation view first
+        MKAnnotationView *annotationView = (MKAnnotationView *)[mapView dequeueReusableAnnotationViewWithIdentifier:@"reuseAnnotationView"];
+        
+        if (!annotationView)
+        {
+            // If an existing pin view was not available, create one.
+            annotationView = [[MKAnnotationView alloc] initWithAnnotation:annotation reuseIdentifier:@"reuseAnnotationView"];
+            annotationView.canShowCallout = NO;
+            
+            // set pin image
+            UIImage *pinImage = [UIImage imageNamed:@"pinImage.png"];
+            annotationView.image = pinImage;
+            
+            annotationView.centerOffset = CGPointMake(0.0, -32.0);
+        }
+        else
+        {
+            annotationView.annotation = annotation;
+        }
+        
+        return annotationView;
+    }
+    
+    return nil;
+}
+
+- (void)mapView:(MKMapView *)mapView didSelectAnnotationView:(MKAnnotationView*)view {
+    UIImage *pinSelectedImage = [UIImage imageNamed:@"pinSelectedImage.png"];
+    view.image = pinSelectedImage;
+}
+
+- (void)mapView:(MKMapView *)mapView didDeselectAnnotationView:(MKAnnotationView*)view {
+    UIImage *pinImage = [UIImage imageNamed:@"pinImage.png"];
+    view.image = pinImage;
+}
+
 #pragma mark - UICollectionView
 
 - (NSInteger)collectionView:(UICollectionView *)view numberOfItemsInSection:(NSInteger)section {
@@ -101,7 +150,10 @@ static const CGFloat kDefaultZoomMiles = 0.5;
         // TODO: error handling
     }
     
+    // fetch photo and update display of cell
     [cell displayInfoForSpot:self.nearbySpots[indexPath.row]];
+    // get marker from cell and add it to the map
+    [self placeSpotMarker:[cell getMarker]];
     
     return cell;
 }
@@ -111,6 +163,8 @@ static const CGFloat kDefaultZoomMiles = 0.5;
     NSLog(@"selected cell %i",(int)indexPath.row);
     [collectionView scrollToItemAtIndexPath:indexPath atScrollPosition:UICollectionViewScrollPositionCenteredHorizontally animated:YES];
     // TODO: Highlight the appropriate marker on the map
+//    PhotoCollectionViewCell *cell = [collectionView cellForItemAtIndexPath:indexPath];
+//    cell.spotMarker
 }
 
 - (void)collectionView:(UICollectionView *)collectionView didDeselectItemAtIndexPath:(NSIndexPath *)indexPath {
@@ -160,7 +214,7 @@ static const CGFloat kDefaultZoomMiles = 0.5;
                 
                 // if Spot object doesn't already exist in Core Data, create it
                 if (!nextSpot) {
-                    //                NSLog(@"new");
+                    // NSLog(@"new");
                     nextSpot = (Spot*)[coreDataHandler createNew:@"Spot"];
                 }
                 //            NSLog(@"    spot object");
@@ -179,7 +233,7 @@ static const CGFloat kDefaultZoomMiles = 0.5;
             if (self.nearbySpots.count > 0) {
                 self.noSpotsText.hidden = YES;
                 // TODO: should spot markers be children of the cells? Of the spots?
-                [self placeSpotMarkers];
+//                [self placeSpotMarkers];
             } else {
                 self.noSpotsText.hidden = NO;
             }
@@ -197,6 +251,11 @@ static const CGFloat kDefaultZoomMiles = 0.5;
     }
 }
 
+-(void)placeSpotMarker:(MKAnnotationCustom*)marker {
+    [self.mapView addAnnotation:marker];
+    NSLog(@"custom marker");
+}
+
 // removes all previous markers
 // TODO: for smoother transition just remove markers whose id's aren't in updated spots list
 -(void)removeSpotMarkers {
@@ -205,49 +264,6 @@ static const CGFloat kDefaultZoomMiles = 0.5;
         [self.mapView removeAnnotation:annotation];
     }
 }
-
-#pragma mark - Photos
-
-#pragma mark - Users
-//-(void)getThisUser {
-//    // TODO: still relevant after implementing login?
-//    thisUserId = [[NSUserDefaults standardUserDefaults] valueForKey:@"thisUserId"];
-//
-//// check if user has stored user _id, if not, create new user on server and save the _id
-//    if (!thisUserId) {
-//        // provide option to login with exisiting account
-//        
-//        // else create new user and save to server
-//        
-//        // save the returned objectID for thisUserId
-//        
-//        // cheating and hardcoding for now
-//        [[NSUserDefaults standardUserDefaults] setObject:@"542efcec4a1cef02006d1021" forKey:@"thisUserId"];
-//        [[NSUserDefaults standardUserDefaults] synchronize];
-//    }
-//
-//    // see if User object already exists in Core Data
-//    // TODO: change this out for the generic search
-//    NSPredicate *thisUser = [NSPredicate predicateWithFormat:@"databaseId = %@",thisUserId];
-//    NSSortDescriptor *sortBy = [NSSortDescriptor sortDescriptorWithKey:@"databaseId" ascending:YES];
-//    NSArray *searchResults = [coreDataHandler getManagedObjects:@"User" withPredicate:thisUser sortedBy:sortBy];
-//    
-//    if (searchResults.count > 0) {
-//        self.thisUser = searchResults[0];
-//    }
-//    
-//    if (!self.thisUser) {
-//        // if User object doesn't already exist in Core Data, create it and update from server
-//        User *newUser = (User*)[coreDataHandler createNew:@"User"];
-//        
-//        
-//        NSString *userId = [[NSUserDefaults standardUserDefaults] valueForKey:@"thisUserId"];
-//        [newUser setValue:userId forKey:@"databaseId"];
-//        [serverHandler updateUserFromServer:newUser];
-//
-//        self.thisUser = newUser;
-//    }
-//}
 
 #pragma mark - Navigation
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
@@ -285,6 +301,7 @@ static const CGFloat kDefaultZoomMiles = 0.5;
 -(void)viewSpotDetails:(Spot*)spot {
     // TODO: implement detail view
     NSLog(@"view spot %@",spot.databaseId);
+    
 }
 
 -(IBAction)unwindToMapView:(UIStoryboardSegue*)unwindSegue {
