@@ -463,6 +463,7 @@
 				TargetAttributes = {
 					175DA5FD19DA1D2800897710 = {
 						CreatedOnToolsVersion = 6.0;
+						DevelopmentTeam = KRSTNFA75G;
 					};
 					175DA61919DA1D2800897710 = {
 						CreatedOnToolsVersion = 6.0;
@@ -681,6 +682,8 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",
@@ -698,6 +701,7 @@
 					"-ObjC",
 				);
 				PRODUCT_NAME = CVALT;
+				PROVISIONING_PROFILE = "";
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
@@ -706,6 +710,8 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",
@@ -723,6 +729,7 @@
 					"-ObjC",
 				);
 				PRODUCT_NAME = CVALT;
+				PROVISIONING_PROFILE = "";
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;

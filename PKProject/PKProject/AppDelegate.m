@@ -75,7 +75,7 @@
         // If there's no cached session, update NSUserDefaults
     } else {
         NSLog(@"no session cached");
-        [[NSUserDefaults standardUserDefaults] setObject:@"NO" forKey:@"FBLoggedIn"];
+        [[NSUserDefaults standardUserDefaults] setBool:NO forKey:@"LoggedIn"];
         [[NSUserDefaults standardUserDefaults] synchronize];
     }
     
@@ -150,7 +150,7 @@
     NSLog(@"now logged out");
 
     // update value in NSUserDefaults so that other VC's can access
-    [[NSUserDefaults standardUserDefaults] setObject:@"NO" forKey:@"FBLoggedIn"];
+    [[NSUserDefaults standardUserDefaults] setBool:NO forKey:@"LoggedIn"];
     // ??? do I def want to set this to nil?
     [[NSUserDefaults standardUserDefaults] setObject:nil forKey:@"thisUserFacebookId"];
     [[NSUserDefaults standardUserDefaults] synchronize];
@@ -162,7 +162,7 @@
     NSLog(@"now logged in");
 
     // update value in NSUserDefaults so that other VC's can access
-    [[NSUserDefaults standardUserDefaults] setObject:@"YES" forKey:@"FBLoggedIn"];
+    [[NSUserDefaults standardUserDefaults] setBool:YES forKey:@"LoggedIn"];
     
     [self getUserFacebookInformation];
 }
