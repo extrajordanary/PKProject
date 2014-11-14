@@ -24,9 +24,10 @@
 @property (strong, nonatomic) IBOutlet UICollectionView *collectionView;
 @property (strong, nonatomic) User *thisUser;
 @property (strong, nonatomic) NSMutableArray *nearbySpots;
-@property (strong, nonatomic) NSMutableArray *spotMarkers;
+@property (strong, nonatomic) NSMutableArray *annotationViews;
 @property (strong, nonatomic) IBOutlet UILabel *noSpotsText;
 @property (strong, nonatomic) IBOutlet UIActivityIndicatorView *activityIndicator;
+@property (strong, nonatomic) IBOutlet UILabel *collectionViewCenterMarker;
 
 @end
 
@@ -57,7 +58,7 @@ static const CGFloat kDefaultZoomMiles = 0.5;
     [locationHandler addObserver:self forKeyPath:@"isAuthorized" options:NSKeyValueObservingOptionNew context:nil];
 
     self.nearbySpots = [[NSMutableArray alloc] init];
-    self.spotMarkers = [[NSMutableArray alloc] init];
+    self.annotationViews = [[NSMutableArray alloc] init];
     
     self.mapView.showsUserLocation = YES;
     self.mapView.showsPointsOfInterest = NO;
@@ -122,6 +123,7 @@ static const CGFloat kDefaultZoomMiles = 0.5;
             annotationView.annotation = annotation;
         }
         
+        [self.annotationViews addObject:annotationView];
         return annotationView;
     }
     
@@ -135,8 +137,15 @@ static const CGFloat kDefaultZoomMiles = 0.5;
 }
 
 - (void)mapView:(MKMapView *)mapView didSelectAnnotationView:(MKAnnotationView*)view {
+    // deselect all others first
+    for (MKAnnotationView *aView in self.annotationViews) {
+        [self mapView:self.mapView didDeselectAnnotationView:aView];
+    }
+    
     UIImage *pinSelectedImage = [UIImage imageNamed:@"pinSelectedImage.png"];
     view.image = pinSelectedImage;
+    
+    // TODO: center appropriate cell in collectionView
 }
 
 - (void)mapView:(MKMapView *)mapView didDeselectAnnotationView:(MKAnnotationView*)view {
@@ -144,7 +153,13 @@ static const CGFloat kDefaultZoomMiles = 0.5;
     view.image = pinImage;
 }
 
+//- (void)setSelected:(BOOL)selected animated:(BOOL)animated;
+
 #pragma mark - UICollectionView
+
+//- (NSInteger)numberOfSections {
+//    return 1;
+//}
 
 - (NSInteger)collectionView:(UICollectionView *)view numberOfItemsInSection:(NSInteger)section {
     return [self.nearbySpots count];
@@ -157,22 +172,29 @@ static const CGFloat kDefaultZoomMiles = 0.5;
     if (!cell) {
         // TODO: error handling
     }
-    
     // fetch photo and update display of cell
     [cell displayInfoForSpot:self.nearbySpots[indexPath.row]];
-    // get marker from cell and add it to the map
-//    [self placeSpotMarker:[cell getMarker]];
     
     return cell;
 }
 
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
 {
-    NSLog(@"selected cell %i",(int)indexPath.row);
+    // center the cell
+    // TODO: edge cases of first/last cells
+    int index = (int)indexPath.row;
+    NSLog(@"selected cell %i",index);
     [collectionView scrollToItemAtIndexPath:indexPath atScrollPosition:UICollectionViewScrollPositionCenteredHorizontally animated:YES];
-    // TODO: Highlight the appropriate marker on the map
-//    PhotoCollectionViewCell *cell = [collectionView cellForItemAtIndexPath:indexPath];
-//    cell.spotMarker
+
+    // select the associated marker on the map
+    MKAnnotationView *annotationView = self.annotationViews[index];
+    [self highlightAnnotationViewOnMap:annotationView];
+//    // deselect all others first
+//    for (MKAnnotationView *view in self.annotationViews) {
+//        [self mapView:self.mapView didDeselectAnnotationView:view];
+//    }
+//    
+//    [self mapView:self.mapView didSelectAnnotationView:annotationView];
 }
 
 - (void)collectionView:(UICollectionView *)collectionView didDeselectItemAtIndexPath:(NSIndexPath *)indexPath {
@@ -188,6 +210,36 @@ static const CGFloat kDefaultZoomMiles = 0.5;
 - (UIEdgeInsets)collectionView:
 (UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout insetForSectionAtIndex:(NSInteger)section {
     return UIEdgeInsetsMake(0, 0, 0, 0);
+}
+
+//-(void)highlightMarkerForCenteredCell {
+//    CGPoint centerLocation = self.collectionViewCenterMarker.center;
+//    NSIndexPath *centeredIndexPath = [self.collectionView indexPathForItemAtPoint:centerLocation];
+//    
+//}
+
+#pragma mark - AnnotationViews
+-(void)placeSpotMarker:(MKAnnotationCustom*)marker {
+    [self.mapView addAnnotation:marker];
+}
+
+// removes all previous markers
+// TODO: for smoother transition just remove markers whose id's aren't in updated spots list
+-(void)removeSpotMarkers {
+    for (id<MKAnnotation> annotation in self.mapView.annotations)
+    {
+        [self.annotationViews removeAllObjects];
+        [self.mapView removeAnnotation:annotation];
+    }
+}
+
+-(void)highlightAnnotationViewOnMap:(MKAnnotationView*)annotationView {
+//    // deselect all others first
+//    for (MKAnnotationView *view in self.annotationViews) {
+//        [self mapView:self.mapView didDeselectAnnotationView:view];
+//    }
+    
+    [self mapView:self.mapView didSelectAnnotationView:annotationView];
 }
 
 #pragma mark - Spots
@@ -262,22 +314,6 @@ static const CGFloat kDefaultZoomMiles = 0.5;
 //        [self.mapView addAnnotation:spotMarker];
     }
     NSLog(@"all markers placed");
-}
-
--(void)placeSpotMarker:(MKAnnotationCustom*)marker {
-    [self.spotMarkers addObject:marker];
-    [self.mapView addAnnotation:marker];
-    NSLog(@"custom marker");
-}
-
-// removes all previous markers
-// TODO: for smoother transition just remove markers whose id's aren't in updated spots list
--(void)removeSpotMarkers {
-    for (id<MKAnnotation> annotation in self.mapView.annotations)
-    {
-        [self.spotMarkers removeAllObjects];
-        [self.mapView removeAnnotation:annotation];
-    }
 }
 
 #pragma mark - Navigation
