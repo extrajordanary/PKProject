@@ -61,7 +61,9 @@ static const CGFloat kDefaultZoomMiles = 0.5; // TODO : make dynamic/adjustable?
     
 //    self.activityIndicator.activityIndicatorViewStyle = UIActivityIndicatorViewStyleWhiteLarge;
     
-    [self getThisUser];
+//    [self getThisUser];
+    self.thisUser = coreDataHandler.thisUser;
+    
     firstZoom = YES;
 }
 

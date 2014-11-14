@@ -19,7 +19,9 @@
 
 @end
 
-@implementation AppDelegate
+@implementation AppDelegate {
+    User *thisUser;
+}
 
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
@@ -189,7 +191,7 @@
 -(void)updateOrCreateUserAccountWithData:(NSDictionary*)data {
     // call CoreDataHandler to either update or create new user
     NSString *thisUserId = [[NSUserDefaults standardUserDefaults] valueForKey:@"thisUserId"];
-    User *thisUser;
+//    User *thisUser;
     NSString *currentFacebookId = [data objectForKey:@"id"];
     CoreDataHandler *coreDataHandler = [CoreDataHandler sharedCoreDataHandler];
     // existing userId means the account has already been created on the server so we get the object for it
@@ -205,22 +207,40 @@
     // if they don't we need to pull the server to search by facebookId to bring in the right profile
     // got this far so existing user id must not have worked out
     // search server by facebook id
-    [[ServerHandler sharedServerHandler] queryFacebookId:currentFacebookId handleResponse:^void (NSDictionary *queryResults) {
+    [[ServerHandler sharedServerHandler] queryFacebookId:currentFacebookId handleResponse:^void (NSArray *queryResults) {
         // force to main thread for UI updates
         dispatch_async(dispatch_get_main_queue(), ^(void){
             // if results are empty, create a new user from facebook info
-            if (queryResults.count == 0) {
+            // TODO: nil check?
+            if (queryResults.count == 1) {
+                // account already exists so save it locally
+                thisUser = (User*)[coreDataHandler createNew:@"User"];
+//                for (NSDictionary *user in queryResults) {
+//                    [thisUser updateFromDictionary:user];
+//                }
+                [thisUser updateFromDictionary:queryResults[0]];
                 
+                // update NSUserDefaults
+                NSString *objectId = [queryResults[0] objectForKey:@"_id"];
+                [[NSUserDefaults standardUserDefaults] setObject:objectId forKey:@"thisUserId"];
+                [[NSUserDefaults standardUserDefaults] synchronize];
+            } else if (queryResults.count == 0){
+                // create a new user and fill it out with facebook info
+                thisUser = (User*)[coreDataHandler createNew:@"User"];
+                [thisUser updateFromFacebookDictionary:data];
+                // TODO: add creation timestamp
+                [[ServerHandler sharedServerHandler] pushUserToServer:thisUser];
             } else {
-                // else update existing user
-                
+                // error
+                NSLog(@"oh god how are there multiple accounts with this fb id?");
             }
+            coreDataHandler.thisUser = thisUser;
         });
     }];
     
 //    else {
 //        // no existing userId, so check online for User with matching facebookId
-//        thisUser = (User*)[coreDataHandler createNew:@"User"];
+        thisUser = (User*)[coreDataHandler createNew:@"User"];
 //        [thisUser updateFromFacebookDictionary:data];
 //    }
     

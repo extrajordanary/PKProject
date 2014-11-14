@@ -85,7 +85,7 @@ static NSString* const kPhotos = @"/collections/photos";
 }
 
 // given a facebookId, check for existing User object on server and return in
-- (void) queryFacebookId:(NSString*)facebookId handleResponse:(void (^)(NSDictionary*))responseHandlingBlock {
+- (void) queryFacebookId:(NSString*)facebookId handleResponse:(void (^)(NSArray*))responseHandlingBlock {
     NSString* facebookIdRequest = [NSString stringWithFormat:@"{\"facebookId\":{\"$in\":[\"%@\"]}}", facebookId];
     NSString* escBox = (NSString *)CFBridgingRelease(CFURLCreateStringByAddingPercentEscapes(NULL,
                                                                                              (CFStringRef) facebookIdRequest,
@@ -97,7 +97,7 @@ static NSString* const kPhotos = @"/collections/photos";
     [self runFacebookIdQuery:query handleResponse:responseHandlingBlock];
 }
 
-- (void) runFacebookIdQuery:(NSString *)queryString handleResponse:(void (^)(NSDictionary*))responseHandlingBlock {
+- (void) runFacebookIdQuery:(NSString *)queryString handleResponse:(void (^)(NSArray*))responseHandlingBlock {
     NSString* urlStr = [[kBaseURL stringByAppendingPathComponent:kUsers] stringByAppendingString:queryString];
     NSURL* url = [NSURL URLWithString:urlStr];
     
@@ -111,10 +111,56 @@ static NSString* const kPhotos = @"/collections/photos";
     NSURLSessionDataTask* dataTask = [session dataTaskWithRequest:request
                                                 completionHandler:^(NSData *data, NSURLResponse *response, NSError *error) {
         if (error == nil) {
-            NSDictionary* responseDictionary = [NSJSONSerialization JSONObjectWithData:data options:0 error:NULL];
-            responseHandlingBlock(responseDictionary);
+            NSArray* responseDictionary = [NSJSONSerialization JSONObjectWithData:data options:0 error:NULL];
+            responseHandlingBlock(responseDictionary); // TODO: rename to array
             
             NSLog(@"%lu users found", (unsigned long)responseDictionary.count);
+        }
+    }];
+    [dataTask resume];
+}
+
+// given a User object, method checks if the User already exists on the server
+// then it either creates a new entry in the server or updates the existing entry
+// should only ever be push THIS user TODO: for now...
+-(void)pushUserToServer:(User*)user {
+    if (!user) {
+        // TODO: error?
+        NSLog(@"Error saving user to server");
+        return; //input safety check
+    }
+    NSString* users = [kBaseURL stringByAppendingPathComponent:kUsers];
+    
+    BOOL isExistingUser = user.databaseId != nil;
+    NSURL* url = isExistingUser ? [NSURL URLWithString:[users stringByAppendingPathComponent:user.databaseId]] :
+    [NSURL URLWithString:users];
+    
+    NSMutableURLRequest* request = [NSMutableURLRequest requestWithURL:url];
+    request.HTTPMethod = isExistingUser ? @"PUT" : @"POST";
+    
+    // get JSON converted Spot for uploading to server
+    NSData* data = [NSJSONSerialization dataWithJSONObject:[user toDictionary] options:0 error:NULL];
+    request.HTTPBody = data;
+    
+    [request addValue:@"application/json" forHTTPHeaderField:@"Content-Type"];
+    
+    NSURLSessionConfiguration* config = [NSURLSessionConfiguration defaultSessionConfiguration];
+    NSURLSession* session = [NSURLSession sessionWithConfiguration:config];
+    
+    NSURLSessionDataTask* dataTask = [session dataTaskWithRequest:request completionHandler:^(NSData *data, NSURLResponse *response, NSError *error) {
+        if (!error) {
+            NSArray* responseArray = @[[NSJSONSerialization JSONObjectWithData:data options:0 error:NULL]];
+            if (isExistingUser) {
+                // do nothing bc response array just has success msg
+                NSLog(@"User updated on server");
+                // TODO: maybe here I should save a timestamp for most recent update?
+            } else {
+                NSLog(@"User saved to server");
+                // get _id from returned data and save it to the User databaseId property
+                user.databaseId = responseArray[0][0][@"_id"];
+                [[NSUserDefaults standardUserDefaults] setObject:user.databaseId forKey:@"thisUserId"];
+                [[NSUserDefaults standardUserDefaults] synchronize];
+            }
         }
     }];
     [dataTask resume];

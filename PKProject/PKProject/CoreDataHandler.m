@@ -81,7 +81,7 @@
     // check CoreData first then Server
     // TODO: check Core Data
     NSString *userFacebookId = @"10103934015298835"; // hardcode cheating for now
-    [[ServerHandler sharedServerHandler] queryFacebookId:userFacebookId handleResponse:^void (NSDictionary *queryResults) {
+    [[ServerHandler sharedServerHandler] queryFacebookId:userFacebookId handleResponse:^void (NSArray *queryResults) {
         // force to main thread for UI updates
         dispatch_async(dispatch_get_main_queue(), ^(void){
             // if results are empty, create a new user from facebook info

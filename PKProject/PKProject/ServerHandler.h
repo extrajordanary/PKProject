@@ -20,7 +20,8 @@
 
 -(void)updateObjectFromServer:(ServerObject*)object;
 -(void)updateUserFromServer:(User*)user;
--(void)queryFacebookId:(NSString*)facebookId handleResponse:(void (^)(NSDictionary*))responseHandlingBlock;
+-(void)pushUserToServer:(User*)user;
+-(void)queryFacebookId:(NSString*)facebookId handleResponse:(void (^)(NSArray*))responseHandlingBlock;
 -(void)queryRegion:(MKCoordinateRegion)region handleResponse:(void (^)(NSDictionary*))spotHandlingBlock;
 -(void)getSpotsFromServer:(void (^)(NSDictionary*))spotHandlingBlock;
 -(void)pushSpotToServer:(Spot*)spot;
