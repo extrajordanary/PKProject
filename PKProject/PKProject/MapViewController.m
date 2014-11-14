@@ -37,6 +37,7 @@
     LocationManagerHandler *locationHandler;
     NSString *thisUserId;
     BOOL firstZoom;
+    int cellWidth;
 }
 
 #define IS_OS_8_OR_LATER ([[[UIDevice currentDevice] systemVersion] floatValue] >= 8.0)
@@ -96,6 +97,7 @@ static const CGFloat kDefaultZoomMiles = 0.5;
 
 - (MKAnnotationView *)mapView:(MKMapView *)mapView viewForAnnotation:(id <MKAnnotation>)annotation
 {
+    NSLog(@"view for annotation");
     // If it's the user location, just return nil
     if ([annotation isKindOfClass:[MKUserLocation class]])
         return nil;
@@ -153,13 +155,7 @@ static const CGFloat kDefaultZoomMiles = 0.5;
     view.image = pinImage;
 }
 
-//- (void)setSelected:(BOOL)selected animated:(BOOL)animated;
-
 #pragma mark - UICollectionView
-
-//- (NSInteger)numberOfSections {
-//    return 1;
-//}
 
 - (NSInteger)collectionView:(UICollectionView *)view numberOfItemsInSection:(NSInteger)section {
     return [self.nearbySpots count];
@@ -181,7 +177,6 @@ static const CGFloat kDefaultZoomMiles = 0.5;
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
 {
     // center the cell
-    // TODO: edge cases of first/last cells
     int index = (int)indexPath.row;
     NSLog(@"selected cell %i",index);
     [collectionView scrollToItemAtIndexPath:indexPath atScrollPosition:UICollectionViewScrollPositionCenteredHorizontally animated:YES];
@@ -189,12 +184,6 @@ static const CGFloat kDefaultZoomMiles = 0.5;
     // select the associated marker on the map
     MKAnnotationView *annotationView = self.annotationViews[index];
     [self highlightAnnotationViewOnMap:annotationView];
-//    // deselect all others first
-//    for (MKAnnotationView *view in self.annotationViews) {
-//        [self mapView:self.mapView didDeselectAnnotationView:view];
-//    }
-//    
-//    [self mapView:self.mapView didSelectAnnotationView:annotationView];
 }
 
 - (void)collectionView:(UICollectionView *)collectionView didDeselectItemAtIndexPath:(NSIndexPath *)indexPath {
@@ -203,13 +192,15 @@ static const CGFloat kDefaultZoomMiles = 0.5;
 
 - (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath {
     int height = collectionView.frame.size.height;
+    cellWidth = height;
 
     return CGSizeMake(height, height); // create square cells at maximum height of CollectionView
 }
 
 - (UIEdgeInsets)collectionView:
 (UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout insetForSectionAtIndex:(NSInteger)section {
-    return UIEdgeInsetsMake(0, 0, 0, 0);
+    int offset = (collectionView.frame.size.width - cellWidth)/2;
+    return UIEdgeInsetsMake(0, offset, 0, offset); // !!!
 }
 
 //-(void)highlightMarkerForCenteredCell {
@@ -234,11 +225,6 @@ static const CGFloat kDefaultZoomMiles = 0.5;
 }
 
 -(void)highlightAnnotationViewOnMap:(MKAnnotationView*)annotationView {
-//    // deselect all others first
-//    for (MKAnnotationView *view in self.annotationViews) {
-//        [self mapView:self.mapView didDeselectAnnotationView:view];
-//    }
-    
     [self mapView:self.mapView didSelectAnnotationView:annotationView];
 }
 
@@ -303,16 +289,15 @@ static const CGFloat kDefaultZoomMiles = 0.5;
 
 // populates the map with pins at each Spot location
 -(void)placeSpotMarkers {
-    for (Spot *spot in self.nearbySpots) {
-//        MKPointAnnotation *spotMarker = [[MKPointAnnotation alloc] init];
-//        spotMarker.coordinate = [spot getCoordinate];
-//        [self.mapView addAnnotation:spotMarker];
-        
-        MKAnnotationCustom *spotMarker = [[MKAnnotationCustom alloc] initWithCoordinate:[spot getCoordinate]];
-        [self placeSpotMarker:spotMarker];
-//        [self.spotMarkers addObject:spotMarker];
-//        [self.mapView addAnnotation:spotMarker];
-    }
+        for (Spot *spot in self.nearbySpots) {
+    //        MKPointAnnotation *spotMarker = [[MKPointAnnotation alloc] init];
+    //        spotMarker.coordinate = [spot getCoordinate];
+    //        [self.mapView addAnnotation:spotMarker];
+            
+            MKAnnotationCustom *spotMarker = [[MKAnnotationCustom alloc] initWithCoordinate:[spot getCoordinate]];
+            [self placeSpotMarker:spotMarker];
+            NSLog(@"annotation");
+            }
     NSLog(@"all markers placed");
 }
 
