@@ -8,11 +8,15 @@
 
 #import "SignUpViewController.h"
 #import <FacebookSDK/FacebookSDK.h>
+#import "ServerHandler.h"
+#import "CoreDataHandler.h"
+#import "User+Extended.h"
 #import "AppDelegate.h"
 
 @interface SignUpViewController ()
 
 @property (nonatomic) BOOL loggedIn;
+@property (nonatomic, weak) CoreDataHandler *coreDataHandler;
 
 
 @end
@@ -22,29 +26,42 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-    
-    // check if user is logged in and set BOOL
     self.loggedIn = NO;
-    NSString *loginStatus = [[NSUserDefaults standardUserDefaults] objectForKey:@"FBLoggedIn"];
-    if ([loginStatus isEqualToString:@"YES"]) {
-        self.loggedIn = YES;
-    }
-    
-    // if loggedIn go directly to mapVC
-//    if (self.loggedIn ) {
-//        NSLog(@"logged in already");
-//        [self performSegueWithIdentifier:@"ToMap" sender:self];
-//    }
+    self.coreDataHandler = [CoreDataHandler sharedCoreDataHandler];
 }
 
 -(void)viewDidAppear:(BOOL)animated {
     [super viewDidAppear:animated];
+    
+    // check if user is logged in and set BOOL
+    NSString *loginStatus = [[NSUserDefaults standardUserDefaults] objectForKey:@"FBLoggedIn"];
+    if ([loginStatus isEqualToString:@"YES"]) {
+        self.loggedIn = YES;
+        NSLog(@"now logged in");
+        
+        // TODO: check if user has existing User profile, if not create one
+        if (self.coreDataHandler.thisUser) {
+            NSLog(@"existing user in coredata");
+        }
+//        [self.coreDataHandler updateThisUser];
+        
+//        // check CoreData first then Server
+//        // TODO: check Core Data
+//        NSString *userFacebookId = @"10103934015298835"; // hardcode cheating for now
+//        [[ServerHandler sharedServerHandler] queryFacebookId:userFacebookId handleResponse:^void (NSDictionary *queryResults) {
+//            // force to main thread for UI updates
+//            dispatch_async(dispatch_get_main_queue(), ^(void){
+//                // if results are empty, create a new user from facebook info
+//                if (queryResults.count == 0) {
+//                    
+//                } else {
+//                    // else update existing user
+//
+//                }
+//            });
+//        }];
+    }
 
-    // if loggedIn go directly to mapVC
-//    if (self.loggedIn ) {
-//        NSLog(@"logged in already");
-//        [self performSegueWithIdentifier:@"ToMap" sender:self];
-//    }
 }
 
 - (void)didReceiveMemoryWarning {
@@ -87,12 +104,19 @@
 
 #pragma mark - Login
 -(void)loginPopup {
+//    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Login"
+//                                                    message:@"Typos are the enemy."
+//                                                   delegate:self
+//                                          cancelButtonTitle:@"I'm New"
+//                                          otherButtonTitles:@"Login!",nil];
+//    alert.alertViewStyle = UIAlertViewStyleLoginAndPasswordInput;
+    
     UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Login"
-                                                    message:@"Typos are the enemy."
+                                                    message:@"This feature coming soon."
                                                    delegate:self
-                                          cancelButtonTitle:@"I'm New"
-                                          otherButtonTitles:@"Login!",nil];
-    alert.alertViewStyle = UIAlertViewStyleLoginAndPasswordInput;
+                                          cancelButtonTitle:@"Okay!"
+                                          otherButtonTitles:nil];
+    
     [alert show];
 }
 

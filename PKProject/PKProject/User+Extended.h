@@ -11,6 +11,7 @@
 @interface User (Extended)
 
 -(void)updateFromDictionary:(NSDictionary*)dictionary;
+-(void)updateFromFacebookDictionary:(NSDictionary*)dictionary;
 -(NSDictionary*)toDictionary;
 
 @end

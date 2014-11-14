@@ -22,6 +22,7 @@
         self.nameFirst = dictionary[@"nameFirst"];
         self.nameLast = dictionary[@"nameLast"];
         self.nameUser = dictionary[@"nameUser"];
+        self.facebookId = dictionary[@"facebookId"];
         self.databaseId = dictionary[@"_id"];
         
         // TODO: create Photo objects
@@ -29,6 +30,17 @@
 
         [self updateCoreData];
     }
+}
+
+// called when new account is created to prepopulate fields from Facebook info
+-(void)updateFromFacebookDictionary:(NSDictionary*)dictionary {
+    NSLog(@"updating from facebook");
+    self.facebookId = dictionary[@"id"];
+    self.nameFirst = dictionary[@"first_name"];
+    self.nameLast = dictionary[@"last_name"];
+    self.email = dictionary[@"email"];
+    
+    [self updateCoreData];
 }
 
 -(NSDictionary*)toDictionary {
@@ -40,6 +52,7 @@
     jsonable[@"nameFirst"] = self.nameFirst;
     jsonable[@"nameLast"] = self.nameLast;
     jsonable[@"nameUser"] = self.nameUser;
+    jsonable[@"facebookId"] = self.facebookId;
     
     // photo ids
     jsonable[@"userCreatedPhoto"] = [self arrayOfObjectIds:[self.userCreatedPhoto allObjects]];

@@ -73,14 +73,50 @@ static NSString* const kPhotos = @"/collections/photos";
     
     NSURLSessionDataTask* dataTask = [session dataTaskWithRequest:request
                                                 completionHandler:^(NSData *data, NSURLResponse *response, NSError *error) {
-                                                    if (error == nil) {
-                                                        NSDictionary* responseDictionary = [NSJSONSerialization JSONObjectWithData:data options:0 error:NULL];
-                                                        dispatch_async(dispatch_get_main_queue(), ^(void){
-                                                            [user updateFromDictionary:responseDictionary];
-                                                        });
-                                                    }
-                                                }];
+        if (error == nil) {
+            NSDictionary* responseDictionary = [NSJSONSerialization JSONObjectWithData:data options:0 error:NULL];
+            dispatch_async(dispatch_get_main_queue(), ^(void){
+                [user updateFromDictionary:responseDictionary];
+            });
+        }
+    }];
     
+    [dataTask resume];
+}
+
+// given a facebookId, check for existing User object on server and return in
+- (void) queryFacebookId:(NSString*)facebookId handleResponse:(void (^)(NSDictionary*))responseHandlingBlock {
+    NSString* facebookIdRequest = [NSString stringWithFormat:@"{\"facebookId\":{\"$in\":[\"%@\"]}}", facebookId];
+    NSString* escBox = (NSString *)CFBridgingRelease(CFURLCreateStringByAddingPercentEscapes(NULL,
+                                                                                             (CFStringRef) facebookIdRequest,
+                                                                                             NULL,
+                                                                                             (CFStringRef) @"!*();':@&=+$,/?%#[]{}",
+                                                                                             kCFStringEncodingUTF8));
+    NSString* query = [NSString stringWithFormat:@"?query=%@", escBox];
+    
+    [self runFacebookIdQuery:query handleResponse:responseHandlingBlock];
+}
+
+- (void) runFacebookIdQuery:(NSString *)queryString handleResponse:(void (^)(NSDictionary*))responseHandlingBlock {
+    NSString* urlStr = [[kBaseURL stringByAppendingPathComponent:kUsers] stringByAppendingString:queryString];
+    NSURL* url = [NSURL URLWithString:urlStr];
+    
+    NSMutableURLRequest* request = [NSMutableURLRequest requestWithURL:url];
+    request.HTTPMethod = @"GET";
+    [request addValue:@"application/json" forHTTPHeaderField:@"Accept"];
+    
+    NSURLSessionConfiguration* config = [NSURLSessionConfiguration defaultSessionConfiguration];
+    NSURLSession* session = [NSURLSession sessionWithConfiguration:config];
+    
+    NSURLSessionDataTask* dataTask = [session dataTaskWithRequest:request
+                                                completionHandler:^(NSData *data, NSURLResponse *response, NSError *error) {
+        if (error == nil) {
+            NSDictionary* responseDictionary = [NSJSONSerialization JSONObjectWithData:data options:0 error:NULL];
+            responseHandlingBlock(responseDictionary);
+            
+            NSLog(@"%lu users found", (unsigned long)responseDictionary.count);
+        }
+    }];
     [dataTask resume];
 }
 
@@ -96,7 +132,7 @@ static NSString* const kPhotos = @"/collections/photos";
     CLLocationDegrees y1 = region.center.latitude + region.span.latitudeDelta/2;
     
     NSString* boxQuery = [NSString stringWithFormat:@"{\"$geoWithin\":{\"$box\":[[%f,%f],[%f,%f]]}}",x0,y0,x1,y1];
-    NSLog(@"%@",boxQuery);
+//    NSLog(@"%@",boxQuery);
     NSString* locationInBox = [NSString stringWithFormat:@"{\"location\":%@}", boxQuery];
     NSString* escBox = (NSString *)CFBridgingRelease(CFURLCreateStringByAddingPercentEscapes(NULL,
                                                                                              (CFStringRef) locationInBox,

@@ -16,13 +16,11 @@
 
 @interface ServerHandler : NSObject <MKMapViewDelegate>
 
-@property (nonatomic, retain) NSString *myUserId;
-
 + (id) sharedServerHandler;
 
 -(void)updateObjectFromServer:(ServerObject*)object;
 -(void)updateUserFromServer:(User*)user;
-
+-(void)queryFacebookId:(NSString*)facebookId handleResponse:(void (^)(NSDictionary*))responseHandlingBlock;
 -(void)queryRegion:(MKCoordinateRegion)region handleResponse:(void (^)(NSDictionary*))spotHandlingBlock;
 -(void)getSpotsFromServer:(void (^)(NSDictionary*))spotHandlingBlock;
 -(void)pushSpotToServer:(Spot*)spot;

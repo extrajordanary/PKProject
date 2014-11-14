@@ -18,6 +18,8 @@
 
 + (id)sharedCoreDataHandler;
 
+@property (strong, nonatomic) User *thisUser;
+
 -(ServerObject*)getObjectWithDatabaseId:(NSString*)databaseId;
 -(ServerObject*)returnObjectOfType:(NSString*)type forId:(NSString*)databaseId;
 
@@ -28,6 +30,9 @@
                     sortedBy:(NSSortDescriptor*)sortDescriptor;
 
 -(ServerObject*)createNew:(NSString*)entityType;
+
+-(User*)getThisUser;
+-(void)updateThisUser;
 
 -(void)updateCoreData;
 

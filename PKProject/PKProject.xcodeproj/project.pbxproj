@@ -12,6 +12,7 @@
 		171BAA0819DF79EA00C66676 /* Spot+Extended.m in Sources */ = {isa = PBXBuildFile; fileRef = 171BAA0719DF79EA00C66676 /* Spot+Extended.m */; };
 		172B411F1A1192DE004AB03C /* FacebookSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 172B411E1A1192DE004AB03C /* FacebookSDK.framework */; };
 		172B41231A119B44004AB03C /* Bolts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 172B41221A119B44004AB03C /* Bolts.framework */; };
+		172B41261A15446A004AB03C /* User.m in Sources */ = {isa = PBXBuildFile; fileRef = 172B41251A15446A004AB03C /* User.m */; };
 		1731D5181A0AB9040068A769 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1731D5171A0AB9040068A769 /* Images.xcassets */; };
 		1731D51A1A0AF6DB0068A769 /* cvalt-roundedButton.png in Resources */ = {isa = PBXBuildFile; fileRef = 1731D5191A0AF6DB0068A769 /* cvalt-roundedButton.png */; };
 		1731D51C1A0B002F0068A769 /* cvalt-textLogo.png in Resources */ = {isa = PBXBuildFile; fileRef = 1731D51B1A0B002F0068A769 /* cvalt-textLogo.png */; };
@@ -48,7 +49,6 @@
 		1762F6FB19F1BC4300EE71C2 /* ServerObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 1762F6FA19F1BC4300EE71C2 /* ServerObject.m */; };
 		1762F6FE19F1BC4400EE71C2 /* Photo.m in Sources */ = {isa = PBXBuildFile; fileRef = 1762F6FD19F1BC4400EE71C2 /* Photo.m */; };
 		1762F70119F1BC4400EE71C2 /* Spot.m in Sources */ = {isa = PBXBuildFile; fileRef = 1762F70019F1BC4400EE71C2 /* Spot.m */; };
-		1762F70419F1BC4400EE71C2 /* User.m in Sources */ = {isa = PBXBuildFile; fileRef = 1762F70319F1BC4400EE71C2 /* User.m */; };
 		17A2FC671A0843CB00564441 /* libHeap.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 17A2FC661A0843CB00564441 /* libHeap.a */; };
 		17A2FC6A1A08445500564441 /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 17A2FC691A08445500564441 /* CFNetwork.framework */; };
 		17A2FC6C1A08446100564441 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 17A2FC6B1A08446100564441 /* Foundation.framework */; };
@@ -99,6 +99,8 @@
 		171BAA0719DF79EA00C66676 /* Spot+Extended.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "Spot+Extended.m"; sourceTree = "<group>"; };
 		172B411E1A1192DE004AB03C /* FacebookSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FacebookSDK.framework; sourceTree = "<group>"; };
 		172B41221A119B44004AB03C /* Bolts.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Bolts.framework; sourceTree = "<group>"; };
+		172B41241A15446A004AB03C /* User.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = User.h; sourceTree = "<group>"; };
+		172B41251A15446A004AB03C /* User.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = User.m; sourceTree = "<group>"; };
 		1731D5171A0AB9040068A769 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		1731D5191A0AF6DB0068A769 /* cvalt-roundedButton.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "cvalt-roundedButton.png"; sourceTree = "<group>"; };
 		1731D51B1A0B002F0068A769 /* cvalt-textLogo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "cvalt-textLogo.png"; sourceTree = "<group>"; };
@@ -150,8 +152,6 @@
 		1762F6FD19F1BC4400EE71C2 /* Photo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Photo.m; sourceTree = "<group>"; };
 		1762F6FF19F1BC4400EE71C2 /* Spot.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Spot.h; sourceTree = "<group>"; };
 		1762F70019F1BC4400EE71C2 /* Spot.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Spot.m; sourceTree = "<group>"; };
-		1762F70219F1BC4400EE71C2 /* User.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = User.h; sourceTree = "<group>"; };
-		1762F70319F1BC4400EE71C2 /* User.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = User.m; sourceTree = "<group>"; };
 		17A2FC661A0843CB00564441 /* libHeap.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libHeap.a; sourceTree = "<group>"; };
 		17A2FC681A0843EB00564441 /* Heap.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Heap.h; sourceTree = "<group>"; };
 		17A2FC691A08445500564441 /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
@@ -229,10 +229,10 @@
 		171BA9ED19DC7F5800C66676 /* Core Data Classes */ = {
 			isa = PBXGroup;
 			children = (
+				172B41241A15446A004AB03C /* User.h */,
+				172B41251A15446A004AB03C /* User.m */,
 				1762F6F919F1BC4300EE71C2 /* ServerObject.h */,
 				1762F6FA19F1BC4300EE71C2 /* ServerObject.m */,
-				1762F70219F1BC4400EE71C2 /* User.h */,
-				1762F70319F1BC4400EE71C2 /* User.m */,
 				1762F6FF19F1BC4400EE71C2 /* Spot.h */,
 				1762F70019F1BC4400EE71C2 /* Spot.m */,
 				1762F6FC19F1BC4400EE71C2 /* Photo.h */,
@@ -540,13 +540,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				172B41261A15446A004AB03C /* User.m in Sources */,
 				171BAA0819DF79EA00C66676 /* Spot+Extended.m in Sources */,
 				1762F70119F1BC4400EE71C2 /* Spot.m in Sources */,
 				174A537D1A045947007B7358 /* AWSHandler.m in Sources */,
 				171BA9F319DF4AD000C66676 /* User+Extended.m in Sources */,
 				175DA60719DA1D2800897710 /* AppDelegate.m in Sources */,
 				17C7BF9F19E85A3900BD019A /* ServerObjects+Extended.m in Sources */,
-				1762F70419F1BC4400EE71C2 /* User.m in Sources */,
 				17A6D94819FACF490038EC1E /* ALAssetsLibrary+CustomPhotoAlbum.m in Sources */,
 				1762F6FE19F1BC4400EE71C2 /* Photo.m in Sources */,
 				1740BBA31A0B46770033D2DE /* LocationManagerHandler.m in Sources */,
