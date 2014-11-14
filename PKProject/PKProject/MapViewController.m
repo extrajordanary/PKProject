@@ -24,6 +24,7 @@
 @property (strong, nonatomic) IBOutlet UICollectionView *collectionView;
 @property (strong, nonatomic) User *thisUser;
 @property (strong, nonatomic) NSMutableArray *nearbySpots;
+@property (strong, nonatomic) NSMutableArray *spotMarkers;
 @property (strong, nonatomic) IBOutlet UILabel *noSpotsText;
 @property (strong, nonatomic) IBOutlet UIActivityIndicatorView *activityIndicator;
 
@@ -56,6 +57,7 @@ static const CGFloat kDefaultZoomMiles = 0.5;
     [locationHandler addObserver:self forKeyPath:@"isAuthorized" options:NSKeyValueObservingOptionNew context:nil];
 
     self.nearbySpots = [[NSMutableArray alloc] init];
+    self.spotMarkers = [[NSMutableArray alloc] init];
     
     self.mapView.showsUserLocation = YES;
     self.mapView.showsPointsOfInterest = NO;
@@ -126,6 +128,12 @@ static const CGFloat kDefaultZoomMiles = 0.5;
     return nil;
 }
 
+-(void)mapView:(MKMapView *)mapView didAddAnnotationViews:(NSArray *)views
+{
+    MKAnnotationView *av = [mapView viewForAnnotation:mapView.userLocation];
+    av.enabled = NO;  //disable touch on user location
+}
+
 - (void)mapView:(MKMapView *)mapView didSelectAnnotationView:(MKAnnotationView*)view {
     UIImage *pinSelectedImage = [UIImage imageNamed:@"pinSelectedImage.png"];
     view.image = pinSelectedImage;
@@ -153,7 +161,7 @@ static const CGFloat kDefaultZoomMiles = 0.5;
     // fetch photo and update display of cell
     [cell displayInfoForSpot:self.nearbySpots[indexPath.row]];
     // get marker from cell and add it to the map
-    [self placeSpotMarker:[cell getMarker]];
+//    [self placeSpotMarker:[cell getMarker]];
     
     return cell;
 }
@@ -233,7 +241,7 @@ static const CGFloat kDefaultZoomMiles = 0.5;
             if (self.nearbySpots.count > 0) {
                 self.noSpotsText.hidden = YES;
                 // TODO: should spot markers be children of the cells? Of the spots?
-//                [self placeSpotMarkers];
+                [self placeSpotMarkers];
             } else {
                 self.noSpotsText.hidden = NO;
             }
@@ -244,14 +252,20 @@ static const CGFloat kDefaultZoomMiles = 0.5;
 // populates the map with pins at each Spot location
 -(void)placeSpotMarkers {
     for (Spot *spot in self.nearbySpots) {
-        // TODO: create custom MKPointAnnotation class for custom marker visuals
-        MKPointAnnotation *spotMarker = [[MKPointAnnotation alloc] init];
-        spotMarker.coordinate = [spot getCoordinate];
-        [self.mapView addAnnotation:spotMarker];
+//        MKPointAnnotation *spotMarker = [[MKPointAnnotation alloc] init];
+//        spotMarker.coordinate = [spot getCoordinate];
+//        [self.mapView addAnnotation:spotMarker];
+        
+        MKAnnotationCustom *spotMarker = [[MKAnnotationCustom alloc] initWithCoordinate:[spot getCoordinate]];
+        [self placeSpotMarker:spotMarker];
+//        [self.spotMarkers addObject:spotMarker];
+//        [self.mapView addAnnotation:spotMarker];
     }
+    NSLog(@"all markers placed");
 }
 
 -(void)placeSpotMarker:(MKAnnotationCustom*)marker {
+    [self.spotMarkers addObject:marker];
     [self.mapView addAnnotation:marker];
     NSLog(@"custom marker");
 }
@@ -261,6 +275,7 @@ static const CGFloat kDefaultZoomMiles = 0.5;
 -(void)removeSpotMarkers {
     for (id<MKAnnotation> annotation in self.mapView.annotations)
     {
+        [self.spotMarkers removeAllObjects];
         [self.mapView removeAnnotation:annotation];
     }
 }
