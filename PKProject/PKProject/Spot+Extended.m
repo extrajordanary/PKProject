@@ -11,9 +11,10 @@
 #import "Photo+Extended.h"
 #import "ServerObject+Extended.h"
 #import "CoreDataHandler.h"
-//#import "ServerHandler.h"
+#import "MKAnnotationCustom.h"
 
 @implementation Spot (Extended)
+
 
 -(void)updateFromDictionary:(NSDictionary*)dictionary{
     if (self) {
@@ -88,6 +89,13 @@
 -(CLLocationCoordinate2D)getCoordinate {
     CLLocationCoordinate2D coord = CLLocationCoordinate2DMake([self.latitude doubleValue], [self.longitude doubleValue]);
     return coord;
+}
+
+-(MKAnnotationCustom*)getAnnotation {
+    if (!self.annotation) {
+        self.annotation = [[MKAnnotationCustom alloc] initWithCoordinate:[self getCoordinate]];
+    }
+    return self.annotation;
 }
 
 @end

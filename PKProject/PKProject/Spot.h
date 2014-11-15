@@ -10,7 +10,7 @@
 #import <CoreData/CoreData.h>
 #import "ServerObject.h"
 
-@class Photo, User;
+@class Photo, User, MKAnnotationCustom;
 
 @interface Spot : ServerObject
 
@@ -21,6 +21,8 @@
 @property (nonatomic, retain) User *spotByUser;
 @property (nonatomic, retain) NSSet *spotPhotos;
 @property (nonatomic, retain) NSSet *spotUsers; // people who have saved this spot
+
+@property (nonatomic, retain) MKAnnotationCustom *annotation;
 @end
 
 @interface Spot (CoreDataGeneratedAccessors)

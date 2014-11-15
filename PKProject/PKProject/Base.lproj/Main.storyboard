@@ -303,12 +303,6 @@
                                     <outlet property="delegate" destination="TcK-Hn-xC7" id="M8L-gs-BOG"/>
                                 </connections>
                             </collectionView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="V" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XYg-YO-Ic7">
-                                <rect key="frame" x="293" y="392" width="15" height="30"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="25"/>
-                                <color key="textColor" red="0.20392156859999999" green="1" blue="0.39607843139999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <nil key="highlightedColor"/>
-                            </label>
                             <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="No Nearby Spots :(" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="UmG-Hv-TSs">
                                 <rect key="frame" x="175" y="482" width="250" height="36"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="30"/>
@@ -411,7 +405,6 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="eVJ-2k-ZOB" firstAttribute="top" secondItem="37e-li-9oJ" secondAttribute="bottom" id="4fH-5Q-wzu"/>
-                            <constraint firstItem="XYg-YO-Ic7" firstAttribute="centerX" secondItem="Y2f-Cd-NF3" secondAttribute="centerX" id="5Y4-tW-DTI"/>
                             <constraint firstItem="37e-li-9oJ" firstAttribute="top" secondItem="iQc-0O-ViA" secondAttribute="topMargin" id="6Vm-5g-9Od"/>
                             <constraint firstAttribute="trailingMargin" secondItem="eVJ-2k-ZOB" secondAttribute="trailing" constant="-20" id="71G-hD-lWh"/>
                             <constraint firstItem="Z82-Z6-PAr" firstAttribute="top" secondItem="Y2f-Cd-NF3" secondAttribute="bottom" priority="750" id="89g-Ts-wsw"/>
@@ -420,8 +413,6 @@
                             <constraint firstAttribute="trailingMargin" secondItem="37e-li-9oJ" secondAttribute="trailing" constant="-20" id="PW7-Wr-Q6T"/>
                             <constraint firstAttribute="centerX" secondItem="Y2f-Cd-NF3" secondAttribute="centerX" id="RI0-73-v8E"/>
                             <constraint firstAttribute="trailingMargin" secondItem="Y2f-Cd-NF3" secondAttribute="trailing" constant="-20" id="SFv-D6-z2a"/>
-                            <constraint firstItem="XYg-YO-Ic7" firstAttribute="bottom" secondItem="Y2f-Cd-NF3" secondAttribute="bottom" constant="-137" id="TFU-Gg-CZn"/>
-                            <constraint firstItem="XYg-YO-Ic7" firstAttribute="top" secondItem="Y2f-Cd-NF3" secondAttribute="top" constant="-8" id="ZpS-7c-5r5"/>
                             <constraint firstItem="37e-li-9oJ" firstAttribute="leading" secondItem="iQc-0O-ViA" secondAttribute="leadingMargin" constant="-20" id="eU3-lS-zjh"/>
                             <constraint firstItem="Y2f-Cd-NF3" firstAttribute="leading" secondItem="iQc-0O-ViA" secondAttribute="leadingMargin" constant="-20" id="nGX-Yl-cbL"/>
                             <constraint firstItem="Y2f-Cd-NF3" firstAttribute="centerY" secondItem="UmG-Hv-TSs" secondAttribute="centerY" id="pYX-kJ-YWa"/>
@@ -430,7 +421,6 @@
                         </constraints>
                         <variation key="default">
                             <mask key="constraints">
-                                <exclude reference="TFU-Gg-CZn"/>
                                 <exclude reference="RI0-73-v8E"/>
                                 <exclude reference="u2Q-zg-ojZ"/>
                             </mask>
@@ -440,7 +430,6 @@
                     <nil key="simulatedTopBarMetrics"/>
                     <connections>
                         <outlet property="collectionView" destination="Y2f-Cd-NF3" id="a67-Rd-u5i"/>
-                        <outlet property="collectionViewCenterMarker" destination="XYg-YO-Ic7" id="CxW-ql-ZnW"/>
                         <outlet property="mapView" destination="eVJ-2k-ZOB" id="n0z-PB-vjS"/>
                         <outlet property="noSpotsText" destination="UmG-Hv-TSs" id="t7u-cb-IdY"/>
                         <segue destination="Vve-Eo-Ty2" kind="show" identifier="CreateSpot" id="IS0-SS-Y8N"/>
@@ -449,7 +438,7 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="RhI-xC-4p8" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <tapGestureRecognizer numberOfTapsRequired="2" id="19g-xY-wij">
                     <connections>
-                        <segue destination="W2W-T9-HBv" kind="presentation" modalPresentationStyle="formSheet" id="zXH-Hz-tRL"/>
+                        <action selector="spotDoubleTap:" destination="TcK-Hn-xC7" id="7oY-Ph-8B8"/>
                     </connections>
                 </tapGestureRecognizer>
             </objects>

@@ -17,6 +17,7 @@
 #import "User+Extended.h"
 #import "Photo+Extended.h"
 #import "LocationManagerHandler.h"
+#import "MKAnnotationCustom.h"
 
 @interface CreateSpotViewController ()
 
@@ -32,7 +33,8 @@
     ServerHandler *serverHandler;
     CoreDataHandler *coreDataHandler;
     LocationManagerHandler *locationHandler;
-    MKPointAnnotation *spotMarker;
+//    MKPointAnnotation *spotMarker;
+    MKAnnotationCustom *spotMarker;
     NSDictionary *imageInfo;
 }
 
@@ -53,8 +55,8 @@ static const CGFloat kDefaultZoomMiles = 0.2;
     self.mapView.showsUserLocation = YES;
     self.mapView.showsPointsOfInterest = NO;
     
-    spotMarker = [[MKPointAnnotation alloc] init];
-    spotMarker.coordinate = locationHandler.currentLocation.coordinate;
+    spotMarker = [[MKAnnotationCustom alloc] initWithCoordinate:locationHandler.currentLocation.coordinate];
+//    spotMarker.coordinate = locationHandler.currentLocation.coordinate;
     [self.mapView addAnnotation:spotMarker];
     
     // create new Spot and Photo objects
@@ -97,14 +99,58 @@ static const CGFloat kDefaultZoomMiles = 0.2;
     [self.mapView setRegion:viewRegion animated:YES];
 }
 
+- (MKAnnotationView *)mapView:(MKMapView *)mapView viewForAnnotation:(id <MKAnnotation>)annotation
+{
+    // TODO: don't be redundant with same call in mapView
+    // If it's the user location, just return nil
+    if ([annotation isKindOfClass:[MKUserLocation class]])
+        return nil;
+    
+    // Handle any custom annotations.
+    if ([annotation isKindOfClass:[MKAnnotationCustom class]])
+    {
+        // Try to dequeue an existing annotation view first
+        MKAnnotationView *annotationView = (MKAnnotationView *)[mapView dequeueReusableAnnotationViewWithIdentifier:@"reuseAnnotationView"];
+        
+        if (!annotationView)
+        {
+            // If an existing pin view was not available, create one.
+            annotationView = [[MKAnnotationView alloc] initWithAnnotation:annotation reuseIdentifier:@"reuseAnnotationView"];
+            annotationView.canShowCallout = NO;
+            [annotationView setDraggable:YES];
+            
+            // set pin image
+            UIImage *pinImage = [UIImage imageNamed:@"pinImage.png"];
+            annotationView.image = pinImage;
+            
+            annotationView.centerOffset = CGPointMake(0.0, -32.0);
+        }
+        else
+        {
+            annotationView.annotation = annotation;
+        }
+        
+        return annotationView;
+    }
+    
+    return nil;
+}
+
+// TODO: redundant will call in mapVC
+-(void)mapView:(MKMapView *)mapView didAddAnnotationViews:(NSArray *)views
+{
+    MKAnnotationView *av = [mapView viewForAnnotation:mapView.userLocation];
+    av.enabled = NO;  //disable touch on user location
+}
+
 #pragma mark - Location Setting
 - (IBAction)setLocation:(UILongPressGestureRecognizer *)sender {
-    CGPoint point = [sender locationInView:self.mapView];
-    // offset y value so that user can see the bottom of the marker to place it more accurately
-    CGPoint adjustedPoint = CGPointMake(point.x, point.y - 15);
-    CLLocationCoordinate2D tapPoint = [self.mapView convertPoint:adjustedPoint toCoordinateFromView:self.mapView];
-    
-    spotMarker.coordinate = tapPoint;
+//    CGPoint point = [sender locationInView:self.mapView];
+//    // offset y value so that user can see the bottom of the marker to place it more accurately
+//    CGPoint adjustedPoint = CGPointMake(point.x, point.y - 15);
+//    CLLocationCoordinate2D tapPoint = [self.mapView convertPoint:adjustedPoint toCoordinateFromView:self.mapView];
+//    
+//    spotMarker.coordinate = tapPoint;
 }
 
 -(void)locationFromPhoto:(CLLocation*)location {

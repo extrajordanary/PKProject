@@ -10,11 +10,14 @@
 #import <UIKit/UIKit.h>
 #import <CoreLocation/CoreLocation.h>
 
+@class MKAnnotationCustom;
+
 @interface Spot (Extended)
 
 -(void)updateFromDictionary:(NSDictionary*)dictionary;
 -(NSDictionary*)toDictionary;
 -(UIImage*)getThumbnail;
 -(CLLocationCoordinate2D)getCoordinate;
+-(MKAnnotationCustom*)getAnnotation;
 
 @end

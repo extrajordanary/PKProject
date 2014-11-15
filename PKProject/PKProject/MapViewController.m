@@ -27,7 +27,6 @@
 @property (strong, nonatomic) NSMutableArray *annotationViews;
 @property (strong, nonatomic) IBOutlet UILabel *noSpotsText;
 @property (strong, nonatomic) IBOutlet UIActivityIndicatorView *activityIndicator;
-@property (strong, nonatomic) IBOutlet UILabel *collectionViewCenterMarker;
 
 @end
 
@@ -35,6 +34,8 @@
     ServerHandler *serverHandler;
     CoreDataHandler *coreDataHandler;
     LocationManagerHandler *locationHandler;
+    CGPoint collectionViewCenter;
+    UIWindow *mainWindow;
     NSString *thisUserId;
     BOOL firstZoom;
     int cellWidth;
@@ -78,6 +79,13 @@ static const CGFloat kDefaultZoomMiles = 0.5;
     }
 }
 
+-(void)viewDidAppear:(BOOL)animated {
+    [super viewDidAppear:animated];
+    
+    mainWindow = [[UIApplication sharedApplication] keyWindow];
+    collectionViewCenter = [mainWindow convertPoint:self.collectionView.center fromWindow:nil];
+}
+
 #pragma mark - Map
 // TODO: only zoom to location the first time
 // TODO: search bar
@@ -93,7 +101,15 @@ static const CGFloat kDefaultZoomMiles = 0.5;
     [self getSpotsInRegion:viewRegion];
 }
 
-#pragma mark - MKMapViewDelegate methods
+#pragma mark - UIScrollViewDelegate
+- (void)scrollViewDidScroll:(UIScrollView *)scrollView {
+    NSLog(@"scrolling");
+    // update which map marker is selected
+    [self highlightMarkerForCenteredCell];
+}
+
+
+#pragma mark - MKMapViewDelegate
 
 - (MKAnnotationView *)mapView:(MKMapView *)mapView viewForAnnotation:(id <MKAnnotation>)annotation
 {
@@ -203,11 +219,19 @@ static const CGFloat kDefaultZoomMiles = 0.5;
     return UIEdgeInsetsMake(0, offset, 0, offset); // !!!
 }
 
-//-(void)highlightMarkerForCenteredCell {
-//    CGPoint centerLocation = self.collectionViewCenterMarker.center;
-//    NSIndexPath *centeredIndexPath = [self.collectionView indexPathForItemAtPoint:centerLocation];
-//    
-//}
+-(void)highlightMarkerForCenteredCell {
+    // get the index of the collectionView cell currently at the center of the screen
+    CGPoint pointInViewCoords = [self.collectionView convertPoint:collectionViewCenter fromView:mainWindow];
+//    NSLog(@"(%i, %i)",(int)pointInViewCoords.x,(int)pointInViewCoords.y);
+    NSIndexPath *centeredIndexPath = [self.collectionView indexPathForItemAtPoint:pointInViewCoords];
+    PhotoCollectionViewCell *centeredCell = (PhotoCollectionViewCell*)[self.collectionView cellForItemAtIndexPath:centeredIndexPath];
+    
+    MKAnnotationCustom *annotation = [centeredCell.spot getAnnotation];
+    [self.mapView selectAnnotation:annotation animated:YES];
+
+//    MKAnnotationView *highlightMarker = self.annotationViews[(int)centeredIndexPath.row];
+//    [self highlightAnnotationViewOnMap:highlightMarker];
+}
 
 #pragma mark - AnnotationViews
 -(void)placeSpotMarker:(MKAnnotationCustom*)marker {
@@ -225,6 +249,7 @@ static const CGFloat kDefaultZoomMiles = 0.5;
 }
 
 -(void)highlightAnnotationViewOnMap:(MKAnnotationView*)annotationView {
+//    self.mapView selectAnnotation:<#(id<MKAnnotation>)#> animated:<#(BOOL)#>
     [self mapView:self.mapView didSelectAnnotationView:annotationView];
 }
 
@@ -294,11 +319,11 @@ static const CGFloat kDefaultZoomMiles = 0.5;
     //        spotMarker.coordinate = [spot getCoordinate];
     //        [self.mapView addAnnotation:spotMarker];
             
-            MKAnnotationCustom *spotMarker = [[MKAnnotationCustom alloc] initWithCoordinate:[spot getCoordinate]];
+            // returns annotation and also makes sure one is created in spot property
+            MKAnnotationCustom *spotMarker = [spot getAnnotation];
+
             [self placeSpotMarker:spotMarker];
-            NSLog(@"annotation");
             }
-    NSLog(@"all markers placed");
 }
 
 #pragma mark - Navigation

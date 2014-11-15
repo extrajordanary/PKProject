@@ -21,4 +21,6 @@
 @dynamic spotPhotos;
 @dynamic spotUsers;
 
+@synthesize annotation;
+
 @end
