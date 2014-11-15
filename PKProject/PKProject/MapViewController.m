@@ -103,17 +103,15 @@ static const CGFloat kDefaultZoomMiles = 0.5;
 
 #pragma mark - UIScrollViewDelegate
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView {
-    NSLog(@"scrolling");
     // update which map marker is selected
     [self highlightMarkerForCenteredCell];
 }
-
 
 #pragma mark - MKMapViewDelegate
 
 - (MKAnnotationView *)mapView:(MKMapView *)mapView viewForAnnotation:(id <MKAnnotation>)annotation
 {
-    NSLog(@"view for annotation");
+//    NSLog(@"view for annotation");
     // If it's the user location, just return nil
     if ([annotation isKindOfClass:[MKUserLocation class]])
         return nil;
@@ -144,7 +142,6 @@ static const CGFloat kDefaultZoomMiles = 0.5;
         [self.annotationViews addObject:annotationView];
         return annotationView;
     }
-    
     return nil;
 }
 
@@ -156,6 +153,10 @@ static const CGFloat kDefaultZoomMiles = 0.5;
 
 - (void)mapView:(MKMapView *)mapView didSelectAnnotationView:(MKAnnotationView*)view {
     // deselect all others first
+//    for (Spot *spot in self.nearbySpots) {
+//        MKAnnotationCustom *annotation = [spot getAnnotation];
+//        [self.mapView deselectAnnotation:annotation animated:YES];
+//    }
     for (MKAnnotationView *aView in self.annotationViews) {
         [self mapView:self.mapView didDeselectAnnotationView:aView];
     }
@@ -198,8 +199,8 @@ static const CGFloat kDefaultZoomMiles = 0.5;
     [collectionView scrollToItemAtIndexPath:indexPath atScrollPosition:UICollectionViewScrollPositionCenteredHorizontally animated:YES];
 
     // select the associated marker on the map
-    MKAnnotationView *annotationView = self.annotationViews[index];
-    [self highlightAnnotationViewOnMap:annotationView];
+//    MKAnnotationView *annotationView = self.annotationViews[index];
+//    [self highlightAnnotationViewOnMap:annotationView];
 }
 
 - (void)collectionView:(UICollectionView *)collectionView didDeselectItemAtIndexPath:(NSIndexPath *)indexPath {
@@ -248,10 +249,9 @@ static const CGFloat kDefaultZoomMiles = 0.5;
     }
 }
 
--(void)highlightAnnotationViewOnMap:(MKAnnotationView*)annotationView {
-//    self.mapView selectAnnotation:<#(id<MKAnnotation>)#> animated:<#(BOOL)#>
-    [self mapView:self.mapView didSelectAnnotationView:annotationView];
-}
+//-(void)highlightAnnotationViewOnMap:(MKAnnotationView*)annotationView {
+//    [self mapView:self.mapView didSelectAnnotationView:annotationView];
+//}
 
 #pragma mark - Spots
 
