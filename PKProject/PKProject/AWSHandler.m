@@ -56,7 +56,7 @@
     uploadRequest.bucket = @"cvalt-photos";
     uploadRequest.key = name;
     uploadRequest.body = imageUrl;
-        
+    
     [[s3TransferManager upload:uploadRequest] continueWithExecutor:[BFExecutor mainThreadExecutor] withBlock:^id(BFTask *task) {
         if (task.error != nil) {
             if( task.error.code != AWSS3TransferManagerErrorCancelled

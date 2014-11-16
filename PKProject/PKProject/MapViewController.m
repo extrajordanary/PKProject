@@ -37,12 +37,9 @@
     CGPoint collectionViewCenter;
     UIWindow *mainWindow;
     NSString *thisUserId;
-    BOOL firstZoom;
     int cellWidth;
 }
-
-#define IS_OS_8_OR_LATER ([[[UIDevice currentDevice] systemVersion] floatValue] >= 8.0)
-
+// TODO: create Constants.h/m
 static const CGFloat kMetersPerMile = 1609.344;
 static const CGFloat kDefaultZoomMiles = 0.5;
 
@@ -67,8 +64,6 @@ static const CGFloat kDefaultZoomMiles = 0.5;
     self.mapView.delegate = self;
     
     self.thisUser = coreDataHandler.thisUser;
-    
-    firstZoom = YES;
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -88,7 +83,8 @@ static const CGFloat kDefaultZoomMiles = 0.5;
 
 #pragma mark - Map
 // TODO: only zoom to location the first time
-// TODO: search bar
+// TODO: search bar for going to address
+
 - (IBAction)showUserLocation:(id)sender {
     [self zoomToCurrentLocation];
 }
@@ -111,7 +107,6 @@ static const CGFloat kDefaultZoomMiles = 0.5;
 
 - (MKAnnotationView *)mapView:(MKMapView *)mapView viewForAnnotation:(id <MKAnnotation>)annotation
 {
-//    NSLog(@"view for annotation");
     // If it's the user location, just return nil
     if ([annotation isKindOfClass:[MKUserLocation class]])
         return nil;
@@ -149,23 +144,19 @@ static const CGFloat kDefaultZoomMiles = 0.5;
 {
     MKAnnotationView *av = [mapView viewForAnnotation:mapView.userLocation];
     av.enabled = NO;  //disable touch on user location
+    
+    // highlight the currently centered cell
+    [self highlightMarkerForCenteredCell];
 }
 
 - (void)mapView:(MKMapView *)mapView didSelectAnnotationView:(MKAnnotationView*)view {
     // deselect all others first
-//    for (Spot *spot in self.nearbySpots) {
-//        MKAnnotationCustom *annotation = [spot getAnnotation];
-//        [self.mapView deselectAnnotation:annotation animated:YES];
-//    }
     for (MKAnnotationView *aView in self.annotationViews) {
         [self mapView:self.mapView didDeselectAnnotationView:aView];
     }
     
     UIImage *pinSelectedImage = [UIImage imageNamed:@"pinSelectedImage.png"];
     view.image = pinSelectedImage;
-    
-    // TODO: center appropriate cell in collectionView
-        
 }
 
 - (void)mapView:(MKMapView *)mapView didDeselectAnnotationView:(MKAnnotationView*)view {
@@ -198,15 +189,12 @@ static const CGFloat kDefaultZoomMiles = 0.5;
     int index = (int)indexPath.row;
     NSLog(@"selected cell %i",index);
     [collectionView scrollToItemAtIndexPath:indexPath atScrollPosition:UICollectionViewScrollPositionCenteredHorizontally animated:YES];
-
-    // select the associated marker on the map
-//    MKAnnotationView *annotationView = self.annotationViews[index];
-//    [self highlightAnnotationViewOnMap:annotationView];
 }
 
+/*
 - (void)collectionView:(UICollectionView *)collectionView didDeselectItemAtIndexPath:(NSIndexPath *)indexPath {
-    // TODO: Deselect item
 }
+*/
 
 - (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath {
     int height = collectionView.frame.size.height;
@@ -215,24 +203,22 @@ static const CGFloat kDefaultZoomMiles = 0.5;
     return CGSizeMake(height, height); // create square cells at maximum height of CollectionView
 }
 
-- (UIEdgeInsets)collectionView:
-(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout insetForSectionAtIndex:(NSInteger)section {
+- (UIEdgeInsets)collectionView:(UICollectionView *)collectionView
+                        layout:(UICollectionViewLayout*)collectionViewLayout
+        insetForSectionAtIndex:(NSInteger)section {
+    // offset allows for all cells to be centered on screen
     int offset = (collectionView.frame.size.width - cellWidth)/2;
-    return UIEdgeInsetsMake(0, offset, 0, offset); // !!!
+    return UIEdgeInsetsMake(0, offset, 0, offset);
 }
 
 -(void)highlightMarkerForCenteredCell {
     // get the index of the collectionView cell currently at the center of the screen
     CGPoint pointInViewCoords = [self.collectionView convertPoint:collectionViewCenter fromView:mainWindow];
-//    NSLog(@"(%i, %i)",(int)pointInViewCoords.x,(int)pointInViewCoords.y);
     NSIndexPath *centeredIndexPath = [self.collectionView indexPathForItemAtPoint:pointInViewCoords];
     PhotoCollectionViewCell *centeredCell = (PhotoCollectionViewCell*)[self.collectionView cellForItemAtIndexPath:centeredIndexPath];
-    
+    // get the correct annotation and select it
     MKAnnotationCustom *annotation = [centeredCell.spot getAnnotation];
     [self.mapView selectAnnotation:annotation animated:YES];
-
-//    MKAnnotationView *highlightMarker = self.annotationViews[(int)centeredIndexPath.row];
-//    [self highlightAnnotationViewOnMap:highlightMarker];
 }
 
 #pragma mark - AnnotationViews
@@ -241,7 +227,7 @@ static const CGFloat kDefaultZoomMiles = 0.5;
 }
 
 // removes all previous markers
-// TODO: for smoother transition just remove markers whose id's aren't in updated spots list
+// TODO: for smoother transition just remove markers whose id's aren't in updated spots list?
 -(void)removeSpotMarkers {
     for (id<MKAnnotation> annotation in self.mapView.annotations)
     {
@@ -249,10 +235,6 @@ static const CGFloat kDefaultZoomMiles = 0.5;
         [self.mapView removeAnnotation:annotation];
     }
 }
-
-//-(void)highlightAnnotationViewOnMap:(MKAnnotationView*)annotationView {
-//    [self mapView:self.mapView didSelectAnnotationView:annotationView];
-//}
 
 #pragma mark - Spots
 
@@ -281,15 +263,12 @@ static const CGFloat kDefaultZoomMiles = 0.5;
                 // see if Spot object already exists in Core Data
                 Spot *nextSpot;
                 NSString *databaseId = serverSpot[@"_id"];
-                
                 nextSpot = (Spot*)[coreDataHandler getObjectWithDatabaseId:databaseId];
                 
                 // if Spot object doesn't already exist in Core Data, create it
                 if (!nextSpot) {
-                    // NSLog(@"new");
                     nextSpot = (Spot*)[coreDataHandler createNew:@"Spot"];
                 }
-                //            NSLog(@"    spot object");
                 // update Spot from server info and then add to array
                 [nextSpot updateFromDictionary:serverSpot];
                 [self.nearbySpots addObject:nextSpot];
@@ -315,23 +294,20 @@ static const CGFloat kDefaultZoomMiles = 0.5;
 
 // populates the map with pins at each Spot location
 -(void)placeSpotMarkers {
-        for (Spot *spot in self.nearbySpots) {
-    //        MKPointAnnotation *spotMarker = [[MKPointAnnotation alloc] init];
-    //        spotMarker.coordinate = [spot getCoordinate];
-    //        [self.mapView addAnnotation:spotMarker];
-            
-            // returns annotation and also makes sure one is created in spot property
-            MKAnnotationCustom *spotMarker = [spot getAnnotation];
+    for (Spot *spot in self.nearbySpots) {
+        // returns annotation and also makes sure one is created in spot property
+        MKAnnotationCustom *spotMarker = [spot getAnnotation];
 
-            [self placeSpotMarker:spotMarker];
-            }
+        [self placeSpotMarker:spotMarker];
+    }
 }
 
 #pragma mark - Navigation
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     if ([segue.identifier isEqualToString:@"CreateSpot"]) {
-        CreateSpotViewController *createSpotViewController = [segue destinationViewController];
-        createSpotViewController.thisUser = self.thisUser;
+        // TODO: don't need since new VC can get thisUser from coreDataHandler
+//        CreateSpotViewController *createSpotViewController = [segue destinationViewController];
+//        createSpotViewController.thisUser = self.thisUser;
     }
 }
 
@@ -363,7 +339,6 @@ static const CGFloat kDefaultZoomMiles = 0.5;
 -(void)viewSpotDetails:(Spot*)spot {
     // TODO: implement detail view
     NSLog(@"view spot %@",spot.databaseId);
-    
 }
 
 -(IBAction)unwindToMapView:(UIStoryboardSegue*)unwindSegue {

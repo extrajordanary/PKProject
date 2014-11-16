@@ -10,7 +10,6 @@
 #import <MapKit/MapKit.h>
 
 @interface MKAnnotationCustom : NSObject <MKAnnotation> {
-//@private
     CLLocationCoordinate2D coordinate;
     NSString *title;
     NSString *subtitle;

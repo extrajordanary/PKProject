@@ -10,15 +10,14 @@
 
 @implementation MKAnnotationCustom
 
-@synthesize coordinate;// = _coordinate;
-@synthesize title;// = _title;
-@synthesize subtitle;// = _subtitle;
+@synthesize coordinate;
+@synthesize title;
+@synthesize subtitle;
 
 - (id)initWithCoordinate:(CLLocationCoordinate2D)coord {
     self = [super init];
     
     if (self != nil) {
-//        self.coordinate = coord;
         [self setCoordinate:coord];
     }
     

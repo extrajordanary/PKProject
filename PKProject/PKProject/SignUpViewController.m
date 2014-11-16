@@ -105,7 +105,7 @@
      */
     // TODO: implement non-FB sign up and login
     
-    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Login"
+    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Email Login"
                                                     message:@"This feature coming soon."
                                                    delegate:self
                                           cancelButtonTitle:@"Okay!"

@@ -8,7 +8,6 @@
 
 #import "PhotoCollectionViewCell.h"
 #import "Spot+Extended.h"
-#import "MKAnnotationCustom.h"
 
 @implementation PhotoCollectionViewCell
 
@@ -22,7 +21,6 @@
     self.spot = spot;
     
     // asynch calls to get display data from spot
-    // image
     dispatch_async(dispatch_get_global_queue( DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^(void){
         UIImage *image = [self.spot getThumbnail]; // returns image for first Photo object
         dispatch_async(dispatch_get_main_queue(), ^(void){
@@ -36,14 +34,6 @@
 
 -(void)displayImage:(UIImage*)image {
     self.imageView.image = image;
-}
-
--(MKAnnotationCustom*)getMarker {
-    CLLocationCoordinate2D coord = [self.spot getCoordinate];
-    MKAnnotationCustom *marker = [[MKAnnotationCustom alloc] initWithCoordinate:coord];
-    self.spotMarker = marker;
-    
-    return marker;
 }
 
 @end
