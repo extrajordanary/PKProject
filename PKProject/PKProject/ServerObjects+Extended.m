@@ -30,8 +30,8 @@
 }
 
 -(void)updateCoreData {
-    // don't save if
     dispatch_async(dispatch_get_main_queue(), ^(void){
+        // ??? - why does it need a databaseId?
         if (self.databaseId) {
             CoreDataHandler *coreDataHandler = [CoreDataHandler sharedCoreDataHandler];
             [coreDataHandler updateCoreData];

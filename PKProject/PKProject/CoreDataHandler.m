@@ -52,7 +52,7 @@
         [theContext save:&error];
         
         if (error) {
-            // TODO: error handling for end user
+            // TODO: error handling for end user?
             NSLog(@"error saving context");
         }
     });
@@ -66,77 +66,18 @@
 }
 
 #pragma mark - Users
-//-(void)updateThisUser {
-//    thisUserId = [[NSUserDefaults standardUserDefaults] valueForKey:@"thisUserId"];
-//    thisUserFacebookId = [[NSUserDefaults standardUserDefaults] valueForKey:@"thisUserFacebookId"];
-//    
-//    // get core data object for this user
-//    [self getThisUser];
-//
-//    if (self.thisUser) {
-//        // does the facebookId match?
-//    }
-//    
-//    
-//    // TODO: check if user has existing User profile, if not create one
-//    // check CoreData first then Server
-//    // TODO: check Core Data
-//    NSString *userFacebookId = @"10103934015298835"; // hardcode cheating for now
-//    [[ServerHandler sharedServerHandler] queryFacebookId:userFacebookId handleResponse:^void (NSArray *queryResults) {
-//        // force to main thread for UI updates
-//        dispatch_async(dispatch_get_main_queue(), ^(void){
-//            // if results are empty, create a new user from facebook info
-//            if (queryResults.count == 0) {
-//                
-//            } else {
-//                // else update existing user
-//                
-//            }
-//        });
-//    }];
-//}
-
 // returns the User object for this device's user profile, may return nil
 -(User*)getThisUser {
     NSLog(@"getting this user");
     thisUserId = [[NSUserDefaults standardUserDefaults] valueForKey:@"thisUserId"];
-//    thisUserFacebookId = [[NSUserDefaults standardUserDefaults] valueForKey:@"thisUserFacebookId"];
 
-    // check if user has stored user _id, if not, create new user on server and save the _id
-    // ??? redundant?
     if (!thisUserId) {
         // expected case for when user is creating account for the first time or logging in on a new device
         return nil;
-        // cheating and hardcoding for now
-//        [[NSUserDefaults standardUserDefaults] setObject:@"542efcec4a1cef02006d1021" forKey:@"thisUserId"];
-//        [[NSUserDefaults standardUserDefaults] synchronize];
     }
     
-    // we have a userId so the object must exist
+    // we have a userId so the object must exist on server and poss in coreData
     self.thisUser = (User*)[self returnObjectOfType:@"User" forId:thisUserId];
-    
-    
-    // TODO: change this out for the generic search
-//    NSPredicate *thisUser = [NSPredicate predicateWithFormat:@"databaseId = %@",thisUserId];
-//    NSSortDescriptor *sortBy = [NSSortDescriptor sortDescriptorWithKey:@"databaseId" ascending:YES];
-//    NSArray *searchResults = [self getManagedObjects:@"User" withPredicate:thisUser sortedBy:sortBy];
-//    
-//    if (searchResults.count > 0) {
-//        self.thisUser = searchResults[0];
-//
-//    }
-    
-//    if (!self.thisUser) {
-//        // if User object doesn't already exist in Core Data, create it and update from server
-//        User *newUser = (User*)[self createNew:@"User"];
-//        
-//        
-//        NSString *userId = [[NSUserDefaults standardUserDefaults] valueForKey:@"thisUserId"];
-//        [newUser setValue:userId forKey:@"databaseId"];
-//        [serverHandler updateUserFromServer:newUser];
-//        
-//        self.thisUser = newUser;
-//    }
     
     return self.thisUser;
 }

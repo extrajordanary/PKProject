@@ -21,17 +21,10 @@ static NSString* const kAWSBase = @"https://s3-us-west-1.amazonaws.com/cvalt-pho
     if (self) {
         self.databaseId = dictionary[@"_id"];
         self.creationTimestamp = dictionary[@"creationTimestamp"];
-        
         self.latitude = dictionary[@"location"][@"coordinates"][1];
         self.longitude = dictionary[@"location"][@"coordinates"][0];
         
-//        self.latitude = dictionary[@"latitude"];
-//        self.longitude = dictionary[@"longitude"];
-
-//        self.localPath = dictionary[@"localPath"]; // check if the new one is NA before overwriting local data
-//        self.onlinePath = dictionary[@"onlinePath"];
-        
-        // TODO: photoByUser - but I don't need to create these objects every time.
+        // TODO: photoByUser - but I don't need to create these objects every time
         // TODO: photoSpot
         
         [self updateCoreData];
@@ -43,11 +36,6 @@ static NSString* const kAWSBase = @"https://s3-us-west-1.amazonaws.com/cvalt-pho
     jsonable[@"creationTimestamp"] = self.creationTimestamp;
     
     jsonable[@"location"] = @{@"type":@"Point", @"coordinates" : @[@([self.longitude doubleValue]), @([self.latitude doubleValue])] };
-
-//    jsonable[@"latitude"] = self.latitude;
-//    jsonable[@"longitude"] = self.longitude;
-//    jsonable[@"localPath"] = self.localPath;
-//    jsonable[@"onlinePath"] = self.onlinePath;
     
     jsonable[@"photoByUser"] = self.photoByUser.databaseId; // only one
     
@@ -55,11 +43,11 @@ static NSString* const kAWSBase = @"https://s3-us-west-1.amazonaws.com/cvalt-pho
         // just in case the photo gets saved to the server before the spot does
         jsonable[@"photoSpot"] = self.photoSpot.databaseId; // only one
     }
-    
     return jsonable;
 }
 
 -(UIImage*)getImage {
+    // TODO: separate method for getting a smaller resolution image for faster loading
     UIImage *image;
     NSLog(@"checking for local image");
     if (self.databaseId && ![self.databaseId isEqualToString:@"0"]) {
@@ -79,11 +67,11 @@ static NSString* const kAWSBase = @"https://s3-us-west-1.amazonaws.com/cvalt-pho
                 [self saveImageToLocalCache:image];
             }
         }
-    } else { // must still be using temp image
+    } else {
+        // must still be using temp image
         NSLog(@"Using temp photo path");
         image = [UIImage imageWithContentsOfFile:[self getTempLocalPath]];
     }
-    
     return image;
 }
 
@@ -99,7 +87,6 @@ static NSString* const kAWSBase = @"https://s3-us-west-1.amazonaws.com/cvalt-pho
         localPath = [self getTempLocalPath];
         NSLog(@"saving to temp");
     }
-    
     [saveImage writeToFile:localPath options:NSDataWritingAtomic error:nil];
 }
 
@@ -130,23 +117,13 @@ static NSString* const kAWSBase = @"https://s3-us-west-1.amazonaws.com/cvalt-pho
 
 -(NSString*)getTempLocalPath {
     NSString *cachesFolder = [NSSearchPathForDirectoriesInDomains(NSCachesDirectory, NSUserDomainMask, YES) lastObject];
-
-//    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
-//    [dateFormatter setTimeZone:[NSTimeZone timeZoneWithAbbreviation:@"GMT"]];
-//    [dateFormatter setDateStyle:NSDateFormatterLongStyle];
-//    [dateFormatter setTimeStyle:NSDateFormatterLongStyle];
-//    NSDate *timestamp = [dateFormatter dateFromString:self.creationTimestamp];
-//    NSString *timeString = [NSString stringWithFormat:@"%lu",(long unsigned)timestamp];
-    
     NSString *localPath = [[cachesFolder stringByAppendingPathComponent:self.creationTimestamp] stringByAppendingString:@".jpg"];
-//    NSLog(@"%@",localPath);
     return localPath;
 }
 
 -(NSString*)getLocalPath {
     NSString *cachesFolder = [NSSearchPathForDirectoriesInDomains(NSCachesDirectory, NSUserDomainMask, YES) lastObject];
     NSString *localPath = [[cachesFolder stringByAppendingPathComponent:self.databaseId] stringByAppendingString:@".jpg"];
-//    NSLog(@"%@",localPath);
     return localPath;
 }
 

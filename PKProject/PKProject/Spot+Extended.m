@@ -15,7 +15,6 @@
 
 @implementation Spot (Extended)
 
-
 -(void)updateFromDictionary:(NSDictionary*)dictionary{
     if (self) {
         self.databaseId = dictionary[@"_id"];

@@ -30,10 +30,7 @@
                     sortedBy:(NSSortDescriptor*)sortDescriptor;
 
 -(ServerObject*)createNew:(NSString*)entityType;
-
 -(User*)getThisUser;
-//-(void)updateThisUser;
-
 -(void)updateCoreData;
 
 @end

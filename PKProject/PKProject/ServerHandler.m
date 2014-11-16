@@ -84,7 +84,7 @@ static NSString* const kPhotos = @"/collections/photos";
     [dataTask resume];
 }
 
-// given a facebookId, check for existing User object on server and return in
+// given a facebookId, check for existing User object on server and return it
 - (void) queryFacebookId:(NSString*)facebookId handleResponse:(void (^)(NSArray*))responseHandlingBlock {
     NSString* facebookIdRequest = [NSString stringWithFormat:@"{\"facebookId\":{\"$in\":[\"%@\"]}}", facebookId];
     NSString* escBox = (NSString *)CFBridgingRelease(CFURLCreateStringByAddingPercentEscapes(NULL,
@@ -111,10 +111,10 @@ static NSString* const kPhotos = @"/collections/photos";
     NSURLSessionDataTask* dataTask = [session dataTaskWithRequest:request
                                                 completionHandler:^(NSData *data, NSURLResponse *response, NSError *error) {
         if (error == nil) {
-            NSArray* responseDictionary = [NSJSONSerialization JSONObjectWithData:data options:0 error:NULL];
-            responseHandlingBlock(responseDictionary); // TODO: rename to array
+            NSArray* responseArrray = [NSJSONSerialization JSONObjectWithData:data options:0 error:NULL];
+            responseHandlingBlock(responseArrray);
             
-            NSLog(@"%lu users found", (unsigned long)responseDictionary.count);
+            NSLog(@"%lu users found", (unsigned long)responseArrray.count);
         }
     }];
     [dataTask resume];
@@ -122,7 +122,8 @@ static NSString* const kPhotos = @"/collections/photos";
 
 // given a User object, method checks if the User already exists on the server
 // then it either creates a new entry in the server or updates the existing entry
-// should only ever be push THIS user TODO: for now...
+// should only ever push THIS user
+// TODO: ^ for now...?
 -(void)pushUserToServer:(User*)user {
     if (!user) {
         // TODO: error?
@@ -178,7 +179,6 @@ static NSString* const kPhotos = @"/collections/photos";
     CLLocationDegrees y1 = region.center.latitude + region.span.latitudeDelta/2;
     
     NSString* boxQuery = [NSString stringWithFormat:@"{\"$geoWithin\":{\"$box\":[[%f,%f],[%f,%f]]}}",x0,y0,x1,y1];
-//    NSLog(@"%@",boxQuery);
     NSString* locationInBox = [NSString stringWithFormat:@"{\"location\":%@}", boxQuery];
     NSString* escBox = (NSString *)CFBridgingRelease(CFURLCreateStringByAddingPercentEscapes(NULL,
                                                                                              (CFStringRef) locationInBox,
@@ -283,7 +283,7 @@ static NSString* const kPhotos = @"/collections/photos";
 // given a Photo object, method checks if the Photo already exists on the server
 // then it either creates a new entry in the server or updates the existing entry
 -(void)pushPhotoToServer:(Photo*)photo {
-    if (!photo || photo.latitude == nil || photo.longitude == nil) { // || photo.imageBinary == nil) {
+    if (!photo || photo.latitude == nil || photo.longitude == nil) { 
         // TODO: error?
         NSLog(@"Error saving photo to server");
         return; //input safety check

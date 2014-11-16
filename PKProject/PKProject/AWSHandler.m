@@ -12,8 +12,6 @@
 
 @interface AWSHandler ()
 
-@property (nonatomic, strong) AWSS3TransferManagerUploadRequest *uploadRequest1;
-
 @end
 
 @implementation AWSHandler {
@@ -32,7 +30,6 @@
 
 - (id)init {
     if (self = [super init]) {
-
         AWSCognitoCredentialsProvider *credentialsProvider = [AWSCognitoCredentialsProvider
                                                               credentialsWithRegionType:AWSRegionUSEast1
                                                               accountId:@"698954936319"
