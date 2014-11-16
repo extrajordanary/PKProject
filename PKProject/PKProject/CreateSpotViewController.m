@@ -33,8 +33,8 @@
     ServerHandler *serverHandler;
     CoreDataHandler *coreDataHandler;
     LocationManagerHandler *locationHandler;
-//    MKPointAnnotation *spotMarker;
-    MKAnnotationCustom *spotMarker;
+//    MKAnnotationCustom *spotMarker;
+    CLLocationCoordinate2D spotCoordinate;
     NSDictionary *imageInfo;
 }
 
@@ -48,16 +48,20 @@ static const CGFloat kDefaultZoomMiles = 0.2;
     coreDataHandler = [CoreDataHandler sharedCoreDataHandler];
     locationHandler = [LocationManagerHandler sharedLocationManagerHandler];
     
+    self.thisUser = coreDataHandler.thisUser;
+    
     // listen for changes from location manager
     [locationHandler addObserver:self forKeyPath:@"currentLocation" options:NSKeyValueObservingOptionNew context:nil];
     [locationHandler addObserver:self forKeyPath:@"isAuthorized" options:NSKeyValueObservingOptionNew context:nil];
     
     self.mapView.showsUserLocation = YES;
     self.mapView.showsPointsOfInterest = NO;
+    self.mapView.delegate = self;
     
-    spotMarker = [[MKAnnotationCustom alloc] initWithCoordinate:locationHandler.currentLocation.coordinate];
-//    spotMarker.coordinate = locationHandler.currentLocation.coordinate;
-    [self.mapView addAnnotation:spotMarker];
+    spotCoordinate = locationHandler.currentLocation.coordinate;
+    
+//    spotMarker = [[MKAnnotationCustom alloc] initWithCoordinate:locationHandler.currentLocation.coordinate];
+//    [self.mapView addAnnotation:spotMarker];
     
     // create new Spot and Photo objects
     newSpot = (Spot*)[coreDataHandler createNew:@"Spot"];
@@ -85,6 +89,7 @@ static const CGFloat kDefaultZoomMiles = 0.2;
 }
 
 -(void)viewWillDisappear:(BOOL)animated {
+    [self updateSpotCoordinate];
     [super viewWillDisappear:animated];
 }
 
@@ -95,7 +100,8 @@ static const CGFloat kDefaultZoomMiles = 0.2;
 }
 
 -(void)zoomToMarker {
-    MKCoordinateRegion viewRegion = MKCoordinateRegionMakeWithDistance(spotMarker.coordinate, kDefaultZoomMiles*kMetersPerMile, kDefaultZoomMiles*kMetersPerMile);
+//    MKCoordinateRegion viewRegion = MKCoordinateRegionMakeWithDistance(spotMarker.coordinate, kDefaultZoomMiles*kMetersPerMile, kDefaultZoomMiles*kMetersPerMile);
+    MKCoordinateRegion viewRegion = MKCoordinateRegionMakeWithDistance(spotCoordinate, kDefaultZoomMiles*kMetersPerMile, kDefaultZoomMiles*kMetersPerMile);
     [self.mapView setRegion:viewRegion animated:YES];
 }
 
@@ -106,7 +112,7 @@ static const CGFloat kDefaultZoomMiles = 0.2;
     if ([annotation isKindOfClass:[MKUserLocation class]])
         return nil;
     
-    // Handle any custom annotations.
+    // Handle any custom annotations
     if ([annotation isKindOfClass:[MKAnnotationCustom class]])
     {
         // Try to dequeue an existing annotation view first
@@ -117,7 +123,10 @@ static const CGFloat kDefaultZoomMiles = 0.2;
             // If an existing pin view was not available, create one.
             annotationView = [[MKAnnotationView alloc] initWithAnnotation:annotation reuseIdentifier:@"reuseAnnotationView"];
             annotationView.canShowCallout = NO;
+            // TODO: draggable not working
+            [annotationView setUserInteractionEnabled:YES];
             [annotationView setDraggable:YES];
+            annotationView.dragState = MKAnnotationViewDragStateEnding;
             
             // set pin image
             UIImage *pinImage = [UIImage imageNamed:@"pinImage.png"];
@@ -136,7 +145,15 @@ static const CGFloat kDefaultZoomMiles = 0.2;
     return nil;
 }
 
-// TODO: redundant will call in mapVC
+//- (void)mapView:(MKMapView *)mapView annotationView:(MKAnnotationView *)view didChangeDragState:(MKAnnotationViewDragState)newState fromOldState:(MKAnnotationViewDragState)oldState {
+//    if ([view.annotation isKindOfClass:[MKAnnotationCustom class]]) {
+//        if (newState == MKAnnotationViewDragStateEnding) {
+//            view.dragState = MKAnnotationViewDragStateNone;
+//        }
+//    }
+//}
+
+// TODO: redundant with call in mapVC
 -(void)mapView:(MKMapView *)mapView didAddAnnotationViews:(NSArray *)views
 {
     MKAnnotationView *av = [mapView viewForAnnotation:mapView.userLocation];
@@ -153,10 +170,15 @@ static const CGFloat kDefaultZoomMiles = 0.2;
 //    spotMarker.coordinate = tapPoint;
 }
 
+-(void)updateSpotCoordinate {
+    spotCoordinate = CLLocationCoordinate2DMake(self.mapView.centerCoordinate.latitude, self.mapView.centerCoordinate.longitude);
+}
+
 -(void)locationFromPhoto:(CLLocation*)location {
     if (location) {
         NSLog(@"update marker location from photo");
-        spotMarker.coordinate = location.coordinate;
+//        spotMarker.coordinate = location.coordinate;
+        spotCoordinate = location.coordinate;
         [self zoomToMarker];
     } else {
         // popup to let user know they need to set the location manually
@@ -273,18 +295,20 @@ static const CGFloat kDefaultZoomMiles = 0.2;
     // TODO: move dateFormatter into a singleton class?
     NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
     [dateFormatter setTimeZone:[NSTimeZone timeZoneWithAbbreviation:@"GMT"]];
-    [dateFormatter setDateStyle:NSDateFormatterLongStyle];
-    [dateFormatter setTimeStyle:NSDateFormatterLongStyle];
-//    [dateFormatter setDateFormat:@"yyyy-MM-dd_HH-mm-ss"];
+//    [dateFormatter setDateStyle:NSDateFormatterLongStyle];
+//    [dateFormatter setTimeStyle:NSDateFormatterLongStyle];
+    [dateFormatter setDateFormat:@"yyyy-MMM-dd_HH-mm-ss_zzz"];
     NSDate *date = [NSDate date];
     NSString *formattedDate = [dateFormatter stringFromDate:date];
     newSpot.creationTimestamp = formattedDate;
     newPhoto.creationTimestamp = formattedDate;
     
-    newSpot.latitude = [NSNumber numberWithDouble:spotMarker.coordinate.latitude];
-    newSpot.longitude = [NSNumber numberWithDouble:spotMarker.coordinate.longitude];
-    newPhoto.latitude = [NSNumber numberWithDouble:spotMarker.coordinate.latitude];
-    newPhoto.longitude = [NSNumber numberWithDouble:spotMarker.coordinate.longitude];
+//    spotCoordinate = CLLocationCoordinate2DMake(self.mapView.centerCoordinate.latitude, self.mapView.centerCoordinate.longitude);
+    [self updateSpotCoordinate];
+    newSpot.latitude = [NSNumber numberWithDouble:spotCoordinate.latitude];
+    newSpot.longitude = [NSNumber numberWithDouble:spotCoordinate.longitude];
+    newPhoto.latitude = [NSNumber numberWithDouble:spotCoordinate.latitude];
+    newPhoto.longitude = [NSNumber numberWithDouble:spotCoordinate.longitude];
     
     // save photo to local cache
     [newPhoto saveImageToLocalCache:self.spotImage.image];

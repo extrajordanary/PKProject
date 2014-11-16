@@ -49,10 +49,11 @@
         NSError *error = nil;
         
         // save the context to persist changes
-        [theContext save:&error]; // !!! Thread 4: EXC_BAD_ACCESS (code = 1, address=...)
+        [theContext save:&error];
         
         if (error) {
-            // TODO: error handling
+            // TODO: error handling for end user
+            NSLog(@"error saving context");
         }
     });
 
@@ -65,35 +66,35 @@
 }
 
 #pragma mark - Users
--(void)updateThisUser {
-    thisUserId = [[NSUserDefaults standardUserDefaults] valueForKey:@"thisUserId"];
-    thisUserFacebookId = [[NSUserDefaults standardUserDefaults] valueForKey:@"thisUserFacebookId"];
-    
-    // get core data object for this user
-    [self getThisUser];
-
-    if (self.thisUser) {
-        // does the facebookId match?
-    }
-    
-    
-    // TODO: check if user has existing User profile, if not create one
-    // check CoreData first then Server
-    // TODO: check Core Data
-    NSString *userFacebookId = @"10103934015298835"; // hardcode cheating for now
-    [[ServerHandler sharedServerHandler] queryFacebookId:userFacebookId handleResponse:^void (NSArray *queryResults) {
-        // force to main thread for UI updates
-        dispatch_async(dispatch_get_main_queue(), ^(void){
-            // if results are empty, create a new user from facebook info
-            if (queryResults.count == 0) {
-                
-            } else {
-                // else update existing user
-                
-            }
-        });
-    }];
-}
+//-(void)updateThisUser {
+//    thisUserId = [[NSUserDefaults standardUserDefaults] valueForKey:@"thisUserId"];
+//    thisUserFacebookId = [[NSUserDefaults standardUserDefaults] valueForKey:@"thisUserFacebookId"];
+//    
+//    // get core data object for this user
+//    [self getThisUser];
+//
+//    if (self.thisUser) {
+//        // does the facebookId match?
+//    }
+//    
+//    
+//    // TODO: check if user has existing User profile, if not create one
+//    // check CoreData first then Server
+//    // TODO: check Core Data
+//    NSString *userFacebookId = @"10103934015298835"; // hardcode cheating for now
+//    [[ServerHandler sharedServerHandler] queryFacebookId:userFacebookId handleResponse:^void (NSArray *queryResults) {
+//        // force to main thread for UI updates
+//        dispatch_async(dispatch_get_main_queue(), ^(void){
+//            // if results are empty, create a new user from facebook info
+//            if (queryResults.count == 0) {
+//                
+//            } else {
+//                // else update existing user
+//                
+//            }
+//        });
+//    }];
+//}
 
 // returns the User object for this device's user profile, may return nil
 -(User*)getThisUser {
@@ -111,8 +112,7 @@
 //        [[NSUserDefaults standardUserDefaults] synchronize];
     }
     
-    // we have a userId so the object must exist on the server
-    // first see if User object already exists in Core Data
+    // we have a userId so the object must exist
     self.thisUser = (User*)[self returnObjectOfType:@"User" forId:thisUserId];
     
     

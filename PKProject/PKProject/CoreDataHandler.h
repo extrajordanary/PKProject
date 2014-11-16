@@ -32,7 +32,7 @@
 -(ServerObject*)createNew:(NSString*)entityType;
 
 -(User*)getThisUser;
--(void)updateThisUser;
+//-(void)updateThisUser;
 
 -(void)updateCoreData;
 

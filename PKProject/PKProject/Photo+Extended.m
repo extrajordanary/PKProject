@@ -129,16 +129,16 @@ static NSString* const kAWSBase = @"https://s3-us-west-1.amazonaws.com/cvalt-pho
 }
 
 -(NSString*)getTempLocalPath {
-    // TODO: create string from timestamp to use instead of latitude
     NSString *cachesFolder = [NSSearchPathForDirectoriesInDomains(NSCachesDirectory, NSUserDomainMask, YES) lastObject];
-//    NSString *lat = [NSString stringWithFormat:@"%i",(int)([self.latitude floatValue]*10000)];
-    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
-    [dateFormatter setTimeZone:[NSTimeZone timeZoneWithAbbreviation:@"GMT"]];
-    [dateFormatter setDateStyle:NSDateFormatterLongStyle];
-    [dateFormatter setTimeStyle:NSDateFormatterLongStyle];
-    NSDate *timestamp = [dateFormatter dateFromString:self.creationTimestamp];
-    NSString *timeString = [NSString stringWithFormat:@"%lu",(long unsigned)timestamp];
-    NSString *localPath = [[cachesFolder stringByAppendingPathComponent:timeString] stringByAppendingString:@".jpg"];
+
+//    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+//    [dateFormatter setTimeZone:[NSTimeZone timeZoneWithAbbreviation:@"GMT"]];
+//    [dateFormatter setDateStyle:NSDateFormatterLongStyle];
+//    [dateFormatter setTimeStyle:NSDateFormatterLongStyle];
+//    NSDate *timestamp = [dateFormatter dateFromString:self.creationTimestamp];
+//    NSString *timeString = [NSString stringWithFormat:@"%lu",(long unsigned)timestamp];
+    
+    NSString *localPath = [[cachesFolder stringByAppendingPathComponent:self.creationTimestamp] stringByAppendingString:@".jpg"];
 //    NSLog(@"%@",localPath);
     return localPath;
 }

@@ -165,6 +165,7 @@ static const CGFloat kDefaultZoomMiles = 0.5;
     view.image = pinSelectedImage;
     
     // TODO: center appropriate cell in collectionView
+        
 }
 
 - (void)mapView:(MKMapView *)mapView didDeselectAnnotationView:(MKAnnotationView*)view {
