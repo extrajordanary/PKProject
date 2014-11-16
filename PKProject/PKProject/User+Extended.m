@@ -40,6 +40,15 @@
     self.nameLast = dictionary[@"last_name"];
     self.email = dictionary[@"email"];
     
+    if (!self.creationTimestamp) {
+        NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+        [dateFormatter setTimeZone:[NSTimeZone timeZoneWithAbbreviation:@"GMT"]];
+        [dateFormatter setDateFormat:@"yyyy-MMM-dd_HH-mm-ss_zzz"];
+        NSDate *date = [NSDate date];
+        NSString *formattedDate = [dateFormatter stringFromDate:date];
+        self.creationTimestamp = formattedDate;
+    }
+    
     [self updateCoreData];
 }
 
