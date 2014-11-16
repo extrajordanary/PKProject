@@ -34,19 +34,6 @@
     
     UIViewController *viewController = [storyboard instantiateViewControllerWithIdentifier:@"signIn"];
     
-//    // check if user has stored user _id, if not, create new user on server and save the _id
-//    if (![[NSUserDefaults standardUserDefaults] objectForKey:@"thisUserId"]) {
-//        // provide option to login with exisiting account
-//        
-//        // else create new user and save to server
-//        
-//        // save the returned objectID for thisUserId
-//        
-//        // cheating and hardcoding for now
-//        [[NSUserDefaults standardUserDefaults] setObject:@"542efcec4a1cef02006d1021" forKey:@"thisUserId"];
-//        [[NSUserDefaults standardUserDefaults] synchronize];
-//    }
-    
     [Heap setAppId:@"1618197093"];
 #ifdef DEBUG
     [Heap enableVisualizer];
@@ -79,7 +66,6 @@
         [[NSUserDefaults standardUserDefaults] synchronize];
     }
     
-        
         /* Other launch code goes here */
     
     self.window.rootViewController = viewController;
@@ -191,7 +177,7 @@
 -(void)updateOrCreateUserAccountWithData:(NSDictionary*)data {
     // call CoreDataHandler to either update or create new user
     NSString *thisUserId = [[NSUserDefaults standardUserDefaults] valueForKey:@"thisUserId"];
-//    User *thisUser;
+
     NSString *currentFacebookId = [data objectForKey:@"id"];
     CoreDataHandler *coreDataHandler = [CoreDataHandler sharedCoreDataHandler];
     // existing userId means the account has already been created on the server so we get the object for it
@@ -199,14 +185,12 @@
         thisUser = [coreDataHandler getThisUser];
         
         // now we want to make sure this isn't a new user logged into the same device
-        // so see if the facebookId's match
+        // if facebookId's match we are done
         if ([thisUser.facebookId isEqualToString:currentFacebookId]) {
             return;
         }
     }
-    // if they don't we need to pull the server to search by facebookId to bring in the right profile
-    // got this far so existing user id must not have worked out
-    // search server by facebook id
+    // if they don't match, need to get the right facebookId profile from the server
     [[ServerHandler sharedServerHandler] queryFacebookId:currentFacebookId handleResponse:^void (NSArray *queryResults) {
         // force to main thread for UI updates
         dispatch_async(dispatch_get_main_queue(), ^(void){
@@ -215,9 +199,7 @@
             if (queryResults.count == 1) {
                 // account already exists so save it locally
                 thisUser = (User*)[coreDataHandler createNew:@"User"];
-//                for (NSDictionary *user in queryResults) {
-//                    [thisUser updateFromDictionary:user];
-//                }
+
                 [thisUser updateFromDictionary:queryResults[0]];
                 
                 // update NSUserDefaults
@@ -226,9 +208,10 @@
                 [[NSUserDefaults standardUserDefaults] synchronize];
             } else if (queryResults.count == 0){
                 // create a new user and fill it out with facebook info
+                // TODO: popup to let user know their profile is being created?
                 thisUser = (User*)[coreDataHandler createNew:@"User"];
+                // pre-fills out user data from FB info and adds creation timestamp
                 [thisUser updateFromFacebookDictionary:data];
-                // TODO: add creation timestamp
                 [[ServerHandler sharedServerHandler] pushUserToServer:thisUser];
             } else {
                 // error
@@ -237,28 +220,6 @@
             coreDataHandler.thisUser = thisUser;
         });
     }];
-    
-//    else {
-//        // no existing userId, so check online for User with matching facebookId
-        thisUser = (User*)[coreDataHandler createNew:@"User"];
-//        [thisUser updateFromFacebookDictionary:data];
-//    }
-    
-    
-    
-    // do I already have a user id in nsuserdefaults?
-    // if yes, does the facebook id match the one that was just returned
- 
-    
-//    [[NSUserDefaults standardUserDefaults] setObject:@"542efcec4a1cef02006d1021" forKey:@"thisUserFacebookId"];
-//    [[NSUserDefaults standardUserDefaults] synchronize];
-//
-//    self.coreDataHandler = [CoreDataHandler sharedCoreDataHandler];
-//
-//
-//    if ([self.coreDataHandler getThisUser]) {
-//        NSLog(@"existing user in coredata");
-//    }
 }
 
 // Show an alert message

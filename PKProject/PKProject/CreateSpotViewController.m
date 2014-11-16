@@ -295,8 +295,6 @@ static const CGFloat kDefaultZoomMiles = 0.2;
     // TODO: move dateFormatter into a singleton class?
     NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
     [dateFormatter setTimeZone:[NSTimeZone timeZoneWithAbbreviation:@"GMT"]];
-//    [dateFormatter setDateStyle:NSDateFormatterLongStyle];
-//    [dateFormatter setTimeStyle:NSDateFormatterLongStyle];
     [dateFormatter setDateFormat:@"yyyy-MMM-dd_HH-mm-ss_zzz"];
     NSDate *date = [NSDate date];
     NSString *formattedDate = [dateFormatter stringFromDate:date];

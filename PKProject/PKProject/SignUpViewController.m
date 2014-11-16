@@ -39,7 +39,6 @@
 
 -(void)viewDidAppear:(BOOL)animated {
     [super viewDidAppear:animated];
-
 }
 
 - (void)didReceiveMemoryWarning {
@@ -81,9 +80,7 @@
 
 #pragma mark - NSUserDefaults Change Notification
 - (void)defaultsChanged:(NSNotification *)notification {
-    // Get the user defaults
-//    NSUserDefaults *defaults = (NSUserDefaults *)[notification object];
-//    NSLog(@"change detected");
+    // change button text based on loggedIn status
     [self setContinueButtonText];
 }
 
@@ -98,12 +95,15 @@
 
 #pragma mark - Login
 -(void)loginPopup {
-//    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Login"
-//                                                    message:@"Typos are the enemy."
-//                                                   delegate:self
-//                                          cancelButtonTitle:@"I'm New"
-//                                          otherButtonTitles:@"Login!",nil];
-//    alert.alertViewStyle = UIAlertViewStyleLoginAndPasswordInput;
+    /*
+    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Login"
+                                                    message:@"Typos are the enemy."
+                                                   delegate:self
+                                          cancelButtonTitle:@"I'm New"
+                                          otherButtonTitles:@"Login!",nil];
+    alert.alertViewStyle = UIAlertViewStyleLoginAndPasswordInput;
+     */
+    // TODO: implement non-FB sign up and login
     
     UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Login"
                                                     message:@"This feature coming soon."
@@ -114,6 +114,7 @@
     [alert show];
 }
 
+/*
 -(void)loginTypoPopup {
     UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Login Failed"
                                                     message:@"Typos are the enemy."
@@ -136,8 +137,10 @@
         return NO;
     }
 }
+ */
 
 #pragma mark - Alert Delegates
+/*
 - (void)alertView:(UIAlertView *)alertView didDismissWithButtonIndex:(NSInteger)buttonIndex {
     NSLog(@"alert dismissed with button %i", (int)buttonIndex);
     if ((int)buttonIndex == 1) {
@@ -150,6 +153,7 @@
         }
     }
 }
+*/
 
 /*
 #pragma mark - Navigation
