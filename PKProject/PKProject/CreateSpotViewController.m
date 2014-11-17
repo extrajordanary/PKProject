@@ -89,6 +89,10 @@ static const CGFloat kDefaultZoomMiles = 0.2;
 }
 
 #pragma mark - Map
+- (IBAction)myLocation:(id)sender {
+    [self zoomToCurrentLocation];   
+}
+
 -(void)zoomToCurrentLocation {
     MKCoordinateRegion viewRegion = MKCoordinateRegionMakeWithDistance(locationHandler.currentLocation.coordinate, kDefaultZoomMiles*kMetersPerMile, kDefaultZoomMiles*kMetersPerMile);
     [self.mapView setRegion:viewRegion animated:YES];
@@ -174,6 +178,14 @@ static const CGFloat kDefaultZoomMiles = 0.2;
 #pragma mark - Image Picker
 - (IBAction)tapUseCamera:(UITapGestureRecognizer *)sender {
     [self useCamera];
+}
+
+- (IBAction)cameraButton:(id)sender {
+    [self useCamera];
+}
+
+- (IBAction)folderButton:(id)sender {
+    [self pictureFromPhotoLibrary];
 }
 
 -(void)useCamera {

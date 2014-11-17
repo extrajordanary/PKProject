@@ -170,7 +170,7 @@ static const NSString *highlightedPin = @"greenPin72.png";
         [self mapView:self.mapView didDeselectAnnotationView:aView];
     }
     
-    UIImage *pinSelectedImage = [UIImage imageNamed:@"greenPin"];
+    UIImage *pinSelectedImage = [UIImage imageNamed:@"darkBluePin"];
     view.image = pinSelectedImage;
     
     // if initiated by touch
