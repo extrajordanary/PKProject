@@ -38,6 +38,8 @@
     UIWindow *mainWindow;
     NSString *thisUserId;
     int cellWidth;
+    BOOL userScrolling;
+    BOOL userTouchedAnnotationView;
 }
 // TODO: create Constants.h/m
 static const CGFloat kMetersPerMile = 1609.344;
@@ -62,6 +64,9 @@ static const CGFloat kDefaultZoomMiles = 0.5;
     self.mapView.showsUserLocation = YES;
     self.mapView.showsPointsOfInterest = NO;
     self.mapView.delegate = self;
+    
+    userScrolling = YES;
+    userTouchedAnnotationView = YES;
     
     self.thisUser = coreDataHandler.thisUser;
 }
@@ -99,8 +104,16 @@ static const CGFloat kDefaultZoomMiles = 0.5;
 
 #pragma mark - UIScrollViewDelegate
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView {
-    // update which map marker is selected
-    [self highlightMarkerForCenteredCell];
+    // ignore scrolls initiated in code
+    if (userScrolling) {
+        // update which map marker is selected
+        [self highlightMarkerForCenteredCell];
+    }
+}
+
+-(void)scrollViewDidEndScrollingAnimation:(UIScrollView *)scrollView {
+    
+    userScrolling = YES;
 }
 
 #pragma mark - MKMapViewDelegate
@@ -127,13 +140,13 @@ static const CGFloat kDefaultZoomMiles = 0.5;
             UIImage *pinImage = [UIImage imageNamed:@"pinImage.png"];
             annotationView.image = pinImage;
             
-            annotationView.centerOffset = CGPointMake(0.0, -32.0);
+            annotationView.centerOffset = CGPointMake(0.0, -31.0);
         }
         else
         {
             annotationView.annotation = annotation;
         }
-        
+
         [self.annotationViews addObject:annotationView];
         return annotationView;
     }
@@ -157,12 +170,31 @@ static const CGFloat kDefaultZoomMiles = 0.5;
     
     UIImage *pinSelectedImage = [UIImage imageNamed:@"pinSelectedImage.png"];
     view.image = pinSelectedImage;
+    
+    // if initiated by touch
+    if (userTouchedAnnotationView) {
+        // scroll to associated cell
+        MKAnnotationCustom *annotation = view.annotation;
+        NSIndexPath *indexPath = [NSIndexPath indexPathForRow:annotation.cellIndex inSection:0];
+        userScrolling = NO;
+        [self.collectionView scrollToItemAtIndexPath:indexPath atScrollPosition:UICollectionViewScrollPositionCenteredHorizontally animated:YES];
+    }
+    userTouchedAnnotationView = YES;
+    // scroll to associated cell
+//    MKAnnotationCustom *annotation = view.annotation;
+//    NSIndexPath *indexPath = [NSIndexPath indexPathForRow:annotation.cellIndex inSection:0];
+//    userScrolling = NO;
+//    [self.collectionView scrollToItemAtIndexPath:indexPath atScrollPosition:UICollectionViewScrollPositionCenteredHorizontally animated:YES];
 }
 
 - (void)mapView:(MKMapView *)mapView didDeselectAnnotationView:(MKAnnotationView*)view {
     UIImage *pinImage = [UIImage imageNamed:@"pinImage.png"];
     view.image = pinImage;
 }
+
+//-(void)mapView:(MKMapView *)mapView regionDidChangeAnimated:(BOOL)animated {
+//    [self highlightMarkerForCenteredCell];
+//}
 
 #pragma mark - UICollectionView
 
@@ -218,6 +250,7 @@ static const CGFloat kDefaultZoomMiles = 0.5;
     PhotoCollectionViewCell *centeredCell = (PhotoCollectionViewCell*)[self.collectionView cellForItemAtIndexPath:centeredIndexPath];
     // get the correct annotation and select it
     MKAnnotationCustom *annotation = [centeredCell.spot getAnnotation];
+    userTouchedAnnotationView = NO;
     [self.mapView selectAnnotation:annotation animated:YES];
 }
 
@@ -294,10 +327,14 @@ static const CGFloat kDefaultZoomMiles = 0.5;
 
 // populates the map with pins at each Spot location
 -(void)placeSpotMarkers {
+    int index = 0;
     for (Spot *spot in self.nearbySpots) {
         // returns annotation and also makes sure one is created in spot property
         MKAnnotationCustom *spotMarker = [spot getAnnotation];
-
+        spotMarker.cellIndex = index;
+        
+        index++;
+        
         [self placeSpotMarker:spotMarker];
     }
 }
