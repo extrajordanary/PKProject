@@ -54,6 +54,9 @@
 		172B41951A19EE29004AB03C /* profileIcon@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 172B41921A19EE29004AB03C /* profileIcon@3x.png */; };
 		172B41961A19EE29004AB03C /* profileIcon.png in Resources */ = {isa = PBXBuildFile; fileRef = 172B41931A19EE29004AB03C /* profileIcon.png */; };
 		172B41981A19F02E004AB03C /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 172B41971A19F02E004AB03C /* Images.xcassets */; };
+		172B419C1A1A64DB004AB03C /* textLogoGreen@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 172B41991A1A64DB004AB03C /* textLogoGreen@3x.png */; };
+		172B419D1A1A64DB004AB03C /* textLogoGreen.png in Resources */ = {isa = PBXBuildFile; fileRef = 172B419A1A1A64DB004AB03C /* textLogoGreen.png */; };
+		172B419E1A1A64DB004AB03C /* textLogoGreen@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 172B419B1A1A64DB004AB03C /* textLogoGreen@2x.png */; };
 		1731D51A1A0AF6DB0068A769 /* cvalt-roundedButton.png in Resources */ = {isa = PBXBuildFile; fileRef = 1731D5191A0AF6DB0068A769 /* cvalt-roundedButton.png */; };
 		1731D51C1A0B002F0068A769 /* cvalt-textLogo.png in Resources */ = {isa = PBXBuildFile; fileRef = 1731D51B1A0B002F0068A769 /* cvalt-textLogo.png */; };
 		1731D51E1A0B027B0068A769 /* cvalt-textLogo-blue.png in Resources */ = {isa = PBXBuildFile; fileRef = 1731D51D1A0B027B0068A769 /* cvalt-textLogo-blue.png */; };
@@ -183,6 +186,9 @@
 		172B41921A19EE29004AB03C /* profileIcon@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "profileIcon@3x.png"; sourceTree = "<group>"; };
 		172B41931A19EE29004AB03C /* profileIcon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = profileIcon.png; sourceTree = "<group>"; };
 		172B41971A19F02E004AB03C /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
+		172B41991A1A64DB004AB03C /* textLogoGreen@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "textLogoGreen@3x.png"; sourceTree = "<group>"; };
+		172B419A1A1A64DB004AB03C /* textLogoGreen.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = textLogoGreen.png; sourceTree = "<group>"; };
+		172B419B1A1A64DB004AB03C /* textLogoGreen@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "textLogoGreen@2x.png"; sourceTree = "<group>"; };
 		1731D5191A0AF6DB0068A769 /* cvalt-roundedButton.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "cvalt-roundedButton.png"; sourceTree = "<group>"; };
 		1731D51B1A0B002F0068A769 /* cvalt-textLogo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "cvalt-textLogo.png"; sourceTree = "<group>"; };
 		1731D51D1A0B027B0068A769 /* cvalt-textLogo-blue.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "cvalt-textLogo-blue.png"; path = "../cvalt-textLogo-blue.png"; sourceTree = "<group>"; };
@@ -324,6 +330,9 @@
 		1734B77B19E469A1009B228A /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				172B41991A1A64DB004AB03C /* textLogoGreen@3x.png */,
+				172B419A1A1A64DB004AB03C /* textLogoGreen.png */,
+				172B419B1A1A64DB004AB03C /* textLogoGreen@2x.png */,
 				172B41911A19EE29004AB03C /* profileIcon@2x.png */,
 				172B41921A19EE29004AB03C /* profileIcon@3x.png */,
 				172B41931A19EE29004AB03C /* profileIcon.png */,
@@ -632,6 +641,7 @@
 				172B41541A19CE8C004AB03C /* greenPin@3x.png in Resources */,
 				172B41441A19BDB8004AB03C /* bluePin@2x.png in Resources */,
 				175DA61019DA1D2800897710 /* Main.storyboard in Resources */,
+				172B419E1A1A64DB004AB03C /* textLogoGreen@2x.png in Resources */,
 				172B41981A19F02E004AB03C /* Images.xcassets in Resources */,
 				172B41861A19E7E0004AB03C /* folder2Icon@2x.png in Resources */,
 				172B417A1A19E3C1004AB03C /* folderIcon@2x.png in Resources */,
@@ -656,6 +666,7 @@
 				1731D51A1A0AF6DB0068A769 /* cvalt-roundedButton.png in Resources */,
 				1731D51C1A0B002F0068A769 /* cvalt-textLogo.png in Resources */,
 				172B41521A19CE8C004AB03C /* greenPin.png in Resources */,
+				172B419D1A1A64DB004AB03C /* textLogoGreen.png in Resources */,
 				172B41601A19D545004AB03C /* myLocation@3x.png in Resources */,
 				1740BBA91A0C0B120033D2DE /* cvalt-findMe2s.png in Resources */,
 				172B41781A19E3C1004AB03C /* camera2Icon.png in Resources */,
@@ -663,6 +674,7 @@
 				17F2C61019F83D6E008C86AE /* sdb-2009-04-15.json in Resources */,
 				17F2C60C19F83D6E008C86AE /* kinesis-2013-12-02.json in Resources */,
 				17F2C60819F83D6E008C86AE /* dynamodb-2012-08-10.json in Resources */,
+				172B419C1A1A64DB004AB03C /* textLogoGreen@3x.png in Resources */,
 				172B416B1A19D83D004AB03C /* darkBluePin@2x.png in Resources */,
 				172B416A1A19D83D004AB03C /* darkBluePin.png in Resources */,
 				172B41761A19E3C1004AB03C /* camera2Icon@3x.png in Resources */,

@@ -12,6 +12,10 @@
 
 @interface ProfileViewController ()
 
+@property (strong, nonatomic) IBOutlet UIButton *FBLoginButton;
+@property (strong, nonatomic) IBOutlet FBProfilePictureView *profilePictureView;
+@property (strong, nonatomic) IBOutlet UILabel *profileNameLabel;
+
 @end
 
 @implementation ProfileViewController
@@ -19,6 +23,15 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+    NSNotificationCenter *center = [NSNotificationCenter defaultCenter];
+    [center addObserver:self
+               selector:@selector(defaultsChanged:)
+                   name:NSUserDefaultsDidChangeNotification
+                 object:nil];
+    
+    [self setFBLoginButtonText];
+    [self updateProfileName];
+    [self updateProfilePicture];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -50,6 +63,41 @@
              [appDelegate sessionStateChanged:session state:state error:error];
          }];
     }
+}
+
+-(void)setFBLoginButtonText {
+    BOOL loggedIn = [[NSUserDefaults standardUserDefaults] boolForKey:@"LoggedIn"];
+    if (loggedIn) {
+        [self.FBLoginButton setTitle:@"Facebook Logout" forState:UIControlStateNormal];
+    } else {
+        [self.FBLoginButton setTitle:@"Facebook Login" forState:UIControlStateNormal];
+    }
+}
+
+-(void)updateProfilePicture {
+    NSString *fbId = [[NSUserDefaults standardUserDefaults] objectForKey:@"thisUserFacebookId"];
+    if (fbId) {
+        self.profilePictureView.profileID = fbId;
+    } else {
+        self.profilePictureView.hidden = YES;
+    }
+}
+
+-(void)updateProfileName {
+    NSString *fbName = [[NSUserDefaults standardUserDefaults] objectForKey:@"thisUserFacebookName"];
+    if (fbName) {
+        self.profileNameLabel.text = fbName;
+    } else {
+        self.profileNameLabel.hidden = YES;
+    }
+}
+
+#pragma mark - NSUserDefaults Change Notification
+- (void)defaultsChanged:(NSNotification *)notification {
+    // change button text based on loggedIn status
+    [self setFBLoginButtonText];
+    [self updateProfileName];
+    [self updateProfilePicture];
 }
 
 /*

@@ -269,6 +269,9 @@ static const NSString *highlightedPin = @"greenPin72.png";
 
 // allows user to actively refresh visible spots
 - (IBAction)refreshSpots:(id)sender {
+    [self.collectionView scrollToItemAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:0]
+                                atScrollPosition:UICollectionViewScrollPositionCenteredHorizontally
+                                        animated:YES];
     [self getSpotsInView];
 }
 

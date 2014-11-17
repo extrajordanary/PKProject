@@ -74,6 +74,7 @@
     return YES;
 }
 
+#pragma mark - Facebook SDK
 // This method will handle ALL the session state changes in the app
 - (void)sessionStateChanged:(FBSession *)session state:(FBSessionState) state error:(NSError *)error
 {
@@ -139,6 +140,7 @@
     [[NSUserDefaults standardUserDefaults] setBool:NO forKey:@"LoggedIn"];
     // ??? do I def want to set this to nil?
     [[NSUserDefaults standardUserDefaults] setObject:nil forKey:@"thisUserFacebookId"];
+    [[NSUserDefaults standardUserDefaults] setObject:nil forKey:@"thisUserFacebookName"];
     [[NSUserDefaults standardUserDefaults] synchronize];
 }
 
@@ -159,8 +161,10 @@
             // Success! Include your code to handle the results here
             NSLog(@"user info: %@", result);
             NSString *thisFBId = [result objectForKey:@"id"];
+            NSString *thisFBName = [result objectForKey:@"name"];
             // save the user's facebookId
             [[NSUserDefaults standardUserDefaults] setObject:thisFBId forKey:@"thisUserFacebookId"];
+            [[NSUserDefaults standardUserDefaults] setObject:thisFBName forKey:@"thisUserFacebookName"];
             [[NSUserDefaults standardUserDefaults] synchronize];
             
             [self updateOrCreateUserAccountWithData:result];
@@ -255,6 +259,8 @@
     
     return wasHandled;
 }
+
+#pragma mark - UIApplication Handling
 
 - (void)applicationWillResignActive:(UIApplication *)application {
     // Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.

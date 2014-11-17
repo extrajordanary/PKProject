@@ -17,6 +17,7 @@
 
 @property (nonatomic, weak) CoreDataHandler *coreDataHandler;
 @property (strong, nonatomic) IBOutlet UIButton *continueLabel;
+@property (strong, nonatomic) IBOutlet UIButton *FBLoginButton;
 
 
 @end
@@ -35,6 +36,7 @@
                  object:nil];
     
     [self setContinueButtonText];
+    [self setFBLoginButtonText];
 }
 
 -(void)viewDidAppear:(BOOL)animated {
@@ -82,6 +84,7 @@
 - (void)defaultsChanged:(NSNotification *)notification {
     // change button text based on loggedIn status
     [self setContinueButtonText];
+    [self setFBLoginButtonText];
 }
 
 -(void)setContinueButtonText {
@@ -90,6 +93,15 @@
         [self.continueLabel setTitle:@"Continue >" forState:UIControlStateNormal];
     } else {
         [self.continueLabel setTitle:@"Continue without signing in >" forState:UIControlStateNormal];
+    }
+}
+
+-(void)setFBLoginButtonText {
+    BOOL loggedIn = [[NSUserDefaults standardUserDefaults] boolForKey:@"LoggedIn"];
+    if (loggedIn) {
+        [self.FBLoginButton setTitle:@"Facebook Connected" forState:UIControlStateNormal];
+    } else {
+        [self.FBLoginButton setTitle:@"Facebook Login" forState:UIControlStateNormal];
     }
 }
 
