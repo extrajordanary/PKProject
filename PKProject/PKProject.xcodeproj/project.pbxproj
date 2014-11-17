@@ -16,6 +16,13 @@
 		172B41291A15DCA5004AB03C /* MKAnnotationCustom.m in Sources */ = {isa = PBXBuildFile; fileRef = 172B41281A15DCA5004AB03C /* MKAnnotationCustom.m */; };
 		172B41341A15F4B7004AB03C /* pinImage.png in Resources */ = {isa = PBXBuildFile; fileRef = 172B41321A15F4B7004AB03C /* pinImage.png */; };
 		172B41351A15F4B7004AB03C /* pinSelectedImage.png in Resources */ = {isa = PBXBuildFile; fileRef = 172B41331A15F4B7004AB03C /* pinSelectedImage.png */; };
+		172B41381A19AF4F004AB03C /* ProfileViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 172B41371A19AF4F004AB03C /* ProfileViewController.m */; };
+		172B41441A19BDB8004AB03C /* bluePin@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 172B41431A19BDB8004AB03C /* bluePin@2x.png */; };
+		172B414A1A19BE26004AB03C /* bluePin.png in Resources */ = {isa = PBXBuildFile; fileRef = 172B41491A19BE26004AB03C /* bluePin.png */; };
+		172B414E1A19CCED004AB03C /* bluePin@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 172B414D1A19CCED004AB03C /* bluePin@3x.png */; };
+		172B41521A19CE8C004AB03C /* greenPin.png in Resources */ = {isa = PBXBuildFile; fileRef = 172B414F1A19CE8C004AB03C /* greenPin.png */; };
+		172B41531A19CE8C004AB03C /* greenPin@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 172B41501A19CE8C004AB03C /* greenPin@2x.png */; };
+		172B41541A19CE8C004AB03C /* greenPin@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 172B41511A19CE8C004AB03C /* greenPin@3x.png */; };
 		1731D5181A0AB9040068A769 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1731D5171A0AB9040068A769 /* Images.xcassets */; };
 		1731D51A1A0AF6DB0068A769 /* cvalt-roundedButton.png in Resources */ = {isa = PBXBuildFile; fileRef = 1731D5191A0AF6DB0068A769 /* cvalt-roundedButton.png */; };
 		1731D51C1A0B002F0068A769 /* cvalt-textLogo.png in Resources */ = {isa = PBXBuildFile; fileRef = 1731D51B1A0B002F0068A769 /* cvalt-textLogo.png */; };
@@ -108,6 +115,14 @@
 		172B41281A15DCA5004AB03C /* MKAnnotationCustom.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MKAnnotationCustom.m; sourceTree = "<group>"; };
 		172B41321A15F4B7004AB03C /* pinImage.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = pinImage.png; sourceTree = "<group>"; };
 		172B41331A15F4B7004AB03C /* pinSelectedImage.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = pinSelectedImage.png; sourceTree = "<group>"; };
+		172B41361A19AF4F004AB03C /* ProfileViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProfileViewController.h; sourceTree = "<group>"; };
+		172B41371A19AF4F004AB03C /* ProfileViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProfileViewController.m; sourceTree = "<group>"; };
+		172B41431A19BDB8004AB03C /* bluePin@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "bluePin@2x.png"; sourceTree = "<group>"; };
+		172B41491A19BE26004AB03C /* bluePin.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bluePin.png; sourceTree = "<group>"; };
+		172B414D1A19CCED004AB03C /* bluePin@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "bluePin@3x.png"; sourceTree = "<group>"; };
+		172B414F1A19CE8C004AB03C /* greenPin.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = greenPin.png; sourceTree = "<group>"; };
+		172B41501A19CE8C004AB03C /* greenPin@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "greenPin@2x.png"; sourceTree = "<group>"; };
+		172B41511A19CE8C004AB03C /* greenPin@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "greenPin@3x.png"; sourceTree = "<group>"; };
 		1731D5171A0AB9040068A769 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		1731D5191A0AF6DB0068A769 /* cvalt-roundedButton.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "cvalt-roundedButton.png"; sourceTree = "<group>"; };
 		1731D51B1A0B002F0068A769 /* cvalt-textLogo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "cvalt-textLogo.png"; sourceTree = "<group>"; };
@@ -248,9 +263,15 @@
 			name = "Core Data Classes";
 			sourceTree = "<group>";
 		};
-		1734B77B19E469A1009B228A /* SampleSpots */ = {
+		1734B77B19E469A1009B228A /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				172B414F1A19CE8C004AB03C /* greenPin.png */,
+				172B41501A19CE8C004AB03C /* greenPin@2x.png */,
+				172B41511A19CE8C004AB03C /* greenPin@3x.png */,
+				172B41491A19BE26004AB03C /* bluePin.png */,
+				172B41431A19BDB8004AB03C /* bluePin@2x.png */,
+				172B414D1A19CCED004AB03C /* bluePin@3x.png */,
 				172B41321A15F4B7004AB03C /* pinImage.png */,
 				172B41331A15F4B7004AB03C /* pinSelectedImage.png */,
 				17AB142C1A11746000BA881F /* cvalt-roundedButton2.png */,
@@ -264,6 +285,7 @@
 				1762F6F719F0674000EE71C2 /* noSpotPhoto.jpg */,
 				1762F6EC19EF192700EE71C2 /* defaultSpotPhoto.jpg */,
 			);
+			name = Images;
 			path = SampleSpots;
 			sourceTree = "<group>";
 		};
@@ -295,6 +317,8 @@
 				175DA60619DA1D2800897710 /* AppDelegate.m */,
 				1731D51F1A0B042A0068A769 /* SignUpViewController.h */,
 				1731D5201A0B042A0068A769 /* SignUpViewController.m */,
+				172B41361A19AF4F004AB03C /* ProfileViewController.h */,
+				172B41371A19AF4F004AB03C /* ProfileViewController.m */,
 				175DA62A19DB491700897710 /* MapViewController.h */,
 				175DA62B19DB491700897710 /* MapViewController.m */,
 				1762F6F419EF40C500EE71C2 /* PhotoCollectionViewCell.h */,
@@ -325,7 +349,7 @@
 		175DA60119DA1D2800897710 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
-				1734B77B19E469A1009B228A /* SampleSpots */,
+				1734B77B19E469A1009B228A /* Images */,
 				175DA60219DA1D2800897710 /* Info.plist */,
 				175DA60319DA1D2800897710 /* main.m */,
 			);
@@ -511,15 +535,20 @@
 				1731D5181A0AB9040068A769 /* Images.xcassets in Resources */,
 				1740BBA71A0C08AF0033D2DE /* cvalt-findMe2.png in Resources */,
 				17F2C61319F83D6E008C86AE /* sts-2011-06-15.json in Resources */,
+				172B41541A19CE8C004AB03C /* greenPin@3x.png in Resources */,
+				172B41441A19BDB8004AB03C /* bluePin@2x.png in Resources */,
 				175DA61019DA1D2800897710 /* Main.storyboard in Resources */,
 				17F2C61119F83D6E008C86AE /* sns-2010-03-31.json in Resources */,
 				1762F6ED19EF192700EE71C2 /* defaultSpotPhoto.jpg in Resources */,
 				17F2C60519F83D6E008C86AE /* autoscaling-2011-01-01.json in Resources */,
+				172B414E1A19CCED004AB03C /* bluePin@3x.png in Resources */,
 				172B41341A15F4B7004AB03C /* pinImage.png in Resources */,
+				172B41531A19CE8C004AB03C /* greenPin@2x.png in Resources */,
 				1740BBAB1A0C0B790033D2DE /* cvalt-findMe2s2.png in Resources */,
 				17F2C60719F83D6E008C86AE /* css-2014-06-30.json in Resources */,
 				1731D51A1A0AF6DB0068A769 /* cvalt-roundedButton.png in Resources */,
 				1731D51C1A0B002F0068A769 /* cvalt-textLogo.png in Resources */,
+				172B41521A19CE8C004AB03C /* greenPin.png in Resources */,
 				1740BBA91A0C0B120033D2DE /* cvalt-findMe2s.png in Resources */,
 				17F2C60D19F83D6E008C86AE /* mobileanalytics-2014-06-30.json in Resources */,
 				17F2C61019F83D6E008C86AE /* sdb-2009-04-15.json in Resources */,
@@ -535,6 +564,7 @@
 				17F2C60E19F83D6E008C86AE /* monitoring-2010-08-01.json in Resources */,
 				175DA61519DA1D2800897710 /* LaunchScreen.xib in Resources */,
 				1731D51E1A0B027B0068A769 /* cvalt-textLogo-blue.png in Resources */,
+				172B414A1A19BE26004AB03C /* bluePin.png in Resources */,
 				17F2C61219F83D6E008C86AE /* sqs-2012-11-05.json in Resources */,
 				175DA61219DA1D2800897710 /* Images.xcassets in Resources */,
 			);
@@ -562,6 +592,7 @@
 				175DA60719DA1D2800897710 /* AppDelegate.m in Sources */,
 				17C7BF9F19E85A3900BD019A /* ServerObjects+Extended.m in Sources */,
 				17A6D94819FACF490038EC1E /* ALAssetsLibrary+CustomPhotoAlbum.m in Sources */,
+				172B41381A19AF4F004AB03C /* ProfileViewController.m in Sources */,
 				172B41291A15DCA5004AB03C /* MKAnnotationCustom.m in Sources */,
 				1762F6FE19F1BC4400EE71C2 /* Photo.m in Sources */,
 				1740BBA31A0B46770033D2DE /* LocationManagerHandler.m in Sources */,

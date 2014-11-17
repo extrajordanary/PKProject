@@ -44,6 +44,8 @@
 // TODO: create Constants.h/m
 static const CGFloat kMetersPerMile = 1609.344;
 static const CGFloat kDefaultZoomMiles = 0.5;
+static const NSString *pin = @"bluePin72.png";
+static const NSString *highlightedPin = @"greenPin72.png";
 
 #pragma mark - View
 - (void)viewDidLoad {
@@ -137,10 +139,10 @@ static const CGFloat kDefaultZoomMiles = 0.5;
             annotationView.canShowCallout = NO;
             
             // set pin image
-            UIImage *pinImage = [UIImage imageNamed:@"pinImage.png"];
+            UIImage *pinImage = [UIImage imageNamed:@"bluePin"];
             annotationView.image = pinImage;
             
-            annotationView.centerOffset = CGPointMake(0.0, -31.0);
+            annotationView.centerOffset = CGPointMake(0.0, -26.0);
         }
         else
         {
@@ -168,7 +170,7 @@ static const CGFloat kDefaultZoomMiles = 0.5;
         [self mapView:self.mapView didDeselectAnnotationView:aView];
     }
     
-    UIImage *pinSelectedImage = [UIImage imageNamed:@"pinSelectedImage.png"];
+    UIImage *pinSelectedImage = [UIImage imageNamed:@"greenPin"];
     view.image = pinSelectedImage;
     
     // if initiated by touch
@@ -180,21 +182,12 @@ static const CGFloat kDefaultZoomMiles = 0.5;
         [self.collectionView scrollToItemAtIndexPath:indexPath atScrollPosition:UICollectionViewScrollPositionCenteredHorizontally animated:YES];
     }
     userTouchedAnnotationView = YES;
-    // scroll to associated cell
-//    MKAnnotationCustom *annotation = view.annotation;
-//    NSIndexPath *indexPath = [NSIndexPath indexPathForRow:annotation.cellIndex inSection:0];
-//    userScrolling = NO;
-//    [self.collectionView scrollToItemAtIndexPath:indexPath atScrollPosition:UICollectionViewScrollPositionCenteredHorizontally animated:YES];
 }
 
 - (void)mapView:(MKMapView *)mapView didDeselectAnnotationView:(MKAnnotationView*)view {
-    UIImage *pinImage = [UIImage imageNamed:@"pinImage.png"];
+    UIImage *pinImage = [UIImage imageNamed:@"bluePin"];
     view.image = pinImage;
 }
-
-//-(void)mapView:(MKMapView *)mapView regionDidChangeAnimated:(BOOL)animated {
-//    [self highlightMarkerForCenteredCell];
-//}
 
 #pragma mark - UICollectionView
 
@@ -210,7 +203,10 @@ static const CGFloat kDefaultZoomMiles = 0.5;
         // TODO: error handling
     }
     // fetch photo and update display of cell
-    [cell displayInfoForSpot:self.nearbySpots[indexPath.row]];
+    if (indexPath.row < [self.nearbySpots count]) {
+        // in case array is updated while this is still iterating
+        [cell displayInfoForSpot:self.nearbySpots[indexPath.row]];
+    }
     
     return cell;
 }
